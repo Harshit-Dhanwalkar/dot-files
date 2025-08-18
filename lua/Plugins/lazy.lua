@@ -331,7 +331,7 @@ require('lazy').setup({
         rust_analyzer = {},
         texlab = {},
         markdown_oxide = {},
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
         -- ts_ls = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -614,13 +614,9 @@ require('lazy').setup({
 
   { -- Use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    priority = 1000,
     init = function()
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'tokyonight-night'
-
-      -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
     opts = {
@@ -760,11 +756,28 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'python', 'rust' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'diff',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'python',
+        'rust',
+        'html',
+        'css',
+        'javascript',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
         enable = true,
+        disable = { 'latex' }, -- Disable Treesitter highlighting for LaTeX
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
@@ -859,14 +872,27 @@ require('lazy').setup({
     'lervag/vimtex',
     lazy = false, -- I don't want to lazy load VimTeX
     -- tag = "v2.15",
+    ft = 'tex', -- Load plugin only for TeX and LaTeX files
     config = function()
       vim.g.tex_flavor = 'latex'
       vim.g.vimtex_view_method = 'zathura'
       vim.g.vimtex_quickfix_mode = 0
-      vim.opt.conceallevel = 1
+      vim.opt.conceallevel = 2
       vim.g.tex_conceal = 'abdmg'
+      vim.cmd 'syntax enable'
+
+      -- Ensure --shell-escape is enabled
+      vim.g.vimtex_compiler_latexmk = {
+        build_dir = '',
+        continuous = 1,
+        options = {
+          '-pdf',
+          '-shell-escape',
+          '-interaction=nonstopmode',
+          '-synctex=1',
+        },
+      }
     end,
-    ft = { 'tex' }, -- Load plugin only for TeX and LaTeX files
   },
   -- {
   --   'sirver/ultisnips',
@@ -1049,13 +1075,147 @@ require('lazy').setup({
       require('Plugins.tiny-inline-diagnostic').setup()
     end,
   },
+  -- ----------------------------------------------------------
+  -- TEST: html, javascript, css
+  -- Formatting support
+  -- NOT NEEDED SINCE CONFORM.NVIM IS BEING DOING FORMATTING
+  -- {
+  --   'jose-elias-alvarez/null-ls.nvim',
+  --   dependencies = { 'nvim-lua/plenary.nvim' },
+  --   config = function()
+  --     local null_ls = require 'null-ls'
+  --     null_ls.setup {
+  --       sources = {
+  --         null_ls.builtins.formatting.prettier.with {
+  --           filetypes = { 'html', 'css', 'javascript', 'json' },
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
+
+  -- Emmet for faster HTML coding
+  {
+    'mattn/emmet-vim',
+    config = function()
+      vim.g.user_emmet_leader_key = ','
+    end,
+  },
+
+  -- Colorizer for CSS colors inside HTML
+  {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup { 'html', 'css' }
+    end,
+  },
+
+  -- tiny-code-action
+  {
+    'rachartier/tiny-code-action.nvim',
+    dependencies = {
+      { 'nvim-lua/plenary.nvim' },
+    },
+    event = 'LspAttach', -- Load the plugin when an LSP client attaches to a buffer
+    opts = {
+      -- The backend to use for displaying diffs.
+      -- Options: "vim", "delta", "difftastic", "diffsofancy"
+      backend = 'vim',
+
+      -- The picker to use for selecting code actions.
+      -- Options: "telescope", "snacks", "select", "buffer"
+      picker = 'telescope',
+
+      -- Backend-specific options
+      backend_opts = {
+        delta = {
+          -- Number of header lines to remove from delta's output
+          header_lines_to_remove = 4,
+          -- Arguments to pass to delta
+          args = {
+            '--line-numbers',
+          },
+        },
+        difftastic = {
+          -- Number of header lines to remove from difftastic's output
+          header_lines_to_remove = 1,
+          -- Arguments to pass to difftastic
+          args = {
+            '--color=always',
+            '--display=inline',
+            '--syntax-highlight=on',
+          },
+        },
+        diffsofancy = {
+          -- Number of header lines to remove from diffsofancy's output
+          header_lines_to_remove = 4,
+        },
+      },
+
+      -- Custom icons (signs) to use for different code action kinds.
+      -- Each entry is a table with the icon string and an optional highlight table.
+      -- The highlight can be a link to an existing highlight group (e.g., "DiagnosticWarning")
+      -- or a table with nvim_set_hl compatible properties (e.g., { fg = "#FF0000", bold = true }).
+      signs = {
+        quickfix = { '', { link = 'DiagnosticWarning' } },
+        others = { '', { link = 'DiagnosticWarning' } },
+        refactor = { '', { link = 'DiagnosticInfo' } },
+        ['refactor.move'] = { '󰪹', { link = 'DiagnosticInfo' } },
+        ['refactor.extract'] = { '', { link = 'DiagnosticError' } },
+        ['source.organizeImports'] = { '', { link = 'DiagnosticWarning' } },
+        ['source.fixAll'] = { '󰃢', { link = 'DiagnosticError' } },
+        ['source'] = { '', { link = 'DiagnosticError' } },
+        ['rename'] = { '󰑕', { link = 'DiagnosticWarning' } },
+        ['codeAction'] = { '', { link = 'DiagnosticWarning' } },
+      },
+    },
+  },
+
+  -- vim-visual-multi
+  {
+    'mg979/vim-visual-multi',
+    event = 'VeryLazy',
+    config = function()
+      -- require('vim-visual-multi').setup({ keybinds = {} })
+    end,
+  },
+  -- ----------------------------------------------------------
+
+  -- TODO: RUST (https://youtu.be/mh_EJhH49Ms?si=fPT49iOm-Mu3IdZL)
+  -- {
+  --   'rust-lang/rust.vim',
+  --   ft = 'rust',
+  --   init = function()
+  --     vim.g.rustfmt_autosave = 1
+  --   end,
+  -- },
+  -- {
+  --   'simrat39/rust-tools.nvim',
+  --   ft = 'rust',
+  -- },
+  -- {
+  --   'mfusseneggger/nvim-dap',
+  -- },
+  -- {
+  --   'saecki/crates.nvim',
+  --   ft = {"rust", "toml"},
+  --   config = function(_, opts)
+  --      local crates = require('crates')
+  --      crates.setup(opts)
+  --      crates.show()
+  --    end,
+  -- },
+  -- {
+  -- hrsh7th/nvim-cmp",
+  --  table.insert(M.sources, {name = 'crates"}))
+  -- },
 
   -- project wise search
   --{
   -- 'mileszs/ack.vim'
   -- }
-  -- {
 
+  -- {
   --   'petertriho/nvim-scrollbar',
   --   config = function()
   --     local colors = require('tokyonight.colors').setup()

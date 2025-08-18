@@ -15,6 +15,8 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 
 vim.wo.wrap = true -- For window-specific options
+vim.o.winblend = 20 -- Adjust the level of transparency
+vim.o.pumblend = 20 -- For popup menu level of transparency
 
 vim.opt.mouse = 'a' -- Enable mouse mode
 vim.opt.showmode = false -- Don't show mode in the status line

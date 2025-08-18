@@ -10,6 +10,9 @@ map('n', '<leader>x', ':bd<cr>')
 -- yank to clipboard
 map({ 'n', 'v' }, '<leader>y', [["+y]])
 
+-- Formatting
+map('n', '<leader>f', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
+
 -- Split window
 map('n', 'ss', ':split<Return>', opts)
 map('n', 'sv', ':vsplit<Return>', opts)
