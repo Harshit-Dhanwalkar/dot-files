@@ -1175,9 +1175,32 @@ require('lazy').setup({
   {
     'mg979/vim-visual-multi',
     event = 'VeryLazy',
-    config = function()
-      -- require('vim-visual-multi').setup({ keybinds = {} })
-    end,
+    -- config = function()
+    -- require('vim-visual-multi').setup({ keybinds = {} })
+    -- end,
+  },
+
+  -- screenkey.nvim
+  {
+    'NStefan002/screenkey.nvim',
+    lazy = true, -- Set to lazy load
+    version = '*',
+    keys = {
+      {
+        '<leader>so',
+        function()
+          require('screenkey').start()
+        end,
+        desc = 'Start Screenkey',
+      },
+      {
+        '<leader>sp',
+        function()
+          require('screenkey').stop()
+        end,
+        desc = 'Stop Screenkey',
+      },
+    },
   },
   -- ----------------------------------------------------------
 
