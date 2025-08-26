@@ -49,9 +49,4 @@ vim.keymap.set({ "n", "x" }, "<leader>ca", function()
 end, { noremap = true, silent = true })
 
 -- Screenkey keymaps
--- vim.keymap.set('n', '<leader>so', function()
---   require('screenkey').start()
--- end, { desc = 'Start Screenkey' })
--- vim.keymap.set('n', '<leader>sp', function()
---   require('screenkey').stop()
--- end, { desc = 'Stop Screenkey' })
+vim.keymap.set("n", "<leader>so", ":Screenkey toggle<CR>", { desc = "Toggle screenkey" })
