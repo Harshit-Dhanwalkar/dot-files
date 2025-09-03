@@ -43,10 +43,10 @@ vim.keymap.set({ "n", "v" }, "<leader>lt", ":VimtexTocToggle<cr>")
 -- noice dissmiss notification
 vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDissmiss<CR>", { desc = "Dissmiss Noice Misseage" })
 
--- tiny-code-action.nvim
-vim.keymap.set({ "n", "x" }, "<leader>ca", function()
-	require("tiny-code-action").code_action()
-end, { noremap = true, silent = true })
-
+-- -- tiny-code-action.nvim
+-- vim.keymap.set({ "n", "x" }, "<leader>ca", function()
+-- 	require("tiny-code-action").code_action()
+-- end, { noremap = true, silent = true })
+--
 -- Screenkey keymaps
 vim.keymap.set("n", "<leader>so", ":Screenkey toggle<CR>", { desc = "Toggle screenkey" })

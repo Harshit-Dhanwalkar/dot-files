@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 -- space leader key
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 -- buffers
 map("n", "<leader>j", ":bn<cr>")
@@ -44,4 +45,62 @@ map("n", "<C-w><left>", "<C-w><")
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Make previous word first's char caps
+map("n", "<leader>t", "bv~")
+
 vim.api.nvim_set_keymap("n", "<leader>o", ":PreviewOkular<CR>", { noremap = true, silent = true })
+
+-- lsp setup
+map("n", "K", vim.lsp.buf.hover)
+map("n", "gd", vim.lsp.buf.definition)
+map("n", "gD", vim.lsp.buf.declaration)
+map("n", "gr", function()
+	-- trigger the lsp references function and populate the quickfix list
+	vim.lsp.buf.references()
+
+	vim.defer_fn(function()
+		-- set up an autocmd to remap keys in the quickfix window
+		vim.api.nvim_create_autocmd("filetype", {
+			pattern = "qf", -- only apply this mapping in quickfix windows
+			callback = function()
+				-- remap <enter> to jump to the location and close the quickfix window
+				vim.api.nvim_buf_set_keymap(0, "n", "<cr>", "<cr>:cclose<cr>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(0, "n", "q", ":cclose<cr>", { noremap = true, silent = true })
+
+				-- set up <tab> to cycle through quickfix list entries
+				map("n", "<tab>", function()
+					local current_idx = vim.fn.getqflist({ idx = 0 }).idx
+					local qflist = vim.fn.getqflist() -- get the current quickfix list
+					if current_idx >= #qflist then
+						vim.cmd("cfirst")
+						vim.cmd("wincmd p")
+					else
+						vim.cmd("cnext")
+						vim.cmd("wincmd p")
+					end
+				end, { noremap = true, silent = true, buffer = 0 })
+
+				map("n", "<s-tab>", function()
+					local current_idx = vim.fn.getqflist({ idx = 0 }).idx
+					if current_idx < 2 then
+						vim.cmd("clast")
+						vim.cmd("wincmd p")
+					else
+						vim.cmd("cprev")
+						vim.cmd("wincmd p")
+					end
+				end, { noremap = true, silent = true, buffer = 0 })
+			end,
+		})
+	end, 0)
+end)
+
+map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+
+-- see error
+map("n", "<leader>e", vim.diagnostic.open_float)
+
+-- go to errors
+map("n", "[e", vim.diagnostic.goto_next)
+map("n", "]e", vim.diagnostic.goto_next)
