@@ -1,9 +1,6 @@
 -- ~/.config/nvim/lua/settings.lua
 
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
+-- See `:help vim.opt` amd `:help option-list`
 
 vim.opt.termguicolors = true
 vim.opt.number = true
@@ -29,8 +26,6 @@ vim.opt.smartcase = true -- Case-sensitive if search contains uppercase
 vim.opt.ignorecase = true
 
 -- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
@@ -63,7 +58,6 @@ vim.opt.scrolloff = 10 -- -- Scroll Off, Minimal lines to keep above and below c
 
 vim.opt.cursorline = true -- Highlight the current line
 
--- -----------------
 -- Command to preview in Okular
 vim.api.nvim_create_user_command("PreviewOkular", function()
 	local filepath = vim.fn.expand("%:p")
