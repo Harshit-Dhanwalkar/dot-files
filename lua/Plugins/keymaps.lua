@@ -39,6 +39,18 @@ vim.keymap.set({ "n", "v" }, "<leader>gc", ":CommentToggle<cr>")
 
 -- vimtex
 vim.keymap.set({ "n", "v" }, "<leader>lt", ":VimtexTocToggle<cr>")
+vim.keymap.set("n", "<leader>ll", ":VimtexCompile<CR>", opts) -- Start compilation
+vim.keymap.set("n", "<leader>lk", ":VimtexStop<CR>", opts) -- Stop compilation
+vim.keymap.set("n", "<leader>lc", ":VimtexClean<CR>", opts) -- Clean aux files
+vim.keymap.set("n", "<leader>lC", ":VimtexClean!<CR>", opts) -- Full clean
+vim.keymap.set("n", "<leader>lv", ":VimtexView<CR>", opts) -- Open PDF viewer
+vim.keymap.set("n", "<leader>li", ":VimtexInfo<CR>", opts) -- Show project info
+vim.keymap.set("n", "<leader>lo", ":VimtexCompileOutput<CR>", opts) -- Compilation output
+vim.keymap.set("n", "<leader>ls", ":VimtexStatus<CR>", opts) -- Status
+vim.keymap.set("n", "<leader>le", ":VimtexErrors<CR>", opts) -- Errors
+vim.keymap.set("n", "<leader>llq", ":VimtexLog<CR>", opts) -- Log messages
+vim.keymap.set("n", "<leader>lf", ":VimtexForward<CR>", opts) -- Forward search
+vim.keymap.set("n", "<leader>lb", ":VimtexBackward<CR>", opts) -- Backward search
 
 -- noice dissmiss notification
 vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDissmiss<CR>", { desc = "Dissmiss Noice Misseage" })

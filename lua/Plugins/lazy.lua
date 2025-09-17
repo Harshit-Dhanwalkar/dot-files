@@ -865,19 +865,17 @@ require("lazy").setup({
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("Plugins.noice.noice").setup()
+			require("Plugins.noice").setup()
 		end,
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},
 	},
-
-	-- HACK: NVIM setup for LaTex
 	{
 		"lervag/vimtex",
-		lazy = false, -- I don't want to lazy load VimTeX
+		lazy = false, -- no lazy load VimTeX
 		-- tag = "v2.15",
-		ft = "tex", -- Load plugin only for TeX and LaTeX files
+		ft = "tex", -- Load plugin only for TeX
 		config = function()
 			vim.g.tex_flavor = "latex"
 			vim.g.vimtex_view_method = "zathura"
@@ -885,13 +883,12 @@ require("lazy").setup({
 			vim.opt.conceallevel = 2
 			vim.g.tex_conceal = "abdmg"
 			vim.cmd("syntax enable")
-
-			-- Ensure --shell-escape is enabled
 			vim.g.vimtex_compiler_latexmk = {
 				build_dir = "",
 				continuous = 1,
 				options = {
-					"-pdf",
+					"-ps",
+					-- "-pdf",
 					"-shell-escape",
 					"-interaction=nonstopmode",
 					"-synctex=1",
@@ -899,24 +896,21 @@ require("lazy").setup({
 			}
 		end,
 	},
-	-- {
-	--   'sirver/ultisnips',
-	--   config = function()
-	--     -- Configure UltiSnips triggers
-	--     vim.g.UltiSnipsExpandTrigger = '<tab>'
-	--     vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
-	--     vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
-	--     -- Set custom snippet directory
-	--     vim.g.UltiSnipsSnippetDirectories = { '~/.config/nvim/lua/Plugins/UltiSnips' }
-	--   end,
-	--   event = 'InsertEnter', -- Load the plugin when entering Insert mode
-	-- },
+	{
+		"sirver/ultisnips",
+		config = function()
+			vim.g.UltiSnipsExpandTrigger = "<tab>"
+			vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
+			vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
+			vim.g.UltiSnipsSnippetDirectories = { vim.fn.expand("~/.config/nvim/lua/Plugins/UltiSnips") }
+		end,
+		event = "InsertEnter",
+	},
 	-- Add a snippet collection like vim-snippets
 	-- {
-	--   'honza/vim-snippets',
-	--   lazy = true, -- Load this plugin lazily
+	-- 	"honza/vim-snippets",
+	-- 	lazy = true, -- Load this plugin lazily
 	-- },
-
 	-- HACK: for inscape config
 	{
 		"rpapallas/illustrate.nvim", -- Plugin for managing illustrations

@@ -18,7 +18,7 @@ vim.wo.wrap = true -- For window-specific options
 vim.o.winblend = 20 -- Adjust the level of transparency
 vim.o.pumblend = 20 -- For popup menu level of transparency
 
-vim.opt.mouse = 'a' -- Enable mouse mode
+vim.opt.mouse = "a" -- Enable mouse mode
 vim.opt.showmode = false -- Don't show mode in the status line
 vim.opt.laststatus = 2 -- Always display the status line
 
@@ -33,17 +33,13 @@ vim.opt.ignorecase = true
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+	vim.opt.clipboard = "unnamedplus"
 end)
 
 vim.opt.breakindent = true -- Enable break indent
-
 vim.opt.undofile = true -- Save undo history
-
-vim.opt.fileencoding = 'utf-8' -- File encoding
-
-vim.opt.signcolumn = 'yes' -- Keep signcolumn on by default
-
+vim.opt.fileencoding = "utf-8" -- File encoding
+vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
 vim.opt.updatetime = 250 -- Decrease update time
 
 -- Decrease mapped sequence wait time
@@ -58,10 +54,10 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 vim.opt.scrolloff = 10 -- -- Scroll Off, Minimal lines to keep above and below cursor
 
@@ -69,13 +65,13 @@ vim.opt.cursorline = true -- Highlight the current line
 
 -- -----------------
 -- Command to preview in Okular
-vim.api.nvim_create_user_command('PreviewOkular', function()
-  local filepath = vim.fn.expand '%:p'
-  vim.fn.jobstart({ 'okular', filepath }, { detach = true })
+vim.api.nvim_create_user_command("PreviewOkular", function()
+	local filepath = vim.fn.expand("%:p")
+	vim.fn.jobstart({ "okular", filepath }, { detach = true })
 end, {})
 
 -- Command to preview in Zathura
-vim.api.nvim_create_user_command('PreviewZathura', function()
-  local filepath = vim.fn.expand '%:p'
-  vim.fn.jobstart({ 'zathura', filepath }, { detach = true })
+vim.api.nvim_create_user_command("PreviewZathura", function()
+	local filepath = vim.fn.expand("%:p")
+	vim.fn.jobstart({ "zathura", filepath }, { detach = true })
 end, {})

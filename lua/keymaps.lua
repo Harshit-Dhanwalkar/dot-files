@@ -1,7 +1,24 @@
 local map = vim.keymap.set
--- space leader key
+
+-- leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+
+vim.g.have_nerd_font = true
+
+--  See `:help lua-guide-autocommands` and `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
+
+-- clear highlight after search with Esc
+map("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- buffers
 map("n", "<leader>j", ":bn<cr>")
@@ -23,6 +40,12 @@ map("n", "sh", "<C-w>h")
 map("n", "sk", "<C-w>k")
 map("n", "sj", "<C-w>j")
 map("n", "sl", "<C-w>l")
+
+--  See `:help wincmd` for a list of all window commands
+map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 --Resize window
 map("n", "<C-w><left>", "<C-w><")
