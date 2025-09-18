@@ -1,3 +1,4 @@
+-- ~/.config/nvim/lua/Plugins/tiny-code-action.lua
 return {
 	"rachartier/tiny-code-action.nvim",
 	dependencies = {

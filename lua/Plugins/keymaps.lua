@@ -1,3 +1,4 @@
+-- ~/.config/nvim/lua/Plugins/keymaps.lua
 -- Telescope keymaps
 -- See `:help telescope.builtin`
 local builtin = require("telescope.builtin")

@@ -1,3 +1,4 @@
+-- ~/.config/nvim/lua/Plugins/health.lua
 local check_version = function()
 	local verstr = tostring(vim.version())
 	if not vim.version.ge then

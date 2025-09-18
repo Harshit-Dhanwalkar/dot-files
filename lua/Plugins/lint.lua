@@ -1,3 +1,4 @@
+-- ~/.config/nvim/lua/Plugins/lint.lua
 return {
 
 	{ -- Linting
