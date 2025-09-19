@@ -1,41 +1,48 @@
 -- ~/.config/nvim/lua/Plugins/telescope.lua
 return {
-	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
-	main = "nvim-treesitter.configs",
-	-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-	opts = {
-		ensure_installed = {
-			"bash",
-			"c",
-			"diff",
-			"lua",
-			"luadoc",
-			"markdown",
-			"markdown_inline",
-			"query",
-			"vim",
-			"vimdoc",
-			"python",
-			"rust",
-			"html",
-			"css",
-			"javascript",
+	"nvim-telescope/telescope.nvim",
+	event = "VimEnter",
+	branch = "0.1.x",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		{
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = "make",
+
+			cond = function() -- `cond` is a condition used to determine whether this plugin should be installed and loaded.
+				return vim.fn.executable("make") == 1
+			end,
 		},
-		auto_install = true, -- Autoinstall languages that are not installed
-		highlight = {
-			enable = true,
-			disable = { "latex" }, -- Disable Treesitter highlighting for LaTeX
-			additional_vim_regex_highlighting = { "ruby" },
+		{
+			"nvim-telescope/telescope-ui-select.nvim",
 		},
-		indent = { enable = true, disable = { "ruby" } },
-		rainbow = {
-			enable = true,
-			extended_mode = true,
-			max_file_lines = nil,
+		{
+			"nvim-tree/nvim-web-devicons",
+			enabled = vim.g.have_nerd_font,
 		},
 	},
-	--    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-	--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-	--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+	config = function()
+		-- Two important keymaps to use while in Telescope are:
+		--  - Insert mode: <c-/> -- to show keymaps for the current Telescope picker
+		--  - Normal mode: ?
+		--
+		-- [[ Configure Telescope ]]
+		-- See `:help telescope` and `:help telescope.setup()`
+		require("telescope").setup({
+			-- defaults = {
+			--   mappings = {
+			--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+			--   },
+			-- },
+			-- pickers = {}
+			extensions = {
+				["ui-select"] = {
+					require("telescope.themes").get_dropdown(),
+				},
+			},
+		})
+		-- Enable Telescope extensions if they are installed
+		pcall(require("telescope").load_extension, "fzf")
+		pcall(require("telescope").load_extension, "ui-select")
+	end,
 }

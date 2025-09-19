@@ -1,6 +1,3 @@
--- -[[ Install `lazy.nvim` plugin manager ]]
---   See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
--- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -27,9 +24,6 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Configure and install plugins ]]
 -- setup lazy.nvim
 require("lazy").setup({
-	-- Use `opts = {}` to force a plugin to be loaded.
-	-- options to `gitsigns.nvim`. This is equivalent to the following Lua:
-	--    require('gitsigns').setup({ ... })
 	opts = {
 		rocks = {
 			hererocks = false, -- Disable LuaRocks
@@ -38,157 +32,10 @@ require("lazy").setup({
 	},
 	-- Detect tabstop and shiftwidth automatically
 	{ "tpope/vim-sleuth" },
-	-- See `:help gitsigns` to understand what the configuration keys do
-	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-		},
-	},
-	-- git integraction like git-history
-	{
-		"sindrets/diffview.nvim",
-		dependencies = "nvim-lua/plenary.nvim", -- Required dependency
-		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" }, -- Lazy-load on commands
-		config = function()
-			require("diffview").setup({
-				view = {
-					merge_tool = {
-						layout = "diff3_mixed", -- Use a diff3 layout for merge conflicts
-					},
-				},
-				keymaps = {
-					view = {
-						["<leader>e"] = "<cmd>DiffviewToggleFiles<CR>", -- Toggle file panel
-						["<leader>q"] = "<cmd>DiffviewClose<CR>", -- Close Diffview
-					},
-					file_panel = {
-						["1"] = "next_entry", -- Move to next file entry
-						["2"] = "prev_entry", -- Move to previous file entry
-						["<cr>"] = "select_entry", -- Open file diff
-					},
-					file_history_panel = {
-						["g!"] = "options", -- Toggle diff options
-						["<leader>q"] = "<cmd>DiffviewClose<CR>", -- Close Diffview
-					},
-				},
-			})
-		end,
-	},
-	-- Useful plugin to show you pending keybinds.
-	{
-		"folke/which-key.nvim",
-		event = "VimEnter",
-		opts = {
-			icons = {
-				mappings = vim.g.have_nerd_font,
-				keys = vim.g.have_nerd_font and {} or {
-					Up = "<Up> ",
-					Down = "<Down> ",
-					Left = "<Left> ",
-					Right = "<Right> ",
-					C = "<C-…> ",
-					M = "<M-…> ",
-					D = "<D-…> ",
-					S = "<S-…> ",
-					CR = "<CR> ",
-					Esc = "<Esc> ",
-					ScrollWheelDown = "<ScrollWheelDown> ",
-					ScrollWheelUp = "<ScrollWheelUp> ",
-					NL = "<NL> ",
-					BS = "<BS> ",
-					Space = "<Space> ",
-					Tab = "<Tab> ",
-					F1 = "<F1>",
-					F2 = "<F2>",
-					F3 = "<F3>",
-					F4 = "<F4>",
-					F5 = "<F5>",
-					F6 = "<F6>",
-					F7 = "<F7>",
-					F8 = "<F8>",
-					F9 = "<F9>",
-					F10 = "<F10>",
-					F11 = "<F11>",
-					F12 = "<F12>",
-				},
-			},
-
-			-- Document existing key chains
-			spec = {
-				{ "<leader>c", group = "[C]ode", mode = { "n", "x" } },
-				{ "<leader>d", group = "[D]ocument" },
-				{ "<leader>r", group = "[R]ename" },
-				{ "<leader>s", group = "[S]earch" },
-				{ "<leader>w", group = "[W]orkspace" },
-				{ "<leader>t", group = "[T]oggle" },
-				{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
-			},
-		},
-	},
-	{
-		"NeogitOrg/neogit",
-		dependencies = {
-			"nvim-lua/plenary.nvim", -- required
-			"sindrets/diffview.nvim", -- optional - Diff integration
-			"nvim-telescope/telescope.nvim", -- optional
-		},
-		config = true,
-	},
-	-- Fuzzy Finder (files, lsp, etc)
-	{
-		"nvim-telescope/telescope.nvim",
-		event = "VimEnter",
-		branch = "0.1.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-
-				cond = function() -- `cond` is a condition used to determine whether this plugin should be installed and loaded.
-					return vim.fn.executable("make") == 1
-				end,
-			},
-			{
-				"nvim-telescope/telescope-ui-select.nvim",
-			},
-			{
-				"nvim-tree/nvim-web-devicons",
-				enabled = vim.g.have_nerd_font,
-			},
-		},
-		config = function()
-			-- Two important keymaps to use while in Telescope are:
-			--  - Insert mode: <c-/> -- to show keymaps for the current Telescope picker
-			--  - Normal mode: ?
-			--
-			-- [[ Configure Telescope ]]
-			-- See `:help telescope` and `:help telescope.setup()`
-			require("telescope").setup({
-				-- defaults = {
-				--   mappings = {
-				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-				--   },
-				-- },
-				-- pickers = {}
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown(),
-					},
-				},
-			})
-			-- Enable Telescope extensions if they are installed
-			pcall(require("telescope").load_extension, "fzf")
-			pcall(require("telescope").load_extension, "ui-select")
-		end,
-	},
+	require("Plugins.diffview"),
+	require("Plugins.which-key"),
+	require("Plugins.neogit"),
+	require("Plugins.telescope"),
 	-- LSP Plugins
 	{
 		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins used for completion, annotations and signatures of Neovim apis
@@ -313,13 +160,12 @@ require("lazy").setup({
 							completion = {
 								callSnippet = "Replace",
 							},
-							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
 							-- diagnostics = { disable = { 'missing-fields' } },
 						},
 					},
 				},
 			}
-			-- :Mason --  You can press `g?` for help in this menu.
+			-- :Mason --  press `g?` for help in this menu.
 			require("mason").setup()
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
@@ -342,13 +188,16 @@ require("lazy").setup({
 	require("Plugins.colorscheme"),
 	require("Plugins.todo-comments"),
 	require("Plugins.mini"),
-	require("Plugins.telescope"),
-	require("Plugins.nvim-tree"),
-	-- require("Plugins.neotree"),
 	require("Plugins.bufferline"),
 	require("Plugins.comment"),
+	require("Plugins.treesitter"),
+	require("Plugins.statusline"),
 	require("Plugins.noice"),
+	require("Plugins.nvim-tree"),
+	-- require("Plugins.neotree"),
 	require("Plugins.vimtex"),
+	-- require("Plugins.render-markdown"),
+	-- require("Plugins.image"),
 	-- {
 	-- 	"sirver/ultisnips",
 	-- 	config = function()
@@ -359,97 +208,12 @@ require("lazy").setup({
 	-- 	end,
 	-- 	event = "InsertEnter",
 	-- },
-	-- Add a snippet collection like vim-snippets
+	-- Add a snippet collection (vim-snippets)
 	-- {
 	-- 	"honza/vim-snippets",
 	-- 	lazy = true, -- Load this plugin lazily
 	-- },
-	require("Plugins.render-markdown"),
-	-- Image previewer in nvim
-	{
-		"3rd/image.nvim",
-		dependencies = {
-			"leafo/magick",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("image").setup({
-				-- backend = 'ueberzug',
-				backend = "kitty",
-				kitty_method = "normal",
-				integrations = {
-					markdown = {
-						enabled = true,
-						clear_in_insert_mode = true,
-						download_remote_images = true,
-						only_render_image_at_cursor = true,
-						filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
-					},
-					neorg = {
-						enabled = true,
-						clear_in_insert_mode = false,
-						download_remote_images = true,
-						only_render_image_at_cursor = false,
-						filetypes = { "norg" },
-					},
-					html = {
-						enabled = false,
-					},
-					css = {
-						enabled = false,
-					},
-				},
-				max_width = nil,
-				max_height = nil,
-				-- max_width_window_percentage = nil,
-				-- max_height_window_percentage = 50,
-				max_height_window_percentage = math.huge,
-				max_width_window_percentage = math.huge,
-				-- toggles images when windows are overlapped
-				window_overlap_clear_enabled = false,
-				window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-				-- auto show/hide images when the editor gains/looses focus
-				editor_only_render_when_focused = false,
-				-- render image files as images when opened
-				hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" },
-			})
-		end,
-		--    priority = 1000,
-	},
-	{ -- Goto Preview
-		"rmagatti/goto-preview",
-		event = "BufEnter",
-		dependencies = "rmagatti/logger.nvim",
-		config = function()
-			require("goto-preview").setup({
-				default_mappings = true,
-			})
-			vim.keymap.set(
-				"n",
-				"gpd",
-				"<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
-				{ noremap = true, silent = true }
-			)
-			vim.keymap.set(
-				"n",
-				"gpr",
-				"<cmd>lua require('goto-preview').goto_preview_references()<CR>",
-				{ noremap = true, silent = true }
-			)
-			vim.keymap.set(
-				"n",
-				"gpi",
-				"<cmd>lua require('goto-preview').goto_preview_implementation()<CR>",
-				{ noremap = true, silent = true }
-			)
-			vim.keymap.set(
-				"n",
-				"gP",
-				"<cmd>lua require('goto-preview').close_all_win()<CR>",
-				{ noremap = true, silent = true }
-			)
-		end,
-	},
+	require("Plugins.goto-preview"),
 	require("Plugins.vim-visual-multi"),
 	require("Plugins.tiny-inline-diagnostic"),
 	require("Plugins.tiny-code-action"),
@@ -471,7 +235,6 @@ require("lazy").setup({
 	--{
 	-- 'mileszs/ack.vim'
 	-- }
-	require("Plugins.statusline"),
 	require("Plugins.debug"),
 	require("Plugins.indent-blackline"),
 	require("Plugins.lint"),
