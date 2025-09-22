@@ -1,7 +1,6 @@
 -- ~/.config/nvim/lua/Plugins/fidget.lua
 return {
 	"j-hui/fidget.nvim",
-	tag = "*",
 	opts = {
 		-- Related to LSP progress subsystem
 		progress = {

@@ -5,16 +5,31 @@ return {
 	config = function()
 		local lint = require("lint")
 		lint.linters_by_ft = {
-			markdown = { "markdownlint" },
+			-- Install `markdownlint_cli2` using `npm install -g markdownlint-cli2`
+			-- markdown = { "markdownlint_cli2" },
+			-- markdown = { "markdownlint" },
 		}
 
-		-- To allow other plugins to add linters to require('lint').linters_by_ft,
-		-- instead set linters_by_ft like this:
+		-- lint.linters.markdownlint_cli2 = {
+		-- 	cmd = "markdownlint-cli2",
+		-- 	args = { "--stdin", "-" },
+		-- 	parser = function(output, bufnr)
+		-- 		return require("lint.parser").from_json(output, bufnr, {
+		-- 			source = "markdownlint",
+		-- 			securities = {
+		-- 				error = "error",
+		-- 				warn = "warning",
+		-- 				info = "info",
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- }
+
+		-- To allow other plugins to add linters to require('lint').linters_by_ft, instead set linters_by_ft like this:
 		-- lint.linters_by_ft = lint.linters_by_ft or {}
 		-- lint.linters_by_ft['markdown'] = { 'markdownlint' }
 		--
-		-- However, note that this will enable a set of default linters,
-		-- which will cause errors unless these tools are available:
+		-- However, note that this will enable a set of default linters, which will cause errors unless these tools are available:
 		-- {
 		--   clojure = { "clj-kondo" },
 		--   dockerfile = { "hadolint" },

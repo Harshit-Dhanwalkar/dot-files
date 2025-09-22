@@ -1,3 +1,4 @@
+-- ~/.config/nvim/lua/Plugins/rust/rust-vim.lua
 return {
 	"rust-lang/rust.vim",
 	ft = "rust",

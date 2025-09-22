@@ -1,7 +1,7 @@
 -- ~/.config/nvim/lua/Plugins/lualine.lua
-local function get_time()
-	return os.date("%I:%M %p")
-end
+-- local function get_time()
+-- 	return os.date("%I:%M %p")
+-- end
 
 return {
 	"nvim-lualine/lualine.nvim",
@@ -99,7 +99,8 @@ return {
 						ignore_lsp = {},
 					},
 				},
-				lualine_z = { get_time, "location" },
+				-- lualine_z = { get_time, "location" },
+				lualine_z = { "location" },
 			},
 			inactive_sections = {
 				lualine_a = {},

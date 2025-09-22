@@ -50,8 +50,8 @@ require("lazy").setup({
 	require("Plugins.nvim-tree"),
 	-- require("Plugins.neotree"),
 	require("Plugins.vimtex"),
-	-- require("Plugins.render-markdown"),
-	-- require("Plugins.image"),
+	require("Plugins.render-markdown"),
+	require("Plugins.image"),
 	-- {
 	-- 	"sirver/ultisnips",
 	-- 	config = function()
@@ -80,12 +80,8 @@ require("lazy").setup({
 	-- require("Plugins.goto-preview"),
 	require("Plugins.rust.crates"),
 	require("Plugins.rust.rust-vim"),
+	require("Plugins.rust.rust-tools"),
 	require("Plugins.rust.rustaceanvim"),
-	-- TODO:
-	-- {
-	-- 	"simrat39/rust-tools.nvim",
-	-- 	ft = "rust",
-	-- },
 	-- {
 	--   'mfusseneggger/nvim-dap',
 	-- },

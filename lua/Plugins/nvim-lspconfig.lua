@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/nvim-lspconfig.lua
+-- ~/.configgnvim/lua/Plugins/nvim-lspconfig.lua
 return {
 	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",
@@ -103,7 +103,9 @@ return {
 		require("mason").setup()
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
-			"stylua", -- format Lua code
+			"stylua",
+			"clangd",
+			"clang-format",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 		require("mason-lspconfig").setup({
