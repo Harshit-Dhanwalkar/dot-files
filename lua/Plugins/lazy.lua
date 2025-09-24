@@ -28,64 +28,52 @@ require("lazy").setup({
 			enabled = false, -- Disable LuaRocks
 		},
 	},
-	-- Detect tabstop and shiftwidth automatically
-	{ "tpope/vim-sleuth" },
+	require("Plugins.fidget"),
+	require("Plugins.debug"),
+	require("Plugins.lint"),
+	require("Plugins.autopairs"),
+	require("Plugins.gitsigns"),
+	require("Plugins.gitstuff"),
+	require("Plugins.neogit"),
 	require("Plugins.diffview"),
 	require("Plugins.which-key"),
-	require("Plugins.neogit"),
+	require("Plugins.vim-sleuth"),
+	require("Plugins.indent-blackline"),
 	require("Plugins.telescope"),
+	require("Plugins.treesitter"),
 	require("Plugins.lazydev"),
 	require("Plugins.luvit-meta"),
 	require("Plugins.nvim-lspconfig"),
 	require("Plugins.autoformat"),
 	require("Plugins.autocomplete"),
 	require("Plugins.colorscheme"),
-	require("Plugins.todo-comments"),
 	require("Plugins.mini"),
-	require("Plugins.bufferline"),
 	require("Plugins.comment"),
-	require("Plugins.treesitter"),
+	require("Plugins.todo-comments"),
 	require("Plugins.lualine"),
+	require("Plugins.bufferline"),
+	require("Plugins.vimtex"),
 	require("Plugins.nvim-ufo"),
 	require("Plugins.noice"),
 	require("Plugins.nvim-tree"),
 	-- require("Plugins.neotree"),
-	require("Plugins.vimtex"),
-	-- require("Plugins.harpoon"),
-	-- require("Plugins.git-worktree"),
-	-- require("Plugins.formatting"),
 	require("Plugins.render-markdown"),
 	require("Plugins.image"),
-	-- {
-	-- 	"sirver/ultisnips",
-	-- 	config = function()
-	-- 		vim.g.UltiSnipsExpandTrigger = -"<tab>"
-	-- 		vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
-	-- 		vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
-	-- 		vim.g.UltiSnipsSnippetDirectories = { vim.fn.expand("~/.config/nvim/lua/Plugins/UltiSnips") }
-	-- 	end,
-	-- 	event = "InsertEnter",
-	-- },
-	-- Add a snippet collection (vim-snippets)
-	-- {
-	-- 	"honza/vim-snippets",
-	-- 	lazy = true, -- Load this plugin lazily
-	-- },
-	-- "hrsh7th/cmp-vsnip",
-	-- "hrsh7th/vim-vsnip",
-	-- 'quangnguyen30192/cmp-nvim-ultisnips',
-	-- 'dcampos/nvim-snippy',
-	-- 'dcampos/cmp-snippy',
-	-- 'echasnovski/mini.snippets',
-	-- 'abeldekat/cmp-mini-snippets',
 	require("Plugins.vim-visual-multi"),
 	require("Plugins.tiny-inline-diagnostic"),
 	require("Plugins.tiny-code-action"),
-	-- require("Plugins.goto-preview"),
+	require("Plugins.goto-preview"),
 	require("Plugins.rust.crates"),
 	require("Plugins.rust.rust-vim"),
 	require("Plugins.rust.rust-tools"),
+	require("Plugins.webdev.emmet"),
+	require("Plugins.webdev.colorizer"),
+	require("Plugins.illustrate"),
 	require("Plugins.rust.rustaceanvim"),
+	-- require("Plugins.harpoon"),
+	-- require("Plugins.git-worktree"),
+	-- require("Plugins.formatting"),
+	-- require("Plugins.wilder"),
 	-- {
 	--   'mfusseneggger/nvim-dap',
 	-- },
@@ -97,16 +85,26 @@ require("lazy").setup({
 	--{
 	-- 'mileszs/ack.vim'
 	-- }
-	require("Plugins.fidget"),
-	require("Plugins.debug"),
-	require("Plugins.indent-blackline"),
-	require("Plugins.lint"),
-	require("Plugins.autopairs"),
-	require("Plugins.gitsigns"),
 	-- require("Plugins.screenkey"),
-	require("Plugins.webdev.emmet"),
-	require("Plugins.webdev.colorizer"),
-	require("Plugins.illustrate"),
+	-- require("Plugins.showkeys"),
+	-- {
+	-- 	"sirver/ultisnips",
+	-- 	config = function()
+	-- 		vim.g.UltiSnipsExpandTrigger = -"<tab>"
+	-- 		vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
+	-- 		vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
+	-- 		vim.g.UltiSnipsSnippetDirectories = { vim.fn.expand("~/.config/nvim/lua/Plugins/UltiSnips") }
+	-- 	end,
+	-- 	event = "InsertEnter",
+	-- },
+	-- "honza/vim-snippets",
+	-- "hrsh7th/cmp-vsnip",
+	-- "hrsh7th/vim-vsnip",
+	-- 'quangnguyen30192/cmp-nvim-ultisnips',
+	-- 'dcampos/nvim-snippy',
+	-- 'dcampos/cmp-snippy',
+	-- 'echasnovski/mini.snippets',
+	-- 'abeldekat/cmp-mini-snippets',
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the

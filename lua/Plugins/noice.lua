@@ -2,13 +2,28 @@
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
+	enabled = true,
+	dependencies = {
+		"MunifTanjim/nui.nvim",
+		-- "rcarriga/nvim-notify",
+	},
 	config = function()
 		require("noice").setup({
 			lsp = {
+				progress = {
+					enabled = true,
+					format = "lsp_progress",
+					format_done = "lsp_progress_done",
+					throttle = 1000 / 30,
+					view = "mini",
+				},
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 					["vim.lsp.util.stylize_markdown"] = true,
 					["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+				},
+				signature = {
+					auto_open = { enabled = false }, -- disable auto signature help on insert mode
 				},
 			},
 			presets = {
@@ -27,7 +42,11 @@ return {
 					search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
 					search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
 					filter = { pattern = "^:%s*!", icon = "", lang = "bash" },
-					lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
+					lua = {
+						pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" },
+						icon = "",
+						lang = "lua",
+					},
 					python = {
 						pattern = { "^:%s*python%s+", "^:%s*python%s*=%s*", "^:%s*=%s*" },
 						icon = "",
@@ -61,8 +80,24 @@ return {
 						padding = { 0, 1 },
 					},
 					win_options = {
-						winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+						-- winhighlight = "Normalo:Normal,FloatBorder:FloatBorder",
+						winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
 					},
+				},
+			},
+			routes = {
+				{
+					filter = {
+						event = "msg_show",
+						any = {
+							{ find = "%d+L, %d+B" },
+							{ find = "; after #%d+" },
+							{ find = "; before #%d+" },
+							{ find = "%d fewer lines" },
+							{ find = "%d more lines" },
+						},
+					},
+					opts = { skip = true },
 				},
 			},
 			messages = {
@@ -74,35 +109,13 @@ return {
 				view_search = "virtualtext",
 			},
 			popupmenu = {
-				enabled = false,
+				enabled = true,
 				backend = "nui",
 				kind_icons = {},
 			},
-			-- notify = {
-			-- 	enabled = true,
-			-- 	view = "notify",
-			-- },
-			-- lsp = {
-			--   progress = {
-			--   enabled = true,
-			--   format = 'lsp_progress',
-			--   format_done = 'lsp_progress_done',
-			--   throttle = 1000 / 30,
-			--   view = 'mini',
-			-- },
 			hover = {
 				enabled = true,
 				silent = false,
-				opts = {},
-			},
-			signature = {
-				enabled = true,
-				auto_open = {
-					enabled = true,
-					trigger = true,
-					luasnip = true,
-					throttle = 50,
-				},
 				opts = {},
 			},
 			documentation = {
@@ -115,6 +128,23 @@ return {
 					win_options = { concealcursor = "n", conceallevel = 3 },
 				},
 			},
+			health = {
+				checker = true,
+			},
+			signature = {
+				enabled = true,
+				auto_open = {
+					enabled = true,
+					trigger = true,
+					luasnip = true,
+					throttle = 50,
+				},
+				opts = {},
+			},
+			-- notify = {
+			-- 	enabled = true,
+			-- 	view = "notify",
+			-- },
 			-- markdown = {
 			--   hover = {
 			--     ['|(%S-)|'] = vim.cmd.help,
@@ -128,20 +158,8 @@ return {
 			--     ['^%s*(See also:)'] = '@text.title',
 			--     ['{%S-}'] = '@parameter',
 			--   },
-			--   health = {
-			--     checker = true,
-			--   },
 			--   throttle = 1000 / 30,
 			-- },
-			-- message = {
-			--   enabled = true,
-			--   view = 'notify',
-			--   opts = {},
-			-- },
-			dependencies = {
-				"MunifTanjim/nui.nvim",
-				-- "rcarriga/nvim-notify",
-			},
 		})
 	end,
 }
