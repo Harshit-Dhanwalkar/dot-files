@@ -5,7 +5,10 @@
 
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = { "echasnovski/mini.icons" },
+	dependencies = {
+		"echasnovski/mini.icons",
+		"nvim-tree/nvim-web-devicons",
+	},
 	config = function()
 		require("lualine").setup({
 			options = {
