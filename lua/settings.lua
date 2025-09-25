@@ -1,7 +1,6 @@
 -- ~/.config/nvim/lua/settings.lua
 
 -- See `:help vim.opt` amd `:help option-list`
-
 vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -53,19 +52,17 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
+vim.opt.scrolloff = 10
+-- vim.opt.cursorline = true -- Highlight the current line
 
-vim.opt.scrolloff = 10 -- -- Scroll Off, Minimal lines to keep above and below cursor
-
-vim.opt.cursorline = true -- Highlight the current line
-
--- Command to preview in Okular
-vim.api.nvim_create_user_command("PreviewOkular", function()
-	local filepath = vim.fn.expand("%:p")
-	vim.fn.jobstart({ "okular", filepath }, { detach = true })
-end, {})
-
--- Command to preview in Zathura
-vim.api.nvim_create_user_command("PreviewZathura", function()
-	local filepath = vim.fn.expand("%:p")
-	vim.fn.jobstart({ "zathura", filepath }, { detach = true })
-end, {})
+-- -- Command to preview in Okular
+-- vim.api.nvim_create_user_command("PreviewOkular", function()
+-- 	local filepath = vim.fn.expand("%:p")
+-- 	vim.fn.jobstart({ "okular", filepath }, { detach = true })
+-- end, {})
+--
+-- -- Command to preview in Zathura
+-- vim.api.nvim_create_user_command("PreviewZathura", function()
+-- 	local filepath = vim.fn.expand("%:p")
+-- 	vim.fn.jobstart({ "zathura", filepath }, { detach = true })
+-- end, {})

@@ -11,7 +11,25 @@ return {
 			view = {
 				side = "right",
 				width = 30,
+				-- relativenumber = true,
 			},
+			-- change folder arrow icons
+			renderer = {
+				indent_markers = {
+					enable = true,
+				},
+				icons = {
+					glyphs = {
+						folder = {
+							arrow_closed = "→",
+							arrow_open = "↓",
+						},
+					},
+				},
+			},
+			-- git = {
+			-- 	ignore = false,
+			-- },
 		})
 	end,
 }

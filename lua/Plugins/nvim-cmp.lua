@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/autocomplete.lua
+-- ~/.config/nvim/lua/Plugins/nvim-cmp.lua
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
@@ -141,6 +141,5 @@ return {
 		--     return ""  -- No indicator for other kinds
 		--   end,
 		--       },
-		--
 	end,
 }

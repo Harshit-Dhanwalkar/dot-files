@@ -46,7 +46,17 @@ return {
 				},
 			},
 			sections = {
-				lualine_a = { "mode" },
+				lualine_a = {
+					{
+						"mode",
+						symbols = {
+							normal = "N",
+							insert = "I",
+							visual = "V",
+							replace = "R",
+						},
+					},
+				},
 				lualine_b = { "branch", "diff", "diagnostics" },
 				lualine_c = {
 					{
