@@ -2,7 +2,6 @@
 -- local function get_time()
 -- 	return os.date("%I:%M %p")
 -- end
-
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {

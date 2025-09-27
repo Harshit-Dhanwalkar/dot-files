@@ -31,7 +31,7 @@ require("lazy").setup({
 	require("Plugins.autoformat"),
 	require("Plugins.autopairs"),
 	require("Plugins.bufferline"),
-	require("Plugins.blink"),
+	-- require("Plugins.blink"),
 	require("Plugins.comment"),
 	require("Plugins.colorscheme"),
 	require("Plugins.debug"),
@@ -50,7 +50,7 @@ require("lazy").setup({
 	require("Plugins.neogit"),
 	-- require("Plugins.neotree"),
 	require("Plugins.noice"),
-	-- require("Plugins.nvim-cmp"),
+	require("Plugins.nvim-cmp"),
 	require("Plugins.nvim-ufo"),
 	require("Plugins.nvim-tree"),
 	require("Plugins.lazydev"),
@@ -59,13 +59,14 @@ require("lazy").setup({
 	require("Plugins.lualine"),
 	require("Plugins.luvit-meta"),
 	require("Plugins.render-markdown"),
+	require("Plugins.markdown-preview"),
 	-- require("Plugins.screenkey"),
 	-- require("Plugins.showkeys"),
 	require("Plugins.telescope"),
 	require("Plugins.tiny-inline-diagnostic"),
 	require("Plugins.tiny-code-action"),
 	require("Plugins.treesitter"),
-	-- require("Plugins.treesitter-textobjects"),
+	require("Plugins.treesitter-textobjects"),
 	require("Plugins.todo-comments"),
 	require("Plugins.vim-sleuth"),
 	require("Plugins.vimtex"),
@@ -109,25 +110,22 @@ require("lazy").setup({
 	-- 'abeldekat/cmp-mini-snippets',
 }, {
 	ui = {
-		-- If you are using a Nerd Font: set icons to an empty table which will use the
-		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
 		icons = vim.g.have_nerd_font and {} or {
-			cmd = "⌘",
-			config = "🛠",
-			event = "📅",
-			ft = "📂",
+			cmd = "", --⌘
+			config = "", --🛠
+			event = "", --📅
+			ft = "", --📂
 			init = "⚙",
-			keys = "🗝",
-			plugin = "🔌",
-			runtime = "💻",
-			require = "🌙",
-			source = "📄",
-			start = "🚀",
-			task = "📌",
-			lazy = "💤 ",
+			keys = "",
+			plugin = "", --🔌
+			runtime = "󰑮", --💻
+			require = "󰽥", --🌙
+			source = "󰈔", --📄
+			start = "", --🚀
+			task = "", --📌
+			lazy = "󰒲 ", --💤
 		},
 	},
 })
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

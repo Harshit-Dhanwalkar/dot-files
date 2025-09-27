@@ -3,26 +3,32 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	main = "nvim-treesitter.configs",
-	-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+	-- See `:help nvim-treesitter`
 	opts = {
 		ensure_installed = {
 			"bash",
 			"c",
-			"diff",
+			"python",
 			"lua",
 			"luadoc",
 			"markdown",
 			"markdown_inline",
-			"query",
+			"latex",
 			"vim",
 			"vimdoc",
-			"python",
 			"rust",
 			"html",
 			"css",
 			"javascript",
+			"typescript",
+			"query",
+			"diff",
+			-- "wgsl",
+			-- "gdscript",
+			-- "gdshader",
 		},
 		auto_install = true, -- Autoinstall languages that are not installed
+		sync_install = true,
 		highlight = {
 			enable = true,
 			disable = { "latex" }, -- Disable Treesitter highlighting for LaTeX
