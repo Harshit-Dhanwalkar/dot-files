@@ -1,6 +1,5 @@
 -- ~/.configgnvim/lua/Plugins/nvim-lspconfig.lua
 return {
-	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
@@ -106,6 +105,7 @@ return {
 			"stylua",
 			"clangd",
 			"clang-format",
+			"codelldb",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 		require("mason-lspconfig").setup({
@@ -116,6 +116,15 @@ return {
 					require("lspconfig")[server_name].setup(server)
 				end,
 			},
+		})
+
+		local lspconfig = require("lspconfig")
+		lspconfig.clangd.setup({
+			on_attach = function(client, bufnr)
+				client.server_capbilities.signatureHelpProvider = false
+				on_attach(client, bufnr)
+			end,
+			capabilities = capabilities,
 		})
 	end,
 }

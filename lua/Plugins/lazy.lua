@@ -59,7 +59,7 @@ require("lazy").setup({
 	require("Plugins.lualine"),
 	require("Plugins.luvit-meta"),
 	require("Plugins.render-markdown"),
-	require("Plugins.markdown-preview"),
+	-- require("Plugins.markown-preview"),
 	-- require("Plugins.screenkey"),
 	-- require("Plugins.showkeys"),
 	require("Plugins.telescope"),
