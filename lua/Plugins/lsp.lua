@@ -70,6 +70,7 @@ return {
 			rust_analyzer = {},
 			texlab = {},
 			markdown_oxide = {},
+			asm_lsp = {},
 			clangd = {},
 			lua_ls = {
 				settings = {
@@ -83,7 +84,7 @@ return {
 		require("mason").setup()
 
 		local ensure_installed = vim.tbl_keys(servers)
-		vim.list_extend(ensure_installed, { "stylua", "clangd", "clang-format", "codelldb" })
+		vim.list_extend(ensure_installed, { "stylua", "pyright", "clangd", "clang-format", "codelldb", "asm-lsp" })
 
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
