@@ -21,8 +21,8 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- buffers
-map("n", "<leader>j", ":bn<cr>")
-map("n", "<leader>k", ":bp<cr>")
+map("n", "<leader>,", ":bn<cr>")
+map("n", "<leader>.", ":bp<cr>")
 map("n", "<leader>x", ":bd<cr>")
 
 -- yank to clipboard
