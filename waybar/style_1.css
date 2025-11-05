@@ -1,0 +1,106 @@
+* {
+  font-family: "JetBrains Mono Nerd Font", "Fire Code", Sans, sans-serif;
+  border: none;
+  border-radius: 10;
+  font-size: 15px;
+  box-shadow: none;
+  text-shadow: none;
+  transition-duration: 0s;
+}
+
+window {
+  color: rgba(217, 216, 216, 1);
+  background: rgba(35, 31, 32, 0);
+}
+
+window#waybar.solo {
+  color: rgba(217, 216, 216, 1);
+  background: rgba(35, 31, 32, 0.45);
+}
+
+#workspaces {
+  margin: 0 5px;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  color: rgba(217, 216, 216, 0.4);
+}
+
+#workspaces button.visible {
+  color: rgba(217, 216, 216, 1);
+}
+
+#workspaces button.focused {
+  border-top: 3px solid rgba(217, 216, 216, 1);
+  border-bottom: 3px solid rgba(217, 216, 216, 0);
+}
+
+#workspaces button.urgent {
+  color: rgba(238, 46, 36, 1);
+}
+
+#pulseaudio-slider slider {
+  min-height: 0px;
+  min-width: 0px;
+  opacity: 0;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+}
+#pulseaudio-slider trough {
+  min-height: 80px;
+  min-width: 10px;
+  border-radius: 5px;
+  background-color: black;
+}
+#pulseaudio-slider highlight {
+  min-width: 10px;
+  border-radius: 5px;
+  background-color: green;
+}
+
+#workspaces button:hover,
+#mode,
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#idle_inhibitor,
+#backlight,
+#custom-storage,
+#custom-spotify,
+#custom-weather,
+#custom-mail {
+  border-radius: 10px;
+  margin: 0px 5px 0px 5px;
+  min-width: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.1s ease-in-out;
+}
+
+#clock {
+  margin: 0px 16px 0px 10px;
+  min-width: 140px;
+}
+
+#battery.warning {
+  color: rgba(255, 210, 4, 1);
+}
+
+#battery.critical {
+  color: rgba(238, 46, 36, 1);
+}
+
+#battery.charging {
+  color: rgba(217, 216, 216, 1);
+}
+
+#custom-storage.warning {
+  color: rgba(255, 210, 4, 1);
+}
+
+#custom-storage.critical {
+  color: rgba(238, 46, 36, 1);
+}

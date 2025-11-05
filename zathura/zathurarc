@@ -1,0 +1,90 @@
+# ~/.config/zathura/zathurarc
+
+# Zathura configuration file
+# See man `man zathurarc'
+
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
+
+# One page per row by default
+set pages-per-row 1
+
+#stop at page boundries
+set scroll-page-aware "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+#zoom settings
+set zoom-min 10
+set guioptions ""
+
+# zathurarc-dark
+set font "JetBrains Mono Nerd Font 12"
+
+set default-bg "#00"
+set default-fg "#00"
+#set default-fg "#FFFFFF"#"#0F0245" #01
+
+set inputbar-bg "#00"
+set inputbar-fg "#FFFFFF" #02
+
+set notification-error-bg "#AC4142" #08
+set notification-error-fg "#151515" #00
+
+set notification-warning-bg "#AC4142" #08
+set notification-warning-fg "#151515" #00
+
+set highlight-color "#F4BF75" #0A
+set highlight-active-color "#6A9FB5" #0D
+
+set completion-highlight-bg "#90A959" #0C
+set completion-highlight-fg "#151515" #02
+
+set completion-bg "#303030" #02
+set completion-fg "#E0E0E0" #0C
+
+set notification-bg "#90A959" #0B
+set notification-fg "#151515" #00
+
+set statusbar-bg "#303030" #02
+set statusbar-fg "#E0E0E0" #0C
+set statusbar-h-padding 5
+set statusbar-v-padding 5
+
+set recolor "true"
+set recolor-lightcolor "#1F1F24"  #"#1A1B26"  # "#1C1C1C"
+# set recolor-lightcolor "rgba(0, 0, 0, 0)"
+# set recolor-darkcolor "#B6B6CC" #"#bdbfcb" # "#E0E0E0" # "#B0B0B0"
+set recolor-darkcolor "rgba(255, 255, 255, 1)"
+set recolor-reverse-video "true"
+set recolor-keephue "true"
+
+set index-bg "#101012"
+set index-fg "#A1BDCE"
+set index-active-bg "#B6B6CC"
+set index-active-fg "#1F1F24"
+
+set render-loading "false"
+set scroll-step 55
+
+set adjust-open "best"
+set guioptions none
+
+unmap f
+map <C-f> toggle_fullscreen
+map [fullscreen] <C-f> toggle_fullscreen
+
+map , navigate previous
+map . navigate next
+
+unmap <C-n>
+map m toggle_statusbar
+
+map i recolor
+
+# clipboard
+#map z normal !sh -c 'echo -n "$ZATHURA_SELECTION" | wl-copy && echo -n "$ZATHURA_SELECTION" | xclip -selection clipboard'
+set selection-clipboard clipboard
+
+map j feedkeys "<C-Down>"
+map k feedkeys "<C-Up>"

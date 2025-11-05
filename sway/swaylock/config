@@ -1,0 +1,84 @@
+# ~/.config/swaylock/config
+
+ignore-empty-password
+font=Work Sans
+font-size=60
+
+clock
+timestr=%R
+datestr=%A, %B %d %Y
+
+# Day/night theming
+# [time]
+# time-format=%H
+# time-color-day=ffffffff
+# time-color-night=aaaaaaff
+# time-transition-duration=1.0
+#
+# # Conditional effects based on time
+# effect-greyscale=night
+# effect-vignette=day:0.3:0.3,night:0.7:0.7
+
+# image=~/Pictures/wallpapers/08_Tokyo1.png
+image=$(find ~/Pictures/wallpapers -type f | shuf -n 1)
+
+fade-in=0.2
+
+effect-blur=95x2
+effect-pixelate=10x10
+effect-vignette=0.5:0.5
+# effect-scale=0.5
+# effect-grayscale
+
+indicator
+indicator-radius=170
+indicator-thickness=15
+indicator-caps-lock
+
+key-hl-color=880033ff
+
+separator-color=00000000
+
+inside-color=#1F2530
+inside-clear-color=ffd20433
+inside-caps-lock-color=009ddc33
+inside-ver-color=303446
+inside-wrong-color=e78284
+
+ring-color=#1B242B
+ring-clear-color=231f20D9
+ring-caps-lock-color=231f20D9
+ring-ver-color=231f20D9
+ring-wrong-color=231f20D9
+
+line-color=303446
+line-clear-color=303446
+line-caps-lock-color=009ddcFF
+line-ver-color=eebebe
+line-wrong-color=ee2e24FF
+
+text-color=dededeff
+text-clear-color=ffd204ff
+text-ver-color=c6d0f5
+text-wrong-color=ee2e24ff
+
+bs-hl-size=20
+caps-lock-bs-hl-size=20
+caps-lock-key-hl-size=20
+key-hl-size=20
+
+bs-hl-color=ffd204ff
+caps-lock-key-hl-color=ffd204FF
+caps-lock-bs-hl-color=dededeFF
+text-caps-lock-color=009ddcff
+
+scaling=fill
+color=00000088
+
+#show-keyboard-layout
+
+# greeter-text="Welcome back, $(whoami)"
+# greeter-color=ffffffff
+# greeter-font=Work Sans Bold
+# greeter-size=32
+# greeter-text="CPU: $(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage "%"}') | Mem: $(free -m | awk '/Mem:/ {print $3"MB"}')"

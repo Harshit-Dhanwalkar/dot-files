@@ -1,0 +1,12 @@
+/**
+ *
+ * Author : Harshit Prashant Dhanwalkar
+ * Github : @harshitpmd
+ * 
+ * Fonts
+ *
+ **/
+
+* {
+    font: "JetBrains Mono NF 10";
+}
