@@ -4,6 +4,12 @@ return {
 	config = function()
 		require("Comment").setup({
 			create_mappings = false,
+			extra = {
+				ft = {
+					asm = { " ;" },
+					s = { " ;" },
+				},
+			},
 		})
 	end,
 }
