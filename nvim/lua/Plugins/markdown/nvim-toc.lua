@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/nvim-toc.lua
+-- ~/.config/nvim/lua/Plugins/markdown/nvim-toc.lua
 return {
 	"richardbizik/nvim-toc",
 	config = function()

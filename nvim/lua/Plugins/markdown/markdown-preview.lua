@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/markdown-preview.lua
+-- ~/.config/nvim/lua/Plugins/markdown/markdown-preview.lua
 return {
 	-- install without yarn or npm
 	-- FAILs
