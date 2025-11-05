@@ -44,6 +44,7 @@ require("lazy").setup({
 	require("Plugins.gitstuff"),
 	-- require("Plugins.git-worktree"),
 	require("Plugins.goto-preview"),
+	require("Plugins.who5673-nasm"),
 	-- require("Plugins.harpoon"),
 	-- require("Plugins.illustrate"),
 	require("Plugins.image"),

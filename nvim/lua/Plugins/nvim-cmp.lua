@@ -35,6 +35,7 @@ return {
 		"hrsh7th/cmp-cmdline",
 		-- Adds other completion capabilities.
 	},
+	enabled = true,
 	config = function()
 		-- See `:help cmp`
 		local cmp = require("cmp")
@@ -104,6 +105,8 @@ return {
 				{ name = "buffer", keyword_length = 2 }, -- source current buffer
 				{ name = "vsnip", keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
 				{ name = "calc" }, -- source for math calculation
+				{ name = "nasm_registers" },
+				{ name = "nasm_instructions" },
 			},
 		})
 		--  '/' cmdline setup
