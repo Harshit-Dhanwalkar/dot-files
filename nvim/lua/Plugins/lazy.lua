@@ -72,6 +72,7 @@ require("lazy").setup({
 	require("Plugins.treesitter-textobjects"),
 	require("Plugins.todo-comments"),
 	require("Plugins.treesj"),
+	require("Plugins.twilight"),
 	require("Plugins.vim-sleuth"),
 	require("Plugins.vimtex"),
 	require("Plugins.vim-visual-multi"),
