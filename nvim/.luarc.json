@@ -1,0 +1,7 @@
+{
+    "completion.autoRequire": false,
+    "diagnostics.disable": [
+        "missing-fields",
+        "deprecated"
+    ]
+}

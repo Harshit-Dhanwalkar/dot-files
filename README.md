@@ -1,2 +1,1 @@
-# nvim-config
-My neovim configurations
+# My dot files
