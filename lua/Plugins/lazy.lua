@@ -64,6 +64,7 @@ require("lazy").setup({
 	-- require("Plugins.markown-preview"),
 	-- require("Plugins.screenkey"),
 	-- require("Plugins.showkeys"),
+	-- require("Plugins.vim-tmx-navigator"),
 	require("Plugins.telescope"),
 	require("Plugins.tiny-inline-diagnostic"),
 	require("Plugins.tiny-code-action"),
