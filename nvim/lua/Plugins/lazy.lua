@@ -63,6 +63,7 @@ require("lazy").setup({
 	require("Plugins.render-markdown"),
 	-- require("Plugins.markown-preview"),
 	require("Plugins.carrot"),
+	require("Plugins.nvim-toc"),
 	-- require("Plugins.screenkey"),
 	-- require("Plugins.showkeys"),
 	-- require("Plugins.vim-tmux-navigator"),
