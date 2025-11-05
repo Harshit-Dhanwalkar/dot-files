@@ -38,6 +38,7 @@ require("lazy").setup({
 	require("Plugins.debug"),
 	require("Plugins.diffview"),
 	require("Plugins.fidget"),
+	require("Plugins.flash"),
 	-- require("Plugins.formatting"),
 	require("Plugins.gitsigns"),
 	require("Plugins.gitstuff"),
