@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/lazy.lua
+-- ~/.config/nvim/lua/lazy.lua
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -71,7 +71,7 @@ require("lazy").setup({
 	require("Plugins.treesitter-textobjects"),
 	require("Plugins.todo-comments"),
 	require("Plugins.treesj"),
-	require("Plugins.twilight"),
+	-- require("Plugins.twilight"),
 	require("Plugins.vim-sleuth"),
 	require("Plugins.vimtex"),
 	require("Plugins.vim-visual-multi"),
@@ -88,6 +88,7 @@ require("lazy").setup({
 	require("Plugins.which-key"),
 	require("Plugins.webdev.emmet"),
 	require("Plugins.webdev.colorizer"),
+	require("Plugins.webdev.colortils"),
 	require("Plugins.webdev.minty"),
 	-- {
 	-- 	"stevearc/dressing.nvim",

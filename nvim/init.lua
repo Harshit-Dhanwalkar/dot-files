@@ -1,4 +1,4 @@
 require("settings")
 require("keymaps")
-require("Plugins.lazy")
+require("lazy-plugins")
 require("Plugins.keymaps")
