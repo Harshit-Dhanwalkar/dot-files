@@ -25,7 +25,6 @@ return {
 		-- Two important keymaps to use while in Telescope are:
 		--  - Insert mode: <c-/> -- to show keymaps for the current Telescope picker
 		--  - Normal mode: ?
-		--
 		-- [[ Configure Telescope ]]
 		-- See `:help telescope` and `:help telescope.setup()`
 		require("telescope").setup({

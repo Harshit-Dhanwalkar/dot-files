@@ -38,6 +38,11 @@ vim.api.nvim_set_keymap("n", "\\", ":NvimTreeFindFileToggle<cr>", { noremap = tr
 -- nvim-comments
 vim.keymap.set({ "n", "v" }, "<leader>gc", ":CommentToggle<cr>")
 
+-- neoclip
+vim.keymap.set("n", "<leader>p", function()
+	require("telescope").extensions.neoclip.default()
+end, { desc = "Neoclip (Paste History)" })
+
 -- vimtex
 vim.keymap.set({ "n", "v" }, "<leader>lt", ":VimtexTocToggle<cr>")
 vim.keymap.set("n", "<leader>ll", ":VimtexCompile<CR>", opts) -- Start compilation

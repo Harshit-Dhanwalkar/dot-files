@@ -51,6 +51,7 @@ require("lazy").setup({
 	require("Plugins.indent-blackline"),
 	require("Plugins.mini"),
 	require("Plugins.neogit"),
+	require("Plugins.neoclip"),
 	-- require("Plugins.neotree"),
 	require("Plugins.noice"),
 	require("Plugins.nvim-cmp"),
