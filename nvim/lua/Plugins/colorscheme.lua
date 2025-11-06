@@ -59,7 +59,7 @@ return {
 		-- priority = 1000 ,
 		config = function()
 			require("gruvbox").setup({
-				terminal_colors = true, -- add neovim terminal colors
+				terminal_colors = true,
 				undercurl = true,
 				underline = true,
 				bold = true,
@@ -148,8 +148,55 @@ return {
 		end,
 	},
 	{
+		"HoNamDuong/hybrid.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("hybrid").setup({
+				terminal_colors = true,
+				undercurl = true,
+				underline = true,
+				bold = true,
+				italic = {
+					strings = false,
+					emphasis = true,
+					comments = true,
+					folds = true,
+				},
+				strikethrough = true,
+				inverse = true,
+				transparent = true,
+				-- overrides = function(highlights, colors) end,
+				overrides = function(hl, c)
+					local background = "#1d1f21"
+					hl.TelescopeNormal = {
+						fg = c.fg,
+						bg = background,
+					}
+					hl.TelescopeBorder = {
+						fg = c.fg_hard,
+						bg = c.bg,
+					}
+					hl.TelescopeTitle = {
+						fg = c.fg_hard,
+						bg = c.bg,
+						bold = true,
+					}
+				end,
+			})
+		end,
+		opts = {
+			transparent = true,
+			styles = {
+				-- sidebars = 'transparent',
+				floats = "transparent",
+			},
+		},
+	},
+	{
 		"craftzdog/solarized-osaka.nvim",
 		lazy = false,
+		priority = 1000,
 		config = function()
 			require("solarized-osaka").setup({
 				transparent = true,
@@ -201,6 +248,116 @@ return {
 					}
 				end,
 			})
+		end,
+	},
+	{
+		"scottmckendry/cyberdream.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			-- 	require("cyberdream").setup({
+			-- 				-- Set light or dark variant
+			-- 				variant = "default", -- use "light" for light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
+			-- 				transparent = true, -- transparent background
+			-- 				-- Reduce the overall saturation of colours for a more muted look
+			-- 				saturation = 1, -- accepts a value between 0 and 1 for saturation. 0 will be fully desaturated (greyscale) and 1 will be the full color (default)
+			-- 				italic_comments = false, -- Enable italics comments
+			-- 				-- Replace all fillchars with ' ' for the ultimate clean look
+			-- 				hide_fillchars = false,
+			-- 				-- Apply a modern borderless look to pickers like Telescope, Snacks Picker & Fzf-Lua
+			-- 				borderless_pickers = false,
+			-- 				terminal_colors = true, -- Set terminal colors used in `:terminal`
+			-- 				-- Improve start up time by caching highlights. Generate cache with :CyberdreamBuildCache and clear with :CyberdreamClearCache
+			-- 				cache = false,
+			-- 				highlights = {
+			-- 					-- Highlight groups to override, adding new groups is also possible
+			-- 					-- See `:h highlight-groups` for a list of highlight groups or run `:hi` to see all groups and their current values
+			-- 					Comment = { fg = "#696969", bg = "NONE", italic = true },
+			-- 					-- More examples can be found in `lua/cyberdream/extensions/*.lua`
+			-- 				},
+			-- 				-- Override a highlight group entirely using the built-in colour palette
+			-- 				overrides = function(colors) -- NOTE: This function nullifies the `highlights` option
+			-- 					-- Example:
+			-- 					return {
+			-- 						Comment = { fg = colors.green, bg = "NONE", italic = true },
+			-- 						["@property"] = { fg = colors.magenta, bold = true },
+			-- 					}
+			-- 				end,
+			-- 				-- Override colors
+			-- 				colors = {
+			-- 					-- For a list of colors see `lua/cyberdream/colours.lua`
+			-- 					-- Override colors for both light and dark variants
+			-- 					bg = "#000000",
+			-- 					green = "#00ff00",
+			-- 					-- If you want to override colors for light or dark variants only, use the following format:
+			-- 					dark = {
+			-- 						magenta = "#ff00ff",
+			-- 						fg = "#eeeeee",
+			-- 					},
+			-- 					light = {
+			-- 						red = "#ff5c57",
+			-- 						cyan = "#5ef1ff",
+			-- 					},
+			-- 				},
+			-- 				-- Disable or enable colorscheme extensions
+			-- 				extensions = {
+			-- 					telescope = true,
+			-- 					notify = true,
+			-- 					mini = true,
+			-- 					...,
+			-- 				},
+			-- 	}),
+		end,
+	},
+	{
+		"EdenEast/nightfox.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			-- 		require("nightfox").setup({
+			-- 				options = {
+			-- 					compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+			-- 					compile_file_suffix = "_compiled", -- Compiled file suffix
+			-- 					transparent = false, -- Disable setting background
+			-- 					terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+			-- 					dim_inactive = false, -- Non focused panes set to alternative background
+			-- 					module_default = true, -- Default enable value for modules
+			-- 					colorblind = {
+			-- 						enable = false, -- Enable colorblind support
+			-- 						simulate_only = false, -- Only show simulated colorblind colors and not diff shifted
+			-- 						severity = {
+			-- 							protan = 0, -- Severity [0,1] for protan (red)
+			-- 							deutan = 0, -- Severity [0,1] for deutan (green)
+			-- 							tritan = 0, -- Severity [0,1] for tritan (blue)
+			-- 						},
+			-- 					},
+			-- 					styles = { -- Style to be applied to different syntax groups
+			-- 						comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
+			-- 						conditionals = "NONE",
+			-- 						constants = "NONE",
+			-- 						functions = "NONE",
+			-- 						keywords = "NONE",
+			-- 						numbers = "NONE",
+			-- 						operators = "NONE",
+			-- 						strings = "NONE",
+			-- 						types = "NONE",
+			-- 						variables = "NONE",
+			-- 					},
+			-- 					inverse = { -- Inverse highlight for different types
+			-- 						match_paren = false,
+			-- 						visual = false,
+			-- 						search = false,
+			-- 					},
+			-- 					modules = { -- List of various plugins and additional options
+			-- 					},
+			-- 				},
+			-- 				palettes = {},
+			-- 				specs = {},
+			-- 				groups = {},
+			-- 			}),
+			-- 			-- setup must be called before loading
+			-- 			vim.cmd("colorscheme nightfox"),
+			-- 		})
 		end,
 	},
 }

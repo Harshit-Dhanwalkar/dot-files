@@ -88,6 +88,7 @@ require("lazy").setup({
 	require("Plugins.which-key"),
 	require("Plugins.webdev.emmet"),
 	require("Plugins.webdev.colorizer"),
+	require("Plugins.webdev.minty"),
 	-- {
 	-- 	"stevearc/dressing.nvim",
 	-- 	opts = {},
