@@ -95,7 +95,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 0;
 
 /* Background opacity */
 float alpha_def;
@@ -104,30 +104,30 @@ float alpha_def;
 static const char *colorname[] = {
 // Nord Color Scheme
 	/* 8 normal colors */
-	"#3b4252", /* black   */
-	"#bf616a", /* red     */
+	"#767676", /* black   */
+	"#da4553", /* red     */
 	"#a3be8c", /* green   */
 	"#ebcb8b", /* yellow  */
-	"#81a1c1", /* blue    */
+	"#0d73cc", /* blue    */
 	"#b48ead", /* magenta */
 	"#88c0d0", /* cyan    */
-	"#e5e9f0", /* white   */
+	"#d6e4ff", /* white   */
 
 	/* 8 bright colors */
-	"#4c566a", /* black   */
-	"#bf616a", /* red     */
-	"#a3be8c", /* green   */
+	"#000000", /* black   */
+	"#d14e5a", /* red     */
+	"#a1d07a", /* green   */
 	"#ebcb8b", /* yellow  */
-	"#81a1c1", /* blue    */
+	"#1a8fff", /* blue    */
 	"#b48ead", /* magenta */
 	"#8fbcbb", /* cyan    */
-	"#eceff4", /* white   */
+	"#ebeef4", /* white   */
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#d8dee9", /* default foreground colour */
-	"#2e3440", /* default background colour */
+	"#3d3d64", /* default foreground colour */
+	"#000000", /* default background colour */
 };
 
 
@@ -135,10 +135,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 256;
+unsigned int defaultfg = 7;
 unsigned int defaultbg = 257;
 unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultrcs = 257;
 
 /*
  * Default shape of cursor
@@ -192,8 +192,8 @@ static MouseShortcut mshortcuts[] = {
 };
 
 /* Internal keyboard shortcuts. */
-#define MODKEY Mod1Mask
-#define TERMMOD (Mod1Mask|ShiftMask)
+#define MODKEY Mod4Mask
+#define TERMMOD (Mod4Mask|ShiftMask)
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
@@ -204,8 +204,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_K,           zoom,           {.f = +1} },
 	{ TERMMOD,              XK_J,           zoom,           {.f = -1} },
 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
-	{ MODKEY,               XK_c,           clipcopy,       {.i =  0} },
-	{ MODKEY,               XK_v,           clippaste,      {.i =  0} },
+	{ ControlMask|ShiftMask,  XK_C,         clipcopy,       {.i = 0}  },
+	{ ControlMask|ShiftMask,  XK_V,         clippaste,      {.i = 0}  },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
