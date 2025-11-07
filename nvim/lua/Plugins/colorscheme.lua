@@ -16,348 +16,356 @@ return {
 			},
 		},
 	},
-	{
-		"rose-pine/neovim",
-		name = "rose-pine",
-		-- priority = 1000,
-		config = function()
-			require("rose-pine").setup({
-				variant = "main", -- auto, main, moon, or dawn
-				dark_variant = "main", -- main, moon, or dawn
-				dim_inactive_windows = false,
-				-- disable_background = true,
-				-- 	disable_nc_background = false,
-				-- 	disable_float_background = false,
-				-- extend_background_behind_borders = false,
-				styles = {
-					bold = true,
-					italic = false,
-					transparency = true,
-				},
-				highlight_groups = {
-					ColorColumn = { bg = "#1C1C21" },
-					Normal = { bg = "none" }, -- Main background remains transparent
-					Pmenu = { bg = "", fg = "#e0def4" }, -- Completion menu background
-					PmenuSel = { bg = "#4a465d", fg = "#f8f5f2" }, -- Highlighted completion item
-					PmenuSbar = { bg = "#191724" }, -- Scrollbar background
-					PmenuThumb = { bg = "#9ccfd8" }, -- Scrollbar thumb
-				},
-				enable = {
-					terminal = false,
-					legacy_highlights = false, -- Improve compatibility for previous versions of Neovim
-					migrations = true, -- Handle deprecated options automatically
-				},
-			})
-
-			-- HACK: set this on the color you want to be persistent
-			-- when quit and reopening nvim
-			-- vim.cmd("colorscheme rose-pine")
-		end,
-	},
-	{
-		"ellisonleao/gruvbox.nvim",
-		-- priority = 1000 ,
-		config = function()
-			require("gruvbox").setup({
-				terminal_colors = true,
-				undercurl = true,
-				underline = true,
-				bold = true,
-				italic = {
-					strings = false,
-					emphasis = false,
-					comments = false,
-					folds = false,
-					operators = false,
-				},
-				strikethrough = true,
-				invert_selection = false,
-				invert_signs = false,
-				invert_tabline = false,
-				invert_intend_guides = false,
-				inverse = true, -- invert background for search, diffs, statuslines and errors
-				contrast = "", -- can be "hard", "soft" or empty string
-				palette_overrides = {},
-				overrides = {
-					Pmenu = { bg = "" }, -- Completion menu background
-				},
-				dim_inactive = false,
-				transparent_mode = true,
-			})
-		end,
-	},
-	{
-		"rebelot/kanagawa.nvim",
-		config = function()
-			require("kanagawa").setup({
-				compile = false, -- enable compiling the colorscheme
-				undercurl = true, -- enable undercurls
-				commentStyle = { italic = true },
-				functionStyle = {},
-				keywordStyle = { italic = false },
-				statementStyle = { bold = true },
-				typeStyle = {},
-				transparent = true, -- do not set background color
-				dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-				terminalColors = true, -- define vim.g.terminal_color_{0,17}
-				colors = { -- add/modify theme and palette colors
-					palette = {},
-					theme = {
-						wave = {},
-						dragon = {},
-						all = {
-							ui = {
-								bg_gutter = "none",
-								border = "rounded",
-							},
-						},
-					},
-				},
-				overrides = function(colors) -- add/modify highlights
-					local theme = colors.theme
-					return {
-						NormalFloat = { bg = "none" },
-						FloatBorder = { bg = "none" },
-						FloatTitle = { bg = "none" },
-						Pmenu = { fg = theme.ui.shade0, bg = "NONE", blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
-						PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
-						PmenuSbar = { bg = theme.ui.bg_m1 },
-						PmenuThumb = { bg = theme.ui.bg_p2 },
-
-						-- Save an hlgroup with dark background and dimmed foreground
-						-- so that you can use it where your still want darker windows.
-						-- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
-						NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-
-						-- Popular plugins that open floats will link to NormalFloat by default;
-						-- set their background accordingly if you wish to keep them dark and borderless
-						LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-						MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-						TelescopeTitle = { fg = theme.ui.special, bold = true },
-						TelescopePromptBorder = { fg = theme.ui.special },
-						TelescopeResultsNormal = { fg = theme.ui.fg_dim },
-						TelescopeResultsBorder = { fg = theme.ui.special },
-						TelescopePreviewBorder = { fg = theme.ui.special },
-					}
-				end,
-				theme = "wave", -- Load "wave" theme when 'background' option is not set
-				background = { -- map the value of 'background' option to a theme
-					dark = "wave", -- try "dragon" !
-				},
-			})
-		end,
-	},
-	{
-		"HoNamDuong/hybrid.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("hybrid").setup({
-				terminal_colors = true,
-				undercurl = true,
-				underline = true,
-				bold = true,
-				italic = {
-					strings = false,
-					emphasis = true,
-					comments = true,
-					folds = true,
-				},
-				strikethrough = true,
-				inverse = true,
-				transparent = true,
-				-- overrides = function(highlights, colors) end,
-				overrides = function(hl, c)
-					local background = "#1d1f21"
-					hl.TelescopeNormal = {
-						fg = c.fg,
-						bg = background,
-					}
-					hl.TelescopeBorder = {
-						fg = c.fg_hard,
-						bg = c.bg,
-					}
-					hl.TelescopeTitle = {
-						fg = c.fg_hard,
-						bg = c.bg,
-						bold = true,
-					}
-				end,
-			})
-		end,
-		opts = {
-			transparent = true,
-			styles = {
-				-- sidebars = 'transparent',
-				floats = "transparent",
-			},
-		},
-	},
-	{
-		"craftzdog/solarized-osaka.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("solarized-osaka").setup({
-				transparent = true,
-				terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
-				styles = {
-					-- Style to be applied to different syntax groups
-					-- Value is any valid attr-list value for `:help nvim_set_hl`
-					comments = { italic = true },
-					keywords = { italic = false },
-					functions = {},
-					variables = {},
-					-- Background styles. Can be "dark", "transparent" or "normal"
-					sidebars = "dark", -- style for sidebars, see below
-					floats = "dark", -- style for floating windows
-				},
-				sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-				day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
-				hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
-				dim_inactive = false, -- dims inactive windows
-				lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
-				on_highlights = function(hl, c)
-					local prompt = "#2d3149"
-					hl.TelescopeNormal = {
-						bg = c.bg_dark,
-						fg = c.fg_dark,
-					}
-					hl.TelescopeBorder = {
-						bg = c.bg_dark,
-						fg = c.bg_dark,
-					}
-					hl.TelescopePromptNormal = {
-						bg = c.bg_dark,
-					}
-					hl.TelescopePromptBorder = {
-						bg = c.bg_dark,
-						fg = c.bg_dark,
-					}
-					hl.TelescopePromptTitle = {
-						bg = prompt,
-						fg = "#2C94DD",
-					}
-					hl.TelescopePreviewTitle = {
-						bg = c.bg_dark,
-						fg = c.bg_dark,
-					}
-					hl.TelescopeResultsTitle = {
-						bg = c.bg_dark,
-						fg = c.bg_dark,
-					}
-				end,
-			})
-		end,
-	},
-	{
-		"scottmckendry/cyberdream.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			-- 	require("cyberdream").setup({
-			-- 				-- Set light or dark variant
-			-- 				variant = "default", -- use "light" for light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
-			-- 				transparent = true, -- transparent background
-			-- 				-- Reduce the overall saturation of colours for a more muted look
-			-- 				saturation = 1, -- accepts a value between 0 and 1 for saturation. 0 will be fully desaturated (greyscale) and 1 will be the full color (default)
-			-- 				italic_comments = false, -- Enable italics comments
-			-- 				-- Replace all fillchars with ' ' for the ultimate clean look
-			-- 				hide_fillchars = false,
-			-- 				-- Apply a modern borderless look to pickers like Telescope, Snacks Picker & Fzf-Lua
-			-- 				borderless_pickers = false,
-			-- 				terminal_colors = true, -- Set terminal colors used in `:terminal`
-			-- 				-- Improve start up time by caching highlights. Generate cache with :CyberdreamBuildCache and clear with :CyberdreamClearCache
-			-- 				cache = false,
-			-- 				highlights = {
-			-- 					-- Highlight groups to override, adding new groups is also possible
-			-- 					-- See `:h highlight-groups` for a list of highlight groups or run `:hi` to see all groups and their current values
-			-- 					Comment = { fg = "#696969", bg = "NONE", italic = true },
-			-- 					-- More examples can be found in `lua/cyberdream/extensions/*.lua`
-			-- 				},
-			-- 				-- Override a highlight group entirely using the built-in colour palette
-			-- 				overrides = function(colors) -- NOTE: This function nullifies the `highlights` option
-			-- 					-- Example:
-			-- 					return {
-			-- 						Comment = { fg = colors.green, bg = "NONE", italic = true },
-			-- 						["@property"] = { fg = colors.magenta, bold = true },
-			-- 					}
-			-- 				end,
-			-- 				-- Override colors
-			-- 				colors = {
-			-- 					-- For a list of colors see `lua/cyberdream/colours.lua`
-			-- 					-- Override colors for both light and dark variants
-			-- 					bg = "#000000",
-			-- 					green = "#00ff00",
-			-- 					-- If you want to override colors for light or dark variants only, use the following format:
-			-- 					dark = {
-			-- 						magenta = "#ff00ff",
-			-- 						fg = "#eeeeee",
-			-- 					},
-			-- 					light = {
-			-- 						red = "#ff5c57",
-			-- 						cyan = "#5ef1ff",
-			-- 					},
-			-- 				},
-			-- 				-- Disable or enable colorscheme extensions
-			-- 				extensions = {
-			-- 					telescope = true,
-			-- 					notify = true,
-			-- 					mini = true,
-			-- 					...,
-			-- 				},
-			-- 	}),
-		end,
-	},
-	{
-		"EdenEast/nightfox.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			-- 		require("nightfox").setup({
-			-- 				options = {
-			-- 					compile_path = vim.fn.stdpath("cache") .. "/nightfox",
-			-- 					compile_file_suffix = "_compiled", -- Compiled file suffix
-			-- 					transparent = false, -- Disable setting background
-			-- 					terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
-			-- 					dim_inactive = false, -- Non focused panes set to alternative background
-			-- 					module_default = true, -- Default enable value for modules
-			-- 					colorblind = {
-			-- 						enable = false, -- Enable colorblind support
-			-- 						simulate_only = false, -- Only show simulated colorblind colors and not diff shifted
-			-- 						severity = {
-			-- 							protan = 0, -- Severity [0,1] for protan (red)
-			-- 							deutan = 0, -- Severity [0,1] for deutan (green)
-			-- 							tritan = 0, -- Severity [0,1] for tritan (blue)
-			-- 						},
-			-- 					},
-			-- 					styles = { -- Style to be applied to different syntax groups
-			-- 						comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
-			-- 						conditionals = "NONE",
-			-- 						constants = "NONE",
-			-- 						functions = "NONE",
-			-- 						keywords = "NONE",
-			-- 						numbers = "NONE",
-			-- 						operators = "NONE",
-			-- 						strings = "NONE",
-			-- 						types = "NONE",
-			-- 						variables = "NONE",
-			-- 					},
-			-- 					inverse = { -- Inverse highlight for different types
-			-- 						match_paren = false,
-			-- 						visual = false,
-			-- 						search = false,
-			-- 					},
-			-- 					modules = { -- List of various plugins and additional options
-			-- 					},
-			-- 				},
-			-- 				palettes = {},
-			-- 				specs = {},
-			-- 				groups = {},
-			-- 			}),
-			-- 			-- setup must be called before loading
-			-- 			vim.cmd("colorscheme nightfox"),
-			-- 		})
-		end,
-	},
+	-- {
+	-- 	"rose-pine/neovim",
+	-- 	name = "rose-pine",
+	-- 	-- priority = 1000,
+	-- 	config = function()
+	-- 		require("rose-pine").setup({
+	-- 			variant = "main", -- auto, main, moon, or dawn
+	-- 			dark_variant = "main", -- main, moon, or dawn
+	-- 			dim_inactive_windows = false,
+	-- 			-- disable_background = true,
+	-- 			-- 	disable_nc_background = false,
+	-- 			-- 	disable_float_background = false,
+	-- 			-- extend_background_behind_borders = false,
+	-- 			styles = {
+	-- 				bold = true,
+	-- 				italic = false,
+	-- 				transparency = true,
+	-- 			},
+	-- 			highlight_groups = {
+	-- 				ColorColumn = { bg = "#1C1C21" },
+	-- 				Normal = { bg = "none" }, -- Main background remains transparent
+	-- 				Pmenu = { bg = "", fg = "#e0def4" }, -- Completion menu background
+	-- 				PmenuSel = { bg = "#4a465d", fg = "#f8f5f2" }, -- Highlighted completion item
+	-- 				PmenuSbar = { bg = "#191724" }, -- Scrollbar background
+	-- 				PmenuThumb = { bg = "#9ccfd8" }, -- Scrollbar thumb
+	-- 			},
+	-- 			enable = {
+	-- 				terminal = false,
+	-- 				legacy_highlights = false, -- Improve compatibility for previous versions of Neovim
+	-- 				migrations = true, -- Handle deprecated options automatically
+	-- 			},
+	-- 		})
+	-- 		-- HACK: set this on the color you want to be persistent
+	-- 		-- when quit and reopening nvim
+	-- 		-- vim.cmd("colorscheme rose-pine")
+	-- 	end,
+	-- },
+	-- {
+	-- 	"ellisonleao/gruvbox.nvim",
+	-- 	-- priority = 1000 ,
+	-- 	config = function()
+	-- 		require("gruvbox").setup({
+	-- 			terminal_colors = true,
+	-- 			undercurl = true,
+	-- 			underline = true,
+	-- 			bold = true,
+	-- 			italic = {
+	-- 				strings = false,
+	-- 				emphasis = false,
+	-- 				comments = false,
+	-- 				folds = false,
+	-- 				operators = false,
+	-- 			},
+	-- 			strikethrough = true,
+	-- 			invert_selection = false,
+	-- 			invert_signs = false,
+	-- 			invert_tabline = false,
+	-- 			invert_intend_guides = false,
+	-- 			inverse = true, -- invert background for search, diffs, statuslines and errors
+	-- 			contrast = "", -- can be "hard", "soft" or empty string
+	-- 			palette_overrides = {},
+	-- 			overrides = {
+	-- 				Pmenu = { bg = "" }, -- Completion menu background
+	-- 			},
+	-- 			dim_inactive = false,
+	-- 			transparent_mode = true,
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"rebelot/kanagawa.nvim",
+	-- 	config = function()
+	-- 		require("kanagawa").setup({
+	-- 			compile = false, -- enable compiling the colorscheme
+	-- 			undercurl = true, -- enable undercurls
+	-- 			commentStyle = { italic = true },
+	-- 			functionStyle = {},
+	-- 			keywordStyle = { italic = false },
+	-- 			statementStyle = { bold = true },
+	-- 			typeStyle = {},
+	-- 			transparent = true, -- do not set background color
+	-- 			dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+	-- 			terminalColors = true, -- define vim.g.terminal_color_{0,17}
+	-- 			colors = { -- add/modify theme and palette colors
+	-- 				palette = {},
+	-- 				theme = {
+	-- 					wave = {},
+	-- 					dragon = {},
+	-- 					all = {
+	-- 						ui = {
+	-- 							bg_gutter = "none",
+	-- 							border = "rounded",
+	-- 						},
+	-- 					},
+	-- 				},
+	-- 			},
+	-- 			overrides = function(colors) -- add/modify highlights
+	-- 				local theme = colors.theme
+	-- 				return {
+	-- 					NormalFloat = { bg = "none" },
+	-- 					FloatBorder = { bg = "none" },
+	-- 					FloatTitle = { bg = "none" },
+	-- 					Pmenu = { fg = theme.ui.shade0, bg = "NONE", blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
+	-- 					PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+	-- 					PmenuSbar = { bg = theme.ui.bg_m1 },
+	-- 					PmenuThumb = { bg = theme.ui.bg_p2 },
+	--
+	-- 					-- Save an hlgroup with dark background and dimmed foreground
+	-- 					-- so that you can use it where your still want darker windows.
+	-- 					-- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+	-- 					NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+	--
+	-- 					-- Popular plugins that open floats will link to NormalFloat by default;
+	-- 					-- set their background accordingly if you wish to keep them dark and borderless
+	-- 					LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+	-- 					MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+	-- 					TelescopeTitle = { fg = theme.ui.special, bold = true },
+	-- 					TelescopePromptBorder = { fg = theme.ui.special },
+	-- 					TelescopeResultsNormal = { fg = theme.ui.fg_dim },
+	-- 					TelescopeResultsBorder = { fg = theme.ui.special },
+	-- 					TelescopePreviewBorder = { fg = theme.ui.special },
+	-- 				}
+	-- 			end,
+	-- 			theme = "wave", -- Load "wave" theme when 'background' option is not set
+	-- 			background = { -- map the value of 'background' option to a theme
+	-- 				dark = "wave", -- try "dragon" !
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"HoNamDuong/hybrid.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("hybrid").setup({
+	-- 			terminal_colors = true,
+	-- 			undercurl = true,
+	-- 			underline = true,
+	-- 			bold = true,
+	-- 			italic = {
+	-- 				strings = false,
+	-- 				emphasis = true,
+	-- 				comments = true,
+	-- 				folds = true,
+	-- 			},
+	-- 			strikethrough = true,
+	-- 			inverse = true,
+	-- 			transparent = true,
+	-- 			-- overrides = function(highlights, colors) end,
+	-- 			overrides = function(hl, c)
+	-- 				local background = "#1d1f21"
+	-- 				hl.TelescopeNormal = {
+	-- 					fg = c.fg,
+	-- 					bg = background,
+	-- 				}
+	-- 				hl.TelescopeBorder = {
+	-- 					fg = c.fg_hard,
+	-- 					bg = c.bg,
+	-- 				}
+	-- 				hl.TelescopeTitle = {
+	-- 					fg = c.fg_hard,
+	-- 					bg = c.bg,
+	-- 					bold = true,
+	-- 				}
+	-- 			end,
+	-- 		})
+	-- 	end,
+	-- 	opts = {
+	-- 		transparent = true,
+	-- 		styles = {
+	-- 			-- sidebars = 'transparent',
+	-- 			floats = "transparent",
+	-- 		},
+	-- 	},
+	-- },
+	-- {
+	-- 	"craftzdog/solarized-osaka.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("solarized-osaka").setup({
+	-- 			transparent = true,
+	-- 			terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
+	-- 			styles = {
+	-- 				-- Style to be applied to different syntax groups
+	-- 				-- Value is any valid attr-list value for `:help nvim_set_hl`
+	-- 				comments = { italic = true },
+	-- 				keywords = { italic = false },
+	-- 				functions = {},
+	-- 				variables = {},
+	-- 				-- Background styles. Can be "dark", "transparent" or "normal"
+	-- 				sidebars = "dark", -- style for sidebars, see below
+	-- 				floats = "dark", -- style for floating windows
+	-- 			},
+	-- 			sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+	-- 			day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
+	-- 			hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
+	-- 			dim_inactive = false, -- dims inactive windows
+	-- 			lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
+	-- 			on_highlights = function(hl, c)
+	-- 				local prompt = "#2d3149"
+	-- 				hl.TelescopeNormal = {
+	-- 					bg = c.bg_dark,
+	-- 					fg = c.fg_dark,
+	-- 				}
+	-- 				hl.TelescopeBorder = {
+	-- 					bg = c.bg_dark,
+	-- 					fg = c.bg_dark,
+	-- 				}
+	-- 				hl.TelescopePromptNormal = {
+	-- 					bg = c.bg_dark,
+	-- 				}
+	-- 				hl.TelescopePromptBorder = {
+	-- 					bg = c.bg_dark,
+	-- 					fg = c.bg_dark,
+	-- 				}
+	-- 				hl.TelescopePromptTitle = {
+	-- 					bg = prompt,
+	-- 					fg = "#2C94DD",
+	-- 				}
+	-- 				hl.TelescopePreviewTitle = {
+	-- 					bg = c.bg_dark,
+	-- 					fg = c.bg_dark,
+	-- 				}
+	-- 				hl.TelescopeResultsTitle = {
+	-- 					bg = c.bg_dark,
+	-- 					fg = c.bg_dark,
+	-- 				}
+	-- 			end,
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"scottmckendry/cyberdream.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("cyberdream").setup({
+	-- 			-- Set light or dark variant
+	-- 			variant = "default", -- use "light" for light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
+	-- 			transparent = true, -- transparent background
+	-- 			-- Reduce the overall saturation of colours for a more muted look
+	-- 			saturation = 1, -- accepts a value between 0 and 1 for saturation. 0 will be fully desaturated (greyscale) and 1 will be the full color (default)
+	-- 			italic_comments = false, -- Enable italics comments
+	-- 			-- Replace all fillchars with ' ' for the ultimate clean look
+	-- 			hide_fillchars = false,
+	-- 			-- Apply a modern borderless look to pickers like Telescope, Snacks Picker & Fzf-Lua
+	-- 			borderless_pickers = false,
+	-- 			terminal_colors = true, -- Set terminal colors used in `:terminal`
+	-- 			-- Improve start up time by caching highlights. Generate cache with :CyberdreamBuildCache and clear with :CyberdreamClearCache
+	-- 			cache = false,
+	-- 			highlights = {
+	-- 				-- Highlight groups to override, adding new groups is also possible
+	-- 				-- See `:h highlight-groups` for a list of highlight groups or run `:hi` to see all groups and their current values
+	-- 				Comment = { fg = "#696969", bg = "NONE", italic = true },
+	-- 				-- More examples can be found in `lua/cyberdream/extensions/*.lua`
+	-- 			},
+	-- 			-- Override a highlight group entirely using the built-in colour palette
+	-- 			overrides = function(colors) -- NOTE: This function nullifies the `highlights` option
+	-- 				-- Example:
+	-- 				return {
+	-- 					Comment = { fg = colors.green, bg = "NONE", italic = true },
+	-- 					["@property"] = { fg = colors.magenta, bold = true },
+	-- 				}
+	-- 			end,
+	-- 			-- Override colors
+	-- 			colors = {
+	-- 				-- For a list of colors see `lua/cyberdream/colours.lua`
+	-- 				-- Override colors for both light and dark variants
+	-- 				bg = "#000000",
+	-- 				green = "#00ff00",
+	-- 				-- If you want to override colors for light or dark variants only, use the following format:
+	-- 				dark = {
+	-- 					magenta = "#ff00ff",
+	-- 					fg = "#eeeeee",
+	-- 				},
+	-- 				light = {
+	-- 					red = "#ff5c57",
+	-- 					cyan = "#5ef1ff",
+	-- 				},
+	-- 			},
+	-- 			-- Disable or enable colorscheme extensions
+	-- 			-- extensions = {
+	-- 			-- 	telescope = true,
+	-- 			-- 	notify = true,
+	-- 			-- 	mini = true,
+	-- 			-- 	...,
+	-- 			-- },
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"Kaikacy/Lemons.nvim",
+	-- 	version = "*",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("lemons").load()
+	-- 	end,
+	-- },
+	-- {
+	-- 	"EdenEast/nightfox.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		-- 		require("nightfox").setup({
+	-- 		-- 				options = {
+	-- 		-- 					compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+	-- 		-- 					compile_file_suffix = "_compiled", -- Compiled file suffix
+	-- 		-- 					transparent = false, -- Disable setting background
+	-- 		-- 					terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+	-- 		-- 					dim_inactive = false, -- Non focused panes set to alternative background
+	-- 		-- 					module_default = true, -- Default enable value for modules
+	-- 		-- 					colorblind = {
+	-- 		-- 						enable = false, -- Enable colorblind support
+	-- 		-- 						simulate_only = false, -- Only show simulated colorblind colors and not diff shifted
+	-- 		-- 						severity = {
+	-- 		-- 							protan = 0, -- Severity [0,1] for protan (red)
+	-- 		-- 							deutan = 0, -- Severity [0,1] for deutan (green)
+	-- 		-- 							tritan = 0, -- Severity [0,1] for tritan (blue)
+	-- 		-- 						},
+	-- 		-- 					},
+	-- 		-- 					styles = { -- Style to be applied to different syntax groups
+	-- 		-- 						comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
+	-- 		-- 						conditionals = "NONE",
+	-- 		-- 						constants = "NONE",
+	-- 		-- 						functions = "NONE",
+	-- 		-- 						keywords = "NONE",
+	-- 		-- 						numbers = "NONE",
+	-- 		-- 						operators = "NONE",
+	-- 		-- 						strings = "NONE",
+	-- 		-- 						types = "NONE",
+	-- 		-- 						variables = "NONE",
+	-- 		-- 					},
+	-- 		-- 					inverse = { -- Inverse highlight for different types
+	-- 		-- 						match_paren = false,
+	-- 		-- 						visual = false,
+	-- 		-- 						search = false,
+	-- 		-- 					},
+	-- 		-- 					modules = { -- List of various plugins and additional options
+	-- 		-- 					},
+	-- 		-- 				},
+	-- 		-- 				palettes = {},
+	-- 		-- 				specs = {},
+	-- 		-- 				groups = {},
+	-- 		-- 			}),
+	-- 		-- 			-- setup must be called before loading
+	-- 		-- 			vim.cmd("colorscheme nightfox"),
+	-- 		-- 		})
+	-- 	end,
+	-- },
 }

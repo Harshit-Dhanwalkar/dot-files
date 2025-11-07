@@ -41,35 +41,44 @@
 
 ## Terminal Emulators
 
-1. <details>
-     <summary>Kitty</summary>
-     <p>Installation
-
-   ```bash
-   curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-   ```
-
-     </p>
-   </details>
-
-2. <details>
+1.  <details>
       <summary>ST</summary>
-      <p>Installation
+      <p>
 
-   - [suckless](https://st.suckless.org/)
+    - [kitty](https://sw.kovidgoyal.net/kitty/)
 
-   ```bash
-   # Going to update soon
-   ```
+        </p>
+        <p>Installation
 
-     </p>
-   </details>
+      ```bash
+      curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+      ```
+
+        </p>
+      </details>
+
+2.  <details>
+       <summary>ST</summary>
+       <p>
+
+    - [suckless](https://st.suckless.org/)
+
+          </p>
+          <p>Installation
+
+      ```bash
+      # Going to update soon
+      ```
+
+          </p>
+
+      </details>
 
 ## Applications
 
 1.  <details>
       <summary>Nvim</summary>
-      <p>
+      <p>Installation
 
     ```bash
     brew install neovim
@@ -106,7 +115,7 @@
 
 2.  <details>
       <summary>Inkscape</summary>
-      <p>
+      <p>Installation
 
     ```bash
     sudo add-apt-repository ppa:inkscape.dev/stable
@@ -119,7 +128,9 @@
 
 3.  <details>
     <summary>Qutebrowser</summary>
-      <p>
+      <p>Installation
+
+    - [Qutebrowser](https://qutebrowser.org/index.html)
 
     ```bash
     sudo apt install qutebrowser
@@ -130,7 +141,7 @@
 
 4.  <details>
     <summary>Obsidian</summary>
-      <p>
+      <p>Installation
 
     ```bash
     flatpak install flathub md.obsidian.Obsidian
@@ -143,6 +154,8 @@
     <summary>QEMU</summary>
       <p>
 
+    - [QEMU](https://www.qemu.org/)
+
     - Check Virtualization Extension by running following command to make sure you’ve enabled virtualization in on your system. It should be above 0
       - If the output is zero then go to bios settings and enable VT-x (Virtualization Technology Extension) for Intel processor and AMD-V for AMD processor.
 
@@ -150,7 +163,8 @@
     egrep -c '(vmx|svm)' /proc/cpuinfo
     ```
 
-    - Installation
+      </p>
+      <p>Installation
 
     ```bash
     sudo apt install qemu-kvm qemu-system qemu-utils python3 python3-pip libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager -y
@@ -209,6 +223,11 @@
     <summary>OBS studio</summary>
       <p>
 
+    - [OBS Project](https://obsproject.com/)
+      </p>
+
+      <p>Installation
+
     ```bash
     sudo apt install obs-studio
     ```
@@ -228,6 +247,12 @@
 8.  <details>
     <summary>Asperite</summary>
       <p>
+
+    - [Aserite.org](https://www.aseprite.org/)
+
+      </p>
+
+      <p>Installation
 
     - Downloads via :
       - [Github](https://github.com/aseprite/aseprite.git)
@@ -279,3 +304,20 @@
 
       </p>
     </details>
+
+9.  <details>
+     <summary>Fastfetch</summary>
+       <p>
+
+    - [Github](https://github.com/fastfetch-cli/fastfetch.git)
+
+         </p>
+
+         <p>Installation
+
+      ```bash
+      sudo apt install fastfetch
+      ```
+
+         </p>
+      <details>

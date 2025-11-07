@@ -1,14 +1,18 @@
 /* cosmetic and focus tweaks for yt */
-/* credit to various userstyles makers for some pieces of this */
 
 /* grid view */
-#items.ytd-grid-renderer>ytd-grid-video-renderer:has(ytd-thumbnail-overlay-time-status-renderer[overlay-style="SHORTS"]) {
+#items.ytd-grid-renderer
+  > ytd-grid-video-renderer:has(
+    ytd-thumbnail-overlay-time-status-renderer[overlay-style="SHORTS"]
+  ) {
   display: none;
 }
 
 /* list view */
-ytd-item-section-renderer:not(:has(ytd-grid-renderer)):has(ytd-thumbnail-overlay-time-status-renderer[overlay-style="SHORTS"]) {
-  display: none; 
+ytd-item-section-renderer:not(:has(ytd-grid-renderer)):has(
+    ytd-thumbnail-overlay-time-status-renderer[overlay-style="SHORTS"]
+  ) {
+  display: none;
 }
 
 /* hide recs */
@@ -18,13 +22,13 @@ ytd-item-section-renderer:not(:has(ytd-grid-renderer)):has(ytd-thumbnail-overlay
 
 /* make video fill the remaining space */
 #primary {
-    width: 100% !important;
-    flex: 1 !important;
-    max-width: none !important;
+  width: 100% !important;
+  flex: 1 !important;
+  max-width: none !important;
 }
 
 /* hide yt sidebar */
-ytd-mini-guide-renderer, 
+ytd-mini-guide-renderer,
 ytd-guide-renderer {
   display: none !important;
 }

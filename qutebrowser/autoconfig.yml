@@ -13,4 +13,4 @@ settings:
   tabs.position:
     global: left
   tabs.show:
-    global: switching
+    global: always

@@ -1,19 +1,25 @@
 # import subprocess
 
 import os
+import shutil
 
 c = c
 config = config
 
 qt_path = os.path.expanduser("~/.config/qutebrowser")
-script_path = os.path.expanduser("~/.config/qutebrowser/scripts/img_dl.sh")
+script_path = os.path.expanduser("~/.config/qutebrowser/userscripts/")
 
 download_dir = "~/Downloads/QuteBrowser-downloads"
 download_dir = os.path.expanduser(download_dir)
 if not os.path.exists(download_dir):
     os.makedirs(download_dir)
-term = "/usr/local/bin/st"
-editor = "/home/linuxbrew/.linuxbrew/bin/nvim"
+
+term = shutil.which("st")
+if term is None:
+    term = "/usr/local/bin/st"
+editor = shutil.which("kitty")
+if editor is None:
+    editor = os.path.expanduser("~/.local/kitty.app/bin/kitty")
 c.editor.command = [term, "-e", editor, "{}"]
 
 palette = {
@@ -314,6 +320,8 @@ config.bind("oo", "set-cmd-text -s :open")
 config.bind("Ow", "set-cmd-text -s :open -w")
 config.bind("to", "set-cmd-text -s :open -t")
 config.bind("P", "set-cmd-text -s :open -p")
+config.bind("<Alt-h>", "back")
+config.bind("<Alt-l>", "forward")
 config.bind("W", "tab-clone -w")
 config.bind("w", "tab-close")
 config.bind("x", "quit --save")
@@ -358,6 +366,8 @@ config.bind("S", "view-source --edit")
 # config.bind("e", "edit-text")
 # config.bind("E", "cmd-edit")
 # config.bind("<ctrl-y>", "spawn --userscript ytdl.sh")
+config.bind(";w", "hint link spawn --detach mpv --force-window yes {hint-url}")
+config.bind(";W", "spawn --detach mpv --force-window yes {url}")
 config.bind(
     ";I",
     "hint images spawn --output-message wget --content-disposition --no-clobber -P "
@@ -368,6 +378,7 @@ config.bind(
     ";i",
     "hint images spawn --output-message "
     + script_path
+    + "img_dl.sh"
     + " {hint-url} "
     + download_dir,
 )
@@ -382,12 +393,12 @@ c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.algorithm = "lightness-cielab"
 c.colors.webpage.darkmode.policy.images = "never"
 c.colors.webpage.preferred_color_scheme = "auto"
-# config.set("colorswebpage.darkmode.enabled", False, "file://*")
+# config.set("colors.webpage.darkmode.enabled", False, "file://*")
 
 # styles, cosmetics
 c.content.user_stylesheets = [qt_path + "/styles/youtube-tweaks.css"]
 c.tabs.indicator.width = 0  # no tab indicators
-# c.window.transparent = True  # apparently not needed
+c.window.transparent = True  # apparently not needed
 c.tabs.width = "15%"
 
 # fonts
@@ -402,7 +413,7 @@ c.fonts.web.family.standard = "monospace"
 c.completion.cmd_history_max_items = 0
 c.content.private_browsing = False
 c.content.webgl = False
-c.content.canvas_reading = False
+c.content.canvas_reading = True
 c.content.geolocation = False
 c.content.webrtc_ip_handling_policy = "default-public-interface-only"
 c.content.cookies.accept = "all"
@@ -414,6 +425,7 @@ config.set("content.javascript.enabled", True, "https://music.youtube.com/*")
 
 # Content
 c.content.pdfjs = True
+# c.qt.args += ["--pdfjs-args=disableFontSubpixelAA: true"]
 c.content.autoplay = False
 
 # Downloads

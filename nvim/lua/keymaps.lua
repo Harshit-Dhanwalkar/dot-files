@@ -6,6 +6,9 @@ vim.g.maplocalleader = ","
 
 vim.g.have_nerd_font = true
 
+-- Remove flickering in the statusline when saving a file
+-- map("n", ":w", "<cmd>silent write<cr>") -- fixed by noice plugin
+
 --  See `:help lua-guide-autocommands` and `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
@@ -21,8 +24,8 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- buffers
-map("n", "<leader>,", ":bn<cr>")
-map("n", "<leader>.", ":bp<cr>")
+map("n", "<leader>,", ":bp<cr>")
+map("n", "<leader>.", ":bn<cr>")
 map("n", "<leader>x", ":bd<cr>")
 
 -- yank to clipboard
@@ -60,18 +63,12 @@ map("n", "<C-w><left>", "<C-w><")
 -- map('i', '(', '()<left>')
 -- map('i', '[', '[]<left>')
 
--- map <leader>o to preview in Okular
--- map('i', '--[', '-- [\n\n-- ]<Esc>ki\t', { noremap = true, silent = true })
--- map('i', '/*', '/**/<left><left>')
-
 -- move line up and down
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Make previous word first's char caps
 map("n", "<leader>t", "bv~")
-
-vim.api.nvim_set_keymap("n", "<leader>o", ":PreviewOkular<CR>", { noremap = true, silent = true })
 
 -- lsp setup
 map("n", "K", vim.lsp.buf.hover)
