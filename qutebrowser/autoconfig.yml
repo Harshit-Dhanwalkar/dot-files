@@ -17,4 +17,4 @@ settings:
   tabs.title.format:
     global: '{audio}'
   tabs.width:
-    global: 2%
+    global: 40

@@ -20,13 +20,18 @@ download_dir = os.path.expanduser(download_dir)
 if not os.path.exists(download_dir):
     os.makedirs(download_dir)
 
-term = shutil.which("st")
-if term is None:
-    term = "/usr/local/bin/st"
-editor = shutil.which("kitty")
-if editor is None:
-    editor = os.path.expanduser("~/.local/kitty.app/bin/kitty")
-c.editor.command = [term, "-e", editor, "{}"]
+# term = shutil.which("st")
+# term = f'"{term}"'
+# file_manager = shutil.which("yazi")
+# file_manager = f'"{file_manager}"'
+# editor = shutil.which("nvim")
+# editor = f'"{editor}"'
+
+term = "/usr/local/bin/st"
+# term = "/home/harshitpd/.local/kitty.app/bin/kitty"
+editor = "/home/linuxbrew/.linuxbrew/bin/nvim"
+file_manager = "/home/linuxbrew/.linuxbrew/bin/yazi"
+# file_manager = "org.gnome.Nautilus.desktop"
 
 # Hints
 c.hints.radius = 0
@@ -140,9 +145,9 @@ config.bind("i", "hint inputs")
 config.bind("F", "hint links tab-bg")
 config.bind("f", "hint all run :open {hint-url}")
 config.bind("T", "hint links tab")
-config.bind(",-", "set tabs.title.format '{audio}' ;; set tabs.width 2%")
+config.bind(",-", "set tabs.title.format '{audio}' ;; set tabs.width 40")
 config.bind(
-    ",+", "set tabs.title.format '{audio}{index}:{current_title}' ;; set tabs.width 15%"
+    ",+", "set tabs.title.format '{audio}{index}:{current_title}' ;; set tabs.width 280"
 )
 # config.bind("f", "hint links run :open -p {hint-url}")
 # config.bind("a", "mode-enter insert")
@@ -234,25 +239,33 @@ c.downloads.location.directory = download_dir
 c.downloads.position = "bottom"
 
 # File handling
+c.editor.command = [
+    term,
+    "-e",
+    editor,
+    "{}",
+    "+call cursor({line}, {column0})",
+]
 c.fileselect.handler = "external"
 c.fileselect.single_file.command = [
     term,
-    "--class",
-    "Qutebrowser_File_Picker",
+    "-c" "Qutebrowser_File_Picker",
     "-e",
-    "yazi",
-    "--choose-file",
-    "{}",
+    "/bin/sh",
+    "-c",
+    f'{file_manager} --choose-file "{os.path.abspath("{}")}"',
 ]
 c.fileselect.multiple_files.command = [
     term,
-    "--class",
+    "-c",
     "Qutebrowser_File_Picker",
     "-e",
-    "yazi",
-    "--choose-files",
-    "{}",
+    "/bin/sh",
+    "-c",
+    f'{file_manager} --choose-file "{os.path.abspath("{}")}"',
 ]
+# c.fileselect.single_file.cleanup = True
+# c.fileselect.multiple_files.cleanup = True
 
 # User agent
 user_agent_string = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3 Firefox/121"

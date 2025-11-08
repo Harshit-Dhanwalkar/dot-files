@@ -42,7 +42,7 @@
 ## Terminal Emulators
 
 1.  <details>
-      <summary>ST</summary>
+      <summary>Kitty</summary>
       <p>
 
     - [kitty](https://sw.kovidgoyal.net/kitty/)
@@ -63,15 +63,14 @@
 
     - [suckless](https://st.suckless.org/)
 
-          </p>
-          <p>Installation
+        </p>
+        <p>Installation
 
       ```bash
       # Going to update soon
       ```
 
-          </p>
-
+        </p>
       </details>
 
 ## Applications
@@ -224,16 +223,16 @@
       <p>
 
     - [OBS Project](https://obsproject.com/)
-      </p>
+        </p>
 
-      <p>Installation
+        <p>Installation
 
-    ```bash
-    sudo apt install obs-studio
-    ```
+      ```bash
+      sudo apt install obs-studio
+      ```
 
-      </p>
-    </details>
+        </p>
+      </details>
 
 7.  <details>
       <summary>Blender</summary>

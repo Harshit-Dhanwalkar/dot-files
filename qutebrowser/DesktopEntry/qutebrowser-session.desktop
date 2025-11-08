@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Qutebrowser Session
+Comment=Launch qutebrowser with an existing or new session via Rofi/dmenu.
+Exec=/home/harshitpd/.config/qutebrowser/userscripts/session.sh
+Terminal=false
+Categories=Network;WebBrowser;
+StartupWMClass=Rofi
