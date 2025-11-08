@@ -1,4 +1,6 @@
 # import subprocess
+# import setproctitle
+# setproctitle.setproctitle("qutebrowser")
 
 import os
 import shutil
@@ -33,37 +35,81 @@ editor = "/home/linuxbrew/.linuxbrew/bin/nvim"
 file_manager = "/home/linuxbrew/.linuxbrew/bin/yazi"
 # file_manager = "org.gnome.Nautilus.desktop"
 
+c.auto_save.session = True  # save tabs on quit/restart
+
 # Hints
 c.hints.radius = 0
 c.hints.scatter = True
 c.hints.uppercase = False
+# c.hints.chars = "asdfghjklie"
 
 # Completion
 # c.completion.padding = {'top': 2, 'bottom': 2, 'left': 4, 'right': 4}
 c.completion.height = "50%"
+# Move on to the next part when there's only one possible completion left.
+c.completion.quick = True
+# When to show the autocompletion window.
+# Valid values:
+#   - always: Whenever a completion is available.
+#   - auto: Whenever a completion is requested.
+#   - never: Never.
+c.completion.show = "always"
 
 # Tabs
 c.tabs.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
 c.tabs.indicator.width = 3
 c.tabs.favicons.scale = 1.2
-c.tabs.background = True
+c.tabs.background = False
 # config.set("colors.tabs.favicon.default", "file:///<path/to/png>", "qute://*")
-
-# c.url.start_pages = ["https://en.wikipedia.org/wiki/Main_Page"]
-# c.url.default_page = "https://duckduckgo.com"
-
+# Valid values:
+#   - ignore: Don't do anything.
+#   - blank: Load a blank page.
+#   - startpage: Load the start page.
+#   - default-page: Load the default page.
+#   - close: Close the window.
+c.tabs.last_close = "close"
+# Valid values:
+#   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
+#   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
+#   - last-used: Select the previously selected tab.
+c.tabs.select_on_remove = "prev"
 c.tabs.title.format = "{audio}{index}:{current_title}"
 c.tabs.position = "left"  # right
 c.tabs.show = "multiple"
 c.tabs.width = "13%"
+c.tabs.padding = {
+    "left": 5,
+    "right": 5,
+    "top": 0,
+    "bottom": 1,
+}
+# Valid values:
+#   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
+#   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
+#   - last-used: Select the previously selected tab.
+c.tabs.select_on_remove = "prev"
+c.tabs.indicator.width = 0  # no tab indicators
+c.tabs.width = "15%"
 
-c.fonts.web.size.default = 16
+# c.url.start_pages = ["https://en.wikipedia.org/wiki/Main_Page"]
+# c.url.default_page = "https://duckduckgo.com"  # "black"
 
-# Intert Mode
+# Intert/Input Mode
 c.input.forward_unbound_keys = "auto"  # all, none
 c.input.insert_mode.auto_enter = True
 c.input.insert_mode.auto_leave = True
 c.input.insert_mode.auto_load = True  # False
+
+# Scrollbar
+# Valid values:
+#   - when-searching
+#   - always
+#   - never
+#   - overlay
+c.scrolling.bar = "overlay"
+c.scrolling.smooth = (
+    False  #  Note smooth scrolling does not work with the `:scroll-px` command
+)
 
 with config.pattern("*://www.reddit.com/*") as p:
     p.hints.selectors["all"].append("#reddit-search-input-id")
@@ -93,8 +139,6 @@ c.completion.open_categories = [
     "history",
     "filesystem",
 ]
-
-c.auto_save.session = True  # save tabs on quit/restart
 
 # Aliases
 c.aliases = {
@@ -145,7 +189,7 @@ config.bind("i", "hint inputs")
 config.bind("F", "hint links tab-bg")
 config.bind("f", "hint all run :open {hint-url}")
 config.bind("T", "hint links tab")
-config.bind(",-", "set tabs.title.format '{audio}' ;; set tabs.width 40")
+config.bind(",-", "set tabs.title.format '{audio}' ;; set tabs.width 30")
 config.bind(
     ",+", "set tabs.title.format '{audio}{index}:{current_title}' ;; set tabs.width 280"
 )
@@ -172,6 +216,7 @@ config.bind("S", "view-source --edit")
 # config.bind("e", "edit-text")
 # config.bind("E", "cmd-edit")
 # config.bind("<ctrl-y>", "spawn --userscript ytdl.sh")
+config.bind("<f12>", "inspector")
 config.bind(";w", "hint link spawn --detach mpv --force-window yes {hint-url}")
 config.bind(";W", "spawn --detach mpv --force-window yes {url}")
 config.bind(
@@ -194,6 +239,34 @@ config.bind(
 # for i in range(1, 10):
 #     config.bind(f"<Alt-{i}>", f"tab-focus {i}")
 
+# Whether quitting the application requires a confirmation.
+# Valid values:
+#   - always: Always show a confirmation.
+#   - multiple-tabs: Show a confirmation if multiple tabs are opened.
+#   - downloads: Show a confirmation if downloads are running
+#   - never: Never show a confirmation.
+c.confirm_quit = ["downloads"]
+
+# Value to send in the `Accept-Language` header.
+c.content.headers.accept_language = "en-US,en;q=0.8,fi;q=0.6"
+
+# The proxy to use. In addition to the listed values, you can use a
+# `socks://...` or `http://...` URL.
+# Valid values:
+#   - system: Use the system wide proxy.
+#   - none: Don"t use any proxy
+c.content.proxy = "none"
+
+# Validate SSL handshakes.
+# Valid values:
+#   - true
+#   - false
+#   - ask
+# c.content.ssl_strict = True
+
+# A list of user stylesheet filenames to use.
+# c.content.user_stylesheets = "styles/user.css"
+
 # Dark mode
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.algorithm = "lightness-cielab"
@@ -203,20 +276,34 @@ c.colors.webpage.preferred_color_scheme = "auto"
 
 # styles, cosmetics
 c.content.user_stylesheets = [qt_path + "/styles/youtube-tweaks.css"]
-c.tabs.indicator.width = 0  # no tab indicators
+
+# Windows
 c.window.transparent = True  # apparently not needed
-c.tabs.width = "15%"
 
 # fonts
-c.fonts.default_family = []
-c.fonts.default_size = "13pt"
+nerd_font = "14px 'JetBrain Mono Nerd Font'"
+# c.fonts.default_size = "12pt"
+# c.fonts.default_family = []
+c.fonts.web.size.default = 18
 c.fonts.web.family.fixed = "monospace"
 c.fonts.web.family.sans_serif = "monospace"
 c.fonts.web.family.serif = "monospace"
 c.fonts.web.family.standard = "monospace"
+c.fonts.completion.category = f"bold {nerd_font}"
+c.fonts.completion.entry = nerd_font
+c.fonts.debug_console = nerd_font
+c.fonts.downloads = nerd_font
+c.fonts.keyhint = nerd_font
+c.fonts.messages.error = nerd_font
+c.fonts.messages.info = nerd_font
+c.fonts.messages.warning = nerd_font
+c.fonts.prompts = nerd_font
+c.fonts.statusbar = nerd_font
+# c.fonts.tabs = nerd_font
+c.fonts.hints = "bold 13px 'DejaVu Sans Mono'"
 
 # privacy
-c.completion.cmd_history_max_items = 0
+# c.completion.cmd_history_max_items = 0
 c.content.private_browsing = False
 c.content.webgl = False
 c.content.canvas_reading = True
@@ -236,6 +323,7 @@ c.content.autoplay = False
 
 # Downloads
 c.downloads.location.directory = download_dir
+c.downloads.location.prompt = True
 c.downloads.position = "bottom"
 
 # File handling
@@ -271,7 +359,6 @@ c.fileselect.multiple_files.command = [
 user_agent_string = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3 Firefox/121"
 config.set("content.headers.user_agent", user_agent_string, "<all>")
 
-c.input.insert_mode.auto_load = True
 # c.spellcheck.languages = ["en-US"]
 c.confirm_quit = ["always"]
 

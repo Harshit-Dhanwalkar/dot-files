@@ -9,7 +9,7 @@ settings:
   content.javascript.enabled:
     global: true
   statusbar.show:
-    global: always
+    global: in-mode
   tabs.position:
     global: left
   tabs.show:
@@ -17,4 +17,4 @@ settings:
   tabs.title.format:
     global: '{audio}'
   tabs.width:
-    global: 40
+    global: 30

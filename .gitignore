@@ -1,2 +1,3 @@
-./qutebrowser/bookmarks/urls
-./qutebrowser/profiles/
+/qutebrowser/bookmarks/urls
+/qutebrowser/profiles/*
+/qutebrowser/autoconfig.yml

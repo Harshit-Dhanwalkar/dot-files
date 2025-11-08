@@ -1,7 +1,6 @@
 # vim:fileencoding=utf-8:ft=conf:foldmethod=marker
 
 #i: Fonts {{{
-
 #: kitty has very powerful font management. You can configure
 #: individual font faces and even specify special fonts for particular
 #: characters.
