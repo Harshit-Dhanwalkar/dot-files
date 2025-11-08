@@ -7,3 +7,4 @@ Exec=/home/harshitpd/.config/qutebrowser/userscripts/session.sh
 Terminal=false
 Categories=Network;WebBrowser;
 StartupWMClass=Rofi
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/ftp;x-scheme-handler/http;x-scheme-handler/https;

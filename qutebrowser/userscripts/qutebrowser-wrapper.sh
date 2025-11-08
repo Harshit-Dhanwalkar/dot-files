@@ -1,4 +1,4 @@
-#!/bin/sh --
+#!/bin/bash
 
 # Wrapper around qutebrowser that makes sessions (-r, --restore SESSION) behave
 # like they used to in dwb.
@@ -55,6 +55,23 @@ while [ $opts_read -lt $# ]; do
     opts_read=$((opts_read + 1))
 done
 
+# Persistent Argument Loading
+QUTE_PROFILE_CONF_ROOT="$XDG_CONFIG_HOME/qutebrowser/profiles"
+mkdir -p "$QUTE_PROFILE_CONF_ROOT"
+
+PROFILE_ARGS_FILE="$QUTE_PROFILE_CONF_ROOT/$session.args"
+PROFILE_ARGS_TO_ADD=""
+
+if [ ! -f "$PROFILE_ARGS_FILE" ]; then
+    DEFAULT_TITLE_ARGS="--set window.title_format \"{perc}{title_sep}{current_title} - qutebrowser [${session^^}]\""
+    echo "$DEFAULT_TITLE_ARGS" >"$PROFILE_ARGS_FILE"
+fi
+
+if [ -f "$PROFILE_ARGS_FILE" ]; then
+    PROFILE_ARGS_TO_ADD=$(cat "$PROFILE_ARGS_FILE")
+    eval "set -- $PROFILE_ARGS_TO_ADD \"\$@\""
+fi
+
 # Set up session base directory, unless --basedir has been specified by the
 # user:
 if [ $basedir_specified -eq $FALSE ]; then
@@ -85,6 +102,5 @@ for p in $PATH; do
     fi
 done
 
-# ¯\_(ツ)_/¯
 echo 'command not found: qutebrowser' >&2
 exit 127
