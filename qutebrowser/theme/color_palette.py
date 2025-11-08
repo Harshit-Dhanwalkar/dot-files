@@ -1,0 +1,61 @@
+palette01 = {
+    "background": "#282c34",
+    "foreground": "#dfdfdf",
+    "black": "#181920",
+    "dark-gray": "#21242b",
+    "gray": "#282c34",
+    "cool-gray": "#3b404d",
+    "medium-gray": "#3f444a",
+    "light-gray": "#5b6268",
+    "lighter-gray": "#73797e",
+    "pale-gray": "#9ca0a4",
+    "white": "#dfdfdf",
+    "bright-white": "#fefefe",
+    "pure-white": "#ffffff",
+    "darker-purple": "#5b3766",
+    "dark-purple": "#615c80",
+    "purple": "#a9a1e1",
+    "dark-pink": "#945aa6",
+    "pink": "#c678dd",
+    "dark-blue": "#2257a0",
+    "blue": "#51afef",
+    "light-blue": "#7bb6e2",
+    "cyan": "#46d9ff",
+    "dark-green": "#668044",
+    "green": "#98be65",
+    "teal": "#4db5bd",
+    "red": "#ff6c6b",
+    "orange": "#da8548",
+    "yellow": "#ecbe7b",
+}
+
+palette02 = {
+    "background": "#000000",
+    "foreground": "#dfdfdf",
+    "black": "#181920",
+    "dark-gray": "#21242b",
+    "gray": "#282c34",
+    "cool-gray": "#3b404d",
+    "medium-gray": "#3f444a",
+    "light-gray": "#5b6268",
+    "lighter-gray": "#73797e",
+    "pale-gray": "#9ca0a4",
+    "white": "#dfdfdf",
+    "bright-white": "#fefefe",
+    "pure-white": "#ffffff",
+    "darker-purple": "#635882",
+    "dark-purple": "#7c72a6",
+    "purple": "#c792ea",  # indigo/purple
+    "dark-pink": "#c678dd",
+    "pink": "#ff91b8",  # cooler pink
+    "dark-blue": "#0077c2",
+    "blue": "#82aaff",  # saturated blue
+    "light-blue": "#89ddff",
+    "cyan": "#80ffea",
+    "dark-green": "#728a50",
+    "green": "#c3e88d",  # green
+    "teal": "#7fdbca",
+    "red": "#f07178",  # crimson
+    "orange": "#f78c6c",
+    "yellow": "#ffcb6b",  # yellow
+}

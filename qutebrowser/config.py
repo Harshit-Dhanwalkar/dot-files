@@ -3,8 +3,14 @@
 import os
 import shutil
 
+from theme.color_palette import palette02 as palette
+from theme.color_settings import apply_color_from_palette
+
 c = c
 config = config
+
+palette = palette
+apply_color_from_palette(c, palette)
 
 qt_path = os.path.expanduser("~/.config/qutebrowser")
 script_path = os.path.expanduser("~/.config/qutebrowser/userscripts/")
@@ -22,249 +28,24 @@ if editor is None:
     editor = os.path.expanduser("~/.local/kitty.app/bin/kitty")
 c.editor.command = [term, "-e", editor, "{}"]
 
-palette = {
-    "background": "#282c34",  # gray
-    "foreground": "#dfdfdf",  # white
-    "black": "#181920",
-    "dark-gray": "#21242b",
-    "gray": "#282c34",
-    "cool-gray": "#3b404d",
-    "medium-gray": "#3f444a",
-    "light-gray": "#5b6268",
-    "lighter-gray": "#73797e",
-    "pale-gray": "#9ca0a4",
-    "white": "#dfdfdf",
-    "bright-white": "#fefefe",
-    "pure-white": "#ffffff",
-    "darker-purple": "#5b3766",
-    "dark-purple": "#615c80",
-    "purple": "#a9a1e1",
-    "dark-pink": "#945aa6",
-    "pink": "#c678dd",
-    "dark-blue": "#2257a0",
-    "blue": "#51afef",
-    "light-blue": "#7bb6e2",
-    "cyan": "#46d9ff",
-    "dark-green": "#668044",
-    "green": "#98be65",
-    "teal": "#4db5bd",
-    "red": "#ff6c6b",
-    "orange": "#da8548",
-    "yellow": "#ecbe7b",
-}
+# Hints
+c.hints.radius = 0
+c.hints.scatter = True
+c.hints.uppercase = False
 
-# Background color of the completion widget category headers.
-c.colors.completion.category.bg = palette["cool-gray"]
-# Bottom border color of the completion widget category headers.
-c.colors.completion.category.border.bottom = palette["dark-gray"]
-# Top border color of the completion widget category headers.
-c.colors.completion.category.border.top = palette["dark-gray"]
-# Foreground color of completion widget category headers.
-c.colors.completion.category.fg = palette["blue"]
-# Background color of the completion widget for even rows.
-c.colors.completion.even.bg = palette["background"]
-# Background color of the completion widget for odd rows.
-c.colors.completion.odd.bg = palette["dark-gray"]
-# Text color of the completion widget.
-c.colors.completion.fg = palette["foreground"]
-# Background color of the selected completion item.
-c.colors.completion.item.selected.bg = palette["medium-gray"]
-# Bottom border color of the selected completion item.
-c.colors.completion.item.selected.border.bottom = palette["medium-gray"]
-# Top border color of the completion widget category headers.
-c.colors.completion.item.selected.border.top = palette["medium-gray"]
-# Foreground color of the selected completion item.
-c.colors.completion.item.selected.fg = palette["foreground"]
-# Foreground color of the matched text in the completion.
-c.colors.completion.match.fg = palette["pink"]
-# Foreground color of the selected matched text in the completion.
-c.colors.completion.item.selected.match.fg = palette["light-blue"]
-# Color of the scrollbar in completion view
-c.colors.completion.scrollbar.bg = palette["medium-gray"]
-# Color of the scrollbar handle in completion view.
-c.colors.completion.scrollbar.fg = palette["light-gray"]
-# completion padding
+# Completion
 # c.completion.padding = {'top': 2, 'bottom': 2, 'left': 4, 'right': 4}
 c.completion.height = "50%"
 
-# Downloads
-# Background color for the download bar.
-c.colors.downloads.bar.bg = palette["dark-gray"]
-# Background color for downloads with errors.
-c.colors.downloads.error.bg = palette["red"]
-# Foreground color for downloads with errors.
-c.colors.downloads.error.fg = palette["pure-white"]
-# Color gradient start for download grays.
-c.colors.downloads.start.bg = palette["blue"]
-# Color gradient stop for download grays.
-c.colors.downloads.stop.bg = palette["dark-green"]
-# Color gradient start for download foregrounds.
-c.colors.downloads.start.fg = palette["pure-white"]
-# Color gradient stop for download foregrounds.
-c.colors.downloads.stop.fg = palette["pure-white"]
-# Color gradient interpolation system for download backgrounds.
-# Valid values:
-#   - rgb: Interpolate in the RGB color system.
-#   - hsv: Interpolate in the HSV color system.
-#   - hsl: Interpolate in the HSL color system.
-#   - none: Don't show a gradient.
-c.colors.downloads.system.bg = "rgb"
-# Color gradient interpolation system for download foregrounds.
-c.colors.downloads.system.fg = "rgb"
-# Background color for hints. Note that you can use a `rgba(...)` value
-# for transparency.
-
-# Hints
-c.colors.hints.bg = palette["yellow"]
-# Font color for hints.
-c.colors.hints.fg = palette["gray"]
-c.hints.border = "1px solid " + palette["dark-gray"]
-# Font color for the matched part of hints.
-c.colors.hints.match.fg = palette["dark-green"]
-
-# Keyhint
-# Background color of the keyhint widget.
-c.colors.keyhint.bg = palette["dark-gray"]
-# Text color for the keyhint widget.
-c.colors.keyhint.fg = palette["blue"]
-# Highlight color for keys to complete the current keychain.
-c.colors.keyhint.suffix.fg = palette["green"]
-
-# Messages
-# Background color of an error message.
-c.colors.messages.error.bg = palette["dark-gray"]
-# Border color of an error message.
-c.colors.messages.error.border = palette["light-gray"]
-# Foreground color of an error message.
-c.colors.messages.error.fg = palette["red"]
-# Background color of an info message.
-c.colors.messages.info.bg = palette["background"]
-# Border color of an info message.
-c.colors.messages.info.border = palette["light-gray"]
-# Foreground color an info message.
-c.colors.messages.info.fg = palette["foreground"]
-# Background color of a warning message.
-c.colors.messages.warning.bg = palette["background"]
-# Border color of a warning message.
-c.colors.messages.warning.border = palette["light-gray"]
-# Foreground color a warning message.
-c.colors.messages.warning.fg = palette["red"]
-# Background color for prompts.
-
-# Prompts
-c.colors.prompts.bg = palette["background"]
-# Border used around UI elements in prompts.
-c.colors.prompts.border = "1px solid " + palette["light-gray"]
-# Foreground color for prompts.
-c.colors.prompts.fg = palette["foreground"]
-# Background color for the selected item in filename prompts.
-c.colors.prompts.selected.bg = palette["light-gray"]
-
-# Statusbar
-# Background color of the statusbar in caret mode.
-c.colors.statusbar.caret.bg = palette["dark-purple"]
-# Foreground color of the statusbar in caret mode.
-c.colors.statusbar.caret.fg = palette["foreground"]
-# Background color of the statusbar in caret mode with a selection.
-c.colors.statusbar.caret.selection.bg = palette["dark-pink"]
-# Foreground color of the statusbar in caret mode with a selection.
-c.colors.statusbar.caret.selection.fg = palette["foreground"]
-# Background color of the statusbar in command mode.
-c.colors.statusbar.command.bg = palette["background"]
-# Foreground color of the statusbar in command mode.
-c.colors.statusbar.command.fg = palette["foreground"]
-# Background color of the statusbar in private browsing + command mode.
-c.colors.statusbar.command.private.bg = palette["background"]
-# Foreground color of the statusbar in private browsing + command mode.
-c.colors.statusbar.command.private.fg = palette["foreground"]
-# Background color of the statusbar in insert mode.
-c.colors.statusbar.insert.bg = palette["dark-blue"]
-# Foreground color of the statusbar in insert mode.
-c.colors.statusbar.insert.fg = palette["foreground"]
-# Background color of the statusbar.
-c.colors.statusbar.normal.bg = palette["background"]
-# Foreground color of the statusbar.
-c.colors.statusbar.normal.fg = palette["foreground"]
-# Background color of the statusbar in passthrough mode.
-c.colors.statusbar.passthrough.bg = palette["darker-purple"]
-# Foreground color of the statusbar in passthrough mode.
-c.colors.statusbar.passthrough.fg = palette["foreground"]
-# Background color of the statusbar in private browsing mode.
-c.colors.statusbar.private.bg = palette["light-gray"]
-# Foreground color of the statusbar in private browsing mode.
-c.colors.statusbar.private.fg = palette["foreground"]
-# Background color of the progress bar.
-c.colors.statusbar.progress.bg = palette["background"]
-# Foreground color of the URL in the statusbar on error.
-c.colors.statusbar.url.error.fg = palette["red"]
-# Default foreground color of the URL in the statusbar.
-c.colors.statusbar.url.fg = palette["foreground"]
-# Foreground color of the URL in the statusbar for hovered links.
-c.colors.statusbar.url.hover.fg = palette["cyan"]
-# Foreground color of the URL in the statusbar on successful load
-c.colors.statusbar.url.success.http.fg = palette["green"]
-c.colors.statusbar.url.success.https.fg = palette["green"]
-# Foreground color of the URL in the statusbar when there's a warning.
-c.colors.statusbar.url.warn.fg = palette["yellow"]
-# Status bar padding
-c.statusbar.padding = {"top": 3, "bottom": 3, "left": 5, "right": 5}
-
 # Tabs
-# Background color of the tab bar.
-c.colors.tabs.bar.bg = palette["light-gray"]
-# Background color of unselected even tabs.
-c.colors.tabs.even.bg = palette["pale-gray"]
-# Foreground color of unselected even tabs.
-c.colors.tabs.even.fg = palette["bright-white"]
-# Color for the tab indicator on errors.
-c.colors.tabs.indicator.error = palette["red"]
-# Color gradient start for the tab indicator.
-c.colors.tabs.indicator.start = palette["blue"]
-# Color gradient end for the tab indicator.
-c.colors.tabs.indicator.stop = palette["green"]
-# Color gradient interpolation system for the tab indicator.
-# Valid values:
-#   - rgb: Interpolate in the RGB color system.
-#   - hsv: Interpolate in the HSV color system.
-#   - hsl: Interpolate in the HSL color system.
-#   - none: Don't show a gradient.
-c.colors.tabs.indicator.system = "rgb"
-# Background color of unselected odd tabs.
-c.colors.tabs.odd.bg = palette["lighter-gray"]
-# Foreground color of unselected odd tabs.
-c.colors.tabs.odd.fg = palette["bright-white"]
-# Background color of pinned unselected even tabs.
-c.colors.tabs.pinned.even.bg = palette["pale-gray"]
-# Foreground color of pinned unselected even tabs.
-c.colors.tabs.pinned.even.fg = palette["bright-white"]
-# Background color of pinned unselected odd tabs.
-c.colors.tabs.pinned.odd.bg = palette["lighter-gray"]
-# Foreground color of pinned unselected odd tabs.
-c.colors.tabs.pinned.odd.fg = palette["bright-white"]
-# Background color of pinned selected even tabs.
-c.colors.tabs.pinned.selected.even.bg = palette["background"]
-# Foreground color of pinned selected even tabs.
-c.colors.tabs.pinned.selected.even.fg = palette["bright-white"]
-# Background color of pinned selected odd tabs.
-c.colors.tabs.pinned.selected.odd.bg = palette["background"]
-# Foreground color of pinned selected odd tabs.
-c.colors.tabs.pinned.selected.odd.fg = palette["bright-white"]
-# Background color of selected even tabs.
-c.colors.tabs.selected.even.bg = palette["background"]
-# Foreground color of selected even tabs.
-c.colors.tabs.selected.even.fg = palette["bright-white"]
-# Background color of selected odd tabs.
-c.colors.tabs.selected.odd.bg = palette["background"]
-# Foreground color of selected odd tabs.
-c.colors.tabs.selected.odd.fg = palette["bright-white"]
-# Tab padding
 c.tabs.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
 c.tabs.indicator.width = 3
-c.tabs.favicons.scale = 1.0
+c.tabs.favicons.scale = 1.2
 c.tabs.background = True
+# config.set("colors.tabs.favicon.default", "file:///<path/to/png>", "qute://*")
 
-# c.url.start_pages  ""
-# c.url.default_page= ""
+# c.url.start_pages = ["https://en.wikipedia.org/wiki/Main_Page"]
+# c.url.default_page = "https://duckduckgo.com"
 
 c.tabs.title.format = "{audio}{index}:{current_title}"
 c.tabs.position = "left"  # right
@@ -273,21 +54,31 @@ c.tabs.width = "13%"
 
 c.fonts.web.size.default = 16
 
+# Intert Mode
+c.input.forward_unbound_keys = "auto"  # all, none
+c.input.insert_mode.auto_enter = True
+c.input.insert_mode.auto_leave = True
+c.input.insert_mode.auto_load = True  # False
+
+with config.pattern("*://www.reddit.com/*") as p:
+    p.hints.selectors["all"].append("#reddit-search-input-id")
+
 c.url.searchengines = {
-    # note - if you se duckduckgo, you can make
-    # use of its buit in bangs, of which there are many!
+    # note - if you see duckduckgo, you can make
+    # use of its buitt in bangs, of which there are many!
     # https://duckdukgo.com/bangs
     "DEFAULT": "https://duckduckgo.com/?q={}",
     "aw": "https://wiki.archlinux.org/?search={}",
     "dd": "https://duckduckgo.com/?q={}",
+    "ddb": "https://duckduckgo.com/bangs/?g={}",
     "gg": "https://google.com/search?q={}",
     "gh": "https://github.com/search?q={}",
     "gho": "https://github.com/{}",
     "rd": "https://reddit.com/search/?q={}",
-    # "so": "https://stackoverflow.com/search?q={}",
     "wk": "https://en.wikipedia.org/wiki/{}",
     "yt": "https://youtube.com/results?search_query={}",
     "ytm": "https://music.youtube.com/search?q={}",
+    # "so": "https://stackoverflow.com/search?q={}",
 }
 
 c.completion.open_categories = [
@@ -316,9 +107,15 @@ config.bind("cs", "config-source")
 config.bind("R", "restart")
 config.bind("h", "history")
 config.bind("H", "help")
-config.bind("oo", "set-cmd-text -s :open")
-config.bind("Ow", "set-cmd-text -s :open -w")
-config.bind("to", "set-cmd-text -s :open -t")
+config.bind("r", "reload")  # F5
+config.bind(",tt", ":open -t")  # t and ,tt
+config.bind("t", ":open -t")  # t and ,tt
+config.bind("o", "set-cmd-text -s :open")
+config.bind("O", "set-cmd-text -s :open -t")  # o and ,ot
+config.bind(",ot", "set-cmd-text -s :open -t")  # o and ,ot
+config.bind(",ow", "set-cmd-text -s :open -w")
+config.bind("n", "tab-clone")
+config.bind("N", "tab-clone -w")
 config.bind("P", "set-cmd-text -s :open -p")
 config.bind("<Alt-h>", "back")
 config.bind("<Alt-l>", "forward")
@@ -326,22 +123,27 @@ config.bind("W", "tab-clone -w")
 config.bind("w", "tab-close")
 config.bind("x", "quit --save")
 config.bind("X", "window-only")
+config.bind(",x", "window-only")
 config.bind("pi", "tab-pin")
-config.bind("tt", "set-cmd-text -s :tab-take")
-config.bind("tg", "tab-give")
-config.bind("r", "reload")  # F5
+# config.bind("th", "set-cmd-text -s :tab-take")
+# config.bind("tg", "tab-give")
 config.bind("yy", "yank url")  # yy
 config.bind("yu", "hint url yank")  # ;y
 config.bind("yi", "hint images yank")
-config.bind("m", "bookmark-list")
-config.bind("M", "bookmark-add")
-config.bind("n", "tab-clone")
-config.bind("N", "tab-clone -w")
-config.bind("T", "hint links tab")
-config.bind("i", "hint inputs")
+config.bind("m", "quickmark-save")  # m
+config.bind("M", "open -t qute://bookmarks")
+# config.bind("m", "bookmark-add")  # M
+# config.bind("mm", "set-cmd-text :bookmark-add {url} ")
+# config.bind("md", ":bookmark-del")
 config.bind("[", "set-cmd-text -s :tab-move")
-config.bind("F", "hint links open")
-config.bind("f", "hint links run :open {hint-url}")
+config.bind("i", "hint inputs")
+config.bind("F", "hint links tab-bg")
+config.bind("f", "hint all run :open {hint-url}")
+config.bind("T", "hint links tab")
+config.bind(",-", "set tabs.title.format '{audio}' ;; set tabs.width 2%")
+config.bind(
+    ",+", "set tabs.title.format '{audio}{index}:{current_title}' ;; set tabs.width 15%"
+)
 # config.bind("f", "hint links run :open -p {hint-url}")
 # config.bind("a", "mode-enter insert")
 config.bind("1", "config-cycle tabs.show always switching")  # tH
@@ -350,8 +152,8 @@ config.bind("3", ":tab-prev")  # K
 config.bind("8", "config-cycle tabs.position top left")  # tT
 config.bind("0", "config-cycle statusbar.show always in-mode")  # sH
 config.bind("pP", "open -- {primary}")
-config.bind("~", "open -- {clipboard}")  # pp
-config.bind("`", "open -t -- {clipboard}")  # pt
+config.bind("pp", "open -- {clipboard}")  # pp
+config.bind("pt", "open -t -- {clipboard}")
 config.bind("qm", "micro-record")
 config.bind("gJ", "tab-move +")
 config.bind("gK", "tab-move -")
@@ -359,7 +161,6 @@ config.bind("gm", "tab-move")
 config.bind("<Ctrl-+>", "zoom-in")  # zi
 config.bind("<Ctrl-->", "zoom-out")  # zo
 config.bind("<Ctrl-=>", "zoom")  # zz
-config.bind("ym", "open -t https://music.youtube.com/")
 config.bind("d", "devtools")
 config.bind("D", "devtools-focus")
 config.bind("S", "view-source --edit")
@@ -467,20 +268,20 @@ c.content.blocking.enabled = True
 c.content.blocking.method = "both"
 # c.content.blockingmethod = 'adblock' # uncomment this if you install python-adblock
 # c.content.blockingadblock.lists = [
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/legacy.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/filters-2021.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/filters-2022.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/filters-2023.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/filters-2024.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/badware.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/annoyances-cookies.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/annoyances-others.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/quick-fixes.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
-#         "https://gthub.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"]
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/legacy.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2021.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2022.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2023.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2024.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badware.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances-cookies.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances-others.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/quick-fixes.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
+#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"]
