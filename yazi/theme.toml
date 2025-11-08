@@ -1,4 +1,5 @@
 # theme.toml
+# https://github.com/scottmckendry/cyberdream.nvim/tree/main/extras/yazi
 
 "$schema" = "https://yazi-rs.github.io/schemas/theme.json"
 
@@ -40,8 +41,8 @@ border_style  = { fg = "gray" }
 syntect_theme = ""
 
 [status]
-separator_open  = ""
-separator_close = ""
+separator_open  = "" # 
+separator_close = "" # 
 separator_style = { fg = "gray", bg = "gray" }
 
 # Mode
@@ -114,39 +115,30 @@ icon_warn  = ""
 icon_error = ""
 
 [filetype]
-
 rules = [
 	# Images
 	{ mime = "image/*", fg = "yellow" },
-
 	# Media
 	{ mime = "{audio,video}/*", fg = "magenta" },
-
 	# Archives
 	{ mime = "application/{,g}zip", fg = "red" },
 	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "red" },
-
 	# Documents
 	{ mime = "application/{pdf,doc,rtf,vnd.*}", fg = "cyan" },
-
 	# Empty files
 	# { mime = "inode/x-empty", fg = "red" },
-
 	# Special files
 	{ name = "*", is = "orphan", bg = "red" },
 	{ name = "*", is = "exec"  , fg = "green" },
-
 	# Dummy files
 	{ name = "*", is = "dummy", bg = "red" },
 	{ name = "*/", is = "dummy", bg = "red" },
-
 	# Fallback
 	# { name = "*", fg = "white" },
 	{ name = "*/", fg = "blue" }
 ]
 
 [icon]
-
 globs = []
 dirs  = [
 	{ name = ".config", text = "" },
@@ -724,7 +716,6 @@ conds = [
 	{ if = "sock"  , text = "" },
 	{ if = "sticky", text = "" },
 	{ if = "dummy",  text = "" },
-
 	# Fallback
 	{ if = "dir", text = "󰉋" },
 	{ if = "exec", text = "" },

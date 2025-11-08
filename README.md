@@ -1,83 +1,84 @@
-# My dot files
+# My Dot Files
 
-## Package managers
+This repository contains configuration files and installation notes for my preferred software setup, primarily targeting a Debian/Ubuntu-based Linux distribution.
 
-1. <details>
-     <summary>HomeBrew</summary>
-     <p>Installation
+---
 
-   ```bash
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-   ```
-
-     </p>
-   </details>
-
-2. <details>
-     <summary>Flatpak</summary>
-     <p>Installation
-
-   ```bash
-   sudo apt install flatpak
-   # Add the Flathub repository:
-   flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-   ```
-
-     </p>
-   </details>
-
-3. <details>
-     <summary>Cargo and Rust</summary>
-     <p>Installation
-
-   ```bash
-   curl https://sh.rustup.rs -sSf | sh # cargo
-   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # rustup
-   ```
-
-     </p>
-   </details>
-
-## Terminal Emulators
+## Package Managers
 
 1.  <details>
-      <summary>Kitty</summary>
-      <p>
+    <summary>HomeBrew</summary>
+    <p>Installation</p>
+
+    ```bash
+    /bin/bash -c "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh](https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh))"
+    ```
+
+    </details>
+
+2.  <details>
+    <summary>Flatpak</summary>
+    <p>Installation</p>
+
+    ```bash
+    sudo apt install flatpak
+    # Add the Flathub repository:
+    flatpak remote-add --if-not-exists flathub [https://dl.flathub.org/repo/flathub.flatpakrepo](https://dl.flathub.org/repo/flathub.flatpakrepo)
+    ```
+
+    </details>
+
+3.  <details>
+    <summary>Cargo and Rust</summary>
+    <p>Installation</p>
+
+    ```bash
+    curl [https://sh.rustup.rs](https://sh.rustup.rs) -sSf | sh # cargo
+    curl --proto '=https' --tlsv1.2 -sSf [https://sh.rustup.rs](https://sh.rustup.rs) | sh # rustup
+    ```
+
+    </details>
+
+---
+
+## Terminal Emulators 🖥️
+
+1.  <details>
+    <summary>Kitty</summary>
+    <p>
 
     - [kitty](https://sw.kovidgoyal.net/kitty/)
 
-        </p>
-        <p>Installation
+    </p>
+    <p>Installation</p>
 
-      ```bash
-      curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-      ```
+    ```bash
+    curl -L [https://sw.kovidgoyal.net/kitty/installer.sh](https://sw.kovidgoyal.net/kitty/installer.sh) | sh /dev/stdin
+    ```
 
-        </p>
-      </details>
+    </details>
 
 2.  <details>
-       <summary>ST</summary>
-       <p>
+    <summary>ST</summary>
+    <p>
 
     - [suckless](https://st.suckless.org/)
+    </p>
+    <p>Installation</p>
 
-        </p>
-        <p>Installation
+    ```bash
+    # Going to update soon
+    ```
 
-      ```bash
-      # Going to update soon
-      ```
+    </details>
 
-        </p>
-      </details>
+---
 
-## Applications
+## Applications ✨
 
 1.  <details>
-      <summary>Nvim</summary>
-      <p>Installation
+    <summary>Nvim</summary>
+    <p>Installation</p>
 
     ```bash
     brew install neovim
@@ -87,7 +88,6 @@
 
     ```bash
     sudo apt install libmagicwand-dev #(for nvim image.lua)
-
     ```
 
     - LaTex (VimTex)
@@ -109,12 +109,12 @@
     pip3 install inkscape-figures
     ```
 
-      </p>
+    </p>
     </details>
 
 2.  <details>
-      <summary>Inkscape</summary>
-      <p>Installation
+    <summary>Inkscape</summary>
+    <p>Installation</p>
 
     ```bash
     sudo add-apt-repository ppa:inkscape.dev/stable
@@ -122,39 +122,38 @@
     sudo apt install inkscape
     ```
 
-      </p>
     </details>
 
 3.  <details>
     <summary>Qutebrowser</summary>
-      <p>Installation
 
     - [Qutebrowser](https://qutebrowser.org/index.html)
+
+    <p>Installation</p>
 
     ```bash
     sudo apt install qutebrowser
     ```
 
-      </p>
+    </p>
     </details>
 
 4.  <details>
     <summary>Obsidian</summary>
-      <p>Installation
+    <p>Installation</p>
 
     ```bash
     flatpak install flathub md.obsidian.Obsidian
     ```
 
-      </p>
+    </p>
     </details>
 
 5.  <details>
     <summary>QEMU</summary>
-      <p>
+    <p>
 
     - [QEMU](https://www.qemu.org/)
-
     - Check Virtualization Extension by running following command to make sure you’ve enabled virtualization in on your system. It should be above 0
       - If the output is zero then go to bios settings and enable VT-x (Virtualization Technology Extension) for Intel processor and AMD-V for AMD processor.
 
@@ -162,8 +161,8 @@
     egrep -c '(vmx|svm)' /proc/cpuinfo
     ```
 
-      </p>
-      <p>Installation
+    </p>
+    <p>Installation</p>
 
     ```bash
     sudo apt install qemu-kvm qemu-system qemu-utils python3 python3-pip libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager -y
@@ -189,24 +188,20 @@
     ```
 
     - Network default marked as autostarted
-
       - Check status with:
-
       ```bash
       sudo virsh net-list --all
       ```
-
     - Name State Autostart Persistent
       `default active yes yes`
-
     - Add User to libvirt to Allow Access to VMs
 
     ```bash
-     sudo usermod -aG libvirt $USER
-     sudo usermod -aG libvirt-qemu $USER
-     sudo usermod -aG kvm $USER
-     sudo usermod -aG input $USER
-     sudo usermod -aG disk $USER
+    sudo usermod -aG libvirt $USER
+    sudo usermod -aG libvirt-qemu $USER
+    sudo usermod -aG kvm $USER
+    sudo usermod -aG input $USER
+    sudo usermod -aG disk $USER
     ```
 
     - Reboot and you are Finished!
@@ -215,43 +210,39 @@
     virt-manager
     ```
 
-      </p>
+    </p>
     </details>
 
 6.  <details>
     <summary>OBS studio</summary>
-      <p>
+    <p>
 
     - [OBS Project](https://obsproject.com/)
-        </p>
+    </p>
+    <p>Installation</p>
 
-        <p>Installation
+    ```bash
+    sudo apt install obs-studio
+    ```
 
-      ```bash
-      sudo apt install obs-studio
-      ```
-
-        </p>
-      </details>
+    </p>
+    </details>
 
 7.  <details>
-      <summary>Blender</summary>
-      <p>
+    <summary>Blender</summary>
+    <p>
 
-    Downloads via: [Blender.org](https://www.blender.org/download/)
-
-      </p>
+    - Downloads via: [Blender.org](https://www.blender.org/download/)
+    </p>
     </details>
 
 8.  <details>
-    <summary>Asperite</summary>
-      <p>
+    <summary>Aseprite</summary>
+    <p>
 
-    - [Aserite.org](https://www.aseprite.org/)
-
-      </p>
-
-      <p>Installation
+    - [Aseprite.org](https://www.aseprite.org/)
+    </p>
+    <p>Installation</p>
 
     - Downloads via :
       - [Github](https://github.com/aseprite/aseprite.git)
@@ -259,7 +250,6 @@
       - [Sourceforge](https://sourceforge.net/projects/aseprite.mirror/)
 
     ```bash
-    <!-- cd <path/to/downloaded/zip> -->
     unzip Downloads
     cd Asperite
     ./build.sh
@@ -280,19 +270,21 @@
     # Aseprite Desktop Integration Module
     # Copyright (C) 2016  Gabriel Rauter
 
-    # Licensed under the the MIT License (https://opensource.org/licenses/MIT).
+    # Licensed under the the MIT License ([https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)).
+
     if [ $# -ge 2 -a $# -lt 4 ]; then
-      mkdir -p /tmp/Aseprite
-      filename=${1//\//.}$RANDOM
-      if [ $# -eq 2 ]; then
-        aseprite -b --frame-range "0,0" $1 --sheet /tmp/Aseprite/$filename.png
-      elif [ $# -eq 3 ]; then
-        aseprite -b --frame-range "0,0" $1 --shrink-to "$3,$3" --sheet /tmp/Aseprite/$filename.png
-      fi
-      mkdir -p $(dirname "$2"); mv /tmp/Aseprite/$filename.png $2;
-    else
-      echo "Parameters for aseprite thumbnailer are: inputfile outputfile [size]"
+    mkdir -p /tmp/Aseprite
+    filename=${1//\//.}$RANDOM
+    if [ $# -eq 2 ]; then
+    aseprite -b --frame-range "0,0" $1 --sheet /tmp/Aseprite/$filename.png
+    elif [ $# -eq 3 ]; then
+    aseprite -b --frame-range "0,0" $1 --shrink-to "$3,$3" --sheet /tmp/Aseprite/$filename.png
     fi
+    mkdir -p $(dirname "$2"); mv /tmp/Aseprite/$filename.png $2;
+    else
+    echo "Parameters for aseprite thumbnailer are: inputfile outputfile [size]"
+    fi
+
     ```
 
     Make the script executable by :
@@ -301,22 +293,33 @@
     chmod +x ~/.local/bin/aseprite-thumbnailer.sh
     ```
 
-      </p>
+    </p>
     </details>
 
 9.  <details>
-     <summary>Fastfetch</summary>
-       <p>
+    <summary>Fastfetch</summary>
+    <p>
 
     - [Github](https://github.com/fastfetch-cli/fastfetch.git)
+    </p>
+    <p>Installation</p>
 
-         </p>
+    ```bash
+    sudo apt install fastfetch
+    ```
 
-         <p>Installation
+    </details>
 
-      ```bash
-      sudo apt install fastfetch
-      ```
+10. <details>
+    <summary>Dunst</summary>
+    <p>
+    - [Archwiki](https://wiki.archlinux.org/title/Dunst)
+    </p>
+    <p> Installation</p>
 
-         </p>
-      <details>
+    ```bash
+    sudo apt install dunst
+    ```
+
+    </p>
+    </details>
