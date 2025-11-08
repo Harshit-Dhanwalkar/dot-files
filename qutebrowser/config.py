@@ -56,40 +56,23 @@ c.completion.quick = True
 c.completion.show = "always"
 
 # Tabs
-c.tabs.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
-c.tabs.indicator.width = 3
+c.tabs.padding = {"top": 6, "bottom": 6, "left": 9, "right": 9}
+c.tabs.indicator.width = 0  # no tab indicators, 4
 c.tabs.favicons.scale = 1.2
 c.tabs.background = False
 # config.set("colors.tabs.favicon.default", "file:///<path/to/png>", "qute://*")
-# Valid values:
-#   - ignore: Don't do anything.
-#   - blank: Load a blank page.
-#   - startpage: Load the start page.
-#   - default-page: Load the default page.
-#   - close: Close the window.
-c.tabs.last_close = "close"
-# Valid values:
-#   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
-#   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
-#   - last-used: Select the previously selected tab.
-c.tabs.select_on_remove = "prev"
+c.tabs.last_close = "close"  # ignore, blank, startpage, default-page, close
+c.tabs.select_on_remove = "prev"  # next, prev, last-used
 c.tabs.title.format = "{audio}{index}:{current_title}"
 c.tabs.position = "left"  # right
 c.tabs.show = "multiple"
-c.tabs.width = "13%"
+c.tabs.width = "20%"
 c.tabs.padding = {
-    "left": 5,
-    "right": 5,
-    "top": 0,
-    "bottom": 1,
+    "left": 2,
+    "right": 4,
+    "top": 4,
+    "bottom": 4,
 }
-# Valid values:
-#   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
-#   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
-#   - last-used: Select the previously selected tab.
-c.tabs.select_on_remove = "prev"
-c.tabs.indicator.width = 0  # no tab indicators
-c.tabs.width = "15%"
 
 # c.url.start_pages = ["https://en.wikipedia.org/wiki/Main_Page"]
 # c.url.default_page = "https://duckduckgo.com"  # "black"
@@ -101,23 +84,16 @@ c.input.insert_mode.auto_leave = True
 c.input.insert_mode.auto_load = True  # False
 
 # Scrollbar
-# Valid values:
-#   - when-searching
-#   - always
-#   - never
-#   - overlay
-c.scrolling.bar = "overlay"
-c.scrolling.smooth = (
-    False  #  Note smooth scrolling does not work with the `:scroll-px` command
-)
+c.scrolling.bar = "overlay"  # when-searching, searching, always, never, overlay
+c.scrolling.smooth = False
+#  Note smooth scrolling does not work with the `:scroll-px` command
 
 with config.pattern("*://www.reddit.com/*") as p:
     p.hints.selectors["all"].append("#reddit-search-input-id")
 
 c.url.searchengines = {
-    # note - if you see duckduckgo, you can make
-    # use of its buitt in bangs, of which there are many!
-    # https://duckdukgo.com/bangs
+    # note - make use of its builtin in bangs
+    # https://duckduckgo.com/bangs
     "DEFAULT": "https://duckduckgo.com/?q={}",
     "aw": "https://wiki.archlinux.org/?search={}",
     "dd": "https://duckduckgo.com/?q={}",
@@ -146,8 +122,16 @@ c.aliases = {
     "q": "quit",
     "Q": "close",
     "w": "session-save",
-    "x": "quit --save",
+    "wq": "quit --save",
 }
+c.aliases.update(
+    {
+        "recycle": "quit --save _recycle",
+        "restart": "quit --save _restart",
+        "shutdown": "quit --save _shutdown",
+    }
+)
+
 # Keybinding changes
 config.bind("C", "set-cmd-text -s :set -t")
 config.bind("e", "config-edit")
@@ -157,12 +141,19 @@ config.bind("R", "restart")
 config.bind("h", "history")
 config.bind("H", "help")
 config.bind("r", "reload")  # F5
-config.bind(",tt", ":open -t")  # t and ,tt
 config.bind("t", ":open -t")  # t and ,tt
+config.bind(",tt", ":open -t")  # t and ,tt
+# config.bind('o', 'spawn --userscript dmenu-open')
+# config.bind('O', 'spawn --userscript dmenu-open --tab')
 config.bind("o", "set-cmd-text -s :open")
 config.bind("O", "set-cmd-text -s :open -t")  # o and ,ot
 config.bind(",ot", "set-cmd-text -s :open -t")  # o and ,ot
 config.bind(",ow", "set-cmd-text -s :open -w")
+config.bind("yy", "yank url")  # yy
+config.bind("yu", "hint url yank")  # ;y
+config.bind("yi", "hint images yank")
+config.bind("m", "quickmark-save")  # m
+config.bind("M", "open -t qute://bookmarks")
 config.bind("n", "tab-clone")
 config.bind("N", "tab-clone -w")
 config.bind("P", "set-cmd-text -s :open -p")
@@ -170,17 +161,12 @@ config.bind("<Alt-h>", "back")
 config.bind("<Alt-l>", "forward")
 config.bind("W", "tab-clone -w")
 config.bind("w", "tab-close")
-config.bind("x", "quit --save")
+config.bind("wq", "quit --save")
 config.bind("X", "window-only")
 config.bind(",x", "window-only")
 config.bind("pi", "tab-pin")
 # config.bind("th", "set-cmd-text -s :tab-take")
 # config.bind("tg", "tab-give")
-config.bind("yy", "yank url")  # yy
-config.bind("yu", "hint url yank")  # ;y
-config.bind("yi", "hint images yank")
-config.bind("m", "quickmark-save")  # m
-config.bind("M", "open -t qute://bookmarks")
 # config.bind("m", "bookmark-add")  # M
 # config.bind("mm", "set-cmd-text :bookmark-add {url} ")
 # config.bind("md", ":bookmark-del")
@@ -191,14 +177,18 @@ config.bind("f", "hint all run :open {hint-url}")
 config.bind("T", "hint links tab")
 config.bind(",-", "set tabs.title.format '{audio}' ;; set tabs.width 30")
 config.bind(
-    ",+", "set tabs.title.format '{audio}{index}:{current_title}' ;; set tabs.width 280"
+    ",=", "set tabs.title.format '{audio}{index}:{current_title}' ;; set tabs.width 280"
 )
 # config.bind("f", "hint links run :open -p {hint-url}")
 # config.bind("a", "mode-enter insert")
 config.bind("1", "config-cycle tabs.show always switching")  # tH
 config.bind("2", ":tab-next")  # J
 config.bind("3", ":tab-prev")  # K
-config.bind("8", "config-cycle tabs.position top left")  # tT
+config.bind(
+    "8",
+    "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
+)  # xx
+config.bind("9", "config-cycle tabs.position top left")  # tT
 config.bind("0", "config-cycle statusbar.show always in-mode")  # sH
 config.bind("pP", "open -- {primary}")
 config.bind("pp", "open -- {clipboard}")  # pp
@@ -217,8 +207,9 @@ config.bind("S", "view-source --edit")
 # config.bind("E", "cmd-edit")
 # config.bind("<ctrl-y>", "spawn --userscript ytdl.sh")
 config.bind("<f12>", "inspector")
-config.bind(";w", "hint link spawn --detach mpv --force-window yes {hint-url}")
-config.bind(";W", "spawn --detach mpv --force-window yes {url}")
+# `mpv` installation required
+# config.bind(";w", "hint link spawn --detach mpv --force-window yes {hint-url}")
+# config.bind(";W", "spawn --detach mpv --force-window yes {url}")
 config.bind(
     ";I",
     "hint images spawn --output-message wget --content-disposition --no-clobber -P "
@@ -239,33 +230,6 @@ config.bind(
 # for i in range(1, 10):
 #     config.bind(f"<Alt-{i}>", f"tab-focus {i}")
 
-# Whether quitting the application requires a confirmation.
-# Valid values:
-#   - always: Always show a confirmation.
-#   - multiple-tabs: Show a confirmation if multiple tabs are opened.
-#   - downloads: Show a confirmation if downloads are running
-#   - never: Never show a confirmation.
-c.confirm_quit = ["downloads"]
-
-# Value to send in the `Accept-Language` header.
-c.content.headers.accept_language = "en-US,en;q=0.8,fi;q=0.6"
-
-# The proxy to use. In addition to the listed values, you can use a
-# `socks://...` or `http://...` URL.
-# Valid values:
-#   - system: Use the system wide proxy.
-#   - none: Don"t use any proxy
-c.content.proxy = "none"
-
-# Validate SSL handshakes.
-# Valid values:
-#   - true
-#   - false
-#   - ask
-# c.content.ssl_strict = True
-
-# A list of user stylesheet filenames to use.
-# c.content.user_stylesheets = "styles/user.css"
 
 # Dark mode
 c.colors.webpage.darkmode.enabled = True
@@ -275,15 +239,15 @@ c.colors.webpage.preferred_color_scheme = "auto"
 # config.set("colors.webpage.darkmode.enabled", False, "file://*")
 
 # styles, cosmetics
-c.content.user_stylesheets = [qt_path + "/styles/youtube-tweaks.css"]
+# c.content.user_stylesheets = [qt_path + "/styles/youtube-tweaks.css"]
 
 # Windows
 c.window.transparent = True  # apparently not needed
 
 # fonts
-nerd_font = "14px 'JetBrain Mono Nerd Font'"
-# c.fonts.default_size = "12pt"
-# c.fonts.default_family = []
+nerd_font = "12pt 'JetBrain Mono Nerd Font'"
+c.fonts.default_size = "13pt"
+c.fonts.default_family = [nerd_font, "monospace"]
 c.fonts.web.size.default = 18
 c.fonts.web.family.fixed = "monospace"
 c.fonts.web.family.sans_serif = "monospace"
@@ -299,11 +263,14 @@ c.fonts.messages.info = nerd_font
 c.fonts.messages.warning = nerd_font
 c.fonts.prompts = nerd_font
 c.fonts.statusbar = nerd_font
-# c.fonts.tabs = nerd_font
 c.fonts.hints = "bold 13px 'DejaVu Sans Mono'"
+# c.fonts.tabs = nerd_font
 
 # privacy
 # c.completion.cmd_history_max_items = 0
+# c.content.notifications = "block"
+config.set("content.notifications.enabled", True)
+config.set("content.notifications.enabled", True, "https://www.youtube.com")
 c.content.private_browsing = False
 c.content.webgl = False
 c.content.canvas_reading = True
@@ -312,19 +279,55 @@ c.content.webrtc_ip_handling_policy = "default-public-interface-only"
 c.content.cookies.accept = "all"
 c.content.cookies.store = True
 c.content.javascript.enabled = False  # tsh keybind to toggle
+config.set("content.images", True, "chrome-devtools://*")
+config.set("content.cookies.accept", "all", "devtools://*")
+config.set("content.cookies.accept", "all", "chrome-devtools://*")
+config.set("content.javascript.enabled", True, "chrome-devtools://*")
+config.set("content.javascript.enabled", True, "devtools://*")
+config.set("content.javascript.enabled", True, "chrome://*/*")
+config.set("content.javascript.enabled", True, "qute://*/*")
 config.set("content.javascript.enabled", True, "https://www.google.com/*")
 config.set("content.javascript.enabled", True, "https://www.youtube.com/*")
 config.set("content.javascript.enabled", True, "https://music.youtube.com/*")
 
+# User agent
+user_agent_string = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3 Firefox/121"
+config.set("content.headers.user_agent", user_agent_string, "<all>")
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}",
+    "https://web.whatsapp.com/",
+)
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0",
+    "https://accounts.google.com/*",
+)
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36",
+    "https://*.slack.com/*",
+)
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0",
+    "https://docs.google.com/*",
+)
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0",
+    "https://drive.google.com/*",
+)
+
 # Content
 c.content.pdfjs = True
-# c.qt.args += ["--pdfjs-args=disableFontSubpixelAA: true"]
 c.content.autoplay = False
 
 # Downloads
 c.downloads.location.directory = download_dir
 c.downloads.location.prompt = True
 c.downloads.position = "bottom"
+c.downloads.open_dispatcher = "simple"
 
 # File handling
 c.editor.command = [
@@ -355,33 +358,56 @@ c.fileselect.multiple_files.command = [
 # c.fileselect.single_file.cleanup = True
 # c.fileselect.multiple_files.cleanup = True
 
-# User agent
-user_agent_string = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3 Firefox/121"
-config.set("content.headers.user_agent", user_agent_string, "<all>")
+# Rendering, scrolling, and especially video performance.
+c.qt.args = [
+    "ignore-gpu-blocklist",
+    "enable-gpu-rasterization",
+    "enable-zero-copy",
+    "enable-accelerated-video-decode",
+    "enable-native-gpu-memory-buffers",
+    "enable-oop-rasterization",
+]
+c.qt.args += ["--pdfjs-args=disableFontSubpixelAA: true"]
 
 # c.spellcheck.languages = ["en-US"]
-c.confirm_quit = ["always"]
+c.confirm_quit = ["downloads"]  # all, never, downloads, multiple-tabs
+c.content.headers.accept_language = "en-US,en;q=0.8,fi;q=0.6"
+c.content.proxy = "none"  # system, none
+# c.content.ssl_strict = True #  Validate SSL handshakes.: Ture/False/ask
+# c.content.user_stylesheets = "styles/user.css"
 
 config.load_autoconfig()  # load settings done via the gui
 
 c.content.blocking.enabled = True
 c.content.blocking.method = "both"
-# c.content.blockingmethod = 'adblock' # uncomment this if you install python-adblock
-# c.content.blockingadblock.lists = [
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/legacy.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2021.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2022.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2023.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2024.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badware.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances-cookies.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances-others.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/quick-fixes.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"]
+# c.content.blocking.method = 'adblock' # uncomment this if you install python-adblock
+c.content.blocking.adblock.lists = [
+    # uAssets
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/legacy.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2021.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2022.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2023.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2024.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2025.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badware.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances-cookies.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances-others.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/quick-fixes.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt",
+    # Core filters
+    "https://easylist.to/easylist/easylist.txt",  # Main ad blocking
+    "https://easylist.to/easylist/easylist-german.txt",
+]
+c.content.blocking.hosts.lists = [
+    "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
+    "https://raw.githubusercontent.com/chadmayfield/privacy-filter-hosts/master/hosts.txt",
+]
+# c.content.blocking.adblock.glob_file = None  # Use the internal cache system
+# c.content.blocking.hosts.glob_file = None  # Use the internal cache system
