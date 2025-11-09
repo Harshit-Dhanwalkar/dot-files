@@ -101,7 +101,7 @@ This repository contains configuration files and installation notes for my prefe
     sudo apt install texlive-metapost
     sudo apt install libsynctex-dev # For synctex support (forward/reverse search)
 
-    # apt `zlib' version is `libz.so.1.2.1`so used brew`libz.so.1.3.1`
+    # apt `zlib' version is `libz.so.1.2.1.so` used pver brew `libz.so.1.3.1` version
     sudo ln -sf /home/linuxbrew/.linuxbrew/opt/zlib/lib/libz.so.1.3.1 /usr/lib/libz.so.1.3.1
     sudo ln -sf /home/linuxbrew/.linuxbrew/opt/zlib/lib/libz.so.1 /usr/lib/libz.so.1
     sudo ldconfig

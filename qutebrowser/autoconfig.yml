@@ -6,6 +6,83 @@
 
 config_version: 2
 settings:
+  aliases:
+    global:
+      Q: close
+      o: open
+      q: quit
+      recycle: quit --save _recycle
+      restart: quit --save _restart
+      shutdown: quit --save _shutdown
+      w: session-save
+      wq: quit --save
+  auto_save.interval:
+    global: 15000
+  bindings.commands:
+    global:
+      normal:
+        ',-': set tabs.title.format '{audio}' ;; set tabs.width 30
+        ',=': set tabs.title.format '{audio}{index}:{current_title}' ;; set tabs.width
+          280
+        ',ot': set-cmd-text -s :open -t
+        ',ow': set-cmd-text -s :open -w
+        ',tt': :open -t
+        ',x': window-only
+        '0': config-cycle statusbar.show always in-mode
+        '1': config-cycle tabs.show always switching
+        '2': :tab-prev
+        '3': :tab-next
+        '8': config-cycle statusbar.show always never;; config-cycle tabs.show always
+          never
+        '9': config-cycle tabs.position top left
+        ;I: hint images spawn --output-message wget --content-disposition --no-clobber
+          -P /home/harshitpd/Downloads/QuteBrowser-downloads/images/ -c {hint-url}
+        ;i: hint images spawn --output-message /home/harshitpd/.config/qutebrowser/userscripts/img_dl.sh
+          {hint-url} /home/harshitpd/Downloads/QuteBrowser-downloads
+        <Alt+h>: back
+        <Alt+l>: forward
+        <Ctrl++>: zoom-in
+        <Ctrl+->: zoom-out
+        <Ctrl+=>: zoom
+        <F12>: inspector
+        C: set-cmd-text -s :set -t
+        D: devtools-focus
+        F: 'hint links run :o -t {hint-url} '
+        H: help
+        M: open -t qute://bookmarks
+        N: tab-clone -w
+        O: set-cmd-text -s :open -t
+        P: set-cmd-text -s :open -p
+        R: restart
+        S: view-source --edit
+        T: hint links tab
+        W: tab-clone -w
+        X: window-only
+        '[': set-cmd-text -s :tab-move
+        cs: config-source
+        d: devtools
+        e: config-edit
+        f: hint all run :o {hint-url}
+        gJ: tab-move +
+        gK: tab-move -
+        gm: tab-move
+        h: history
+        i: hint inputs
+        m: quickmark-save
+        n: tab-clone
+        o: set-cmd-text -s :open
+        pP: open -- {primary}
+        pi: tab-pin
+        pp: open -- {clipboard}
+        pt: open -t -- {clipboard}
+        qm: micro-record
+        r: reload
+        t: :open -t
+        w: tab-close
+        wq: quit --save
+        yi: hint images yank
+        yu: hint url yank
+        yy: yank url
   content.javascript.enabled:
     global: true
   statusbar.show:

@@ -31,7 +31,7 @@ vim.keymap.set("n", "<leader>sn", function()
 	builtin.find_files({ cwd = vim.fn.stdpath("config") })
 end, { desc = "[S]earch [N]eovim files" })
 
--- Nimtree
+-- Nvimtree
 --vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<cr>')
 vim.api.nvim_set_keymap("n", "\\", ":NvimTreeFindFileToggle<cr>", { noremap = true, silent = true })
 
@@ -54,9 +54,13 @@ vim.keymap.set("n", "<leader>li", ":VimtexInfo<CR>", opts) -- Show project info
 vim.keymap.set("n", "<leader>lo", ":VimtexCompileOutput<CR>", opts) -- Compilation output
 vim.keymap.set("n", "<leader>ls", ":VimtexStatus<CR>", opts) -- Status
 vim.keymap.set("n", "<leader>le", ":VimtexErrors<CR>", opts) -- Errors
-vim.keymap.set("n", "<leader>llq", ":VimtexLog<CR>", opts) -- Log messages
+vim.keymap.set("n", "<leader>llg", ":VimtexLog<CR>", opts) -- Log messages
 vim.keymap.set("n", "<leader>lf", ":VimtexForward<CR>", opts) -- Forward search
 vim.keymap.set("n", "<leader>lb", ":VimtexBackward<CR>", opts) -- Backward search
+
+-- peek
+vim.keymap.set("n", "<leader>md", ":PeekOpen<CR>")
+vim.keymap.set("n", "<leader>mx", ":PeekClose<CR>")
 
 -- noice dissmiss notification
 vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDissmiss<CR>", { desc = "Dissmiss Noice Misseage" })

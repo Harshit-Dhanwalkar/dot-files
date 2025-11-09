@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/markdown/markdown-table-mode.lua
+-- Run the :Mtm command to toggle markdown table mode.
 return {
 	"Kicamon/markdown-table-mode.nvim",
 	ft = "markdown",
