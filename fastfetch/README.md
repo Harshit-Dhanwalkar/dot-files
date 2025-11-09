@@ -1,1 +1,1 @@
-![My fastfetch Config](../assets/fastfetch.png "fastfetch Akin")
+![My fastfetch Config](../assets/FastFetch-output.png "fastfetch Akin")

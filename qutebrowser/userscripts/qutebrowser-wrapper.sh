@@ -30,8 +30,8 @@ _ipc_socket="${XDG_RUNTIME_DIR}/qutebrowser/ipc-$(printf '%s' "$USER" | md5sum |
 # Construct the JSON payload with all arguments
 JSON_ARGS=$(args_to_json_array "$@")
 JSON_PAYLOAD=$(
-    printf '{"args": %s, "target_arg": null, "version": "%s", "protocol_version": %d, "cwd": "%s"}\n' \ # The Payload
-    "${JSON_ARGS}" \
+    printf '{"args": %s, "target_arg": null, "version": "%s", "protocol_version": %d, "cwd": "%s"}\n' \
+        "${JSON_ARGS}" \
         "${_qb_version}" \
         "${_proto_version}" \
         "${PWD}"

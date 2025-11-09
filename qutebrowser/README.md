@@ -1,6 +1,6 @@
 # Qutebrowser
 
-<img src="../assets/QtBrowser.jpg" alt="Qutebrowser" width="700">
+<img src="../assets/QtBrowser.jpg" alt="Qutebrowser" width="450">
 
 ---
 

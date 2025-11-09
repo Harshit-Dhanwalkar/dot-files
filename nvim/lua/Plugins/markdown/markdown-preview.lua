@@ -1,7 +1,7 @@
 -- ~/.config/nvim/lua/Plugins/markdown/markdown-preview.lua
 return {
 	-- install without yarn or npm
-	-- FAILs
+	-- -- :FAIL
 	-- {
 	--     "iamcco/markdown-preview.nvim",
 	--     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },

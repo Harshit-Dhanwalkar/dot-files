@@ -41,7 +41,7 @@ This repository contains configuration files and installation notes for my prefe
 
 ---
 
-## Terminal Emulators 🖥️
+## Terminal Emulators
 
 1.  <details>
     <summary>Kitty</summary>
@@ -74,7 +74,7 @@ This repository contains configuration files and installation notes for my prefe
 
 ---
 
-## Applications ✨
+## Applications
 
 1.  <details>
     <summary>Nvim</summary>
