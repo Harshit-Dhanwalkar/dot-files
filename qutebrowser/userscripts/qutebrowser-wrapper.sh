@@ -1,34 +1,6 @@
 #!/bin/bash
 
-# Wrapper around qutebrowser that makes sessions (-r, --restore SESSION) behave
-# like they used to in dwb.
-#
-# We do so by filtering out the -r/--restore option passed to qutebrowser and
-# using the argument to set up the following directory structure and symbolic
-# links:
-#
-# $XDG_RUNTIME_DIR/qutebrowser/$session/cache → $XDG_CACHE_HOME/qutebrowser/$session
-# $XDG_RUNTIME_DIR/qutebrowser/$session/data → $XDG_STATE_HOME/qutebrowser/$session
-# $XDG_RUNTIME_DIR/qutebrowser/$session/data/userscripts → $XDG_DATA_HOME/qutebrowser/userscripts
-# $XDG_RUNTIME_DIR/qutebrowser/$session/config → $XDG_CONFIG_HOME/qutebrowser
-# $XDG_RUNTIME_DIR/qutebrowser/$session/runtime (no symlink, regular directory)
-#
-# (note the use of the non-standard XDG_STATE_HOME)
-#
-# We then specify $XDG_RUNTIME_DIR/qutebrowser/$session as a --basedir, and the
-# files will end up in their intended locations (notice how the config directory
-# is the same for all sessions, as there is no point in keeping it separate).
-#
-# DISCLAIMER: The author of this script manages all his configuration files
-# manually, so this wrapper script has not been tested for the use case where
-# qutebrowser itself writes to these files (and more importantly, if multiple
-# such "sessions" simultaneously write to the same configuration file).
-
 set -eu
-
-# Constants:
-FALSE=0
-TRUE=1
 
 # Set default values for the variables as defined in the XDG base directory spec
 # (https://specifications.freedesktop.org/basedir-spec/latest/):
@@ -37,6 +9,43 @@ XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.var/state}"
+
+# Function to convert shell arguments ($@) to a JSON array string
+# This ensures arguments like '--restore session_name' are correctly formatted for the socket.
+args_to_json_array() {
+    local arr=()
+    for arg in "$@"; do
+        # Escape quotes and backslashes
+        local escaped_arg=$(printf '%s' "$arg" | sed 's/["\]/\\&/g')
+        arr+=("\"$escaped_arg\"")
+    done
+    echo "[${arr[@]}]"
+}
+
+# Fast IPC launch attempt
+_qb_version='1.0.4'
+_proto_version=1
+_ipc_socket="${XDG_RUNTIME_DIR}/qutebrowser/ipc-$(printf '%s' "$USER" | md5sum | cut -d' ' -f1)" # Identify the Communication Channel
+
+# Construct the JSON payload with all arguments
+JSON_ARGS=$(args_to_json_array "$@")
+JSON_PAYLOAD=$(
+    printf '{"args": %s, "target_arg": null, "version": "%s", "protocol_version": %d, "cwd": "%s"}\n' \ # The Payload
+    "${JSON_ARGS}" \
+        "${_qb_version}" \
+        "${_proto_version}" \
+        "${PWD}"
+)
+
+# Attempt to pass the command (e.g., --restore session_name) to the running instance
+if echo "$JSON_PAYLOAD" | socat -lf /dev/null - UNIX-CONNECT:"${_ipc_socket}"; then
+    exit 0
+fi
+
+#  Slow fallback
+## Constants:
+FALSE=0
+TRUE=1
 
 # Translate options: remove occurrences of -r/--restore from the list of
 # command line arguments and save the session name for later; ignore -R (TODO):

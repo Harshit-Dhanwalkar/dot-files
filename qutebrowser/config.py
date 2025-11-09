@@ -172,8 +172,9 @@ config.bind("pi", "tab-pin")
 # config.bind("md", ":bookmark-del")
 config.bind("[", "set-cmd-text -s :tab-move")
 config.bind("i", "hint inputs")
-config.bind("F", "hint links tab-bg")
-config.bind("f", "hint all run :open {hint-url}")
+config.bind("F", "hint links run :o -t {hint-url} ")
+config.bind("f", "hint all run :o {hint-url}")
+# config.bind("F", "hint links tab-bg")
 config.bind("T", "hint links tab")
 config.bind(",-", "set tabs.title.format '{audio}' ;; set tabs.width 30")
 config.bind(
@@ -182,8 +183,8 @@ config.bind(
 # config.bind("f", "hint links run :open -p {hint-url}")
 # config.bind("a", "mode-enter insert")
 config.bind("1", "config-cycle tabs.show always switching")  # tH
-config.bind("2", ":tab-next")  # J
-config.bind("3", ":tab-prev")  # K
+config.bind("2", ":tab-prev")  # K
+config.bind("3", ":tab-next")  # J
 config.bind(
     "8",
     "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
@@ -205,6 +206,8 @@ config.bind("D", "devtools-focus")
 config.bind("S", "view-source --edit")
 # config.bind("e", "edit-text")
 # config.bind("E", "cmd-edit")
+# -> `<Escape>` does run :search (without arguments) to clear any potential search highlights (the default binding is clear-keychain ;; search ;; fullscreen --leave)
+# -> `/` does not run :search, it runs :cmd-set-text / just like : runs :cmd-set-text :
 # config.bind("<ctrl-y>", "spawn --userscript ytdl.sh")
 config.bind("<f12>", "inspector")
 # `mpv` installation required
@@ -237,6 +240,7 @@ c.colors.webpage.darkmode.algorithm = "lightness-cielab"
 c.colors.webpage.darkmode.policy.images = "never"
 c.colors.webpage.preferred_color_scheme = "auto"
 # config.set("colors.webpage.darkmode.enabled", False, "file://*")
+# config.set("colors.webpage.darkmode.enabled", False, "*://github.com/*")
 
 # styles, cosmetics
 # c.content.user_stylesheets = [qt_path + "/styles/youtube-tweaks.css"]
@@ -271,6 +275,7 @@ c.fonts.hints = "bold 13px 'DejaVu Sans Mono'"
 # c.content.notifications = "block"
 config.set("content.notifications.enabled", True)
 config.set("content.notifications.enabled", True, "https://www.youtube.com")
+c.content.plugins = True
 c.content.private_browsing = False
 c.content.webgl = False
 c.content.canvas_reading = True
@@ -278,17 +283,24 @@ c.content.geolocation = False
 c.content.webrtc_ip_handling_policy = "default-public-interface-only"
 c.content.cookies.accept = "all"
 c.content.cookies.store = True
-c.content.javascript.enabled = False  # tsh keybind to toggle
 config.set("content.images", True, "chrome-devtools://*")
 config.set("content.cookies.accept", "all", "devtools://*")
 config.set("content.cookies.accept", "all", "chrome-devtools://*")
-config.set("content.javascript.enabled", True, "chrome-devtools://*")
-config.set("content.javascript.enabled", True, "devtools://*")
-config.set("content.javascript.enabled", True, "chrome://*/*")
-config.set("content.javascript.enabled", True, "qute://*/*")
-config.set("content.javascript.enabled", True, "https://www.google.com/*")
-config.set("content.javascript.enabled", True, "https://www.youtube.com/*")
-config.set("content.javascript.enabled", True, "https://music.youtube.com/*")
+c.content.javascript.enabled = False  # tsh keybind to toggle
+js_enabled_websites = [
+    # Internal/Browser pages (
+    "chrome-devtools://*",
+    "devtools://*",
+    "chrome://*/*",
+    "qute://*/*",
+    # External Websites
+    "https://www.google.com/*",
+    "https://www.youtube.com/*",
+    "https://music.youtube.com/*",
+    # "https://github.com/*",
+]
+for site in js_enabled_websites:
+    config.set("content.javascript.enabled", True, site)
 
 # User agent
 user_agent_string = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3 Firefox/121"
@@ -369,12 +381,13 @@ c.qt.args = [
 ]
 c.qt.args += ["--pdfjs-args=disableFontSubpixelAA: true"]
 
+# c.spellcheck.enabled = True
 # c.spellcheck.languages = ["en-US"]
-c.confirm_quit = ["downloads"]  # all, never, downloads, multiple-tabs
 c.content.headers.accept_language = "en-US,en;q=0.8,fi;q=0.6"
+c.confirm_quit = ["downloads"]  # all, never, downloads, multiple-tabs
 c.content.proxy = "none"  # system, none
 # c.content.ssl_strict = True #  Validate SSL handshakes.: Ture/False/ask
-# c.content.user_stylesheets = "styles/user.css"
+c.content.user_stylesheets = "styles/user.css"
 
 config.load_autoconfig()  # load settings done via the gui
 
