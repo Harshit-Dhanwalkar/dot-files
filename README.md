@@ -353,3 +353,34 @@ This repository contains configuration files and installation notes for my prefe
 
     </p>
     </details>
+
+12. <details>
+    <summary>Wofi</summary>
+    <p>
+    - [Gitlab](https://gitlab.com/dgirault/wofi.git David-Dirault-wofi)
+    </p>
+    <p> Installation</p>
+
+    ```bash
+    sudo apt install mercurial libwayland-dev libgtk-3-dev pkgconf meson ninja-build libjson-glib-dev
+    git clone https://gitlab.com/dgirault/wofi.git wofi
+    cd wofi
+    mkdir .hg
+    meson setup build
+    ninja -C build
+    ```
+
+    Put binaries in the `/usr/local/bin/`
+
+    ```bash
+    sudo mv build/wofi /usr/local/bin/
+    ```
+
+    Put binaries in the `/usr/local/bin/`
+
+    ```bash
+    sudo mv build/dmenu /usr/local/bin/
+    ```
+
+    </p>
+    </details>
