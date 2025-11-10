@@ -138,8 +138,8 @@ config.bind("e", "config-edit")
 # config.bind("cs", "set-cmd-text -s :config-source")
 config.bind("cs", "config-source")
 config.bind("R", "restart")
-config.bind("h", "history")
-config.bind("H", "help")
+config.bind("h", "set-cmd-text -s :o -t :history")
+# config.bind("H", "help")
 config.bind("r", "reload")  # F5
 config.bind("t", ":open -t")  # t and ,tt
 config.bind(",tt", ":open -t")  # t and ,tt
@@ -180,6 +180,11 @@ config.bind(",-", "set tabs.title.format '{audio}' ;; set tabs.width 30")
 config.bind(
     ",=", "set tabs.title.format '{audio}{index}:{current_title}' ;; set tabs.width 280"
 )
+## incremental tab width keybind doesn't work
+# config.bind(
+#     ",[", "set tabs.width (int(tabs.width) - 2) if int(tabs.width) > 20 else 20"
+# )
+# config.bind(",]", "set tabs.width (int(tabs.width) + 2)")
 # config.bind("f", "hint links run :open -p {hint-url}")
 # config.bind("a", "mode-enter insert")
 config.bind("1", "config-cycle tabs.show always switching")  # tH
@@ -232,6 +237,10 @@ config.bind(
 # )
 # for i in range(1, 10):
 #     config.bind(f"<Alt-{i}>", f"tab-focus {i}")
+# # Youtube and other media specifc `fake-key`s
+config.bind("zc", "fake-key c")
+config.bind("z>", "fake-key >")
+config.bind("z<", "fake-key <")
 
 
 # Dark mode
@@ -352,7 +361,7 @@ c.editor.command = [
 c.fileselect.handler = "external"
 c.fileselect.single_file.command = [
     term,
-    "-c" "Qutebrowser_File_Picker",
+    "-cQutebrowser_File_Picker",
     "-e",
     "/bin/sh",
     "-c",

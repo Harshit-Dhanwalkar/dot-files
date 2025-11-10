@@ -117,7 +117,7 @@
     "tooltip-format-wifi": "{essid} ({signalStrength}%)\nIP: {ipaddr}/{cidr}\nGateway: {gwaddr}\n{bandwidthUpBits} {bandwidthDownBits}",
     //"tooltip-format-wifi": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
     "tooltip-format-disconnected": "Disconnected",
-    "on-click": "~/.config/sway/modules/rofi-wifi-menu.sh",
+    "on-click": "~/.config/sway/scripts/rofi-wifi-menu.sh",
     "on-click-right": "exec ${HOME}/.local/kitty.app/bin/kitty nmtui",
     // "format-wifi": "{essid} ({signalStrength}%) ",
     // "format-ethernet": "Connected  ",
@@ -134,7 +134,7 @@
     "format-off": "󰂲 ",
     "format-disabled": "",
     "format-connected": "󰂱 {num_connections}",
-    "on-click": "~/.config/sway/modules/rofi-bluetooth.sh",
+    "on-click": "~/.config/sway/scripts/rofi-bluetooth.sh",
     "on-click-right": "kitty bluetoothctl",
     //"tooltip-format": "{status}"
     "tooltip-format-connected": "{device_enumerate}",
@@ -187,7 +187,7 @@
     "ignore-list": ["rofi", "kitty"]
   },
   "custom/cava": {
-    "exec": "~/.config/waybar/waybarCavaColor.sh",
+    "exec": "~/.config/sway/scripts/waybarCavaColor.sh",
     "tooltip": false,
     "format": "{}"
   },

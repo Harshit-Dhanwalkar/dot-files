@@ -8,21 +8,20 @@ set $left h
 set $down j
 set $up k
 set $right l
-# to change deault terminal-emulator run `sudo update-alternatives --config x-terminal-emulator`
+
+# To change deault terminal-emulator run `sudo update-alternatives --config x-terminal-emulator`
 # set $term /usr/bin/kitty
-set $term /home/harshitpd/.local/kitty.app/bin/kitty
+set $term ~/.local/kitty.app/bin/kitty
 
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 include /etc/sway/config.d/*
 
-### Output configuration
+bindsym $mod+w exec "~/.config/sway/scripts/Wallpaper_swticher/wall-switch.sh"
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/harshitpd/Pictures/wallpapers/02_Face-Mask.png fill
-bindsym $mod+w exec "~/.config/sway/modules/Wallpaper_swticher/wallpaper_switcher.sh"
+output * bg /home/harshitpd/Pictures/wallpapers/wallpaperflare.com_wallpaper.jpg fill
 
 # Example configuration:
-#
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 # get the names of outputs by running: swaymsg -t get_outputs
 
@@ -32,35 +31,35 @@ exec swayidle -w \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
 
-# Lock the screen with Ctrl+Alt+L
-bindsym Ctrl+Alt+l exec swaylock -C ~/.config/sway/swaylock/config
-
 ### Input configuration
 #   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
 input type:touchpad {
     tap enabled
+    dwt enabled
+    natural_scroll enabled
+    middle_emulation enabled
 }
 
 # get the names of inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
-# Basics:
+    # Screen Lock
+    bindsym Ctrl+Alt+l exec swaylock -C ~/.config/sway/swaylock/config
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym alt+Return exec ~/.config/st/st
     # Kill focused window
     bindsym $mod+q kill
     # Start launcher App menu
     #bindsym $mod+d exec $menu
     #bindsym $mod+d exec --no-startup-id "rofi -modi drun,run -show drun -show-icons -theme ~/.config/rofi_backup/theme.rasi"
-    bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
     #bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/My_custom_type/launcher.sh
-    #bindsym $mod+d exec --no-startup-id ~/.config/sway/modules/My_custom_app_launcher/launcher.sh
+    # bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
+    bindsym $mod+d exec --no-startup-id ~/.config/sway/modules/app_launcher/launcher.sh
+
+    # Swtich audio output
+    bindsym Alt+a exec  ~/.config/sway/scripts/audioswitch.sh
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -83,17 +82,21 @@ input type:touchpad {
     bindsym F3 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 
     # wifi/network
-    bindsym $mod+n exec ~/.config/sway/modules/rofi-wifi-menu.sh
+    bindsym $mod+n exec ~/.config/sway/scripts/rofi-wifi-menu.sh
 
     # Screenshot
     bindsym Print exec grim -t png ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png
     bindsym $mod+s exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png
     bindsym $mod+shift+s exec grim -g "$(slurp)" - | wl-copy
     ## Uses rofi to bring out menu for screen shoot
-    bindsym Mod1+s exec ~/.config/sway/modules/screenshot.sh
+    bindsym Mod1+s exec ~/.config/sway/scripts/screenshot.sh
+
     ## color picker using grim and slurp
     # bindsym Mod1+c exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | awk -F'[(,)]' '/srgb/{printf "#%02x%02x%02x\n", $2, $3, $4}' | xargs -I{} notify-send "Picked Color" "{}"
-    bindsym Mod1+i exec ~/.config/sway/modules/color-picker.sh
+    # bindsym Mod1+i exec ~/.config/sway/scipts/color-picker.sh
+
+    # Browser
+    bindsym Mod1+w exec ~/.config/qutebrowser/userscripts/session.sh
 
     #Powermenu
     # bindsym $mod+p exec ~/.config/rofi/powermenu/type-4/powermenu.sh
@@ -202,31 +205,25 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# dashboard
+# Dashboard
 bindsym $mod+g exec /usr/local/bin/wldash
 
-# notifiaction usin dunst
+# Notification
 exec --no-startup-id dunst
 
 # Status Bar:
-# Read `man 5 sway-bar` for more information about this section.
-#bar {
-#    position top
-
-#   # When the status_command prints a new line to stdout, swaybar updates.
-#   # The default just shows the current date and time.
-#   status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-
-#   colors {
-#       statusline #ffffff
-#       background #323232
-#       inactive_workspace #32323200 #32323200 #5c5c5c
-#   }
-#}
-
-# Waybar Configuration
 bar {
-     swaybar_command waybar
+   # Waybar
+       swaybar_command waybar
+   # Default swaybar
+       # Read `man 5 sway-bar` for more information about this section.
+       # position top
+       # status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+       # colors {
+       #    statusline #ffffff
+       #    background #323232
+       #    inactive_workspace #32323200 #32323200 #5c5c5c
+       # }
 }
 
 # for_window [app_id="focused"] opacity 0.9
@@ -235,7 +232,6 @@ bar {
 # class                  boarder    backgrd   text     indicator  child_border
 client.focused           "#323232" "#5c5c5c" "#ffffff" "#022375" "#777777"
 client.focused_inactive  "#555555" "#222222" "#cccccc" "#888888" "#333333"
-# client.unfocused       "#777777" "#333333" "#999999" "#111111" "#444444"
-# client.urgent          "#ff0000" "#880000" "#ffffff" "#ff6600" "#990000"
-# client.placeholder     "#222222" "#222222" "#999999" "#777777" "#444444"
-#client.focused          "#323232AA" "#5c5c5c" "#ffffff" "#00ff00" "#777777"
+client.unfocused       "#777777" "#333333" "#999999" "#111111" "#444444"
+client.urgent          "#ff0000" "#880000" "#ffffff" "#ff6600" "#990000"
+client.placeholder     "#222222" "#222222" "#999999" "#777777" "#444444"

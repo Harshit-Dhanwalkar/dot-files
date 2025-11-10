@@ -19,7 +19,6 @@ datestr=%A, %B %d %Y
 # effect-greyscale=night
 # effect-vignette=day:0.3:0.3,night:0.7:0.7
 
-# image=~/Pictures/wallpapers/08_Tokyo1.png
 image=$(find ~/Pictures/wallpapers -type f | shuf -n 1)
 
 fade-in=0.2
@@ -74,11 +73,3 @@ text-caps-lock-color=009ddcff
 
 scaling=fill
 color=00000088
-
-#show-keyboard-layout
-
-# greeter-text="Welcome back, $(whoami)"
-# greeter-color=ffffffff
-# greeter-font=Work Sans Bold
-# greeter-size=32
-# greeter-text="CPU: $(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage "%"}') | Mem: $(free -m | awk '/Mem:/ {print $3"MB"}')"

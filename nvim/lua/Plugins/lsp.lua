@@ -66,7 +66,23 @@ return {
 		)
 
 		local servers = {
-			pyright = {},
+			pyright = {
+				settings = {
+					python = {
+						analysis = {
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							-- diagnosticSeverityOverrides = {
+							-- 	reportUnusedVariable = "none",
+							-- 	reportMissingImports = "warning",
+							-- 	reportUndefinedVariable = "error",
+							-- },
+							-- reportGeneralTypeIssues = true,
+							-- typeCheckingMode = "basic", -- "strict", "off"
+						},
+					},
+				},
+			},
 			rust_analyzer = {},
 			texlab = {},
 			markdown_oxide = {},
