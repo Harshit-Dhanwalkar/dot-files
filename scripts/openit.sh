@@ -6,7 +6,8 @@
 INPUT_FILE="$1"
 MAX_VISIBLE_LINES=15
 
-DMENU_CMD="rofi -dmenu -i -theme android_notification"
+# DMENU_CMD="rofi -dmenu -i -theme android_notification"
+DMENU_CMD="dmenu"
 SESSION_SCRIPT="$HOME/.config/qutebrowser/userscripts/session.sh"
 
 # --- Supported File Types ---
@@ -475,7 +476,7 @@ while true; do
 
     INDEXED_CATEGORIES=$(add_index_numbers "$CATEGORIES")
 
-    SELECTED_CATEGORY_WITH_INDEX=$(echo "$INDEXED_CATEGORIES" | $DMENU_CMD -l $CATEGORY_LINES -p "Select Category (ESC to Quit):")
+    SELECTED_CATEGORY_WITH_INDEX=$(echo "$INDEXED_CATEGORIES" | $DMENU_CMD -l $CATEGORY_LINES -p "Category (ESC to Quit):")
 
     if [[ -z "$SELECTED_CATEGORY_WITH_INDEX" ]]; then
         echo " Script terminated by user."
@@ -489,10 +490,10 @@ while true; do
 
     INDEXED_URLS=$(add_index_numbers "$CATEGORY_URLS")
 
-    SELECTED_URL_WITH_INDEX=$(echo "$INDEXED_URLS" | $DMENU_CMD -l $URL_LINES -p "URLs in $SELECTED_CATEGORY (ESC to go back):")
+    SELECTED_URL_WITH_INDEX=$(echo "$INDEXED_URLS" | $DMENU_CMD -l $URL_LINES -p "$SELECTED_CATEGORY (ESC to go back):")
 
     if [[ -z "$SELECTED_URL_WITH_INDEX" ]]; then
-        echo " Returning to category selection."
+        # echo " Returning to category selection."
         continue
     fi
 
@@ -504,7 +505,7 @@ while true; do
     elif [[ "$CAN_USE_SESSIONS" == "true" ]]; then
         SELECTED_SESSION_OPTION=$(select_session)
         if [[ -z "$SELECTED_SESSION_OPTION" ]]; then
-            echo " Returning to category selection."
+            # echo " Returning to category selection."
             continue
         fi
         if [[ "$SELECTED_SESSION_OPTION" == "[NEW SESSION]" ]]; then

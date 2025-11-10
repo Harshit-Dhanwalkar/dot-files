@@ -323,3 +323,33 @@ This repository contains configuration files and installation notes for my prefe
 
     </p>
     </details>
+
+11. <details>
+    <summary>Dmenu</summary>
+    <p>
+    - [suckless.org](http://tools.suckless.org/dmenu/)
+    </p>
+    <p> Installation</p>
+
+    ```bash
+    git clone https://git.suckless.org/dmenu demnu
+    mkdir ../src && mv * ../src && mv ../src . cd src
+    mkdir ../build
+    make clean
+    # Change theme by editing `src/config.def.h`
+    make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+    cp dmenu ../build/
+    ```
+
+    Put binaries in the `/usr/local/bin/`
+
+    ```bash
+    sudo mv build/dmenu /usr/local/bin/
+    sudo mv src/dmenu_path /usr/local/bin/
+    cd ~
+    # test
+    echo "option1\noption2\noption3" | dmenu
+    ```
+
+    </p>
+    </details>
