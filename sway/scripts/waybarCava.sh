@@ -1,5 +1,8 @@
 #!/bin/bash
 
+## Author  : Harshit Prahant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 bar="▁▁▂▃▄▅▆▇█▓"
 dict="s/;//g"
 

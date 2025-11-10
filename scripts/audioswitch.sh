@@ -1,5 +1,8 @@
 #!/bin/sh
 
+## Author  : Harshit Prahant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 PACTL="/usr/bin/pactl"
 JQ="/usr/bin/jq"
 DMENU="/usr/local/bin/dmenu"

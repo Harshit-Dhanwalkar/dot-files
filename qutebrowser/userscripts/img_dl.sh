@@ -1,5 +1,8 @@
 #!/bin/bash
 
+## Author  : Harshit Prahant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 URL="$1"
 TARGET_DIR="$2"
 

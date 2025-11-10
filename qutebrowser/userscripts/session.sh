@@ -1,7 +1,13 @@
 #!/bin/bash
 
+## Author  : Harshit Prahant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 # Qutebrowser Session Launcher/Deleter/Renamer using rofi or dmenu.
-# supports command-line arguments: -s "session_name"
+# Now supports command-line arguments:
+#   -s "session_name"    Launch specific session
+#   -u "url"            URL to open in the session
+#   -h, --help          Show help
 
 set -eu
 
@@ -24,24 +30,29 @@ NOTIFICATION_CMD="dunst" #"notify-send"
 # --- Help Function ---
 show_help() {
     cat <<EOF
-Usage: $0 [OPTIONS]
+Usage: $0 [OPTIONS] [URL]
 
 Qutebrowser Session Manager - Launch, create, rename, or delete qutebrowser sessions.
 
 OPTIONS:
     -s, --session NAME    Launch specific session directly (bypasses menu)
+    -u, --url URL         URL to open in the session (requires -s)
     -h, --help           Show this help message and exit
+
+ARGUMENTS:
+    URL                  Optional URL to open (can be used instead of -u)
 
 EXAMPLES:
     $0                      # Show interactive session menu
-    $0 -s work              # Launch 'work' session
-    $0 --session=work       # Launch 'work' session
+    $0 -s work              # Launch 'work' session directly
+    $0 -s work -u https://example.com  # Launch 'work' session with URL
+    $0 --session=personal https://github.com  # Launch 'personal' with URL
     $0 -h                   # Show this help message
 
 INTERACTIVE MODE:
     When no arguments are provided, shows an interactive menu with options to:
     - Create new sessions
-    - Rename existing sessions  
+    - Rename existing sessions
     - Launch existing sessions
     - Delete sessions
 
@@ -65,11 +76,27 @@ else
     exit 1
 fi
 
-# ---- Helper Functions ----
-# --- send notifications --
+# --- Helper Functions ---
+# send notifications
 notify_user() {
     if command -v "$NOTIFICATION_CMD" >/dev/null 2>&1; then
         "$NOTIFICATION_CMD" "$@"
+    fi
+}
+
+# Launch qutebrowser with session and optional URL
+launch_qutebrowser() {
+    local session="$1"
+    local url="${2:-}"
+
+    if [ -n "$url" ]; then
+        echo "🌐 Launching qutebrowser with session: $session and URL: $url"
+        # Launch with session and URL
+        "$QUTEBROWSER_WRAPPER" --restore "$session" "$url" &
+    else
+        echo "🌐 Launching qutebrowser with session: $session"
+        # Launch with session only
+        "$QUTEBROWSER_WRAPPER" --restore "$session" &
     fi
 }
 
@@ -147,6 +174,17 @@ delete_session_silently() {
 # --- Command Line Argument Processing ---
 process_command_line() {
     local SESSION_NAME=""
+    local URL=""
+
+    # Check for standalone URL (without -u flag)
+    for arg in "$@"; do
+        if [[ "$arg" =~ ^https?:// ]] && [ -z "$URL" ]; then
+            URL="$arg"
+            continue
+        fi
+    done
+
+    # Parse command line arguments
     while [[ $# -gt 0 ]]; do
         case $1 in
         -s | --session)
@@ -165,30 +203,73 @@ process_command_line() {
             fi
             shift
             ;;
+        -u | --url)
+            if [ -z "${2:-}" ] || [[ "$2" =~ ^- ]]; then
+                echo "Error: -u/--url requires a URL" >&2
+                exit 1
+            fi
+            URL="$2"
+            shift 2
+            ;;
+        -u=* | --url=*)
+            URL="${1#*=}"
+            if [ -z "$URL" ]; then
+                echo "Error: -u/--url requires a URL" >&2
+                exit 1
+            fi
+            shift
+            ;;
         -h | --help)
             show_help
             exit 0
             ;;
-        *)
+        --)
+            shift
+            # Check if the next argument is a URL
+            if [ $# -gt 0 ] && [[ "$1" =~ ^https?:// ]]; then
+                URL="$1"
+            fi
+            break
+            ;;
+        -*)
             echo "Error: Unknown option: $1" >&2
             echo "Use '$0 -h' for help." >&2
             exit 1
             ;;
+        *)
+            # Check if this is a URL
+            if [[ "$1" =~ ^https?:// ]] && [ -z "$URL" ]; then
+                URL="$1"
+            else
+                echo "Error: Unknown argument: $1" >&2
+                echo "Use '$0 -h' for help." >&2
+                exit 1
+            fi
+            shift
+            ;;
         esac
     done
+
     # If session name provided, launch directly
     if [ -n "$SESSION_NAME" ]; then
-        echo "🌐 Launching qutebrowser with session: $SESSION_NAME"
-        exec "$QUTEBROWSER_WRAPPER" --restore "$SESSION_NAME"
+        launch_qutebrowser "$SESSION_NAME" "$URL"
+        exit 0
+    fi
+
+    # If URL provided but no session, show error
+    if [ -n "$URL" ]; then
+        echo "Error: URL provided but no session specified. Use -s SESSION" >&2
+        exit 1
     fi
 }
 
+# --- Check for command line arguments first ---
 if [ $# -gt 0 ]; then
     process_command_line "$@"
     exit 1
 fi
 
-# ---- Main Menu Logic ----
+# --- Main Menu Logic ---
 SESSIONS=""
 if [ -d "$QUTE_SESSION_ROOT" ]; then
     # Filter out the 'default' session from the list
@@ -202,7 +283,7 @@ if [ -z "$SESSION_CHOICE" ]; then
     exit 0
 fi
 
-# ---- Handle Menu Choice ----
+# --- Handle Menu Choice ---
 if [ "$SESSION_CHOICE" = "$NEW_SESSION_OPTION" ]; then
     # --- New Session Logic ---
     NEW_NAME=$(eval "$PROMPT_CMD")
@@ -215,7 +296,7 @@ if [ "$SESSION_CHOICE" = "$NEW_SESSION_OPTION" ]; then
         exit 1
     fi
     # Launch new session
-    exec "$QUTEBROWSER_WRAPPER" --restore "$SESSION_NAME"
+    launch_qutebrowser "$SESSION_NAME"
 
 elif [ "$SESSION_CHOICE" = "$RENAME_SESSION_OPTION" ]; then
     # --- Rename Session Logic ---
@@ -303,5 +384,5 @@ elif [ "$SESSION_CHOICE" = "$DELETE_SESSION_OPTION" ]; then
 
 else
     # --- Launch Existing Session ---
-    exec "$QUTEBROWSER_WRAPPER" --restore "$SESSION_CHOICE"
+    launch_qutebrowser "$SESSION_CHOICE"
 fi

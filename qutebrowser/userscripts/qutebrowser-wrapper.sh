@@ -1,5 +1,8 @@
 #!/bin/bash
 
+## Author  : Harshit Prahant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 set -eu
 
 # Set default values for the variables as defined in the XDG base directory spec

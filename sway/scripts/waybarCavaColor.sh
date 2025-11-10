@@ -1,37 +1,27 @@
 #!/bin/bash
 
-# Define the bar characters
+## Author  : Harshit Prahant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 bar="▁▂▃▄▅▆▇█"
 
 # Define colors for each bar (10 bars max)
-# colors=(
-#     "'#ff0000'"  # Red
-#     "'#ff6600'"  # Orange
-#     "'#ffcc00'"  # Yellow
-#     "'#66ff00'"  # Lime
-#     "'#00ff66'"  # Green
-#     "'#00ccff'"  # Light Blue
-#     "'#0066ff'"  # Blue
-#     "'#6600ff'"  # Purple
-#     "'#cc00ff'"  # Pink
-#     "'#ff00cc'"  # Magenta
-# )
 colors=(
-    "'#f7768e'"
-    "'#ff9e64'"
-    "'#e0af68'"
-    "'#9ece6a'"
-    "'#73daca'"
-    "'#b4f9f8'"
-    "'#2ac3de'"
-    "'#7dcfff'"
-    "'#7aa2f7'"
-    "'#bb9af7'"
+    "'#f7768e'" #   "'#ff0000'"  # Red
+    "'#ff9e64'" #   "'#ff6600'"  # Orange
+    "'#e0af68'" #   "'#ffcc00'"  # Yellow
+    "'#9ece6a'" #   "'#66ff00'"  # Lime
+    "'#73daca'" #   "'#00ff66'"  # Green
+    "'#b4f9f8'" #   "'#00ccff'"  # LightBlue
+    "'#2ac3de'" #   "'#0066ff'"  # Blue
+    "'#7dcfff'" #   "'#6600ff'"  # Purple
+    "'#7aa2f7'" #   "'#cc00ff'"  # Pink
+    "'#bb9af7'" #   "'#ff00cc'"  # Magenta
 )
 
 # CAVA config
 config_file="/tmp/bar_cava_config"
-cat > "$config_file" <<EOF
+cat >"$config_file" <<EOF
 [general]
 bars = 10
 
@@ -52,8 +42,8 @@ pkill -f "cava -p $config_file"
 # Process cava output
 cava -p "$config_file" | while read -r line; do
     # Split the line into individual bar values
-    IFS=';' read -ra values <<< "$line"
-    
+    IFS=';' read -ra values <<<"$line"
+
     output=""
     for i in "${!values[@]}"; do
         # Get the bar character (0-7 maps to ▁▂▃▄▅▆▇█)
@@ -65,7 +55,7 @@ cava -p "$config_file" | while read -r line; do
             output+="<span color=${color}>${char}</span>"
         fi
     done
-    
+
     # Print the formatted output (for Waybar)
     echo "$output"
 done

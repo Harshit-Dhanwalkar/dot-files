@@ -1,7 +1,11 @@
 #!/bin/bash
 
+## Author  : Harshit Prahant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 # Qutebrowser Session Launcher/Deleter/Renamer using rofi or dmenu.
-# supports command-line arguments: -s "session_name"
+# supports command-line arguments
+# run `bash session.sh -h` or `bash session.sh --help` for more
 
 set -eu
 

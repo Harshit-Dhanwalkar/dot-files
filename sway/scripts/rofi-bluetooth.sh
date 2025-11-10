@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ## Author  : Harshit Prahant Dhanwalkar
-## Github  : @harshitpmd
+## Github  : @Harshit-Dhanwalkar
 
 # Import Current Theme from the shared location
 source "$HOME"/.config/rofi/applets/shared/theme.bash

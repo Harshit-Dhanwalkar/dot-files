@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+## Author  : Harshit Prahant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 # Array of disks and matching icons
 DISKS=("/" "/home")
 ICONS=("󰣇 " " ")

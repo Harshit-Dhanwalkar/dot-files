@@ -1,5 +1,8 @@
 #!/bin/sh
 
+## Author  : Harshit Prahant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 : <<'END_COMMENT'
 This script basically utilies (Socat(SOcket CAT))[https://www.kali.org/tools/socat/].
 When opening a URL in an existing instance, the normal qutebrowser Python script is started and a few `PyQt` libraries need to be loaded until it is detected that there is an instance running to which the URL is then passed. This takes some time.
