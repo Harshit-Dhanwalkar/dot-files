@@ -1,0 +1,4 @@
+option('enable_run', type : 'boolean', value : true, description : 'Whether run mode should be enabled')
+option('enable_drun', type : 'boolean', value : true, description : 'Whether drun mode should be enabled')
+option('enable_dmenu', type : 'boolean', value : true, description : 'Whether dmenu mode should be enabled')
+option('enable_switcher', type : 'boolean', value : true, description : 'Whether switcher mode should be enabled')
