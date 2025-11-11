@@ -1,5 +1,8 @@
 # ~/.config/dunst/dunstrc
 
+## Author  : Harshit Prahant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 [global]
     monitor = 0
     font = JetBrainsMono Nerd font 12

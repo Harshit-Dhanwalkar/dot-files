@@ -1,20 +1,13 @@
 #!/usr/bin/env bash
 
-## Author  : Harshit Prajant Dhanwalkar
-## Github  : @harshitpmd
-#
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 ## Applets : Quick Links
 
-# Import Current Theme
-# source "$HOME/.config/rofi/applets/shared/theme.bash"
-# type="$HOME/.config/rofi/applets/type-5"
-# style='style-1.rasi'
-# theme="$type/$style"
-source "$HOME/.config/sway/modules/QucikLink/theme.bash"
 type="$HOME/.config/sway/modules/QucikLink/My-type"
-
-# available styles are 'style-1.rasi', style-2.rasi', 'mystyle.rasi'
 style='mystyle.rasi'
+# style='style-1.rasi'
 theme="$type/$style"
 
 # Theme Elements

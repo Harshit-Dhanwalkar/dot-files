@@ -1,11 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-## Author  : Harshit Prahant Dhanwalkar
-## Github  : @Harshit-Dhanwalkar
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
 
 bar="▁▁▂▃▄▅▆▇█▓"
 dict="s/;//g"
-
 bar_length=${#bar}
 
 for ((i = 0; i < bar_length; i++)); do

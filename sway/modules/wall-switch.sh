@@ -21,7 +21,7 @@ END_COMMENT
 
 # Configuration
 readonly WALLPAPER_DIR="$HOME/Pictures/wallpapers"
-readonly SCRIPT_DIR="$HOME/.config/sway/scripts/Wallpaper_swticher"
+readonly SCRIPT_DIR="$HOME/.config/sway/modules/"
 readonly IMAGE_PATH="$SCRIPT_DIR/images/geometry.png"
 readonly SWAY_CONFIG="$HOME/.config/sway/config"
 readonly LOG_FILE="/tmp/wallpaper_switcher.log"

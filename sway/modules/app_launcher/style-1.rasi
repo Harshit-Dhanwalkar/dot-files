@@ -1,18 +1,16 @@
 /**
  *
- * Author : Aditya Shakya (adi1090x)
- * Github : @adi1090x
- * 
- * Rofi Theme File
- * Rofi Version: 1.7.3
- **/
+ * Author : Harshit Prahsant Dhanwalkar
+ * Github : @Harshit-Dhanwalkar
+ *
+**/
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun";
-    show-icons:                 true;
-    display-drun:               "";
-	drun-display-format:        "{name}";
+   modi:                       "drun";
+   show-icons:                 true;
+   display-drun:               "";
+   drun-display-format:        "{name}";
 }
 
 /*****----- Global Properties -----*****/
@@ -28,7 +26,6 @@ window {
     width:                       750px;
     x-offset:                    0px;
     y-offset:                    0px;
-
     enabled:                     true;
     margin:                      0px;
     padding:                     0px;

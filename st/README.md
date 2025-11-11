@@ -23,9 +23,3 @@
 sudo apt-get update
 sudo apt-get install libharfbuzz-dev
 ```
-
-```
-git clone https://github.com/BreadOnPenguins/st
-cd st
-sudo make install
-```

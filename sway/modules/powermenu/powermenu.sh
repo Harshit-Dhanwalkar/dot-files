@@ -1,40 +1,43 @@
 #!/usr/bin/env bash
 
 # Current Theme
-dir="$HOME/.config/sway/modules/My_custom_powermenu/"
-theme='my_style'
+dir="$HOME/.config/sway/modules/powermenu/"
+style='my_style.rasi'
 
 # CMDs
-uptime="`uptime -p | sed -e 's/up //g'`"
-host=`hostname`
+lastlogin="$(last $USER | head -n1 | tr -s ' ' | cut -d' ' -f5,6,7)"
+uptime="$(uptime -p | sed -e 's/up //g')"
+host=$(hostname)
 
 # Options
-shutdown=''
-reboot=''
-lock=''
-suspend=''
-logout=''
-yes=''
-no=''
+# $lock\n$suspend\n$logout\n$reboot\n$shutdown
+lock=''
+suspend='󰤄'
+logout='󰍃'
+reboot='↻'
+shutdown='⏻'
+hibernate='⏼'
+yes='✔'
+no='✘'
 
 # Rofi CMD
 rofi_cmd() {
 	rofi -dmenu \
-		-p "Uptime: $uptime" \
-		-mesg "Uptime: $uptime" \
-		-theme ${dir}/${theme}.rasi
+		-p " $USER@$host" \
+		-mesg "󱑇 Uptime: $uptime" \
+		-theme ${dir}/${style}
 }
 
 # Confirmation CMD
 confirm_cmd() {
 	rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
-		-theme-str 'mainbox {children: [ "message", "listview" ];}' \
+		-theme-str 'mainbox {orientation: vertical; children: [ "message", "listview" ];}' \
 		-theme-str 'listview {columns: 2; lines: 1;}' \
 		-theme-str 'element-text {horizontal-align: 0.5;}' \
 		-theme-str 'textbox {horizontal-align: 0.5;}' \
 		-dmenu \
 		-p 'Confirmation' \
-		-mesg 'Sure buddy?' \
+		-mesg 'Are you Sure?' \
 		-theme ${dir}/${theme}.rasi
 }
 
@@ -82,44 +85,23 @@ run_cmd() {
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
-    $shutdown)
-		run_cmd --shutdown
-        ;;
-    $reboot)
-		run_cmd --reboot
-        ;;
-    $lock)
-		# Lock the screen using swaylock with a configuration file
+$shutdown)
+	run_cmd --shutdown
+	;;
+$reboot)
+	run_cmd --reboot
+	;;
+$lock)
+	if [[ -x '/usr/bin/swaylock' ]]; then
 		swaylock -C ~/.config/sway/swaylock/config
-        ;;
-    $suspend)
-		run_cmd --suspend
-        ;;
-    $logout)
-		run_cmd --logout
-        ;;
+	else
+		notify-send "Swaylock not found!" "Please install swaylock to use the lock feature."
+	fi
+	;;
+$suspend)
+	run_cmd --suspend
+	;;
+$logout)
+	run_cmd --logout
+	;;
 esac
-
-# # Actions
-# chosen="$(run_rofi)"
-# case ${chosen} in
-#     $shutdown)
-# 		run_cmd --shutdown
-#         ;;
-#     $reboot)
-# 		run_cmd --reboot
-#         ;;
-#     $lock)
-# 		if [[ -x '/usr/bin/betterlockscreen' ]]; then
-# 			betterlockscreen -l
-# 		elif [[ -x '/usr/bin/i3lock' ]]; then
-# 			i3lock
-# 		fi
-#         ;;
-#     $suspend)
-# 		run_cmd --suspend
-#         ;;
-#     $logout)
-# 		run_cmd --logout
-#         ;;
-# esac

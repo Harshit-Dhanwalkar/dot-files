@@ -17,9 +17,9 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 include /etc/sway/config.d/*
 
-bindsym $mod+w exec "~/.config/sway/scripts/Wallpaper_swticher/wall-switch.sh"
+bindsym $mod+w exec "~/.config/sway/modules/wall-switch.sh"
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/harshitpd/Pictures/wallpapers/wallpaperflare.com_wallpaper.jpg fill
+output * bg /home/harshitpd/Pictures/wallpapers/04_Tokyo.png fill
 
 # Example configuration:
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -46,14 +46,16 @@ input type:touchpad {
 ### Key bindings
     # Screen Lock
     bindsym Ctrl+Alt+l exec swaylock -C ~/.config/sway/swaylock/config
+
     # Start a terminal
     bindsym $mod+Return exec $term
     bindsym alt+Return exec ~/.config/st/st
+
     # Kill focused window
     bindsym $mod+q kill
+
     # Start launcher App menu
-    #bindsym $mod+d exec $menu
-    #bindsym $mod+d exec --no-startup-id "rofi -modi drun,run -show drun -show-icons -theme ~/.config/rofi_backup/theme.rasi"
+    # bindsym $mod+d exec $menu
     #bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/My_custom_type/launcher.sh
     # bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
     bindsym $mod+d exec --no-startup-id ~/.config/sway/modules/app_launcher/launcher.sh
@@ -99,8 +101,8 @@ input type:touchpad {
     bindsym Mod1+w exec ~/.config/qutebrowser/userscripts/session.sh
 
     #Powermenu
-    # bindsym $mod+p exec ~/.config/rofi/powermenu/type-4/powermenu.sh
-    bindsym $mod+p exec ~/.config/rofi/powermenu/type-6/powermenu.sh
+    bindsym $mod+p exec ~/.config/sway/modules/powermenu/powermenu.sh
+    # bindsym $mod+p exec ~/.config/rofi/powermenu/type-6/powermenu.sh
     # Quicklinks menu
     bindsym $mod+t exec ~/.config/sway/modules/QucikLink/quicklinks.sh
     # Reload the configuration file

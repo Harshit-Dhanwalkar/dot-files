@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-## Author  : Harshit Prahant Dhanwalkar
-## Github  : @Harshit-Dhanwalkar
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
 
 ## IMPORTANT: This script is now integrated along with bluetooh.sh into audio-output-controller.sh
 

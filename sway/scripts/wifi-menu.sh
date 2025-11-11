@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-## Author  : Harshit Prahant Dhanwalkar
-## Github  : @Harshit-Dhanwalkar
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
 
 # --- Theme Setup (only used if rofi, which is fallback) ---
 source "$HOME"/.config/rofi/applets/shared/theme.bash
