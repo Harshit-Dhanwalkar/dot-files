@@ -3,7 +3,7 @@
 ## Author  : Harshit Prashant Dhanwalkar
 ## Github  : @Harshit-Dhanwalkar
 
-## IMPORTANT: This script is now integrated along with bluetooh.sh into audio-output-controller.sh
+## IMPORTANT: This script is now integrated along with bluetooh.sh into controllers.sh
 
 PACTL="/usr/bin/pactl"
 JQ="/usr/bin/jq"

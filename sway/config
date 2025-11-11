@@ -19,7 +19,7 @@ include /etc/sway/config.d/*
 
 bindsym $mod+w exec "~/.config/sway/modules/wall-switch.sh"
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/harshitpd/Pictures/wallpapers/04_Tokyo.png fill
+output * bg /home/harshitpd/Pictures/wallpapers/02_Face-Mask.png fill
 
 # Example configuration:
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -61,7 +61,7 @@ input type:touchpad {
     bindsym $mod+d exec --no-startup-id ~/.config/sway/modules/app_launcher/launcher.sh
 
     # Swtich audio output
-    bindsym Alt+a exec  ~/.config/sway/scripts/audio-output-controller.sh
+    bindsym Alt+a exec  ~/.config/sway/scripts/controllers.sh
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
