@@ -3,11 +3,11 @@
 ## Author  : Harshit Prahant Dhanwalkar
 ## Github  : @Harshit-Dhanwalkar
 
-# Qutebrowser Session Launcher/Deleter/Renamer using rofi or dmenu.
+# Qutebrowser Session Launcher/Deleter/Renamer using or dmenu or rofi
 # Now supports command-line arguments:
 #   -s "session_name"    Launch specific session
-#   -u "url"            URL to open in the session
-#   -h, --help          Show help
+#   -u "url"             URL to open in the session
+#   -h, --help           Show help
 
 set -eu
 
@@ -15,7 +15,7 @@ set -eu
 XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.var/state}"
 QUTE_SESSION_ROOT="$XDG_STATE_HOME/qutebrowser"
 
-# --- Action Options ---
+# --- New/Action Options ---
 NEW_SESSION_OPTION="[NEW SESSION - Enter Name]"
 DELETE_SESSION_OPTION="[DELETE SESSION]"
 RENAME_SESSION_OPTION="[RENAME SESSION]"
@@ -62,15 +62,16 @@ EOF
 }
 
 # --- Menu Detection ---
-if command -v rofi >/dev/null 2>&1; then
+if command -v dmenu >/dev/null 2>&1; then
+    DMENU_MAX_LINE_ARGS="-l 6"
+    MENU_CMD="dmenu -i ${DMENU_MAX_LINE_ARGS} -p 'Qutebrowser Session:'"
+    # MENU_CMD="dmenu -i -l 6 ${DMENU_MAX_LINE_ARGS} -p 'Qutebrowser Session:'"
+    PROMPT_CMD="dmenu ${DMENU_MAX_LINE_ARGS} -p 'New Session Name:'"
+    RENAME_PROMPT_CMD_DMENU="dmenu ${DMENU_MAX_LINE_ARGS} -p 'New Session Name:'"
+elif command -v rofi >/dev/null 2>&1; then
     MENU_CMD="rofi -dmenu -i -theme android_notification -theme-str 'listview { lines: 8; }' -p 'Qutebrowser Session  ' "
     PROMPT_CMD="rofi -dmenu -p 'New Session Name:' -theme android_notification"
     RENAME_PROMPT_CMD_ROFI="rofi -dmenu -p 'New Session Name:' -theme android_notification"
-elif command -v dmenu >/dev/null 2>&1; then
-    DMENU_THEME_ARGS="-nb '#2e3440' -nf '#d8dee9' -sb '#88c0d0' -sf '#eceff4'"
-    MENU_CMD="dmenu -i ${DMENU_THEME_ARGS} -p 'Qutebrowser Session:'"
-    PROMPT_CMD="dmenu ${DMENU_THEME_ARGS} -p 'New Session Name:'"
-    RENAME_PROMPT_CMD_DMENU="dmenu ${DMENU_THEME_ARGS} -p 'New Session Name:'"
 else
     echo "Error: Neither rofi nor dmenu found. Please install one of them." >&2
     exit 1
@@ -307,10 +308,10 @@ elif [ "$SESSION_CHOICE" = "$RENAME_SESSION_OPTION" ]; then
     fi
     # 1. Prompt user to choose session to rename
     RENAME_CHOICE_CMD=""
-    if command -v rofi >/dev/null 2>&1; then
+    if command -v dmenu >/dev/null 2>&1; then
+        RENAME_CHOICE_CMD="dmenu -i ${DMENU_MAX_LINE_ARGS} -p 'Session to RENAME:'"
+    elif command -v rofi >/dev/null 2>&1; then
         RENAME_CHOICE_CMD="rofi -dmenu -i -no-custom -theme android_notification -p 'Session to RENAME:' -theme-str 'listview { lines: 8; }'"
-    elif command -v dmenu >/dev/null 2>&1; then
-        RENAME_CHOICE_CMD="dmenu -i ${DMENU_THEME_ARGS} -p 'Session to RENAME:'"
     fi
     OLD_NAME=$(echo -e "$RENAMABLE_SESSIONS" | eval "$RENAME_CHOICE_CMD" || true)
 
@@ -319,10 +320,10 @@ elif [ "$SESSION_CHOICE" = "$RENAME_SESSION_OPTION" ]; then
     fi
     # 2. Prompt for the new name
     NEW_NAME_RAW=""
-    if command -v rofi >/dev/null 2>&1; then
-        NEW_NAME_RAW=$(echo "$OLD_NAME" | eval "$RENAME_PROMPT_CMD_ROFI" || true)
-    elif command -v dmenu >/dev/null 2>&1; then
+    if command -v dmenu >/dev/null 2>&1; then
         NEW_NAME_RAW=$(echo "$OLD_NAME" | eval "$RENAME_PROMPT_CMD_DMENU" || true)
+    elif command -v rofi >/dev/null 2>&1; then
+        NEW_NAME_RAW=$(echo "$OLD_NAME" | eval "$RENAME_PROMPT_CMD_ROFI" || true)
     fi
     if [ -z "$NEW_NAME_RAW" ]; then
         notify_user "Qutebrowser Rename" "Rename cancelled." -i dialog-information -t 3000
@@ -354,20 +355,20 @@ elif [ "$SESSION_CHOICE" = "$DELETE_SESSION_OPTION" ]; then
     fi
     # Prompt user to choose session to delete
     DELETE_PROMPT_CMD=""
-    if command -v rofi >/dev/null 2>&1; then
+    if command -v dmenu >/dev/null 2>&1; then
+        DELETE_PROMPT_CMD="dmenu -i ${DMENU_MAX_LINE_ARGS} -p 'CONFIRM Session to DELETE:' -theme-str 'listview { lines: 2; }'"
+    elif command -v rofi >/dev/null 2>&1; then
         DELETE_PROMPT_CMD="rofi -dmenu -i -no-custom -theme android_notification -p 'CONFIRM Session to DELETE:' -theme-str 'listview { lines: 8; }'"
-    elif command -v dmenu >/dev/null 2>&1; then
-        DELETE_PROMPT_CMD="dmenu -i ${DMENU_THEME_ARGS} -p 'CONFIRM Session to DELETE:' -theme-str 'listview { lines: 2; }'"
     fi
     DELETE_CHOICE=$(echo -e "$DELETABLE_SESSIONS" | eval "$DELETE_PROMPT_CMD" || true)
     if [ -z "$DELETE_CHOICE" ]; then
         exit 0
     fi
     CONFIRM_PROMPT_CMD=""
-    if command -v rofi >/dev/null 2>&1; then
+    if command -v dmenu >/dev/null 2>&1; then
+        CONFIRM_PROMPT_CMD="dmenu -i ${DMENU_MAX_LINE_ARGS} -p \"DELETE '$DELETE_CHOICE'?\""
+    elif command -v rofi >/dev/null 2>&1; then
         CONFIRM_PROMPT_CMD="rofi -dmenu -i -no-custom -theme android_notification -p \"DELETE '$DELETE_CHOICE'?\"  -theme-str 'listview { lines: 2; }'"
-    elif command -v dmenu >/dev/null 2>&1; then
-        CONFIRM_PROMPT_CMD="dmenu -i ${DMENU_THEME_ARGS} -p \"DELETE '$DELETE_CHOICE'?\""
     fi
     # Final configuration
     CONFIRMATION=$(echo -e "No\nYes - DELETE PERMANENTLY" | eval "$CONFIRM_PROMPT_CMD" || true)
