@@ -3,15 +3,15 @@
 ## Author  : Harshit Prahant Dhanwalkar
 ## Github  : @Harshit-Dhanwalkar
 
+## IMPORTANT: This script is now integrated along with bluetooh.sh into audio-output-controller.sh
+
 PACTL="/usr/bin/pactl"
 JQ="/usr/bin/jq"
 DMENU="/usr/local/bin/dmenu"
-NOTIFY="/usr/bin/notify-send"
+NOTIFY="/usr/bin/dunst"
 
 options=$($PACTL -f json list sinks | $JQ -r '.[] | .description')
-# echo "$options"  # DEBUG
-selection=$(echo "$options" | /usr/bin/dmenu -i -l 5 -p "Output:")
-# echo $selection  # DEBUG
+selection=$(echo "$options" | $DMENU -i -l 5 -p "Output:")
 
 # Check if the user cancelled dmenu
 if [ -z "$selection" ]; then
@@ -23,7 +23,6 @@ fi
 
 # Extract the corresponding sink name
 sink_name=$($PACTL -f json list sinks | $JQ -r --arg sink_pretty_name "$selection" '.[] | select(.description == $sink_pretty_name) | .name')
-# echo "$sink_name"  # DEBUG
 
 # Set the selected sink as default and notify
 if [ -n "$sink_name" ]; then

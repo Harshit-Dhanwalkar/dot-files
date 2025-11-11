@@ -83,12 +83,16 @@ return {
 					},
 				},
 			},
-			rust_analyzer = {},
-			texlab = {},
-			markdown_oxide = {},
-			asm_lsp = {},
-			clangd = {},
-			lua_ls = {
+			ts_ls = {}, -- TypeScript/JavaScript
+			svelte = {}, -- Svelte components
+			tailwindcss = {}, -- Tailwind CSS classes
+			eslint = {}, -- JavaScript/TypeScript linter
+			rust_analyzer = {}, -- Rust
+			texlab = {}, -- Tex linter
+			markdown_oxide = {}, -- Markdown
+			asm_lsp = {}, -- Assembly
+			clangd = {}, -- C/C++
+			lua_ls = { -- Lua
 				settings = {
 					Lua = {
 						completion = { callSnippet = "Replace" },

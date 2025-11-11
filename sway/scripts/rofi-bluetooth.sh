@@ -3,9 +3,13 @@
 ## Author  : Harshit Prahant Dhanwalkar
 ## Github  : @Harshit-Dhanwalkar
 
+## IMPORTANT: This script is now integrated along with bluetooh.sh into audio-output-controller.sh
+
 # Import Current Theme from the shared location
 source "$HOME"/.config/rofi/applets/shared/theme.bash
 theme="$type/$style"
+
+NOTIFY="/usr/bin/notify-send"
 
 # Constants
 divider=" "
@@ -209,7 +213,6 @@ toggle_trust() {
 print_status() {
     if power_on; then
         printf ''
-
         paired_devices_cmd="devices Paired"
         # Check if an outdated version of bluetoothctl is used to preserve backwards compatibility
         if (($(echo "$(bluetoothctl version | cut -d ' ' -f 2) < 5.65" | bc -l))); then

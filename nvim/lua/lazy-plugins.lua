@@ -83,7 +83,7 @@ require("lazy").setup({
 	require("Plugins.markdown.nvim-toc"),
 	require("Plugins.markdown.markdown-table-mode"),
 	require("Plugins.markdown.markdown-preview"),
-	-- require("Plugins.markdown.peek"),
+	require("Plugins.markdown.peek"),
 	require("Plugins.rust.crates"),
 	require("Plugins.rust.rustaceanvim"),
 	require("Plugins.rust.rust-vim"),

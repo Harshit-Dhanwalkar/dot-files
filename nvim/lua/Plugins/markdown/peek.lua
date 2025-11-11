@@ -31,21 +31,29 @@
 return {
 	"toppair/peek.nvim",
 	event = { "VeryLazy" },
+	ft = { "markdown" },
+	cmd = { "PeekOpen", "PeekClose" },
 	build = "deno task --quiet build:fast",
 	config = function()
 		require("peek").setup({})
-		-- local peek = require("peek")
-		-- peek.setup({
-		-- close_on_bdelete = true,
-		-- app = "browser", -- xgd-open http://localhost:33113/?theme=dark
-		-- app = "brave-browser",
-		-- filetype = {
-		-- 	"markdown",
-		-- 	"vimwiki",
-		-- 	"vimwiki.markdown",
-		-- 	"vimwiki.markdown.pandoc",
-		-- },
-		-- })
+		local peek = require("peek")
+		peek.setup({
+			auto_load = true, -- whether to automatically load preview when entering another markdown buffer
+			close_on_bdelete = true, -- close preview window on buffer delete
+			syntax = true, -- enable syntax highlighting, affects performance
+			theme = "dark", -- 'dark' or 'light'
+			update_on_change = true,
+			-- app = "webview", -- 'webview', 'browser' ( -- xgd-open http://localhost:33113/?theme=dark)
+			app = { "brave-browser", "-new-window" },
+			throttle_at = 200000, -- start throttling when file exceeds this  amount of bytes in size
+			throttle_time = "auto", -- minimum amount of time in milliseconds that has to pass before starting new render
+			filetype = {
+				"markdown",
+				"vimwiki",
+				"vimwiki.markdown",
+				"vimwiki.markdown.pandoc",
+			},
+		})
 
 		-- -- Custom Peek with i3 logic
 		-- vim.api.nvim_create_user_command("PeekOpen", function()

@@ -117,7 +117,7 @@
     "tooltip-format-wifi": "{essid} ({signalStrength}%)\nIP: {ipaddr}/{cidr}\nGateway: {gwaddr}\n{bandwidthUpBits} {bandwidthDownBits}",
     //"tooltip-format-wifi": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
     "tooltip-format-disconnected": "Disconnected",
-    "on-click": "~/.config/sway/scripts/rofi-wifi-menu.sh",
+    "on-click": "~/.config/sway/scripts/wifi-menu.sh",
     "on-click-right": "exec ${HOME}/.local/kitty.app/bin/kitty nmtui",
     // "format-wifi": "{essid} ({signalStrength}%) ",
     // "format-ethernet": "Connected  ",

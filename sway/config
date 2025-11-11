@@ -59,7 +59,7 @@ input type:touchpad {
     bindsym $mod+d exec --no-startup-id ~/.config/sway/modules/app_launcher/launcher.sh
 
     # Swtich audio output
-    bindsym Alt+a exec  ~/.config/sway/scripts/audioswitch.sh
+    bindsym Alt+a exec  ~/.config/sway/scripts/audio-output-controller.sh
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -82,7 +82,7 @@ input type:touchpad {
     bindsym F3 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 
     # wifi/network
-    bindsym $mod+n exec ~/.config/sway/scripts/rofi-wifi-menu.sh
+    bindsym $mod+n exec ~/.config/sway/scripts/wifi-menu.sh
 
     # Screenshot
     bindsym Print exec grim -t png ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png
