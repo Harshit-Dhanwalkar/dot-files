@@ -311,6 +311,20 @@ This repository contains configuration files and installation notes for my prefe
     </details>
 
 10. <details>
+    <summary>BTop++</summary>
+    <p>
+
+    - [Github](https://github.com/aristocratos/btop)
+    </p>
+    <p>Installation</p>
+
+    ```bash
+    sudo apt install btop
+    ```
+
+    </details>
+
+11. <details>
     <summary>Dunst</summary>
     <p>
     - [Archwiki](https://wiki.archlinux.org/title/Dunst)
@@ -324,7 +338,7 @@ This repository contains configuration files and installation notes for my prefe
     </p>
     </details>
 
-11. <details>
+12. <details>
     <summary>Dmenu</summary>
     <p>
     - [suckless.org](http://tools.suckless.org/dmenu/)
@@ -342,7 +356,7 @@ This repository contains configuration files and installation notes for my prefe
     </p>
     </details>
 
-12. <details>
+13. <details>
     <summary>Wofi</summary>
     <p>
     - [Gitlab](https://gitlab.com/dgirault/wofi.git David-Dirault-wofi)
