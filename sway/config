@@ -19,7 +19,7 @@ include /etc/sway/config.d/*
 
 bindsym $mod+w exec "~/.config/sway/modules/wall-switch.sh"
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/harshitpd/Pictures/wallpapers/02_Face-Mask.png fill
+output * bg /home/harshitpd/Pictures/wallpapers/makima.jpeg fill
 
 # Example configuration:
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -105,6 +105,7 @@ input type:touchpad {
     # bindsym $mod+p exec ~/.config/rofi/powermenu/type-6/powermenu.sh
     # Quicklinks menu
     bindsym $mod+t exec ~/.config/sway/modules/QucikLink/quicklinks.sh
+    bindsym Mod1+t exec ~/.config/sway/scripts/quicklink-dmenu.sh
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 

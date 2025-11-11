@@ -1,3 +1,4 @@
+# vim: ft=cfg
 # ~/.config/dunst/dunstrc
 
 [global]
@@ -485,5 +486,3 @@
 #[stack-volumes]
 #    appname = "some_volume_notifiers"
 #    set_stack_tag = "volume"
-#
-# vim: ft=cfg

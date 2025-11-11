@@ -12,7 +12,7 @@ theme="$type/$style"
 
 # Theme Elements
 prompt='Quick Links'
-mesg="Attempting to open links in the following order: Chromium, Brave, Firefox"
+mesg="Attempting to open links in the following order: Firefox, Brave(Brave-broswer), Chromium"
 
 # if [[ "$theme" == *'type-1'* || "$theme" == *'type-3'* || "$theme" == *'type-5'* ]]; then
 #     list_col='1'
