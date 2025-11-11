@@ -1,4 +1,7 @@
-# Qutebrowser
+# My `qutebrowser` configuration
+
+- Author  : Harshit Prashant Dhanwalkar
+- Github  : @Harshit-Dhanwalkar
 
 <img src="../assets/QtBrowser.jpg" alt="Qutebrowser" width="450">
 

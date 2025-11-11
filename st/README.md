@@ -1,3 +1,8 @@
+# My `st` configuration
+
+- Author  : Harshit Prashant Dhanwalkar
+- Github  : @Harshit-Dhanwalkar
+
 ## Patches added
 
 - [alpha & changealpha (transparency)](https://st.suckless.org/patches/alpha/)

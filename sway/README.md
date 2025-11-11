@@ -1,6 +1,4 @@
-# My `Kitty` configuration
+# My `sway` configuration
 
 - Author  : Harshit Prashant Dhanwalkar
 - Github  : @Harshit-Dhanwalkar
-
-![My Kitty Config](../assets/kitty.svg)
