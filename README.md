@@ -12,16 +12,19 @@ This repository contains configuration files and installation notes for my prefe
 1.  <details>
     <summary>HomeBrew</summary>
     <p>Installation</p>
+    <p>
 
     ```bash
     /bin/bash -c "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh](https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh))"
     ```
 
+    </p>
     </details>
 
 2.  <details>
     <summary>Flatpak</summary>
     <p>Installation</p>
+    <p>
 
     ```bash
     sudo apt install flatpak
@@ -29,17 +32,20 @@ This repository contains configuration files and installation notes for my prefe
     flatpak remote-add --if-not-exists flathub [https://dl.flathub.org/repo/flathub.flatpakrepo](https://dl.flathub.org/repo/flathub.flatpakrepo)
     ```
 
+    </p>
     </details>
 
 3.  <details>
     <summary>Cargo and Rust</summary>
     <p>Installation</p>
+    <p>
 
     ```bash
     curl [https://sh.rustup.rs](https://sh.rustup.rs) -sSf | sh # cargo
     curl --proto '=https' --tlsv1.2 -sSf [https://sh.rustup.rs](https://sh.rustup.rs) | sh # rustup
     ```
 
+    </p>
     </details>
 
 ---
@@ -49,27 +55,33 @@ This repository contains configuration files and installation notes for my prefe
 1.  <details>
     <summary>Kitty</summary>
     <p>
+
     - [kitty](https://sw.kovidgoyal.net/kitty/)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     curl -L [https://sw.kovidgoyal.net/kitty/installer.sh](https://sw.kovidgoyal.net/kitty/installer.sh) | sh /dev/stdin
     ```
 
+    </p>
     </details>
 
 2.  <details>
     <summary>ST</summary>
     <p>
+
     - [suckless](https://st.suckless.org/)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     # Going to update soon
     ```
 
+    <p>
     </details>
 
 ---
@@ -79,9 +91,11 @@ This repository contains configuration files and installation notes for my prefe
 1.  <details>
     <summary>Nvim</summary>
     <p>
+
     - [Nvim](https://neovim.io/)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     brew install neovim
@@ -118,9 +132,11 @@ This repository contains configuration files and installation notes for my prefe
 2.  <details>
     <summary>Inkscape</summary>
     <p>
+
     - [Inkscape](https://inkscape.org/)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     sudo add-apt-repository ppa:inkscape.dev/stable
@@ -128,14 +144,17 @@ This repository contains configuration files and installation notes for my prefe
     sudo apt install inkscape
     ```
 
+    </p>
     </details>
 
 3.  <details>
     <summary>Qutebrowser</summary>
     <p>
+
     - [Qutebrowser](https://qutebrowser.org/index.html)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     sudo apt install qutebrowser
@@ -147,9 +166,11 @@ This repository contains configuration files and installation notes for my prefe
 4.  <details>
     <summary>Obsidian</summary>
     <p>
+
     - [Obsidian](https://obsidian.md/)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     flatpak install flathub md.obsidian.Obsidian
@@ -161,6 +182,7 @@ This repository contains configuration files and installation notes for my prefe
 5.  <details>
     <summary>QEMU</summary>
     <p>
+
     - [QEMU](https://www.qemu.org/)
     - Check Virtualization Extension by running following command to make sure you’ve enabled virtualization in on your system. It should be above 0
       - If the output is zero then go to bios settings and enable VT-x (Virtualization Technology Extension) for Intel processor and AMD-V for AMD processor.
@@ -171,6 +193,7 @@ This repository contains configuration files and installation notes for my prefe
 
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     sudo apt install qemu-kvm qemu-system qemu-utils python3 python3-pip libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager -y
@@ -224,9 +247,11 @@ This repository contains configuration files and installation notes for my prefe
 6.  <details>
     <summary>OBS studio</summary>
     <p>
+
     - [OBS Project](https://obsproject.com/)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     sudo apt install obs-studio
@@ -238,6 +263,7 @@ This repository contains configuration files and installation notes for my prefe
 7.  <details>
     <summary>Blender</summary>
     <p>
+
     - Downloads via: [Blender.org](https://www.blender.org/download/)
     </p>
     </details>
@@ -245,9 +271,11 @@ This repository contains configuration files and installation notes for my prefe
 8.  <details>
     <summary>Aseprite</summary>
     <p>
+
     - [Aseprite.org](https://www.aseprite.org/)
     </p>
     <p>Installation</p>
+    <p>
 
     - Downloads via :
       - [Github](https://github.com/aseprite/aseprite.git)
@@ -304,35 +332,43 @@ This repository contains configuration files and installation notes for my prefe
 9.  <details>
     <summary>Fastfetch</summary>
     <p>
+
     - [Github](https://github.com/fastfetch-cli/fastfetch.git)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     sudo apt install fastfetch
     ```
 
+    </p>
     </details>
 
 10. <details>
     <summary>BTop++</summary>
     <p>
+
     - [Github](https://github.com/aristocratos/btop)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     sudo apt install btop
     ```
 
+    </p>
     </details>
 
 11. <details>
     <summary>Dunst</summary>
     <p>
+
     - [Archwiki](https://wiki.archlinux.org/title/Dunst)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     sudo apt install dunst
@@ -344,9 +380,11 @@ This repository contains configuration files and installation notes for my prefe
 12. <details>
     <summary>Dmenu</summary>
     <p>
+
     - [suckless.org](http://tools.suckless.org/dmenu/)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     git clone https://git.suckless.org/dmenu demnu
@@ -357,14 +395,17 @@ This repository contains configuration files and installation notes for my prefe
     ```
 
     </p>
+
     </details>
 
 13. <details>
     <summary>Wofi</summary>
     <p>
+
     - [Gitlab](https://gitlab.com/dgirault/wofi.git David-Dirault-wofi)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     sudo apt install mercurial libwayland-dev libgtk-3-dev pkgconf meson ninja-build libjson-glib-dev
@@ -397,17 +438,22 @@ This repository contains configuration files and installation notes for my prefe
 1.  <details>
     <summary>Icon pack</summary>
     <p>
+
     - [Arashi](https://github.com/0hStormy/Arashi)
     </p>
     <p>Installation</p>
+    <p>
 
     ```bash
     mkdir -p ~/.icons
     git clone https://github.com/0hStormy/Arashi
 
     # (For updating with newer version)
+
     cd ~/.icons/Arashi
     git fetch
     ```
+
+    </p>
 
     </details>
