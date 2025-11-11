@@ -4,6 +4,7 @@
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=Sway
 # Use Mod4 for Logo key. Use Mod1 for Alt.
 set $mod Mod4
+set $mod-alt Mod1
 set $left h
 set $down j
 set $up k
@@ -44,15 +45,15 @@ input type:touchpad {
 # Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
-    # Screen Lock
-    bindsym Ctrl+Alt+l exec swaylock -C ~/.config/sway/swaylock/config
-
     # Start a terminal
     bindsym $mod+Return exec $term
-    bindsym alt+Return exec ~/.config/st/st
+    bindsym $mod-alt+Return exec ~/.config/st/st
 
     # Kill focused window
     bindsym $mod+q kill
+
+    # Screen Lock
+    bindsym $mod-alt+Ctrl+l exec swaylock -C ~/.config/sway/swaylock/config
 
     # Start launcher App menu
     # bindsym $mod+d exec $menu
@@ -60,8 +61,11 @@ input type:touchpad {
     # bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
     bindsym $mod+d exec --no-startup-id ~/.config/sway/modules/app_launcher/launcher.sh
 
+    # Launch Nautilus file manager
+    bindsym $mod+m exec nautilus
+
     # Swtich audio output
-    bindsym Alt+a exec  ~/.config/sway/scripts/controllers.sh
+    bindsym $mod-alt+a exec  ~/.config/sway/scripts/controllers.sh
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -69,22 +73,23 @@ input type:touchpad {
     # Change normal to inverse to use left mouse button for resizing and right mouse button for dragging.
     floating_modifier $mod normal
 
-    # Launch Nautilus file manager
-    bindsym $mod+m exec nautilus
-
     # brightness control
     # add `USER_NAME ALL=(ALL) NOPASSWD: /usr/bin/brightnessctl` at the end of "sudo visudo"
     # this will prevent `brightnessctl` cmd to use sudo everytime you use it.
-    bindsym F6 exec sudo brightnessctl set 5%-
-    bindsym F7 exec sudo brightnessctl set +5%
+    # bindsym F6 exec sudo brightnessctl set 5%-
+    # bindsym F7 exec sudo brightnessctl set +5%
+    bindsym F6 exec ~/.config/sway/scripts/dunst-slider.sh brightness_down
+    bindsym F7 exec ~/.config/sway/scripts/dunst-slider.sh brightness_up
 
     # Volume control
     bindsym F1 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-    bindsym F2 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    bindsym F3 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    # bindsym F2 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    # bindsym F3 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym F2 exec ~/.config/sway/scripts/dunst-slider.sh volume_down
+    bindsym F3 exec ~/.config/sway/scripts/dunst-slider.sh volume_up
 
     # wifi/network
-    bindsym $mod+n exec ~/.config/sway/scripts/wifi-menu.sh
+    bindsym $mod-alt+n exec ~/.config/sway/scripts/wifi-menu.sh
 
     # Screenshot
     bindsym Print exec grim -t png ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png

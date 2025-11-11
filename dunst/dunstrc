@@ -50,17 +50,16 @@
     show_indicators = no
 
 [urgency_low]
-    background = "#222222"  # "#2e3440"
-    foreground = "#bbbbbb"  # "#eceff4"
+    background = "#1e1e2e"  #"#222222"  # "#2e3440"
+    foreground = "#cdd6f4"  # "#bbbbbb"  # "#eceff4"
     timeout = 3
 
 [urgency_normal]
-    background = "#1e1e2e"  # "#005577"
-    foreground = "#89b4fa"  # "#eeeeee"
+    background = "#1e1e2e"  # "#005577" # "#313244"
+    foreground = "#89b4fa"  # "#eeeeee" # "#a6adc8"
     timeout = 5
 
 [urgency_critical]
-    background = "#bf616a" # "#f38ba8"
-    foreground = "#eceff4"
+    background = "#bf616a"  # "#f38ba8"
+    foreground = "#1e1e2e"  #"#11111b"  # "#eceff4"
     timeout = 0
-
