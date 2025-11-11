@@ -25,8 +25,8 @@ play = [
 ]
 pdf = [
     { run = 'zathura "$1"', desc = " Zathura", orphan = true, for = "linux" },
-    { run = 'sioyek "$1"', desc = " Sioyek", orphan = true, for = "linux" },
     { run = 'okular "$1"', desc = " Okular", orphan = true, for = "linux" },
+    { run = 'QT_QPA_PLATFORM=wayland flatpak run com.github.ahrm.sioyek "$1"', desc = " Sioyek", orphan = true, for = "linux" },
     # { run = 'evince "$1"', desc = " Evince", orphan = true, for = "linux" },
 ]
 images = [

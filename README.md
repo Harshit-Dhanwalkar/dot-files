@@ -366,6 +366,7 @@ This repository contains configuration files and installation notes for my prefe
     <p>
 
     - [Archwiki](https://wiki.archlinux.org/title/Dunst)
+    - [Dunst](https://dunst-project.org/)
     </p>
     <p>Installation</p>
     <p>
@@ -395,14 +396,13 @@ This repository contains configuration files and installation notes for my prefe
     ```
 
     </p>
-
     </details>
 
 13. <details>
     <summary>Wofi</summary>
     <p>
 
-    - [Gitlab](https://gitlab.com/dgirault/wofi.git David-Dirault-wofi)
+    - [Gitlab](https://gitlab.com/dgirault/wofi.git)
     </p>
     <p>Installation</p>
     <p>
@@ -431,6 +431,39 @@ This repository contains configuration files and installation notes for my prefe
     </p>
     </details>
 
+14. <details>
+    <summary>Yazi</summary>
+    <p>
+
+    - [Github](https://github.com/sxyazi/yazi)
+    - [Website](https://yazi-rs.github.io/)
+    </p>
+    <p>Installation</p>
+    <p>
+
+    ```bash
+    brew update
+    brew install yazi
+    ```
+
+15. <details>
+    <summary>Sioyek</summary>
+    <p>
+
+    - [Github](https://github.com/sxyazi/yazi)
+    - [Website](https://yazi-rs.github.io/)
+    </p>
+    <p>Installation</p>
+    <p>
+
+    ```bash
+    # flatpak
+    flatpak install sioyek
+    flatpak run com.github.ahrm.sioyek
+    # if it fails to lanch
+    QT_QPA_PLATFORM=wayland flatpak run com.github.ahrm.sioyek
+    ```
+
 ---
 
 ## Appperance
@@ -455,5 +488,4 @@ This repository contains configuration files and installation notes for my prefe
     ```
 
     </p>
-
     </details>
