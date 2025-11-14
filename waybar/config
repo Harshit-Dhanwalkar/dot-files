@@ -6,7 +6,8 @@
   // Modules Configuration
   "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/mode", "wlr/taskbar"],
   //"modules-center": ["sway/window"],
-  "modules-center": ["custom/cava", "clock", "custom/cava"],
+  "modules-center": ["clock"],
+  //"modules-center": ["custom/cava", "clock", "custom/cava"],
   "modules-right": [
     //"mpd",
     "tray",
@@ -135,7 +136,8 @@
     "format-disabled": "",
     "format-connected": "󰂱 {num_connections}",
     "on-click": "~/.config/sway/scripts/rofi-bluetooth.sh",
-    "on-click-right": "kitty bluetoothctl",
+    //"on-click-right": "kitty blueman-manager",
+    "on-click-right": "/home/harshitpd/.local/kitty.app/bin/kitty bluetoothctl",
     //"tooltip-format": "{status}"
     "tooltip-format-connected": "{device_enumerate}",
     //"tooltip-format-enumerate-connected": "{device_alias} ({device_address})"
