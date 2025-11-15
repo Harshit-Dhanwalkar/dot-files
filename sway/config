@@ -98,9 +98,11 @@ input type:touchpad {
     ## Uses rofi to bring out menu for screen shoot
     bindsym Mod1+s exec ~/.config/sway/scripts/screenshot.sh
 
-    ## color picker using grim and slurp
+    # Color picker
     # bindsym Mod1+c exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | awk -F'[(,)]' '/srgb/{printf "#%02x%02x%02x\n", $2, $3, $4}' | xargs -I{} notify-send "Picked Color" "{}"
     # bindsym Mod1+i exec ~/.config/sway/scipts/color-picker.sh
+    bindsym $mod-alt+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | wl-copy
+    bindsym $mod+Shift+p exec sh -c 'HEX_COLOR=$(slurp -p | grim -g - - | convert - txt: | awk \"NR==2 { print \$3 }\"); wl-copy "$HEX_COLOR"; dunstify -a "Color Picker" "Copied Color" "Color: <b>$HEX_COLOR</b>"'
 
     # Browser
     bindsym Mod1+w exec ~/.config/qutebrowser/userscripts/session.sh
