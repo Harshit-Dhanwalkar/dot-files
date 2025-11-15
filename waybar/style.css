@@ -1,4 +1,6 @@
 * {
+  border: none;
+  border-radius: 0;
   font-family: "JetBrains Mono Nerd Font";
   font-weight: bold;
   font-size: 12px;
@@ -16,16 +18,16 @@ window#waybar {
   background: rgba(0, 0, 0, 0);
   /*  border: 2px solid #124323; */
   /* border: 0px solid #A1BDCE; */
-  border: 3px solid rgba(0, 0, 0, 0);
+  /* border: 3px solid rgba(0, 0, 0, 0); */
   border-radius: 0px;
 }
 
 tooltip {
   background: #171717;
   color: #a1bdce;
-  font-size: 5px;
-  border-radius: 7px;
-  border: 2px solid #101a24;
+  font-size: 4px;
+  /* border-radius: 7px; */
+  /* border: 2px solid #101a24; */
 }
 #workspaces {
   background: rgba(23, 23, 23, 0);
