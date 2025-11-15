@@ -18,7 +18,8 @@ options=(
   "󰙯  Discord"
   "󰎄  Youtube Music" #   󰎅 
   "𝕏  X.com ( Twitter)"
-  "  slack"
+  "  Slack"
+  "  One Piece"
 )
 
 # Function to find available browser
@@ -56,4 +57,5 @@ case "$chosen" in
 *Discord*) open_link "https://canary.discord.com/channels/@me" ;;
 *Youtube*) open_link "https://music.youtube.com/" ;;
 *X.com* | *Twitter*) open_link "https://x.com/" ;;
+*OncePiece) open_link "https://mangafire.to/manga/one-piecee.dkw" ;;
 esac

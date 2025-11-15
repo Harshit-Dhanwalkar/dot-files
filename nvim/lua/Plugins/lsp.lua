@@ -66,31 +66,31 @@ return {
 		)
 
 		local servers = {
-			pyright = {
-				settings = {
-					python = {
-						analysis = {
-							autoSearchPaths = true,
-							useLibraryCodeForTypes = true,
-							-- diagnosticSeverityOverrides = {
-							-- 	reportUnusedVariable = "none",
-							-- 	reportMissingImports = "warning",
-							-- 	reportUndefinedVariable = "error",
-							-- },
-							-- reportGeneralTypeIssues = true,
-							-- typeCheckingMode = "basic", -- "strict", "off"
-						},
-					},
-				},
-			},
-			ts_ls = {}, -- TypeScript/JavaScript
-			svelte = {}, -- Svelte components
-			tailwindcss = {}, -- Tailwind CSS classes
-			eslint = {}, -- JavaScript/TypeScript linter
-			rust_analyzer = {}, -- Rust
+			-- pyright = {
+			-- 	settings = {
+			-- 		python = {
+			-- 			analysis = {
+			-- 				autoSearchPaths = true,
+			-- 				useLibraryCodeForTypes = true,
+			-- 				-- diagnosticSeverityOverrides = {
+			-- 				-- 	reportUnusedVariable = "none",
+			-- 				-- 	reportMissingImports = "warning",
+			-- 				-- 	reportUndefinedVariable = "error",
+			-- 				-- },
+			-- 				-- reportGeneralTypeIssues = true,
+			-- 				-- typeCheckingMode = "basic", -- "strict", "off"
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
+			-- ts_ls = {}, -- TypeScript/JavaScript
+			-- svelte = {}, -- Svelte components
+			-- tailwindcss = {}, -- Tailwind CSS classes
+			-- eslint = {}, -- JavaScript/TypeScript linter
+			-- rust_analyzer = {}, -- Rust
 			texlab = {}, -- Tex linter
 			markdown_oxide = {}, -- Markdown
-			asm_lsp = {}, -- Assembly
+			-- asm_lsp = {}, -- Assembly
 			clangd = {}, -- C/C++
 			lua_ls = { -- Lua
 				settings = {
@@ -104,7 +104,8 @@ return {
 		require("mason").setup()
 
 		local ensure_installed = vim.tbl_keys(servers)
-		vim.list_extend(ensure_installed, { "stylua", "pyright", "clangd", "clang-format", "codelldb", "asm-lsp" })
+		-- vim.list_extend(ensure_installed, { "stylua", "pyright", "clangd", "clang-format", "codelldb", "asm-lsp" })
+		vim.list_extend(ensure_installed, { "stylua", "pyright", "clangd", "clang-format", "codelldb" })
 
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
