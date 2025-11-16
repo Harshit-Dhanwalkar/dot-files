@@ -21,27 +21,30 @@ set guioptions ""
 # Font
 set font "JetBrains Mono Nerd Font 12"
 
+    # [SchemeNorm] = { "#cdd6f4", "#1e1e2e" }, // text, background
+    # [SchemeSel]  = { "#1e1e2e", "#89b4fa" }, // selected text/bg
+    # [SchemeOut]  = { "#000000", "#00ffff" }, // output
 # Dracula color theme
-set notification-error-bg       rgba(255,85,85,1)     # Red
+set notification-error-bg       "#101012" # #1e1e2e = # rgba(255,85,85,1)     # Red
 set notification-error-fg       rgba(248,248,242,1)   # Foreground
 set notification-warning-bg     rgba(255,184,108,1)   # Orange
 set notification-warning-fg     rgba(68,71,90,1)      # Selection
 set notification-bg             rgba(40,42,54,1)      # Background
 set notification-fg             rgba(248,248,242,1)   # Foreground
 
-set completion-bg               rgba(40,42,54,1)      # Background
+set completion-bg               "#101012" # #1e1e2e = #rgba(40,42,54,1)      # Background
 set completion-fg               rgba(98,114,164,1)    # Comment
 set completion-group-bg         rgba(40,42,54,1)      # Background
 set completion-group-fg         rgba(98,114,164,1)    # Comment
 set completion-highlight-bg     rgba(68,71,90,1)      # Selection
 set completion-highlight-fg     rgba(248,248,242,1)   # Foreground
 
-set index-bg                    rgba(40,42,54,1)      # Background
+set index-bg                    "#101012" # #1e1e2e = # rgba(40,42,54,1)      # Background
 set index-fg                    rgba(248,248,242,1)   # Foreground
 set index-active-bg             rgba(68,71,90,1)      # Current Line
 set index-active-fg             rgba(248,248,242,1)   # Foreground
 
-set inputbar-bg                 rgba(40,42,54,1)      # Background
+set inputbar-bg                 "#101012" # #1e1e2e  = rgba(40,42,54,1)      # Background
 set inputbar-fg                 rgba(248,248,242,1)   # Foreground
 set statusbar-bg                rgba(40,42,54,1)      # Background
 set statusbar-fg                rgba(248,248,242,1)   # Foreground
@@ -55,12 +58,12 @@ set default-bg "#00"
 set default-fg "#00"
 
 set render-loading              true
-set render-loading-fg           rgba(40,42,54,1)      # Background
+set render-loading-fg           "#101012" # #1e1e2e = # rgba(40,42,54,1)      # Background
 set render-loading-bg           rgba(248,248,242,1)   # Foreground
 
 # Recolor mode settings
 set recolor "true"
-set recolor-lightcolor          rgba(40,42,54,1)      # Background
+set recolor-lightcolor          "#101012" # #1e1e2e = # rgba(40,42,54,1)      # Background
 set recolor-darkcolor           rgba(248,248,242,1)   # Foreground
 set recolor-reverse-video "true"
 set recolor-keephue "true"
