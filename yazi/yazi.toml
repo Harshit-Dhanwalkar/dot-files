@@ -24,10 +24,10 @@ play = [
     { run = 'totem "$@"', desc = " Play (Totem)", orphan = true, for = 'unix' },
 ]
 pdf = [
-    { run = 'zathura "$1"', desc = " Zathura", orphan = true, for = "linux" },
+    { run = '/usr/bin/zathura "$1"', desc = " Zathura", orphan = true, for = "linux" },
     { run = 'okular "$1"', desc = " Okular", orphan = true, for = "linux" },
-    { run = 'QT_QPA_PLATFORM=wayland flatpak run com.github.ahrm.sioyek "$1"', desc = " Sioyek", orphan = true, for = "linux" },
-    # { run = 'evince "$1"', desc = " Evince", orphan = true, for = "linux" },
+    # { run = 'QT_QPA_PLATFORM=wayland flatpak run com.github.ahrm.sioyek "$1"', desc = " Sioyek", orphan = true, for = "linux" },
+    { run = 'evince "$1"', desc = " Evince", orphan = true, for = "linux" },
 ]
 images = [
     # { run = 'sxiv "$1" $(find "$(dirname "$1")" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) | grep -v "$1")', desc = "SXIV Gallery", for = "linux" },
@@ -36,7 +36,6 @@ images = [
     { run = 'eog "$1"', desc = " Eye Of Gnome (SVG)", orphan = true, for = "linux" },
     { run = 'aseprite "$1"', desc = " Aseprite (SVG)", orphan = true, for = "linux" },
 ]
-
 jupyternb = [
     { run = 'code "$1"', desc = "󰨞 VScode", orphan = true, for = "unix" },
 ]
@@ -51,11 +50,11 @@ rules = [
 
 # Image Files
     #{ mime = "image/*", use = [ "images","open", "reveal" ] },
-# Other image formats
+    # Other image formats
     { mime = "image/jpeg", use = [ "images", "reveal" ] },
     { mime = "image/png", use = [ "images", "reveal" ] },
     { mime = "image/gif", use = [ "images", "reveal" ] },
-# SVG files
+    # SVG files
     { mime = "image/svg+xml", use = [ "images", "reveal" ] },
 
 # Audio/Video with GUI (VLC, MPV, etc.)
@@ -119,60 +118,61 @@ suppress_preload = false
 [plugin]
 
 fetchers = [
-    # Mimetype
-    { id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
+	# Mimetype
+	{ id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
 ]
 preloaders = [
-    # Image
-    { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
-    { mime = "image/*", run = "image" },
-    # Video
-    { mime = "video/*", run = "video" },
-    # PDF
-    { mime = "application/pdf", run = "pdf" },
-    # Font
-    { mime = "font/*", run = "font" },
-    { mime = "application/vnd.ms-opentype", run = "font" },
+	# Image
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/*", run = "image" },
+	# Video
+	{ mime = "video/*", run = "video" },
+	# PDF
+	{ mime = "application/pdf", run = "pdf" },
+	# Font
+	{ mime = "font/*", run = "font" },
+	{ mime = "application/vnd.ms-opentype", run = "font" },
 ]
 
 # FIX: using kitty protocol for preview
 previewers = [
-  { name = "*/", run = "folder", sync = true },
+	{ name = "*/", run = "folder", sync = true },
 
-  # Code
-  { mime = "text/*", run = "code" },
-  { mime = "*/{xml,javascript,x-wine-extension-ini}", run = "code" },
+	# Code
+	{ mime = "text/*", run = "code" },
+	{ mime = "*/{xml,javascript,x-wine-extension-ini}", run = "code" },
 
-  # JSON
-  { mime = "application/{json,x-ndjson}", run = "json" },
+	# JSON
+	{ mime = "application/{json,x-ndjson}", run = "json" },
 
-  # Image - Use Kitty's icat for image preview
-#   { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
-#   { mime = "image/*", run = "image" },
-#   { mime = "image/{avif,hei?,jxl,svg+xml}", run = "kitty +kitten icat %i" },
-#   { mime = "image/*", run = "kitty +kitten icat %i" },
+	# Image - Use Kitty's icat for image preview
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/{png,jpg,jpeg,gif,bmp,webp}", run = "kitty +kitten icat --silent %i" },
+	{ mime = "image/*", run = "image" },
+    #   { mime = "image/{avif,hei?,jxl,svg+xml}", run = "kitty +kitten icat %i" },
+    #   { mime = "image/*", run = "kitty +kitten icat %i" },
 
-  # Video - Generate thumbnail for video preview
-#   { mime = "video/*", run = "video" },
-#   { mime = "video/*", run = "ffmpegthumbnailer -i %i -o - -s 512 -q 10 | kitty +kitten icat" },
-#
-  # PDF - Convert PDF to PNG and preview in Kitty
-#    { mime = "application/pdf", run = "pdf" },
-#    { mime = "application/pdf", run = "pdftoppm -png %i -singlefile -scale-to 512 - | kitty +kitten icat" },
+	# Video - Generate thumbnail for video preview
+    #   { mime = "video/*", run = "video" },
+    #   { mime = "video/*", run = "ffmpegthumbnailer -i %i -o - -s 512 -q 10 | kitty +kitten icat" },
 
-  # Archive
-  { mime = "application/{,g}zip", run = "archive" },
-  { mime = "application/x-{tar,bzip*,7z-compressed,xz,rar,iso9660-image}", run = "archive" },
+	# PDF - Convert PDF to PNG and preview in Kitty
+    #    { mime = "application/pdf", run = "pdf" },
+    #    { mime = "application/pdf", run = "pdftoppm -png %i -singlefile -scale-to 512 - | kitty +kitten icat" },
 
-  # Font
-  { mime = "font/*", run = "font" },
-  { mime = "application/vnd.ms-opentype", run = "font" },
+	# Archive
+	{ mime = "application/{,g}zip", run = "archive" },
+	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar,iso9660-image}", run = "archive" },
 
-  # Empty file
-  { mime = "inode/x-empty", run = "empty" },
+	# Font
+	# { mime = "font/*", run = "font" },
+	# { mime = "application/vnd.ms-opentype", run = "font" },
 
-  # Fallback
-  { name = "*", run = "file" },
+	# Empty file
+	{ mime = "inode/x-empty", run = "empty" },
+
+	# Fallback
+	{ name = "*", run = "file" },
 ]
 
 [input]

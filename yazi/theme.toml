@@ -7,15 +7,18 @@
 # use = ""
 
 [mgr]
-cwd = { fg = "cyan" }
+# cwd = { fg = "cyan" }
+cwd = { fg = "#89B4FA" }
 
 # Hovered
 hovered         = { reversed = true }
 preview_hovered = { underline = true }
 
 # Find
-find_keyword  = { fg = "yellow", bold = true, italic = true, underline = true }
-find_position = { fg = "magenta", bg = "reset", bold = true, italic = true }
+# find_keyword  = { fg = "yellow", bold = true, italic = true, underline = true }
+# find_position = { fg = "magenta", bg = "reset", bold = true, italic = true }
+find_keyword  = { fg = "#FF9E64", bold = true, italic = true, underline = true }
+find_position = { fg = "#89B4FA", bg = "reset", bold = true, italic = true }
 
 # Marker
 marker_copied   = { fg = "lightgreen",  bg = "lightgreen" }
@@ -29,13 +32,17 @@ tab_inactive = {}
 tab_width    = 1
 
 # Count
-count_copied   = { fg = "white", bg = "green" }
-count_cut      = { fg = "white", bg = "red" }
-count_selected = { fg = "white", bg = "yellow" }
+# count_copied   = { fg = "white", bg = "green" }
+# count_cut      = { fg = "white", bg = "red" }
+# count_selected = { fg = "white", bg = "yellow" }
+count_copied   = { fg = "white", bg = "#9ECE6A" }
+count_cut      = { fg = "white", bg = "#bf616a" }
+count_selected = { fg = "white", bg = "#FF9E64" }
 
 # Border
 border_symbol = "│"
-border_style  = { fg = "gray" }
+# border_style  = { fg = "gray" }
+border_style  = { fg = "#89B4FA"} #, bg = "#1E1E2E" }
 
 # Highlighting
 syntect_theme = ""
@@ -46,14 +53,19 @@ separator_close = "" # 
 separator_style = { fg = "gray", bg = "gray" }
 
 # Mode
-mode_normal = { bg = "blue", bold = true }
-mode_select = { bg = "red", bold = true }
-mode_unset  = { bg = "red", bold = true }
+# mode_normal = { bg = "blue", bold = true }
+# mode_select = { bg =  "red", bold = true }
+# mode_unset  = { bg = "red", bold = true }
+mode_normal = { bg = "#89B4FA", bold = true }
+mode_select = { bg = "#9ECE6A", bold = true }
+mode_unset  = { bg = "#bf616a", bold = true }
 
 # Progress
 progress_label  = { bold = true }
-progress_normal = { fg = "blue", bg = "black" }
-progress_error  = { fg = "red", bg = "black" }
+# progress_normal = { fg = "blue", bg = "black" }
+# progress_error  = { fg = "red", bg = "black" }
+progress_normal = { fg = "#89B4FA", bg = "black" }
+progress_error  = { fg = "#bf616a", bg = "black" }
 
 # Permissions
 permissions_t = { fg = "green" }
@@ -63,20 +75,25 @@ permissions_x = { fg = "cyan" }
 permissions_s = { fg = "darkgray" }
 
 [select]
-border   = { fg = "blue" }
-active   = { fg = "magenta", bold = true }
-inactive = {}
+# border   = { fg = "blue" }
+border     = { fg = "#89B4FA" }
+active     = { fg = "magenta", bold = true }
+inactive   = {}
 
 [input]
-border   = { fg = "blue" }
-title    = {}
-value    = {}
-selected = { reversed = true }
+# border   = { fg = "blue" }
+# title    = { }
+# value    = { }
+border     = { fg = "#89B4FA" }
+title      = { fg = "#89B4FA" }
+value      = { fg = "#89B4FA", bg = "#1E1E2E" }
+selected   = { reversed = true }
 
 [completion]
-border   = { fg = "blue" }
-active   = { reversed = true }
-inactive = {}
+# border   = { fg = "blue" }
+border     = { fg = "#89B4FA" }
+active     = { reversed = true }
+inactive   = {}
 
 # Icons
 icon_file    = ""
@@ -84,9 +101,12 @@ icon_folder  = ""
 icon_command = ""
 
 [tasks]
-border  = { fg = "blue" }
-title   = {}
-hovered = { fg = "magenta", underline = true }
+# border   = { fg = "blue" }
+# title      = { }
+# hovered  = { fg = "magenta", underline = true }
+border     = { fg = "#89B4FA" }
+title      = { }
+hovered    = { fg = "#FF9E64" , underline = true }
 
 [which]
 cols            = 3
@@ -99,15 +119,19 @@ separator_style = { fg = "darkgray" }
 
 [help]
 on      = { fg = "cyan" }
-run     = { fg = "magenta" }
+# run     = { fg = "magenta" }
+run     = { fg = "#FF9E64" }
 desc    = {}
 hovered = { reversed = true, bold = true }
 footer  = { fg = "black", bg = "white" }
 
 [notify]
-title_info  = { fg = "green" }
-title_warn  = { fg = "yellow" }
-title_error = { fg = "red" }
+# title_info  = { fg = "green" }
+# title_warn  = { fg = "yellow" }
+# title_error = { fg = "red" }
+title_info  = { fg = "#9ECE6A" }
+title_warn  = { fg = "#FF9E64" }
+title_error = { fg = "#bf616a" }
 
 # Icons
 icon_info  = ""
@@ -230,6 +254,7 @@ files = [
 	{ name = "hyprland.conf", text = "", fg_dark = "#00aaae", fg_light = "#008082" },
 	{ name = "i3blocks.conf", text = "", fg_dark = "#e8ebee", fg_light = "#2e2f30" },
 	{ name = "i3status.conf", text = "", fg_dark = "#e8ebee", fg_light = "#2e2f30" },
+	{ name = "sway.conf", text = "", fg_dark = "#e8ebee", fg_light = "#2e2f30" },
 	{ name = "kalgebrarc", text = "", fg_dark = "#1c99f3", fg_light = "#1573b6" },
 	{ name = "kdeglobals", text = "", fg_dark = "#1c99f3", fg_light = "#1573b6" },
 	{ name = "kdenlive-layoutsrc", text = "", fg_dark = "#83b8f2", fg_light = "#425c79" },
@@ -706,6 +731,7 @@ exts = [
 	{ name = "zsh", text = "", fg_dark = "#89e051", fg_light = "#447028" },
 	{ name = "zst", text = "", fg_dark = "#eca517", fg_light = "#76520c" },
 ]
+
 conds = [
 	# Special files
 	{ if = "orphan", text = "" },

@@ -8,7 +8,7 @@
     monitor = 0
     follow = mouse
     # geometry = "300x80-20+30"      # width x height, offset
-    geometry = "350x180-5+40"      # width x height, offset
+    geometry = "350x180-5+38"      # width x height, offset
     indicate_hidden = yes
     shrink = no
     transparency = 0
