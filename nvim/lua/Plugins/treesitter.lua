@@ -1,4 +1,7 @@
 -- ~/.config/nvim/lua/Plugins/treesitter.lua
+-- npm install -g tree-sitter-cli
+-- which tree-sitter
+-- tree-sitter --version
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",

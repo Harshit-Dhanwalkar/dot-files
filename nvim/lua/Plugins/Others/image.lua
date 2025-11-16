@@ -1,5 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/image.lua
--- sudo apt install libmagickwand-dev
+-- sudo apt install imagemagick libmagickwand-dev
 return {
 	"3rd/image.nvim",
 	dependencies = {

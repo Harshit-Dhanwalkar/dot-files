@@ -12,8 +12,21 @@ return {
 					disable_cmd = "ColorizerToggle",
 					state = true, -- Initially enabled
 				},
+				-- Flash Plugin Toggle
+				{
+					name = "Flash",
+					enable_cmd = "lua require('flash').toggle()",
+					disable_cmd = "lua require('flash').toggle()",
+					state = true, -- Initially enabled
+				},
 				-- TODO:
 				-- VimTex toggle compilation
+				{
+					name = "VimTeX TOC",
+					enable_cmd = "lua if vim.bo.filetype == 'tex' then vim.cmd('VimtexTocToggle') end",
+					disable_cmd = "lua if vim.bo.filetype == 'tex' then vim.cmd('VimtexTocToggle') end",
+					state = false,
+				},
 			},
 		})
 	end,
