@@ -47,7 +47,7 @@ require("lazy").setup({
 	require("Plugins.who5673-nasm"),
 	-- require("Plugins.harpoon"),
 	-- require("Plugins.illustrate"),
-	require("Plugins.others.image"),
+	-- require("Plugins.others.image"),
 	require("Plugins.indent-blackline"),
 	require("Plugins.mini"),
 	require("Plugins.neogit"),
@@ -93,6 +93,7 @@ require("lazy").setup({
 	require("Plugins.which-key"),
 	-- require("Plugins.webdev.emmet"),
 	require("Plugins.webdev.colorizer"),
+	require("Plugins.webdev.vim-prettier"),
 	-- require("Plugins.webdev.colortils"),
 	-- require("Plugins.webdev.minty"),
 	-- {

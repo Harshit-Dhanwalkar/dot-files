@@ -4,16 +4,26 @@
 vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.hls = true
+vim.opt.breakindent = true -- Enable break indent
+vim.opt.undofile = true -- Save undo history
+vim.opt.fileencoding = "utf-8" -- File encoding
+vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
+vim.opt.updatetime = 250 -- Decrease update time
 
-vim.wo.wrap = true -- For window-specific options
-vim.o.winblend = 20 -- Adjust the level of transparency
-vim.o.pumblend = 20 -- For popup menu level of transparency
+-- vim.lsp.handlers["$/progress"] = function() end -- to disable lsp widget
+-- vim.g.lsp_status_diagnostic_signs_enabled = false -- disable just statusline messages
+
+vim.wo.wrap = true
+vim.opt.winblend = 20 -- Adjust the level of transparency
+vim.opt.pumblend = 20 -- For popup menu level of transparency
 
 vim.opt.mouse = "a" -- Enable mouse mode
 vim.opt.showmode = false -- Don't show mode in the status line
@@ -31,15 +41,8 @@ vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
 end)
 
-vim.opt.breakindent = true -- Enable break indent
-vim.opt.undofile = true -- Save undo history
-vim.opt.fileencoding = "utf-8" -- File encoding
-vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
-vim.opt.updatetime = 250 -- Decrease update time
-
 -- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -51,19 +54,7 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
--- Preview substitutions live, as you type!
+-- Preview substitutions live, as you type
 vim.opt.inccommand = "split"
 vim.opt.scrolloff = 10
--- vim.opt.cursorline = true -- Highlight the current line
-
--- -- Command to preview in Okular
--- vim.api.nvim_create_user_command("PreviewOkular", function()
--- 	local filepath = vim.fn.expand("%:p")
--- 	vim.fn.jobstart({ "okular", filepath }, { detach = true })
--- end, {})
---
--- -- Command to preview in Zathura
--- vim.api.nvim_create_user_command("PreviewZathura", function()
--- 	local filepath = vim.fn.expand("%:p")
--- 	vim.fn.jobstart({ "zathura", filepath }, { detach = true })
--- end, {})
+vim.opt.cursorline = true -- Highlight the current line

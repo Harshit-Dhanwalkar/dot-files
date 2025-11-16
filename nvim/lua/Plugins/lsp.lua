@@ -12,6 +12,7 @@ return {
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+
 			callback = function(event)
 				local map = function(keys, func, desc, mode)
 					mode = mode or "n"
@@ -84,17 +85,20 @@ return {
 			-- 		},
 			-- 	},
 			-- },
-			-- ts_ls = {}, -- TypeScript/JavaScript
-			-- svelte = {}, -- Svelte components
-			-- tailwindcss = {}, -- Tailwind CSS classes
-			-- eslint = {}, -- JavaScript/TypeScript linter
-			-- rust_analyzer = {}, -- Rust
+			svelte = {}, -- Svelte components
+			tailwindcss = {}, -- Tailwind CSS classes
+			eslint = {}, -- JavaScript/TypeScript linter
+			ts_ls = {}, -- TypeScript/JavaScript
+			-- rust_analyzer = { -- Rust
+			--   settings = {
+			--   ['rust-analyzer'] = {},
+			--   },
+			-- },
 			texlab = {}, --  LaTeX LSP and Tex linter
 			["ltex-ls"] = {}, -- LanguageTool integration for LaTeX
 			["markdown-oxide"] = {}, -- Markdown
 			-- asm_lsp = {}, -- Assembly
 			clangd = {}, -- C/C++
-			-- clang_format = {},
 			lua_ls = { -- Lua
 				settings = {
 					Lua = {
@@ -106,11 +110,20 @@ return {
 
 		require("mason").setup()
 
+		-- Install LSP & tools
 		local ensure_installed = vim.tbl_keys(servers)
 		-- vim.list_extend(ensure_installed, { "stylua", "pyright", "clangd", "clang-format", "codelldb", "asm-lsp" })
-		vim.list_extend(ensure_installed, { "stylua", "pyright", "clangd", "clang-format", "codelldb" })
+		vim.list_extend(ensure_installed, {
+			"stylua",
+			"pyright",
+			"clangd",
+			"clang-format",
+			"codelldb",
+		})
 
-		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+		require("mason-tool-installer").setup({
+			ensure_installed = ensure_installed,
+		})
 
 		-- Use the new API, otherwise fall back to old API
 		local new_api = vim.fn.has("nvim-0.11") == 1
@@ -124,7 +137,7 @@ return {
 
 						-- Special handling for clangd in new API
 						if server_name == "clangd" then
-							server.on_attach = function(client, bufnr)
+							server.on_attach = function(client)
 								client.server_capabilities.signatureHelpProvider = false
 							end
 						end
@@ -149,7 +162,7 @@ return {
 			-- clangd config for old API
 			require("lspconfig").clangd.setup({
 				capabilities = capabilities,
-				on_attach = function(client, bufnr)
+				on_attach = function(client)
 					client.server_capabilities.signatureHelpProvider = false
 				end,
 			})
