@@ -66,6 +66,7 @@ return {
 		)
 
 		local servers = {
+			pyright = {},
 			-- pyright = {
 			-- 	settings = {
 			-- 		python = {
@@ -109,27 +110,46 @@ return {
 
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-		require("mason-lspconfig").setup({
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+		-- Use the new API, otherwise fall back to old API
+		local new_api = vim.fn.has("nvim-0.11") == 1
 
-					local config = vim.lsp.config(server_name, server)
-					vim.lsp.start(config)
-					-- 	require("lspconfig")[server_name].setup(server)
-				end,
-			},
-		})
+		if new_api then
+			require("mason-lspconfig").setup({
+				handlers = {
+					function(server_name)
+						local server = servers[server_name] or {}
+						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 
-		local new_api = vim.fn.has("nvim-0.11") == 1 and vim.lsp.config
-		if not new_api then
-			local lspconfig = require("lspconfig")
-			lspconfig.clangd.setup({
+						-- Special handling for clangd in new API
+						if server_name == "clangd" then
+							server.on_attach = function(client, bufnr)
+								client.server_capabilities.signatureHelpProvider = false
+							end
+						end
+
+						vim.lsp.start(server)
+					end,
+				},
+			})
+		else
+			-- Old API approach
+			require("mason-lspconfig").setup({
+				handlers = {
+					function(server_name)
+						require("lspconfig")[server_name].setup({
+							capabilities = capabilities,
+							settings = servers[server_name] and servers[server_name].settings or {},
+						})
+					end,
+				},
+			})
+
+			-- clangd config for old API
+			require("lspconfig").clangd.setup({
+				capabilities = capabilities,
 				on_attach = function(client, bufnr)
 					client.server_capabilities.signatureHelpProvider = false
 				end,
-				capabilities = capabilities,
 			})
 		end
 	end,

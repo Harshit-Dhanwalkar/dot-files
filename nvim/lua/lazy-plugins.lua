@@ -62,6 +62,7 @@ require("lazy").setup({
 	require("Plugins.lsp"),
 	require("Plugins.lualine"),
 	require("Plugins.luvit-meta"),
+	require("Plugins.lightswtich"),
 	-- require("Plugins.screenkey"),
 	-- require("Plugins.showkeys"),
 	require("Plugins.telescope"),
@@ -91,7 +92,7 @@ require("lazy").setup({
 	-- require("Plugins.wilder"),
 	require("Plugins.which-key"),
 	-- require("Plugins.webdev.emmet"),
-	-- require("Plugins.webdev.colorizer"),
+	require("Plugins.webdev.colorizer"),
 	-- require("Plugins.webdev.colortils"),
 	-- require("Plugins.webdev.minty"),
 	-- {

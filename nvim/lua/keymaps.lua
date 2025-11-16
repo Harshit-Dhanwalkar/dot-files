@@ -1,9 +1,10 @@
 local map = vim.keymap.set
 
--- leader key
+-- Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+-- Use nerd font for icons
 vim.g.have_nerd_font = true
 
 -- Remove flickering in the statusline when saving a file
@@ -24,11 +25,11 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- buffers
-map("n", "<leader>,", ":bp<cr>")
 map("n", "<leader>.", ":bn<cr>")
+map("n", "<leader>,", ":bp<cr>")
 map("n", "<leader>x", ":bd<cr>")
 
--- yank to clipboard
+-- Yank to clipboard
 map({ "n", "v" }, "<leader>y", [["+y]])
 
 -- Formatting
@@ -53,31 +54,40 @@ map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 --Resize window
 map("n", "<C-w><left>", "<C-w><")
 
--- scrolling remaps
+-- Scrolling remaps
 --mapset('n', '<C-j>', 'C-d>zz')
 --mapset('n', '<C-k>', 'C-u>zz')
 
--- automatically close brackets, parentesis and quates
+-- Automatically close brackets, parentesis and quotes
 -- map('i', "'", "''<left>")
 -- map('i', '"', '""<left>')
 -- map('i', '(', '()<left>')
 -- map('i', '[', '[]<left>')
 
--- move line up and down
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
+-- Better navigation with wrap support
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
+-- Move line up and down
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Make previous word first's char caps
 map("n", "<leader>t", "bv~")
 
--- lsp setup
+-- LSP setup
+-- local map = function(keys, func, desc, mode)
+-- 	mode = mode or "n"
+-- 	vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+-- end
 map("n", "K", vim.lsp.buf.hover)
 map("n", "gd", vim.lsp.buf.definition)
 map("n", "gD", vim.lsp.buf.declaration)
+map({ "n", "v" }, "<leader>gc", ":CommentToggle<cr>", { desc = "Toggle Comment" })
+-- map("n", "gr", vim.lsp.buf.references, {})
 map("n", "gr", function()
 	-- trigger the lsp references function and populate the quickfix list
 	vim.lsp.buf.references()
-
 	vim.defer_fn(function()
 		-- set up an autocmd to remap keys in the quickfix window
 		vim.api.nvim_create_autocmd("filetype", {
@@ -114,13 +124,8 @@ map("n", "gr", function()
 		})
 	end, 0)
 end)
-
-map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
-map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
-
--- see error
 map("n", "<leader>e", vim.diagnostic.open_float)
 
--- go to errors
+-- Go to errors
 map("n", "[e", vim.diagnostic.goto_next)
 map("n", "]e", vim.diagnostic.goto_next)

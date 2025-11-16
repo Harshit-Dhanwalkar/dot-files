@@ -4,7 +4,7 @@ return {
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
 	},
-	event = "LspAttach", -- Load the plugin when an LSP client attaches to a buffer
+	event = "LspAttach",
 	opts = {
 		-- The backend to use for displaying diffs.
 		-- Options: "vim", "delta", "difftastic", "diffsofancy"
@@ -37,9 +37,6 @@ return {
 				header_lines_to_remove = 4,
 			},
 		},
-		-- Custom icons (signs) to use for different code action kinds.
-		-- Each entry is a table with the icon string and an optional highlight table.
-		-- The highlight can be a link to an existing highlight group (e.g., "DiagnosticWarning")
 		-- or a table with nvim_set_hl compatible properties (e.g., { fg = "#FF0000", bold = true }).
 		signs = {
 			quickfix = { "", { link = "DiagnosticWarning" } },
