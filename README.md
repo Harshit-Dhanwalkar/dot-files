@@ -101,31 +101,7 @@ This repository contains configuration files and installation notes for my prefe
     brew install neovim
     ```
 
-    - image.nvim
-
-    ```bash
-    sudo apt install libmagicwand-dev #(for nvim image.lua)
-    ```
-
-    - LaTex (VimTex)
-
-    ```bash
-    sudo apt install latexmk
-    sudo apt install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra
-    sudo apt install texlive-luatex
-    sudo apt install texlive-fonts-extra texlive-extra-utils
-    sudo apt install texlive-pstricks
-    sudo apt install texlive-metapost
-    sudo apt install libsynctex-dev # For synctex support (forward/reverse search)
-
-    # apt `zlib' version is `libz.so.1.2.1.so` used pver brew `libz.so.1.3.1` version
-    sudo ln -sf /home/linuxbrew/.linuxbrew/opt/zlib/lib/libz.so.1.3.1 /usr/lib/libz.so.1.3.1
-    sudo ln -sf /home/linuxbrew/.linuxbrew/opt/zlib/lib/libz.so.1 /usr/lib/libz.so.1
-    sudo ldconfig
-
-    pip3 install inkscape-figures
-    ```
-
+    For more see [neovim](./nvim/README.md)
     </p>
     </details>
 
