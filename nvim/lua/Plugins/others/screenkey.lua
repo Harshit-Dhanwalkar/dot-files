@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/screenkey.lua
+-- ~/.config/nvim/lua/Plugins/others/screenkey.lua
 return {
 	"NStefan002/screenkey.nvim",
 	event = "VimEnter",

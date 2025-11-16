@@ -43,13 +43,24 @@
 
    ```bash
    # Mason should handle most of these, but good to have:
+   # Python
+   npm install -g pyright
+   # Bash
+   npm install -g bash-language-server
+   # TypeScript/JavaScript
    npm install -g typescript typescript-language-server
+   # Web Development
    npm install -g vscode-langservers-extracted
    npm install -g @tailwindcss/language-server
-   npm install -g bash-language-server
-   npm install -g pyright
+   # Docker
    npm install -g dockerfile-language-server-nodejs
+   # LaTeX (VimTeX)
+   # :MasonInstall texlab
+   # LanguageTool integration for LaTeX
+   # :MasonInstall ltex-ls
    ```
+
+   `:Mason` to get more LSP server
 
 2. Rustup and Cargo for rust development (`rustaceanvim`, `rust-tools`)
 
@@ -83,6 +94,9 @@
 
    ```bash
    sudo apt install inkscape
+
+   # For integration with VimTex
+   pip3 install inkscape-figures
    ```
 
    - [Inkscape Website](https://inkscape.org/)
@@ -106,6 +120,29 @@
 
    ```bash
    sudo apt install fzf
+   ```
+
+4. Vimtex (LaTex)
+
+   ```bash
+   sudo apt install latexmk
+   sudo apt install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra
+   sudo apt install texlive-fonts-extra texlive-extra-utils
+   sudo apt install texlive-luatex
+   sudo apt install texlive-pstricks
+   sudo apt install texlive-metapost
+   sudo apt install libsynctex-dev # For synctex support (forward/reverse search)
+
+   # apt `zlib' version is `libz.so.1.2.1` used over brew `libz.so.1.3.1`
+   sudo ln -sf /home/linuxbrew/.linuxbrew/opt/zlib/lib/libz.so.1.3.1 /usr/lib/libz.so.1.3.1
+   sudo ln -sf /home/linuxbrew/.linuxbrew/opt/zlib/lib/libz.so.1 /usr/lib/libz.so.1
+   sudo ldconfig
+   ```
+
+   - Inkscape setup:
+
+   ```bash
+   pip3 install inkscape-figures
    ```
 
 ### Others

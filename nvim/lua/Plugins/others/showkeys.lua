@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/showkeys.lua
+-- ~/.config/nvim/lua/Plugins/others/showkeys.lua
 return {
 	{
 		"nvzone/showkeys",

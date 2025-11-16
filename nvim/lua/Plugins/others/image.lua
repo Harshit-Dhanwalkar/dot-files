@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/image.lua
+-- ~/.config/nvim/lua/Plugins/other/image.lua
 -- sudo apt install imagemagick libmagickwand-dev
 return {
 	"3rd/image.nvim",

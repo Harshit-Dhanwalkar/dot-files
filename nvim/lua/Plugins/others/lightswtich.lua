@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/lightswtich.lua
+-- ~/.config/nvim/lua/Plugins/others/lightswtich.lua
 return {
 	"markgandolfo/lightswitch.nvim",
 	dependencies = { "MunifTanjim/nui.nvim" },

@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/fidget.lua
+-- ~/.config/nvim/lua/Plugins/others/fidget.lua
 return {
 	"j-hui/fidget.nvim",
 	opts = {
@@ -95,8 +95,13 @@ return {
 				max_height = 0, -- Maximum height of the notification window
 				x_padding = 1, -- Padding from right edge of window boundary
 				y_padding = 0, -- Padding from bottom edge of window boundary
-				align = "bottom", -- How to align the notification window
-				relative = "editor", -- What the notification window position is relative to
+				-- align = "bottom", -- How to align the notification window
+				-- relative = "editor", -- What the notification window position is relative to
+				align = "top",
+				relative = "win",
+				row = 0, -- Top of window
+				col = 0, -- Right of window
+				anchor = "NE", -- North-East anchor
 				tabstop = 8, -- Width of each tab character in the notification window
 			},
 		},

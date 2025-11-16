@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/flash.lua
+-- ~/.config/nvim/lua/Plugins/others/flash.lua
 return {
 	"folke/flash.nvim",
 	event = "VeryLazy",

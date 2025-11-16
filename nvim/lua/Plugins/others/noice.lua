@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/noice.lua
+-- ~/.config/nvim/lua/Plugins/others/noice.lua
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",

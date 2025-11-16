@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/wilder.lua
+-- ~/.config/nvim/lua/Plugins/others/wilder.lua
 return {
 	"gelguy/wilder.nvim",
 	-- "nvim-telescope/telescope.nvim",

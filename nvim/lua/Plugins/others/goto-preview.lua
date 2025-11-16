@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/goto-preview.lua
+-- ~/.config/nvim/lua/Plugins/others/goto-preview.lua
 return {
 	"rmagatti/goto-preview",
 	event = "BufEnter",

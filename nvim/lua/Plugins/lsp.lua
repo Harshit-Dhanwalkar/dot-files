@@ -89,10 +89,12 @@ return {
 			-- tailwindcss = {}, -- Tailwind CSS classes
 			-- eslint = {}, -- JavaScript/TypeScript linter
 			-- rust_analyzer = {}, -- Rust
-			texlab = {}, -- Tex linter
-			markdown_oxide = {}, -- Markdown
+			texlab = {}, --  LaTeX LSP and Tex linter
+			["ltex-ls"] = {}, -- LanguageTool integration for LaTeX
+			["markdown-oxide"] = {}, -- Markdown
 			-- asm_lsp = {}, -- Assembly
 			clangd = {}, -- C/C++
+			-- clang_format = {},
 			lua_ls = { -- Lua
 				settings = {
 					Lua = {
