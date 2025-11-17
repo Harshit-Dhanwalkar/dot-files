@@ -7,9 +7,9 @@
 
 # Installation
 
-   ```bash
-   brew install neovim
-   ```
+```bash
+brew install neovim
+```
 
 ## Dependencies
 
@@ -30,7 +30,9 @@
    which treesitter
    treesitter --version
    ```
+
    or
+
    ```bash
    brew install tree-sitter
    which treesitter
@@ -52,6 +54,8 @@
    # Web Development
    npm install -g vscode-langservers-extracted
    npm install -g @tailwindcss/language-server
+   npm install -g typescript typescript-language-server
+   npm install -g vscode-langservers-extracted
    # Docker
    npm install -g dockerfile-language-server-nodejs
    # LaTeX (VimTeX)
@@ -83,12 +87,12 @@
 
 1. Imagemagick for [image.nvim](https://github.com/3rd/image.nvim)
 
-    ```bash
-    sudo apt install imagemagick libmagickwand-dev
-    ```
+   ```bash
+   sudo apt install imagemagick libmagickwand-dev
+   ```
 
-    - [Imagemagick Website](https://imagemagick.org/)
-    - [Imagemagick Github](https://github.com/ImageMagick/ImageMagick.git)
+   - [Imagemagick Website](https://imagemagick.org/)
+   - [Imagemagick Github](https://github.com/ImageMagick/ImageMagick.git)
 
 2. Inkscape (Vector graphics)
 
