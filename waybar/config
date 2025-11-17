@@ -4,12 +4,18 @@
   "height": 30,
   "spacing": 4,
   // Modules Configuration
-  "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/mode", "wlr/taskbar"],
+  "modules-left": [
+    "sway/workspaces",
+    "custom/runcat",
+    "sway/scratchpad",
+    "sway/mode"
+  ],
   //"modules-center": ["sway/window"],
   "modules-center": ["clock"],
   //"modules-center": ["custom/cava", "clock", "custom/cava"],
   "modules-right": [
     //"mpd",
+    "wlr/taskbar",
     "tray",
     "keyboard-state#c",
     "keyboard-state#n",
@@ -260,6 +266,10 @@
     //  "on-click": "bash ~/.config/sway/modules/My_custom_powermenu/powermenu.sh"
     "on-click": "bash ~/.config/rofi/powermenu/type-6/powermenu.sh",
     "tooltip": false,
+  },
+  "custom/runcat": {
+     "exec": "~/.config/waybar/modules/runcat-text/main.py",
+     "return-type": "json",
   },
   "idle_inhibitor": {
     "format": "{icon}",

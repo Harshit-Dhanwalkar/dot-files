@@ -441,3 +441,23 @@ tooltip {
   border-left: solid;
   border-left-width: 0.5;
 }
+
+#custom-runcat {
+  font-family: "runcat";
+  font-size: 18px;
+}
+
+#custom-runcat.low {
+  font-family: "runcat";
+  color: green;
+}
+
+#custom-runcat.medium {
+  font-family: "runcat";
+  color: blue;
+}
+
+#custom-runcat.high {
+  font-family: "runcat";
+  color: red;
+}
