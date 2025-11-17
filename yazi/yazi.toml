@@ -20,7 +20,7 @@ extract = [
     { run = 'ya pub extract --list "$@"', desc = " Extract here", for = "unix" },
 ]
 play = [
-    { run = 'vlc "$@"', desc = " VLC", orphan = true, for = 'unix' },
+    # { run = 'vlc "$@"', desc = " VLC", orphan = true, for = 'unix' },
     { run = 'totem "$@"', desc = " Play (Totem)", orphan = true, for = 'unix' },
 ]
 pdf = [
@@ -32,9 +32,9 @@ pdf = [
 images = [
     # { run = 'sxiv "$1" $(find "$(dirname "$1")" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) | grep -v "$1")', desc = "SXIV Gallery", for = "linux" },
     { run = 'sxiv "$1" $(find "$(dirname "$1")" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) | sort)', desc = " SXIV Gallery", orphan = true, for = "linux" },
-    { run = 'shotwell "$1"', desc = "  Shotwell", orphan = true, for = "linux" },
+    # { run = 'shotwell "$1"', desc = "  Shotwell", orphan = true, for = "linux" },
     { run = 'eog "$1"', desc = " Eye Of Gnome (SVG)", orphan = true, for = "linux" },
-    { run = 'aseprite "$1"', desc = " Aseprite (SVG)", orphan = true, for = "linux" },
+    # { run = 'aseprite "$1"', desc = " Aseprite (SVG)", orphan = true, for = "linux" },
 ]
 jupyternb = [
     { run = 'code "$1"', desc = "󰨞 VScode", orphan = true, for = "unix" },
@@ -47,6 +47,10 @@ rules = [
 
 # Text Files
     { mime = "text/*", use = [ "edit", "reveal" ] },
+
+# Markdown
+    { name = "*.md", use = [ "edit", "reveal" ] },
+    { name = "*.markdown", use = [ "edit", "reveal" ] },
 
 # Image Files
     #{ mime = "image/*", use = [ "images","open", "reveal" ] },
