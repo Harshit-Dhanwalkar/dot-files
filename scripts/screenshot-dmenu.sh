@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-## Author: Harshit Prashant Dhanwalkar
-## Github: @Harshit-Dhanwalkar
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
 
 # Check for notification command
 if command -v dunstify >/dev/null 2>&1; then

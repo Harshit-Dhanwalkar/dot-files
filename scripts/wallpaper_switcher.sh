@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-## Author  : Harshit Prahant Dhanwalkar
-## Github  : @Harshit-Dhanwalkar
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
 
 : <<'END_COMMENT'
 How to use sxiv selection:

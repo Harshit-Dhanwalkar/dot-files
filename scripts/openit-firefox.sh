@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-## Author  : Harshit Prashant Dhanwalkar
-## Github  : @Harshit-Dhanwalkar
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
 
 INPUT_FILE="$1"
 MAX_VISIBLE_LINES=10

@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-## Author  : Harshit Prahant Dhanwalkar
-## Github  : @Harshit-Dhanwalkar
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
 
 PACTL="/usr/bin/pactl"
 JQ="/usr/bin/jq"

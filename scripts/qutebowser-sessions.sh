@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-## Author  : Harshit Prahant Dhanwalkar
-## Github  : @Harshit-Dhanwalkar
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
 
 # Qutebrowser Session Launcher/Deleter/Renamer using rofi or dmenu.
 # supports command-line arguments
