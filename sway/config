@@ -303,5 +303,8 @@ bindsym $mod-alt+v exec cliphist list | dmenu -l 10 | cliphist decode | wl-copy
 ## [Github](https://github.com/kennylevinsen/wldash)
 # bindsym $mod+g exec /usr/local/bin/wldash
 
+# Define any word with Dmenu and dunst notification
+bindsym $mod-alt+Shift+1 exec ~/.config/sway/scripts/dmenu-define.sh
+
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec --no-startup-id /usr/libexec/xdg-desktop-portal -r
