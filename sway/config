@@ -68,8 +68,8 @@ input type:touchpad {
     bindsym $mod+d exec --no-startup-id ~/.config/sway/modules/app_launcher/launcher.sh
 
     # Quicklinks menu
+    bindsym $mod-alt+t exec ~/.config/sway/scripts/dmenu-quicklink.sh
     bindsym $mod+t exec ~/.config/sway/modules/QucikLink/quicklinks.sh
-    bindsym $mod-alt+t exec ~/.config/sway/scripts/quicklink-dmenu.sh
 
     # Launch Nautilus file manager
     bindsym $mod+m exec nautilus
