@@ -75,7 +75,8 @@ input type:touchpad {
     bindsym $mod+m exec nautilus
 
     # Wifi/network
-    bindsym $mod-alt+n exec ~/.config/sway/scripts/wifi-menu.sh
+    bindsym $mod-alt+n exec ~/.config/sway/scripts/dmenu-wifi.sh
+    # bindsym $mod-alt+n exec ~/.config/sway/scripts/rofi-wifi.sh
 
     # Swtich audio output
     bindsym $mod-alt+a exec  ~/.config/sway/scripts/controllers.sh
@@ -132,7 +133,8 @@ input type:touchpad {
     bindsym Mod1+w exec ~/.config/qutebrowser/userscripts/session.sh
 
     # Powermenu
-    bindsym $mod+p exec ~/.config/sway/modules/powermenu/powermenu.sh
+    bindsym $mod+p exec ~/.config/sway/scripts/dmenu-power.sh
+    # bindsym $mod+p exec ~/.config/sway/modules/powermenu/powermenu.sh
     # bindsym $mod+p exec ~/.config/rofi/powermenu/type-6/powermenu.sh
 
     # Reload the configuration file
@@ -275,18 +277,31 @@ bar {
 # default_border pixel 2
 # default_floating_border pixel 2
 
-# class                   boarder   backgrd    text   indicator  child_border
-client.focused           "#323232" "#5c5c5c" "#ffffff" "#022375" "#777777"
-client.focused_inactive  "#555555" "#222222" "#cccccc" "#888888" "#333333"
-client.unfocused         "#777777" "#333333" "#999999" "#111111" "#444444"
-client.urgent            "#ff0000" "#880000" "#ffffff" "#ff6600" "#990000"
-client.placeholder       "#222222" "#222222" "#999999" "#777777" "#444444"
-
-# Dashboard
-bindsym $mod+g exec /usr/local/bin/wldash
+# class                     boarder   backgrd    text    indicator  child_border
+client.focused             "#FF9E64" "#1E1E2E" "#ffffff" "#FF9E64" "#777777"
+client.focused_inactive    "#000000" "#222222" "#cccccc" "#888888" "#333333"
+client.unfocused           "#89b4fa" "#1E1E2E" "#999999" "#111111" "#444444"
+client.urgent              "#bf616a" "#f38ba8" "#ffffff" "#ff6600" "#990000"
+client.placeholder         "#222222" "#222222" "#999999" "#777777" "#444444"
 
 # Notification
 exec --no-startup-id dunst
+
+# Cliphist (clipboard-manager)
+## [Github releases](https://github.com/sentriz/cliphist/releases)
+# ```bash
+# mv v0.*-linux-amd64 cliphist
+# chmod +x cliphist
+# ./cliphist version
+# mv cliphist ~/.local/bin/
+# ```
+exec --no-startup-id wl-paste --type text --watch cliphist store -max-items 40
+exec --no-startup-id wl-paste --type image --watch cliphist store -max-items 40
+bindsym $mod-alt+v exec cliphist list | dmenu -l 10 | cliphist decode | wl-copy
+
+# Dashboard
+## [Github](https://github.com/kennylevinsen/wldash)
+# bindsym $mod+g exec /usr/local/bin/wldash
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec --no-startup-id /usr/libexec/xdg-desktop-portal -r
