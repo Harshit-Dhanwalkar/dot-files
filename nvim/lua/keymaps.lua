@@ -40,10 +40,10 @@ map("n", "ss", ":split<Return>", opts)
 map("n", "sv", ":vsplit<Return>", opts)
 
 -- Move window
-map("n", "sh", "<C-w>h")
-map("n", "sk", "<C-w>k")
-map("n", "sj", "<C-w>j")
-map("n", "sl", "<C-w>l")
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
 
 --  See `:help wincmd` for a list of all window commands
 map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
@@ -53,6 +53,13 @@ map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 --Resize window
 map("n", "<C-w><left>", "<C-w><")
+map("n", "<A-k>", ":resize +2<CR>")
+map("n", "<A-j>", ":resize -2<CR>")
+map("n", "<A-l>", ":vertical resize +2<CR>")
+map("n", "<A-h>", ":vertical resize -2<CR>")
+
+-- insert mode keymaps
+map("i", "<C-c>", "<Esc>", { noremap = true, silent = true })
 
 -- Scrolling remaps
 --mapset('n', '<C-j>', 'C-d>zz')
@@ -74,6 +81,22 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Make previous word first's char caps
 map("n", "<leader>t", "bv~")
+
+-- tabs
+map("n", "tn", ":tabn<CR>")
+map("n", "tp", ":tabp<CR>")
+map("n", "td", ":tabclose<CR>")
+
+-- better indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+
+-- center after search
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+
+-- close all quickfix, loclist and diagnostic
+-- map("n", "<leader>ca", ":cclose<CR>:lclose<CR>", { desc = "Close All Quickfix/Loclist" })
 
 -- LSP setup
 -- local map = function(keys, func, desc, mode)
@@ -123,9 +146,29 @@ map("n", "gr", function()
 			end,
 		})
 	end, 0)
-end)
+end, { desc = "Go to [R]eferences" })
 map("n", "<leader>e", vim.diagnostic.open_float)
+
+-- telescope grep string
+map("n", "<leader>g", "<cmd>Telescope live_grep<cr>")
+--
+-- move to end of word while keeping the cursor in the same column for the next line
+map("n", "k", "gk")
+map("n", "j", "gj")
 
 -- Go to errors
 map("n", "[e", vim.diagnostic.goto_next)
 map("n", "]e", vim.diagnostic.goto_next)
+
+-- disable vimtex maps
+vim.g.vimtex_compiler_method = "latexmk"
+vim.g.vimtex_view_method = "skim"
+
+-- Custom plugins
+-- Datejumps
+do
+	local datejumps = require("Custom-plugins.datejumps")
+
+	map("n", "]d", datejumps.next_date, { desc = "Jump to Next Date (DD/MM/YYYY)" })
+	map("n", "[d", datejumps.prev_date, { desc = "Jump to Previous Date (DD/MM/YYYY)" })
+end

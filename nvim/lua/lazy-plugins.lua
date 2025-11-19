@@ -29,6 +29,7 @@ require("lazy").setup({
 			enabled = false, -- Disable LuaRocks
 		},
 	},
+
 	require("Plugins.autoformat"),
 	require("Plugins.autopairs"),
 	require("Plugins.bufferline"),

@@ -58,3 +58,6 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 vim.opt.scrolloff = 10
 vim.opt.cursorline = true -- Highlight the current line
+
+-- Custom Plugins
+vim.opt.runtimepath:append(vim.fn.stdpath("config") .. "/lua/Custom-plugins")

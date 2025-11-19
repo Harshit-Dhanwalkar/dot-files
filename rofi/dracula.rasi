@@ -28,10 +28,11 @@ configuration {
   padding: 0;
   spacing: 0;
 
-  bg: #282a36;
-  fg: #f8f8f2;
-  blue: #6272a4;
-  purple: #bd93f9;
+  bg: #1e1e2e;
+  fg: #cdd6f4; /* text color */
+  blue: #89b4fa;
+  select: #FF9E64;
+  red: #bf616a;
 
   background-color: @bg;
   text-color: @fg;
@@ -66,11 +67,11 @@ listview {
 
 element {
   children: [element-icon, element-text];
-  text-color: @blue;
+  text-color: @fg;
 }
 
 element-icon {
-  padding: 10px 10px;
+  padding: 12px 12px;
 }
 
 element-text {
@@ -79,5 +80,5 @@ element-text {
 }
 
 element-text selected {
-  text-color: @purple;
+  text-color: @select;
 }

@@ -56,7 +56,7 @@ newnote() {
 
 selected() {
     if files=$(command ls -1t "$DIR"*.md 2>/dev/null 2>&1 | xargs -I {} basename {}); then
-        choice=$(echo -e "New\n$files" | env DISPLAY=:0 XAUTHORITY="${HOME}/.Xauthority" $DMENU -l 5 -i -p "Choose note or create new: ")
+        choice=$(echo -e "New\n$files" | env DISPLAY=:0 XAUTHORITY="${HOME}/.Xauthority" $DMENU -l 10 -i -p "Choose/create note : ")
     else
         choice="New"
     fi

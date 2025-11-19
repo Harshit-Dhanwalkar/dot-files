@@ -25,6 +25,7 @@ return {
 			"css",
 			"javascript",
 			-- "typescript",
+			"json",
 			"query",
 			"diff",
 			-- "wgsl",
@@ -38,7 +39,10 @@ return {
 			disable = { "latex" }, -- Disable Treesitter highlighting for LaTeX
 			additional_vim_regex_highlighting = { "ruby" },
 		},
-		indent = { enable = true, disable = { "ruby" } },
+		indent = {
+			enable = true,
+			disable = { "ruby" },
+		},
 		rainbow = {
 			enable = true,
 			extended_mode = true,

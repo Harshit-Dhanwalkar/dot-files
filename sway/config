@@ -81,9 +81,6 @@ input type:touchpad {
     # Swtich audio output
     bindsym $mod-alt+a exec  ~/.config/sway/scripts/controllers.sh
 
-    # Launch dmenu notes
-    bindsym $mod-alt+m exec ~/.config/sway/scripts/dmenu-notes.sh
-
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -303,8 +300,17 @@ bindsym $mod-alt+v exec cliphist list | dmenu -l 10 | cliphist decode | wl-copy
 ## [Github](https://github.com/kennylevinsen/wldash)
 # bindsym $mod+g exec /usr/local/bin/wldash
 
+# Launch dmenu notes
+bindsym $mod-alt++Shift+1 exec ~/.config/sway/scripts/dmenu-notes.sh
+
 # Define any word with Dmenu and dunst notification
-bindsym $mod-alt+Shift+1 exec ~/.config/sway/scripts/dmenu-define.sh
+bindsym $mod-alt+Shift+2 exec ~/.config/sway/scripts/dmenu-define.sh
+
+# Color picker
+# bindsym Mod1+c exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | awk -F'[(,)]' '/srgb/{printf "#%02x%02x%02x\n", $2, $3, $4}' | xargs -I{} notify-send "Picked Color" "{}"
+# bindsym Mod1+i exec ~/.config/sway/scipts/color-picker.sh
+bindsym $mod-alt+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | wl-copy
+bindsym $mod-alt+Shift+3 exec sh -c 'HEX_COLOR=$(slurp -p | grim -g - - | convert - txt: | awk \"NR==2 { print \$3 }\"); wl-copy "$HEX_COLOR"; dunstify -a "Color Picker" "Copied Color" "Color: <b>$HEX_COLOR</b>"'
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec --no-startup-id /usr/libexec/xdg-desktop-portal -r

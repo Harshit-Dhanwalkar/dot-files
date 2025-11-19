@@ -5,6 +5,17 @@
 
 <img src="../assets/NeoVim.png" alt="Neovim" width="450">
 
+---
+
+## Custom Plugins
+
+1. [`datejumps`](../nvim/lua/Custom-plugins/datejumps.lua)
+
+- Jumps to and fro in dates in markdown files.
+  - key map `]d` for fro(next) and `[d` for back(previous).
+
+---
+
 # Installation
 
 ```bash
