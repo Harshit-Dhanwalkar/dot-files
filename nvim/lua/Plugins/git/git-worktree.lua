@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/git-worktree.lua
+-- ~/.config/nvim/lua/Plugins/git/git-worktree.lua
 return {
 	"ThePrimeagen/git-worktree.nvim",
 	dependencies = {

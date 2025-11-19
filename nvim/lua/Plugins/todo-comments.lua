@@ -1,11 +1,10 @@
 -- ~/.config/nvim/lua/Plugins/todo-comments.lua
--- Highlight todo, notes, etc in comments
 return {
 	"folke/todo-comments.nvim",
 	event = "VimEnter",
 	dependencies = { "nvim-lua/plenary.nvim" },
-	opts = {
-		{
+	config = function()
+		require("todo-comments").setup({
 			signs = true, -- show icons in the signs column
 			sign_priority = 8, -- sign priority
 			-- list of named colors where we try to extract the guifg from the list of hilight groups or use the hex color if hl not found as a fallback
@@ -40,7 +39,7 @@ return {
 					color = "harshit",
 					alt = { "Harshit", "HARSHIT PPRASHANT DHANWALKAR", "Harshit Prahant Dhanwalkar" },
 				}, -- Ħ Ӣ
-				NVIM = { icon = "Ӣ ", color = "info" },
+				NVIM = { icon = "Ӣ ", color = "harshit" },
 				-- more icon you can find here (https://symbl.cc/en/0126/)
 			},
 			--
@@ -82,6 +81,6 @@ return {
 				pattern = [[\b(KEYWORDS):]], -- ripgrep regex
 				-- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
 			},
-		},
-	},
+		})
+	end,
 }
