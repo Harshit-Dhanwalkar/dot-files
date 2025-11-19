@@ -10,6 +10,9 @@ return {
 		vim.g.vimtex_quickfix_mode = 0
 		vim.opt.conceallevel = 2
 		vim.g.tex_conceal = "abdmg"
+		vim.g.tex_conceal_frac = 1
+		vim.g.tex_superscripts = "[0-9a-zA-W.,:;+-<>/()=]"
+		vim.g.tex_subscripts = "[0-9aehijklmnoprstuvx,+-/().]"
 		vim.cmd("syntax enable")
 		vim.g.vimtex_compiler_latexmk = {
 			build_dir = "",

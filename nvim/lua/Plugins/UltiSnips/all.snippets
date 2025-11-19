@@ -7,3 +7,14 @@ endsnippet
 snippet path "Insert the full path of the current file" b
 `!p snip.rv = fn`
 endsnippet
+
+snippet today "Date"
+`date +%F`
+endsnippet
+
+snippet box "Box"
+`!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
+│ $1 │
+`!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
+$0
+endsnippet

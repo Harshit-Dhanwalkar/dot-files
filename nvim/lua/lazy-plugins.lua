@@ -110,15 +110,22 @@ require("lazy").setup({
 	--{
 	-- 'mileszs/ack.vim'
 	-- }
+	-- -- Snippet engine
 	-- {
 	-- 	"sirver/ultisnips",
+	-- 	event = "InsertEnter",
 	-- 	config = function()
-	-- 		vim.g.UltiSnipsExpandTrigger = -"<tab>"
+	-- 		vim.g.UltiSnipsExpandTrigger = "<c-j>"
 	-- 		vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
 	-- 		vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
-	-- 		vim.g.UltiSnipsSnippetDirectories = { vim.fn.expand("~/.config/nvim/lua/Plugins/UltiSnips") }
+	-- 		-- vim.g.UltiSnipsSnippetDirectories = {
+	-- 		--   "UltiSnips", -- This is the default directory inside runtimepath/
+	-- 		--   vim.fn.expand("~/.config/nvim/snippets"), -- Example of a custom location
+	-- 		-- }
 	-- 	end,
-	-- 	event = "InsertEnter",
+	-- 	dependencies = {
+	-- 		"honza/vim-snippets",
+	-- 	},
 	-- },
 	-- "honza/vim-snippets",
 	-- "hrsh7th/cmp-vsnip",

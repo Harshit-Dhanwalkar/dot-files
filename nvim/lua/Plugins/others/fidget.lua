@@ -99,20 +99,11 @@ return {
 				-- relative = "editor", -- What the notification window position is relative to
 				align = "top",
 				relative = "win",
-				row = 0, -- Top of window
-				col = 0, -- Right of window
-				anchor = "NE", -- North-East anchor
+				-- row = 0, -- Top of window
+				-- col = 0, -- Right of window
+				-- anchor = "NE", -- North-East anchor
 				tabstop = 8, -- Width of each tab character in the notification window
-			},
-		},
-
-		-- Options related to integrating with other plugins
-		integration = {
-			["nvim-tree"] = {
-				enable = true, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
-			},
-			["xcodebuild-nvim"] = {
-				enable = true, -- Integrate with wojciech-kulik/xcodebuild.nvim (if installed)
+				avoid = { "NvimTree", "TestExplorer" },
 			},
 		},
 

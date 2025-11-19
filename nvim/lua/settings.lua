@@ -1,6 +1,9 @@
 -- ~/.config/nvim/lua/settings.lua
 
--- See `:help vim.opt` amd `:help option-list`
+vim.opt_local.spell = true
+vim.opt_local.spelllang = "en_us"
+
+-- See `:help vim.opt` and `:help option-list`
 vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.relativenumber = true
