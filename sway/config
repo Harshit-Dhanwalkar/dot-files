@@ -262,11 +262,13 @@ bar {
 
 # for_window [app_id="focused"] opacity 0.9
 # for_window [app_id="focused_inactive"] opacity 0.8
-# for_window {
-#   [app_id="pavucontrol"] floating enable
+for_window {
+    [title="Picture-in-Picture"] floating enable
+    [title="bluetoothctl"] floating enable, resize set 500 200
+    [app_id="pavucontrol"] floating enable
 #   [title="game-*"] floating enable, resize set 1920 1080
 #   [title="app-*"] floating enable, resize set 1920 1080
-# }
+}
 # workspace 5 gaps horizontal 100
 # workspace 5 gaps vertical 30
 # workspace 5 gaps inner 20

@@ -14,10 +14,11 @@ vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.wrap = true
+vim.opt.whichwrap = "bs<>"
 vim.opt.hls = true
 vim.opt.breakindent = true -- Enable break indent
 vim.opt.undofile = true -- Save undo history
-vim.opt.fileencoding = "utf-8" -- File encoding
+vim.opt.fileencoding = "utf-8" -- File encodind
 vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
 vim.opt.updatetime = 250 -- Decrease update time
 
@@ -62,5 +63,5 @@ vim.opt.inccommand = "split"
 vim.opt.scrolloff = 10
 vim.opt.cursorline = true -- Highlight the current line
 
--- Custom Plugins
-vim.opt.runtimepath:append(vim.fn.stdpath("config") .. "/lua/Custom-plugins")
+-- Utils
+vim.opt.runtimepath:append(vim.fn.stdpath("config") .. "/lua/utilities/")

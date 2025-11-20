@@ -7,12 +7,17 @@
 
 ---
 
-## Custom Plugins
+## Custom utilities (in `lua/utilities/`)
 
-1. [`datejumps`](../nvim/lua/Custom-plugins/datejumps.lua)
+1. [`datejumps`](./lua/Custom-plugins/datejumps.lua)
 
 - Jumps to and fro in dates in markdown files.
   - key map `]d` for fro(next) and `[d` for back(previous).
+
+2. [`openpdf`](./lua/utilities/openpdf.lua)
+
+- Extracts the pdf file path from a Markdown or Wikilink on the current line and opens it in Zathura pdf viewer.
+  - key map `<leader>oz`.
 
 ---
 

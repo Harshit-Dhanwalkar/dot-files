@@ -164,11 +164,15 @@ map("n", "]e", vim.diagnostic.goto_next)
 vim.g.vimtex_compiler_method = "latexmk"
 vim.g.vimtex_view_method = "skim"
 
--- Custom plugins
+-- Custom utilities
 -- Datejumps
 do
-	local datejumps = require("Custom-plugins.datejumps")
+	local datejumps = require("utilities.datejumps")
 
 	map("n", "]d", datejumps.next_date, { desc = "Jump to Next Date (DD/MM/YYYY)" })
 	map("n", "[d", datejumps.prev_date, { desc = "Jump to Previous Date (DD/MM/YYYY)" })
 end
+
+-- Open pdf in zathura
+require("utilities.openpdf")
+map("n", "<leader>oz", ":ZathuraOpen<CR>", { desc = "Open PDF in Zathura" })
