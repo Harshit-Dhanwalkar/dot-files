@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 BASE_DIR="${HOME}/Desktop/Notes/"
 DMENU="/usr/local/bin/dmenu"
 NOTIFY="/usr/bin/dunstify"
