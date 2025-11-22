@@ -34,6 +34,18 @@ return {
 					disable_cmd = "lua if vim.bo.filetype == 'tex' then vim.cmd('VimtexTocToggle') end",
 					state = false,
 				},
+				{
+					name = "CSV Viewer",
+					enable_cmd = "CsvViewEnable",
+					disable_cmd = "CsvViewDisable",
+					state = true,
+				},
+				{
+					name = "CSV Mode: Highlight",
+					enable_cmd = "CsvViewEnable display_mode=highlight",
+					disable_cmd = "CsvViewEnable display_mode=border",
+					state = false, -- Replaces delimiters with vertical borders (│)
+				},
 			},
 		})
 	end,

@@ -7,7 +7,7 @@ return {
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"echasnovski/mini.nvim",
-		-- "nvim-tree/nvim-web-devicons",
+		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
 		require("render-markdown").setup({
@@ -15,21 +15,21 @@ return {
 			render_mode = { "n" },
 			latex = { enabled = true },
 			code = {
-				enabled = false,
+				enabled = true,
 				sign = true,
-				style = "full",
-				position = "right",
-				language_pad = 0.5,
+				style = "full", -- compact
+				position = "left",
+				language_pad = 0.01,
 				language_name = true,
 				disable_background = { "diff" },
 				width = "full", -- block
-				left_margin = 0.5, -- 0
-				left_pad = 0.3,
-				right_pad = 1, -- 0.3
-				min_width = 0,
-				border = "thin", -- thick
-				above = "▄",
-				below = "▀",
+				left_margin = 0,
+				left_pad = 0.02,
+				right_pad = 0.02,
+				-- min_width = 0,
+				border = "thick", -- thin
+				-- above = "▄",
+				-- below = "▀",
 				highlight = "RenderMarkdownCode",
 				highlight_inline = "RenderMarkdownCodeInline",
 				highlight_language = nil,

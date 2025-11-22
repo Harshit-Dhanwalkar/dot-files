@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/others/twilight.lua
+-- ~/.config/nvim/lua/Plugins/appearance/twilight.lua
 return {
 	"folke/twilight.nvim",
 	config = function()
