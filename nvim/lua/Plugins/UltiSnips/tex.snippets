@@ -40,6 +40,16 @@ snippet template "Basic template" b
 \end{document}
 endsnippet
 
+snippet use "usepackage" b
+\usepackage{${1:package}}
+endsnippet
+
+snippet eqa "equation environment" b
+\begin{equation}\label{$1}
+	$2
+\end{equation}
+endsnippet
+
 snippet beg "begin{} / end{}" bA
 \\begin{$1}
 	$0

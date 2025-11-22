@@ -49,6 +49,12 @@
     ignore_newline = no
     show_indicators = no
 
+[firefox]
+    appname = firefox
+    summary = Download Complete
+    script = ~/.config/dunst/scripts/open_downloads.sh
+    timeout = 8
+
 [urgency_low]
     background = "#1e1e2e"  #"#222222"  # "#2e3440"
     foreground = "#cdd6f4"  # "#bbbbbb"  # "#eceff4"

@@ -2,6 +2,32 @@ global !p
 import re
 import px
 
+snippet head "Python source file header" b
+"""
+Description: $1
+Author: Harshit Prashant Dhanwalkar (@Harshit-Dhanwalkar)
+Created: `!v strftime("%Y-%m-%d %H:%M:%S%z")`
+"""
+$0
+endsnippet
+
+snippet impa "import FOO as BAR" b
+import ${1:FOO} as ${2:BAR}
+endsnippet
+
+snippet main "Main function boilerplate" b
+def main():
+	$0
+
+
+if __name__ == "__main__":
+	main()
+endsnippet
+
+snippet sol "solution" b
+solution = Solution()
+endsnippet
+
 snippets_helper = px.__import__('snippets_helper')
 
 

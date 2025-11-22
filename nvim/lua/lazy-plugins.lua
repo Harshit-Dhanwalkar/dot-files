@@ -47,6 +47,7 @@ require("lazy").setup({
 	require("Plugins.comment"),
 	require("Plugins.debug"),
 	require("Plugins.others.flash"),
+	require("Plugins.others.undotree"),
 	-- require("Plugins.formatting"),
 	require("Plugins.git.diffview"),
 	require("Plugins.git.lazygit"),
@@ -95,6 +96,7 @@ require("lazy").setup({
 	require("Plugins.markdown.render-markdown"),
 	require("Plugins.markdown.carrot"),
 	require("Plugins.markdown.nvim-toc"),
+	require("Plugins.markdown.vim-markdownfootnotes"),
 	require("Plugins.markdown.markdown-table-mode"),
 	-- require("Plugins.markdown.markdown-preview"),
 	-- require("Plugins.markdown.peek"),
@@ -119,6 +121,7 @@ require("lazy").setup({
 	-- 'mileszs/ack.vim'
 	-- }
 	-- -- Snippet engine
+	{ "quangnguyen30192/cmp-nvim-ultisnips", lazy = true },
 	-- {
 	-- 	"sirver/ultisnips",
 	-- 	event = "InsertEnter",
@@ -133,7 +136,7 @@ require("lazy").setup({
 	-- 	end,
 	-- 	dependencies = {
 	-- 		"honza/vim-snippets",
-	-- 	},
+	-- },
 	-- },
 	-- "honza/vim-snippets",
 	-- "hrsh7th/cmp-vsnip",
@@ -143,6 +146,7 @@ require("lazy").setup({
 	-- 'dcampos/cmp-snippy',
 	-- 'echasnovski/mini.snippets',
 	-- 'abeldekat/cmp-mini-snippets',
+	{ "machakann/vim-swap", event = "VeryLazy" },
 }, {
 	ui = {
 		icons = vim.g.have_nerd_font and {} or {

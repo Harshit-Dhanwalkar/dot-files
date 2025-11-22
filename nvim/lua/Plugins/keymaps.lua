@@ -41,7 +41,7 @@ map("n", "\\", ":NvimTreeFindFileToggle<cr>", { noremap = true, silent = true })
 -- Nvim-comments
 map({ "n", "v" }, "<leader>gc", ":CommentToggle<cr>")
 
--- neoclip
+-- Neoclip
 map("n", "<leader>p", function()
 	require("telescope").extensions.neoclip.default()
 end, { desc = "Neoclip (Paste History)" })
@@ -75,4 +75,4 @@ map({ "n", "x" }, "<leader>ca", function()
 end, { noremap = true, silent = true, desc = "Code Action" })
 
 -- Screenkey keymaps
-map("n", "<leader>so", ":Screenkey toggle<CR>", { desc = "Toggle screenkey" })
+-- map("n", "<leader>so", ":Screenkey toggle<CR>", { desc = "Toggle screenkey" })

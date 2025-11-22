@@ -29,6 +29,7 @@
     "pulseaudio/slider",
     "battery",
     "custom/memory_usage",
+    "custom/disks",
     // "idle_inhibitor",
     "custom/power",
   ],
@@ -268,6 +269,12 @@
   "custom/memory_usage": {
     "format": "󰍛 {}",
     "exec": "bash ~/.config/waybar/modules/memory_usage.sh",
+    "interval": 5,
+    "tooltip": false,
+  },
+  "custom/disks": {
+    "format": " {}",
+    "exec": "bash ~/.config/waybar/modules/disks.sh",
     "interval": 5,
     "tooltip": false,
   },

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 # Read values from /proc/meminfo
 while read -r key value _; do
   case "$key" in
