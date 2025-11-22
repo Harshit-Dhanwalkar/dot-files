@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/lualine.lua
+-- ~/.config/nvim/lua/Plugins/appearance/lualine.lua
 -- local function get_time()
 -- 	return os.date("%I:%M %p")
 -- end

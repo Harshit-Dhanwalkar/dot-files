@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/bufferline.lua
+-- ~/.config/nvim/lua/Plugins/appearance/bufferline.lua
 return {
 	"akinsho/bufferline.nvim",
 	version = "*",
