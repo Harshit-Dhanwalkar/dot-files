@@ -120,18 +120,36 @@ class UI:
         self.fps_l = 6
         self.fps_h = 90
 
-    @property
-    def FPS_DELTA(self) -> float:
-        return (1 / self.fps_l - 1 / self.fps_h) / self.SAMPLE_RATE
-
+    # @property
+    # def FPS_DELTA(self) -> float:
+    #     return (1 / self.fps_l - 1 / self.fps_h) / self.SAMPLE_RATE
+    #
+    # async def update(self):
+    #     while True:
+    #         cat = spinner.next
+    #         out.text = cat
+    #         print(out)
+    #         sys.stdout.flush()
+    #         diff = self.FPS_DELTA * cpu.percent
+    #         time = 1 / self.fps_l - diff
+    #         await asyncio.sleep(time)
     async def update(self):
+        # T_max is the sleep time at the lowest FPS (slowest spin)
+        T_max = 1.0 / self.fps_l
+        # T_min is the sleep time at the highest FPS (fastest spin)
+        T_min = 1.0 / self.fps_h
+
         while True:
             cat = spinner.next
             out.text = cat
             print(out)
             sys.stdout.flush()
-            diff = self.FPS_DELTA * cpu.percent
-            time = 1 / self.fps_l - diff
+
+            time_factor = (100.0 - cpu.percent) / 100.0
+
+            # Calculate final sleep time (T = T_min + (T_max - T_min) * factor)
+            time = T_min + (T_max - T_min) * time_factor
+
             await asyncio.sleep(time)
 
 

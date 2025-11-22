@@ -2,13 +2,13 @@
   "icons": "",
   "return-type": "json",
   "ui": {
-    "fps_l": 6,
-    "fps_h": 90
+    "fps_l": 4,
+    "fps_h": 80
   },
   "cpu": {
     "interval": 1,
     "states": {
-      "high": 90,
+      "high": 70,
       "medium": 40,
       "low": 10
     },
@@ -16,4 +16,3 @@
   },
   "tooltip-format": "CPU {percentage}%"
 }
-

@@ -11,7 +11,7 @@
     "sway/workspaces",
     "custom/runcat",
     "sway/scratchpad",
-    "sway/mode"
+    "sway/mode",
   ],
   //"modules-center": ["sway/window"],
   "modules-center": ["clock"],
@@ -28,74 +28,75 @@
     "pulseaudio",
     "pulseaudio/slider",
     "battery",
-    "idle_inhibitor",
-    "custom/power"
+    "custom/memory_usage",
+    // "idle_inhibitor",
+    "custom/power",
   ],
   // Sway Configurations
   "sway/mode": {
-    "format": " {}"
+    "format": " {}",
   },
   "sway/workspaces": {
     "format": "{name}",
-    "disable-scroll": false // true
+    "disable-scroll": false, // true
   },
   "sway/scratchpad": {
-      "format": "{icon} {count}",
-      "show-empty": false,
-      "format-icons": ["", ""],
-      "tooltip": true,
-      "tooltip-format": "{app}: {title}"
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": ["", ""],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}",
   },
   // Input Configurations
   "keyboard-state#c": {
     "capslock": true,
     "format": {
-      "capslock": " {icon} "
+      "capslock": " {icon} ",
     },
     "format-icons": {
       "locked": "󰘲", //󰬊
-      "unlocked": " "
-    }
+      "unlocked": " ",
+    },
   },
   "keyboard-state#n": {
     "numlock": true,
     "format": {
-      "numlock": " {icon} "
+      "numlock": " {icon} ",
     },
     "format-icons": {
       "locked": "🄽 ", //󰬕
-      "unlocked": " "
-    }
+      "unlocked": " ",
+    },
   },
   "sway/window": {
     "max-length": 80,
-    "tooltip": false
-  }, 
+    "tooltip": false,
+  },
   "mpd": {
-      "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-      "format-disconnected": "Disconnected ",
-      "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-      "unknown-tag": "N/A",
-      "interval": 5,
-      "consume-icons": {
-          "on": " "
-      },
-      "random-icons": {
-          "off": "<span color=\"#f53c3c\"></span> ",
-          "on": " "
-      },
-      "repeat-icons": {
-          "on": " "
-      },
-      "single-icons": {
-          "on": "1 "
-      },
-      "state-icons": {
-          "paused": "",
-          "playing": ""
-      },
-      "tooltip-format": "MPD (connected)",
-      "tooltip-format-disconnected": "MPD (disconnected)"
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+    "format-disconnected": "Disconnected ",
+    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+    "unknown-tag": "N/A",
+    "interval": 5,
+    "consume-icons": {
+      "on": " ",
+    },
+    "random-icons": {
+      "off": "<span color=\"#f53c3c\"></span> ",
+      "on": " ",
+    },
+    "repeat-icons": {
+      "on": " ",
+    },
+    "single-icons": {
+      "on": "1 ",
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": "",
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)",
   },
   "clock": {
     "format": "{:%a %d %b %I:%M %p}",
@@ -109,7 +110,7 @@
     "on-click-forward": "tz_up",
     "on-click-backward": "tz_down",
     "on-scroll-up": "shift_up",
-    "on-scroll-down": "shift_down"
+    "on-scroll-down": "shift_down",
   },
   "network": {
     "interval": 5,
@@ -119,7 +120,7 @@
     "format-icons": {
       "wifi": ["󰤮", "󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
       "ethernet": [""],
-      "disconnected": ["󰤫"]
+      "disconnected": ["󰤫"],
     },
     "format-wifi": "{essid} {icon}",
     "format-disconnected": "Disconnected ⚠",
@@ -150,13 +151,13 @@
     //"tooltip-format": "{status}"
     "tooltip-format-connected": "{device_enumerate}",
     //"tooltip-format-enumerate-connected": "{device_alias} ({device_address})"
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
   },
   "cpu": {
     "format": " {usage}% ",
     "interval": 3,
     //"on-click-right": "gnome-system-monitor"
-    "on-click-right": "kitty /usr/bin/btop"
+    "on-click-right": "kitty /usr/bin/btop",
   },
   "battery": {
     "format": "{capacity}% {icon}",
@@ -171,21 +172,21 @@
       "warning": 25,
       "critical": 10,
       "warning-icon": "",
-      "critical-icon": "🚨"
+      "critical-icon": "🚨",
     },
-    "tooltip": false
+    "tooltip": false,
   },
   "temperature": {
     "interval": 10,
     "tooltip": true,
     "hwmon-path": [
       "/sys/class/hwmon/hwmon1/temp1_input",
-      "/sys/class/thermal/thermal_zone0/temp"
+      "/sys/class/thermal/thermal_zone0/temp",
     ],
     "critical-threshold": 82,
     "format-critical": "{temperatureC}°C {icon}",
     "format": " {temperatureC}°C {icon} ",
-    "format-icons": [""]
+    "format-icons": [""],
     //        "on-click-right": "kitty -c ~/.config/dotfiles/kitty/kitty.conf --title nvtop sh -c 'nvtop'"
   },
   "wlr/taskbar": {
@@ -195,91 +196,96 @@
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
-    "ignore-list": ["rofi", "kitty"]
+    "ignore-list": ["rofi", "kitty"],
   },
-  "custom/cava": {
-    "exec": "~/.config/sway/scripts/waybarCavaColor.sh",
-    "tooltip": false,
-    "format": "{}"
-  },
-  "custom/cliphist": {
-        "format": "{}",
-        "rotate": 0,
-        "exec": "echo ; echo 󰅇 clipboard history",
-        "on-click": "sleep 0.1 && cliphist.sh c",
-        "on-click-right": "sleep 0.1 && cliphist.sh d",
-        "on-click-middle": "sleep 0.1 && cliphist.sh w",
-        "interval" : 86400, // once every day
-        "tooltip": true
-  },
+  // "custom/cava": {
+  //   "exec": "~/.config/sway/scripts/waybarCavaColor.sh",
+  //   "tooltip": false,
+  //   "format": "{}",
+  // },
+  // "custom/cliphist": {
+  //   "format": "{}",
+  //   "rotate": 0,
+  //   "exec": "echo ; echo 󰅇 clipboard history",
+  //   "on-click": "sleep 0.1 && cliphist.sh c",
+  //   "on-click-right": "sleep 0.1 && cliphist.sh d",
+  //   "on-click-middle": "sleep 0.1 && cliphist.sh w",
+  //   "interval": 86400, // once every day
+  //   "tooltip": true,
+  // },
   // Audio and Brightness Configurations
-"pulseaudio": {
-  "format": "{volume} {icon}",
-  "format-bluetooth": "{volume}% {icon} {format_source}",
-  "format-bluetooth-muted": "{icon} {format_source}",
-  "format-muted": "󰝟",
-  "format-icons": {
-    "phone": [" ", " ", " ", " "],
-    "default": ["", "", "", " "],
-    "headphone": "󰋎 ",
-    "hands-free": "󰥰 ",
-    "headset": " ",
-    "portable": "󰦢",
+  "pulseaudio": {
+    "format": "{volume} {icon}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": "{icon} {format_source}",
+    "format-muted": "󰝟",
+    "format-icons": {
+      "phone": [" ", " ", " ", " "],
+      "default": ["", "", "", " "],
+      "headphone": "󰋎 ",
+      "hands-free": "󰥰 ",
+      "headset": " ",
+      "portable": "󰦢",
+    },
+    "scroll-step": 10,
+    // "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click": "pavucontrol",
+    "tooltip": true,
   },
-  "scroll-step": 10,
-  // "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-  "on-click": "pavucontrol",
-  "tooltip": true
-},
-//"pulseaudio": {
-//    // "scroll-step": 1, // %, can be a float
-//    "format": "{volume}% {icon} {format_source}",
-//    "format-bluetooth": "{volume}% {icon} {format_source}",
-//    "format-bluetooth-muted": " {icon} {format_source}",
-//    "format-muted": " {format_source}",
-//    //"format-source": "{volume}% ",
-//    "format-source-muted": "",
-//    "format-icons": {
-//        "headphone": " ",
-//        "hands-free": " ",
-//        "headset": " ",
-//        "phone": "",
-//        "portable": "",
-//        "default": ["", "", ""]
-//    },
-//    "on-click": "pavucontrol"
-//},
+  //"pulseaudio": {
+  //    // "scroll-step": 1, // %, can be a float
+  //    "format": "{volume}% {icon} {format_source}",
+  //    "format-bluetooth": "{volume}% {icon} {format_source}",
+  //    "format-bluetooth-muted": " {icon} {format_source}",
+  //    "format-muted": " {format_source}",
+  //    //"format-source": "{volume}% ",
+  //    "format-source-muted": "",
+  //    "format-icons": {
+  //        "headphone": " ",
+  //        "hands-free": " ",
+  //        "headset": " ",
+  //        "phone": "",
+  //        "portable": "",
+  //        "default": ["", "", ""]
+  //    },
+  //    "on-click": "pavucontrol"
+  //},
   "pulseaudio/slider": {
     "min": 0,
     "max": 100,
-    "orientation": "horizontal"
+    "orientation": "horizontal",
   },
   "backlight": {
     "format": "{percent}% {icon}",
     "format-icons": ["", "󰃟", "󰃞", "", "󰖨"],
     "on-scroll-down": "exec brightnessctl s 5%-",
-    "on-scroll-up": "exec brightnessctl s +5%"
+    "on-scroll-up": "exec brightnessctl s +5%",
   },
   // Tray and Custom Modules
   "tray": {
-    "icon-size": 15
+    "icon-size": 15,
+  },
+  "custom/memory_usage": {
+    "format": "󰍛 {}",
+    "exec": "bash ~/.config/waybar/modules/memory_usage.sh",
+    "interval": 5,
+    "tooltip": false,
   },
   "custom/power": {
     "format": " ",
-    //  "on-click": "bash ~/.config/sway/modules/My_custom_powermenu/powermenu.sh"
-    "on-click": "bash ~/.config/rofi/powermenu/type-6/powermenu.sh",
+    "on-click": "bash ~/.config/sway/scripts/dmenu-power.sh",
     "tooltip": false,
   },
   "custom/runcat": {
-     "exec": "~/.config/waybar/modules/runcat-text/main.py",
-     "return-type": "json",
+    "exec": "~/.config/waybar/modules/runcat-text/main.py",
+    "return-type": "json",
   },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": "",
-      "deactivated": ""
+      "deactivated": "",
     },
-    "tooltip": false
-  }
+    "tooltip": false,
+  },
 }

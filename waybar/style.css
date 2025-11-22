@@ -16,9 +16,6 @@
 window#waybar {
   /* background: #0f0f17; */
   background: rgba(0, 0, 0, 0);
-  /*  border: 2px solid #124323; */
-  /* border: 0px solid #A1BDCE; */
-  /* border: 3px solid rgba(0, 0, 0, 0); */
   border-radius: 0px;
 }
 
@@ -34,7 +31,7 @@ tooltip {
   color: #888789;
   box-shadow: none;
   text-shadow: none;
-  border-radius: 9px;
+  border-radius: 0px;
   transition: 0.2s ease;
   padding-left: 2px;
   padding-right: 2px;
@@ -42,12 +39,12 @@ tooltip {
 }
 
 #workspaces button {
-  background: rgba(23, 23, 23, 0);
+  background: rgba(23, 23, 23, 50);
   /* color: #a1bdce; */
   color: #9488e3;
   box-shadow: none;
   text-shadow: none;
-  border-radius: 9px;
+  border-radius: 0px;
   transition: 0.2s ease;
   padding-left: 2px;
   padding-right: 2px;
@@ -55,12 +52,12 @@ tooltip {
 }
 
 #workspaces button.active {
-  /* background-image: url("/home/harshitpd/Pictures/Akin_doom/output.png"); */
   color: #72d801;
+  border-radius: 2px;
   transition: all 0.3s ease;
   padding-left: 2px;
   padding-right: 2px;
-  /* transition: all 0.4s cubic-bezier(0.55, 0.68, 0.48, 1.682); */
+  transition: all 0.4s cubic-bezier(0.55, 0.68, 0.48, 1.682);
 }
 
 #workspaces button:hover {
@@ -81,26 +78,21 @@ tooltip {
   padding-left: 3px;
   padding-right: 3px;
   margin-right: 0px;
-  /* color: @wb-color; */
   color: #000000;
   animation: tb_normal 20s ease-in-out 1;
 }
 
 #taskbar button.active {
-  /* background: @wb-act-bg; */
-  /* color: @wb-act-color; */
   margin-left: 3px;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin-right: 3px;
+  min-height: 9px;
   animation: tb_active 20s ease-in-out 1;
   transition: all 0.4s cubic-bezier(0.55, -0.68, 0.48, 1.682);
-  min-height: 9px;
 }
 
 #taskbar button:hover {
-  /* background: @wb-hvr-bg; */
-  /* color: @wb-hvr-color; */
   animation: tb_hover 20s ease-in-out 1;
   transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
@@ -109,7 +101,7 @@ tooltip {
   min-height: 16px;
   font-weight: bold;
   font-size: 13px;
-  color: #9488e3;
+  color: #0488e3;
 }
 
 #tray menu separator {
@@ -129,9 +121,18 @@ tooltip {
   background: #161320;
 }
 
+#custom-memory_usage {
+  font-size: 12px;
+  color: #daa520;
+  background: rgba(0, 0, 0, 0);
+  margin: 6px 0px 6px 0px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
 #custom-power {
   font-size: 12px;
-  color: #ffffdf;
+  color: #ff4c4c;
   background: rgba(0, 0, 0, 0);
   margin: 6px 0px 6px 0px;
   padding-left: 4px;
@@ -149,7 +150,7 @@ tooltip {
 }
 
 #bluetooth {
-  color: #0082fc;
+  color: #0018f9;
   background: rgba(22, 19, 32, 0);
   font-weight: normal;
   font-size: 12px;
@@ -160,7 +161,7 @@ tooltip {
 }
 
 #network {
-  color: #a1bdce;
+  color: #6693f5;
   background: rgba(22, 19, 32, 0);
   font-weight: normal;
   font-size: 13px;
@@ -267,8 +268,8 @@ tooltip {
 
 #pulseaudio {
   font-weight: normal;
-  font-size: 13px;
-  color: #6f8fdb;
+  font-size: 12px;
+  color: #ff8a5c;
   background: rgba(22, 19, 32, 0);
   opacity: 1;
   margin: 0px 0px 0px 0px;
@@ -327,7 +328,6 @@ tooltip {
 }
 
 #custom-notifications,
-#custom-spotify,
 #taskbar,
 #custom-theme,
 #custom-menu {
@@ -445,19 +445,20 @@ tooltip {
 #custom-runcat {
   font-family: "runcat";
   font-size: 18px;
+  color: #cdd6f4;
 }
 
 #custom-runcat.low {
   font-family: "runcat";
-  color: green;
+  color: #89b4fa;
 }
 
 #custom-runcat.medium {
   font-family: "runcat";
-  color: blue;
+  color: #ff9e64;
 }
 
 #custom-runcat.high {
   font-family: "runcat";
-  color: red;
+  color: #bf616a;
 }
