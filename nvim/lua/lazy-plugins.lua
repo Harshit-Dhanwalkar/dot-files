@@ -33,6 +33,7 @@ require("lazy").setup({
 	require("Plugins.conform"),
 	require("Plugins.autopairs"),
 	require("Plugins.appearance.bufferline"),
+	require("Plugins.appearance.barbecue"),
 	require("Plugins.appearance.colorscheme"),
 	require("Plugins.appearance.fidget"),
 	require("Plugins.appearance.indent-blackline"),
