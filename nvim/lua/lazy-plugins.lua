@@ -121,32 +121,31 @@ require("lazy").setup({
 	-- 'mileszs/ack.vim'
 	-- }
 	-- -- Snippet engine
+	-- python3.11 -m pip install --user pynvim
 	{ "quangnguyen30192/cmp-nvim-ultisnips", lazy = true },
-	-- {
-	-- 	"sirver/ultisnips",
-	-- 	event = "InsertEnter",
-	-- 	config = function()
-	-- 		vim.g.UltiSnipsExpandTrigger = "<c-j>"
-	-- 		vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
-	-- 		vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
-	-- 		-- vim.g.UltiSnipsSnippetDirectories = {
-	-- 		--   "UltiSnips", -- This is the default directory inside runtimepath/
-	-- 		--   vim.fn.expand("~/.config/nvim/snippets"), -- Example of a custom location
-	-- 		-- }
-	-- 	end,
-	-- 	dependencies = {
-	-- 		"honza/vim-snippets",
-	-- },
-	-- },
-	-- "honza/vim-snippets",
+	{
+		"sirver/ultisnips",
+		event = "InsertEnter",
+		config = function()
+			vim.g.UltiSnipsExpandTrigger = "<c-j>"
+			vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
+			vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
+			vim.g.UltiSnipsSnippetDirectories = {
+				"UltiSnips", -- This is the default directory inside runtimepath
+				vim.fn.expand("~/.config/nvim/lua/Plugins/UltiSnips/"),
+			}
+		end,
+		dependencies = {
+			"honza/vim-snippets",
+		},
+	},
 	-- "hrsh7th/cmp-vsnip",
 	-- "hrsh7th/vim-vsnip",
-	-- 'quangnguyen30192/cmp-nvim-ultisnips',
 	-- 'dcampos/nvim-snippy',
 	-- 'dcampos/cmp-snippy',
 	-- 'echasnovski/mini.snippets',
 	-- 'abeldekat/cmp-mini-snippets',
-	{ "machakann/vim-swap", event = "VeryLazy" },
+	{ "machakann/vim-swap", event = "VeryLazy" }, -- g< and g>
 }, {
 	ui = {
 		icons = vim.g.have_nerd_font and {} or {

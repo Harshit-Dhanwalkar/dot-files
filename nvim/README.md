@@ -77,7 +77,8 @@ brew install neovim
    # LaTeX (VimTeX)
    # :MasonInstall texlab
    # LanguageTool integration for LaTeX
-   # :MasonInstall ltex-ls
+   sudo apt install openjdk-21-jre-headless # ltex-ls requires java
+   npm install -g @neo-ltex/ltex-ls
    ```
 
    `:Mason` to get more LSP server
@@ -124,25 +125,31 @@ brew install neovim
 
 ### File Management
 
+1. UltraSnip
+
+   ```bash
+   python3.11 -m pip install --user pynvim
+   ```
+
 1. Ripgrep for Telescope file search
 
    ```bash
    sudo apt install ripgrep
    ```
 
-2. fd-find (Telescope file finder)
+1. fd-find (Telescope file finder)
 
    ```bash
    sudo apt install fd-find
    ```
 
-3. fzf (Fuzzy finder)
+1. fzf (Fuzzy finder)
 
    ```bash
    sudo apt install fzf
    ```
 
-4. Vimtex (LaTex)
+1. Vimtex (LaTex)
 
    ```bash
    sudo apt install latexmk
