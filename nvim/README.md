@@ -125,7 +125,7 @@ brew install neovim
 
 ### File Management
 
-1. UltraSnip
+1. UltriSnips
 
    ```bash
    python3.11 -m pip install --user pynvim

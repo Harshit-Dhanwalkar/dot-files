@@ -4,22 +4,64 @@ return {
 	{
 		"folke/tokyonight.nvim",
 		priority = 1000,
-		init = function()
+		config = function()
+			require("tokyonight").setup({
+				transparent = true,
+				styles = {
+					-- sidebars = 'transparent',
+					floats = "transparent",
+					bold = true,
+					italic = false,
+					transparency = true,
+				},
+				enable = {
+					terminal = false,
+					legacy_highlights = false,
+					migrations = true, -- Handle deprecated options automatically
+				},
+			})
 			vim.cmd.colorscheme("tokyonight-night")
 			vim.cmd.hi("Comment gui=none")
 		end,
-		opts = {
-			transparent = true,
-			styles = {
-				-- sidebars = 'transparent',
-				floats = "transparent",
-			},
-		},
 	},
+	-- {
+	-- 	"projekt0n/github-nvim-theme",
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("github-theme").setup({
+	-- 			styles = {
+	-- 				-- sidebars = 'transparent',
+	-- 				floats = "transparent",
+	-- 				bold = true,
+	-- 				italic = false,
+	-- 				transparency = true,
+	-- 			},
+	-- 			enable = {
+	-- 				terminal = false,
+	-- 				legacy_highlights = false,
+	-- 				migrations = true, -- Handle deprecated options automatically
+	-- 			},
+	-- 		})
+	-- 		-- vim.cmd("colorscheme github_dark")
+	-- 		vim.cmd("colorscheme github_dark_high_contrast")
+	-- 		vim.cmd.hi("Comment gui=none")
+	-- 	end,
+	-- },
+	-- {
+	-- 	"yorik1984/newpaper.nvim",
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("newpaper").setup({
+	-- 			style = "dark",
+	-- 		})
+	-- 		vim.cmd.colorscheme("newpaper")
+	-- 		vim.cmd.hi("Comment gui=none")
+	-- 	end,
+	-- },
 	-- {
 	-- 	"rose-pine/neovim",
 	-- 	name = "rose-pine",
-	-- 	-- priority = 1000,
+	-- 	priority = 1000,
 	-- 	config = function()
 	-- 		require("rose-pine").setup({
 	-- 			variant = "main", -- auto, main, moon, or dawn
@@ -44,13 +86,12 @@ return {
 	-- 			},
 	-- 			enable = {
 	-- 				terminal = false,
-	-- 				legacy_highlights = false, -- Improve compatibility for previous versions of Neovim
+	-- 				legacy_highlights = false,
 	-- 				migrations = true, -- Handle deprecated options automatically
 	-- 			},
 	-- 		})
-	-- 		-- HACK: set this on the color you want to be persistent
-	-- 		-- when quit and reopening nvim
-	-- 		-- vim.cmd("colorscheme rose-pine")
+	-- 		vim.cmd.colorscheme("rose-pine")
+	-- 		vim.cmd.hi("Comment gui=none")
 	-- 	end,
 	-- },
 	-- {

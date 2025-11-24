@@ -14,6 +14,7 @@
 }
 
 window#waybar {
+  /* background: #0f0f17; */
   background: rgba(0, 0, 0, 0);
   border-radius: 0px;
 }
@@ -25,7 +26,6 @@ tooltip {
   /* border-radius: 7px; */
   /* border: 2px solid #101a24; */
 }
-
 #workspaces {
   color: #888789;
   background: rgba(0, 0, 0, 0);
@@ -45,6 +45,7 @@ tooltip {
   text-shadow: none;
   border-radius: 0px;
   border-top: 2px solid #89b4fa;
+  border-bottom: 2px solid #89b4fa;
   transition: 0.2s ease;
   padding-left: 2px;
   padding-right: 2px;
@@ -55,6 +56,7 @@ tooltip {
   color: #005577;
   border-radius: 2px;
   border-top: 2px solid #005577;
+  border-bottom: 2px solid #005577;
   transition: all 0.3s ease;
   padding-left: 2px;
   padding-right: 2px;
@@ -65,6 +67,7 @@ tooltip {
   transition: none;
   color: #bf616a;
   border-top: 2px solid #bf616a;
+  border-bottom: 2px solid #bf616a;
   background: transparent;
   font-size: 4px;
 }
@@ -72,12 +75,14 @@ tooltip {
 #workspaces button.focused {
   color: #ff9e64;
   border-top: 2px solid #ff9e64;
+  border-bottom: 2px solid #ff9e64;
 }
 
 #workspaces button:hover {
   background: none;
   color: #9ece6a;
   border-top: 2px solid #9ece6a;
+  border-bottom: 2px solid #9ece6a;
   animation: ws_hover 20s ease-in-out 1;
   transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
@@ -138,80 +143,20 @@ tooltip {
 
 #custom-memory_usage {
   font-size: 12px;
-  font-weight: normal;
-  color: #ff9e64;
-  border-top: 1.9px solid #ff9e64;
+  color: #daa520;
   background: rgba(0, 0, 0, 0);
-  margin: 0px 0px 0px 0px;
+  margin: 6px 0px 6px 0px;
   padding-left: 4px;
   padding-right: 4px;
-}
-
-#custom-disks {
-  font-size: 12px;
-  font-weight: normal;
-  color: #89b4fa;
-  border-top: 1.9px solid #89b4fa;
-  background: rgba(0, 0, 0, 0);
-  margin: 0px 0px 0px 0px;
-  padding-right: 4px;
-  padding-left: 4px;
-}
-
-#custom-weather {
-  font-size: 12px;
-  font-weight: normal;
-  color: #89b4fa;
-  border-top: 1.9px solid #89b4fa;
-  background: rgba(0, 0, 0, 0);
-  margin: 0px 0px 0px 0px;
-  padding-right: 4px;
-  padding-left: 4px;
 }
 
 #custom-power {
   font-size: 12px;
-  font-weight: normal;
-  color: #bf616a;
-  border-top: 1.9px solid #bf616a;
+  color: #ff4c4c;
   background: rgba(0, 0, 0, 0);
-  margin: 0px 0px 0px 0px;
+  margin: 6px 0px 6px 0px;
   padding-left: 4px;
   padding-right: 4px;
-}
-
-#temperature {
-  font-size: 12px;
-  font-weight: normal;
-  color: #bf616a;
-  border-top: 1.9px solid #bf616a;
-  background: rgba(0, 0, 0, 0);
-  margin: 0px 0px 0px 0px;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#bluetooth {
-  font-size: 12px;
-  font-weight: normal;
-  color: #90d5ff;
-  border-top: 1.9px solid #90d5ff;
-  background: rgba(0, 0, 0, 0);
-  opacity: 1;
-  margin: 0px 0px 0px 0px;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#network {
-  font-size: 12px;
-  font-weight: normal;
-  color: #89b4fa;
-  border-top: 1.9px solid #89b4fa;
-  background: rgba(0, 0, 0, 0);
-  margin: 0px 0px 0px 0px;
-  padding-right: 4px;
-  padding-left: 4px;
 }
 
 #backlight {
@@ -219,10 +164,47 @@ tooltip {
   font-weight: normal;
   color: #cdd6f4;
   border-top: 1.9px solid #cdd6f4;
+  border-bottom: 1.9px solid #cdd6f4;
   background: rgba(0, 0, 0, 0);
   margin: 0px 0px 0px 0px;
-  padding-left: 4px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#bluetooth {
+  font-size: 12px;
+  font-weight: normal;
+  color: #0018f9;
+  border-top: 1.9px solid #0018f9;
+  border-bottom: 1.9px solid #0018f9;
+  background: rgba(0, 0, 0, 0);
+  opacity: 1;
+  margin: 0px 0px 0px 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.custom-disks {
+  font-size: 12px;
+  font-weight: normal;
+  color: #89b4fa;
+  border-top: 1.9px solid #89b4fa;
+  border-bottom: 1.9px solid #89b4fa;
+  background: rgba(0, 0, 0, 0);
+  margin: 0px 0px 0px 0px;
   padding-right: 4px;
+  padding-left: 4px;
+}
+
+#network {
+  font-size: 12px;
+  font-weight: normal;
+  color: #89b4fa;
+  border-top: 1.9px solid #89b4fa;
+  border-bottom: 1.9px solid #89b4fa;
+  background: rgba(0, 0, 0, 0);
+  padding-right: 4px;
+  padding-left: 4px;
 }
 
 #battery {
@@ -230,26 +212,29 @@ tooltip {
   font-weight: normal;
   color: #cdd6f4;
   border-top: 1.9px solid #a3be8c;
+  border-bottom: 1.9px solid #a3be8c;
   background: rgba(0, 0, 0, 0);
   opacity: 1;
-  margin: 0px 0px 0px 0px;
-  padding-right: 4px;
-  padding-left: 4px;
+  margin: 0;
+  padding: 0 4px;
 }
 
 #battery.charging {
   color: #a3be8c;
   border-top: 1.9px solid #a3be8c;
+  border-bottom: 1.9px solid #a3be8c;
 }
 
 #battery.warning {
   color: #ff9e64;
   border-top: 1.9px solid #ff9e64;
+  border-bottom: 1.9px solid #ff9e64;
 }
 
 #battery.critical {
   color: #bf616a;
   border-top: 1.9px solid #bf616a;
+  border-bottom: 1.9px solid #bf616a;
 }
 
 /* Dynamic color change per 10% */
@@ -257,46 +242,57 @@ tooltip {
   0% {
     color: #bf616a;
     border-top: 1.9px solid #bf616a;
+    border-bottom: 1.9px solid #bf616a;
   } /* 0-10%: Red */
   10% {
     color: #bf616a;
     border-top: 1.9px solid #bf616a;
+    border-bottom: 1.9px solid #bf616a;
   } /* 10-20%: Dark Orange */
   20% {
     color: #d08770;
     border-top: 1.9px solid #d08770;
+    border-bottom: 1.9px solid #d08770;
   } /* 20-30%: Orange */
   30% {
     color: #ebcb8b;
     border-top: 1.9px solid #ebcb8b;
+    border-bottom: 1.9px solid #ebcb8b;
   } /* 30-40%: Yellow */
   40% {
     color: #a3be8c;
     border-top: 1.9px solid #a3be8c;
+    border-bottom: 1.9px solid #a3be8c;
   } /* 40-50%: Light Green */
   50% {
     color: #a3be8c;
     border-top: 1.9px solid #a3be8c;
+    border-bottom: 1.9px solid #a3be8c;
   } /* 50-60%: Green */
   60% {
     color: #88c0d0;
     border-top: 1.9px solid #88c0d0;
+    border-bottom: 1.9px solid #88c0d0;
   } /* 60-70%: Teal */
   70% {
     color: #81a1c1;
     border-top: 1.9px solid #81a1c1;
+    border-bottom: 1.9px solid #81a1c1;
   } /* 70-80%: Light Blue */
   80% {
     color: #5e81ac;
     border-top: 1.9px solid #5e81ac;
+    border-bottom: 1.9px solid #5e81ac;
   } /* 80-90%: Blue */
   90% {
     color: #b48ead;
     border-top: 1.9px solid #b48ead;
+    border-bottom: 1.9px solid #b48ead;
   } /* 90-100%: Purple */
   100% {
     color: #b48ead;
     border-top: 1.9px solid #b48ead;
+    border-bottom: 1.9px solid #b48ead;
   } /* 100%: Keep Purple */
 }
 
@@ -312,6 +308,7 @@ tooltip {
 #battery.critical:not(.charging) {
   color: red;
   border-top: 1.9px solid #bf616a;
+  border-bottom: 1.9px solid #bf616a;
 }
 
 #taskbar {
@@ -320,7 +317,6 @@ tooltip {
 
 #idle_inhibitor {
   color: #24966e;
-  border-top: 1.9px solid #24966e;
   background: @bar-bg;
   opacity: 1;
   margin: 4px 0px 4px 0px;
@@ -333,6 +329,7 @@ tooltip {
   font-weight: 900;
   color: #cdd6f4;
   border-top: 1.9px solid #cdd6f4;
+  border-bottom: 1.9px solid #cdd6f4;
   background: rgba(0, 0, 0, 0);
   opacity: 1;
   margin: 0px 0px 0px 0px;
@@ -341,10 +338,11 @@ tooltip {
 }
 
 #pulseaudio {
-  font-size: 12px;
   font-weight: normal;
+  font-size: 12px;
   color: #ff9e64;
   border-top: 1.9px solid #ff9e64;
+  border-bottom: 1.9px solid #ff9e64;
   background: rgba(0, 0, 0, 0);
   opacity: 1;
   margin: 0px 0px 0px 0px;
@@ -353,26 +351,20 @@ tooltip {
 }
 
 #custom-cliphist {
-  font-size: 12px;
-  font-weight: normal;
   color: #e6e7e7;
-  border-top: 1.9px solid #e6e7e7;
-  background: rgba(0, 0, 0, 0);
+  background: #161320;
+  font-weight: normal;
+  font-size: 12px;
   opacity: 1;
-  margin: 0px 0px 0px 0px;
+  margin: 4px 0px 4px 0px;
   padding-left: 4px;
   padding-right: 4px;
 }
 
 #cpu {
-  font-size: 12px;
-  font-weight: normal;
   color: #915caf;
-  border-top: 1.9px solid #915caf;
-  background: rgba(0, 0, 0, 0);
-  margin: 0px 0px 0px 0px;
-  padding-left: 4px;
-  padding-right: 4px;
+  font-weight: normal;
+  font-size: 13px;
 }
 
 #custom-led {
@@ -413,7 +405,7 @@ tooltip {
 #custom-theme,
 #custom-menu {
   color: #e8edf0;
-  background: rgba(0, 0, 0, 0);
+  background: rgba(23, 23, 23, 0);
   margin: 0px 0px 0px 0px;
   padding-left: 1px;
   padding-right: 1px;
@@ -444,7 +436,7 @@ tooltip {
 #custom-rr_end {
   font-weight: normal;
   color: #e8edf0;
-  background: rgba(0, 0, 0, 0);
+  background: rgba(23, 23, 23, 0);
   opacity: 1;
   margin: 0px 0px 0px 0px;
   padding-left: 4px;
@@ -529,6 +521,7 @@ tooltip {
   font-family: "runcat";
   color: #cdd6f4;
   border-top: 1.9px solid #cdd6f4;
+  border-bottom: 1.9px solid #cdd6f4;
   margin: 0px 0px 0px 0px;
 }
 
@@ -536,16 +529,19 @@ tooltip {
   font-family: "runcat";
   color: #89b4fa;
   border-top: 1.9px solid #89b4fa;
+  border-bottom: 1.9px solid #89b4fa;
 }
 
 #custom-runcat.medium {
   font-family: "runcat";
   color: #ff9e64;
   border-top: 1.9px solid #ff9e64;
+  border-bottom: 1.9px solid #ff9e64;
 }
 
 #custom-runcat.high {
   font-family: "runcat";
   color: #bf616a;
   border-top: 1.9px solid #bf616a;
+  border-bottom: 1.9px solid #bf616a;
 }
