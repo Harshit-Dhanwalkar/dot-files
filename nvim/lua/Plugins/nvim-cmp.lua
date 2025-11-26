@@ -2,6 +2,9 @@
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
+	requires = {
+		{ "kdheepak/cmp-latex-symbols" },
+	},
 	dependencies = {
 		-- Snippet Engine & its associated nvim-cmp source
 		{
@@ -31,7 +34,6 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-vsnip",
 		"hrsh7th/vim-vsnip",
-		"hrsh7th/nvim-cmp",
 		"hrsh7th/cmp-cmdline",
 		-- Adds other completion capabilities.
 	},
@@ -98,6 +100,12 @@ return {
 				},
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
+				{
+					name = "latex_symbols",
+					option = {
+						strategy = 0, -- mixed
+					},
+				},
 				{ name = "path" }, -- file paths
 				{ name = "nvim_lsp", keyword_length = 3 }, -- from language server
 				{ name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized

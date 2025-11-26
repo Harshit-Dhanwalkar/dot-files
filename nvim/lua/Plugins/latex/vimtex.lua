@@ -14,15 +14,23 @@ return {
 		vim.g.tex_superscripts = "[0-9a-zA-W.,:;+-<>/()=]"
 		vim.g.tex_subscripts = "[0-9aehijklmnoprstuvx,+-/().]"
 		vim.cmd("syntax enable")
+
+		vim.g.vimtex_compiler_method = "latexmk" -- for better Asymptote support
+		-- vim.g.vimtex_compiler_method = "custom"
 		vim.g.vimtex_compiler_latexmk = {
 			build_dir = "",
 			continuous = 1,
+			callback = 1,
+			executable = "latexmk",
 			options = {
 				-- "-ps",
 				"-pdf",
 				"-shell-escape",
+				"-verbose",
 				"-interaction=nonstopmode",
 				"-synctex=1",
+				"-file-line-error",
+				-- "%f",
 			},
 		}
 	end,

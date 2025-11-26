@@ -1,5 +1,7 @@
 -- ~/.config/nvim/lua/settings.lua
 
+vim.g.vimtex_syntax_enabled = 0
+
 vim.opt_local.spell = true
 vim.opt_local.spelllang = "en_us"
 
