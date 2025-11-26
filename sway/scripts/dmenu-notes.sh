@@ -7,7 +7,7 @@ BASE_DIR="${HOME}/Desktop/Notes/"
 DMENU="/usr/local/bin/dmenu"
 NOTIFY="/usr/bin/dunstify"
 
-NOTE_CATEGORIES=("philosophy" "work" "configuration")
+NOTE_CATEGORIES=("work" "configuration")
 
 if [ -x "${HOME}/.local/kitty.app/bin/kitty" ]; then
     TERMINAL="${HOME}/.local/kitty.app/bin/kitty"
@@ -55,17 +55,53 @@ pad_category() {
     local category="$1"
     local count="$2"
     local padded_category
-    local title_case=$(echo "$category" | sed 's/.*/\L&/; s/[a-z]*/\u&/g')
+    local title_case=$(echo "$category" | sed 's/.*/\L&/; s/[a-z]*/\u&/g; s/[-_]/ /g') # Convert to Title Case
 
+    # Check for hardcoded categories first for consistent padding
     case "$category" in
-        "philosophy") padded_category="Philosophy      " ;;
-        "work") padded_category="Work            " ;;
-        "configuration") padded_category="Configuration   " ;;
-        "all") padded_category="All             " ;;
-        *) padded_category="${title_case}          " ;;
+        "philosophy") padded_category="Philosophy         " ;;
+        "work") padded_category="Work               " ;;
+        "configuration") padded_category="Configuration      " ;;
+        "all") padded_category="All                " ;;
+        *)
+            # For dynamic categories
+            local max_len=18
+            padded_category=$(printf "%-${max_len}s" "$title_case")
+            padded_category="${padded_category:0:$max_len}" # Truncate to max_len
+            ;;
     esac
 
     echo "${padded_category}(${count} notes)"
+}
+
+get_note_categories() {
+    local categories=()
+    while IFS= read -r -d $'\0' dir; do
+        if [ -d "$dir" ] && [ "$dir" != "$BASE_DIR" ]; then
+            local category_name
+            category_name=$(basename "$dir")
+            if [[ ! "$category_name" =~ ^\. ]]; then
+                categories+=("$category_name")
+            fi
+        fi
+    done < <(find "$BASE_DIR" -mindepth 1 -maxdepth 1 -type d -print0 2>/dev/null)
+
+    # Sort categories alphabetically
+    IFS=$'\n' categories=($(sort <<<"${categories[*]}"))
+    unset IFS
+
+    # If the user-defined defaults are missing, ensure they are at least created.
+    # This ensures the default structure is present even if the directory find failed.
+    local default_categories=("philosophy" "work" "configuration")
+    for default in "${default_categories[@]}"; do
+        if [[ ! " ${categories[*]} " =~ " ${default} " ]]; then
+            categories+=("$default")
+            # Ensure the directory exists
+            mkdir -p "${BASE_DIR}${default}"
+        fi
+    done
+    
+    echo "${categories[*]}"
 }
 
 # --- Menu launcher ---
@@ -85,34 +121,32 @@ is_exit_selection() {
 }
 
 select_category() {
+    local current_categories_str=$(get_note_categories)
+    local -a current_categories=($current_categories_str) # Convert string to array
+
     local categories_with_count=""
-    for category in "${NOTE_CATEGORIES[@]}"; do
-        if [ "$category" != "all" ]; then
-            local dir="${BASE_DIR}${category}/"
-            local count=$(count_notes "$dir")
-            local padded_line=$(pad_category "$category" "$count")
-            categories_with_count="${categories_with_count}${padded_line}"$'\n'
-        fi
+    local total_count=0
+
+    for category in "${current_categories[@]}"; do
+        local dir="${BASE_DIR}${category}/"
+        local count=$(count_notes "$dir")
+        local padded_line=$(pad_category "$category" "$count")
+        categories_with_count="${categories_with_count}${padded_line}"$'\n'
+        total_count=$((total_count + count))
     done
 
-    local total_count=0
-    for category in "${NOTE_CATEGORIES[@]}"; do
-        if [ "$category" != "all" ]; then
-            local dir="${BASE_DIR}${category}/"
-            total_count=$((total_count + $(count_notes "$dir")))
-        fi
-    done
     local all_padded=$(pad_category "all" "$total_count")
     categories_with_count="Exit (ESC)"$'\n'"${categories_with_count}${all_padded}"
 
-    choice=$(echo -e "$categories_with_count" | menu "Select category:" 12)
+    local lines_to_show=$(( ${#current_categories[@]} + 2 )) # Exit, All, and all categories
+    choice=$(echo -e "$categories_with_count" | menu "Select category:" $lines_to_show)
 
     if is_back_selection "$choice"; then
         echo "EXIT"
         return
     fi
 
-    local clean_choice=$(echo "$choice" | sed 's/^\([^ ]* *\).*/\1/' | sed 's/ *$//' | tr '[:upper:]' '[:lower:]')
+    local clean_choice=$(echo "$choice" | sed 's/^\([^ ]* *\).*/\1/' | sed 's/ *$//' | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
     echo "$clean_choice"
 }
 
