@@ -7,6 +7,10 @@ return {
 	build = ":TSUpdate",
 	main = "nvim-treesitter.configs",
 	-- See `:help nvim-treesitter`
+	dependencies = {
+		{ "JoosepAlviste/nvim-ts-context-commentstring" },
+		{ "nvim-treesitter/nvim-tree-docs" },
+	},
 	opts = {
 		ensure_installed = {
 			"bash",

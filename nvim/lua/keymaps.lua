@@ -149,9 +149,6 @@ map("n", "gr", function()
 end, { desc = "Go to [R]eferences" })
 map("n", "<leader>e", vim.diagnostic.open_float)
 
--- telescope grep string
-map("n", "<leader>g", "<cmd>Telescope live_grep<cr>")
---
 -- move to end of word while keeping the cursor in the same column for the next line
 map("n", "k", "gk")
 map("n", "j", "gj")

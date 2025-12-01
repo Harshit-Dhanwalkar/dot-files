@@ -16,6 +16,17 @@ map("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" }
 map("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 map("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 
+-- telescope grep string
+map("n", "<leader>g", "<cmd>Telescope live_grep<cr>")
+
+-- telescope extensions
+map("n", "<leader>ff", function()
+	require("telescope").extensions.frecency.frecency()
+end, { desc = "Find Files (Frecency)" })
+map("n", "<leader>gh", function()
+	require("telescope").extensions.heading.heading()
+end, { desc = "Telescope: Go to Heading" })
+
 map("n", "<leader>/", function()
 	builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 		winblend = 10,

@@ -6,6 +6,8 @@ return {
 			"*",
 			"html",
 			css = { rgb_fn = true },
+			lua = { rgb_fn = true },
+			markdown = { rgb_fn = true },
 		})
 	end,
 }
