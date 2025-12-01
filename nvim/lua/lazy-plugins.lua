@@ -39,6 +39,7 @@ require("lazy").setup({
 	require("Plugins.appearance.indent-blackline"),
 	require("Plugins.appearance.lualine"),
 	require("Plugins.appearance.noice"),
+	require("Plugins.appearance.modicator"),
 	require("Plugins.appearance.lightswtich"),
 	require("Plugins.appearance.twilight"),
 	-- require("Plugins.appearance.undo-glow"),
