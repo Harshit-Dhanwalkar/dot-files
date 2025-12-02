@@ -20,7 +20,7 @@ map("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 map("n", "<leader>g", "<cmd>Telescope live_grep<cr>")
 
 -- telescope extensions
-map("n", "<leader>ff", function()
+map("n", "<leader>fq", function()
 	require("telescope").extensions.frecency.frecency()
 end, { desc = "Find Files (Frecency)" })
 map("n", "<leader>gh", function()

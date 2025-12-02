@@ -145,7 +145,13 @@ require("lazy").setup({
 	-- 'dcampos/cmp-snippy',
 	-- 'echasnovski/mini.snippets',
 	-- 'abeldekat/cmp-mini-snippets',
-	{ "machakann/vim-swap", event = "VeryLazy" }, -- g< and g>
+	{ -- Swap -- g< and g>
+		"machakann/vim-swap",
+		event = "VeryLazy",
+	},
+	-- AI
+	require("Plugins.ai.copilot"),
+	require("Plugins.ai.copilot-cmp"),
 }, {
 	ui = {
 		icons = vim.g.have_nerd_font and {} or {
