@@ -1,0 +1,70 @@
+# Zathura configuration file
+# See man `man zathurarc'
+map r reload
+map p print
+map i recolor
+map J zoom out
+map K zoom in
+map R rotate
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+
+# Open document in fit-width mode by default
+set adjust-open "width"
+
+# One page per row by default
+set pages-per-row 1
+
+# Stop at page boundries
+set scroll-page-aware "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+# Zoom settings
+set zoom-min 10
+
+# No default gui elements
+set guioptions ""
+
+# Font
+set font "antidote 8"
+
+## Zathura config
+set recolor true
+set recolor-lightcolor          \#1C1B19
+set recolor-darkcolor           \#fce8c3
+set highlight-color             \#f75341
+set highlight-active-color      \#ef2f27
+
+## Girara config
+set completion-bg               \#1C1B19
+set completion-fg               \#FCE8C3
+set completion-group-bg         \#303030
+set completion-group-fg         \#FCE8C3
+set completion-highlight-bg     \#68A8E4
+set completion-highlight-fg     \#1C1B19
+
+set default-bg                  \#1C1B19
+set default-fg                  \#D0BFA1
+
+set inputbar-bg                 \#262626
+set inputbar-fg                 \#FCE8C3
+
+set notification-error-bg       \#1C1B19
+set notification-error-fg       \#FF5F00
+set notification-warning-bg     \#1C1B19
+set notification-warning-fg     \#FBB829
+
+set tabbar-bg                   \#1C1B19
+set tabbar-fg                   \#D0BFA1
+set tabbar-focus-bg             \#1C1B19
+set tabbar-focus-fg             \#98BC37
+
+set statusbar-bg                \#1C1B19
+set statusbar-fg                \#D0BFA1
+
+set index-bg                    \#262626
+set index-fg                    \#D0BFA1
+set index-active-bg             \#FED06E
+set index-active-fg             \#1C1B19

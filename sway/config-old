@@ -11,27 +11,28 @@ set $up k
 set $right l
 set $term kitty
 set $browser firefox
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
-include /etc/sway/config-vars.d/*
-
-# To change default terminal-emulator run `sudo update-alternatives --config x-terminal-emulator`
+# To change deault terminal-emulator run `sudo update-alternatives --config x-terminal-emulator`
 # set $term /usr/bin/kitty
 set $term ~/.local/kitty.app/bin/kitty
 
-### Output configuration
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg ~/Pictures/wallpapers/Wall1.jpg fill
+set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
+include /etc/sway/config.d/*
+
+bindsym $mod+w exec "~/.config/sway/modules/wall-switch.sh"
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg ~/Pictures/wallpapers/makima.jpeg fill
+
+# Example configuration:
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
-# You can get the names of your outputs by running: swaymsg -t get_outputs
+# get the names of outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
 
 ### Input configuration
 #   input "2:14:SynPS/2_Synaptics_TouchPad" {
@@ -42,76 +43,68 @@ input type:touchpad {
     middle_emulation enabled
 }
 
-# You can get the names of your inputs by running: swaymsg -t get_inputs
+# get the names of inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+
 ### Key bindings
     # Start a terminal
-    bindsym $mod+Return exec ~/.local/kitty.app/bin/kitty
-    bindsym $mod-alt+Return exec foot
-    # bindsym $mod+Shift+Return exec st
-
-    # Lanch Browser
-    bindsym $mod+Shift+f exec $browser
+    bindsym $mod+Return exec $term
+    # bindsym $mod-alt+Return exec foot
+    bindsym $mod-alt+Return exec ~/.config/st/st
 
     # Kill focused window
     bindsym $mod+q kill
 
-    # Screen Lock
-    bindsym $mod-alt+Ctrl+l exec swaylock -f -c 1E1E2EFF
-    # bindsym $mod-alt+Ctrl+l exec swaylock --image "$(find ~/Pictures/wallpapers -type f | shuf -n 1)" -C ~/.config/sway/swaylock/config
-    # bindsym $mod-alt+Ctrl+l exec ~/.config/sway/scripts/swaylock-random.sh
+    # Lanch Browser
+    bindsym $mod-alt+f exec firefox
 
-    # Start application launcher
-    # bindsym $mod+d exec $menu # this is default dmenu
-    bindsym $mod+d exec /usr/bin/rofi -show drun -theme ~/.config/rofi/dracula.rasi
-    bindsym $mod-alt+d exec dmenu_run
+    # Screen Lock
+    bindsym $mod-alt+Ctrl+l exec swaylock -C ~/.config/sway/swaylock/config
+
+    # Start launcher App menu
+    # bindsym $mod+d exec $menu
+    #bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/My_custom_type/launcher.sh
+    # bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
+    bindsym $mod+d exec --no-startup-id ~/.config/sway/modules/app_launcher/launcher.sh
 
     # Quicklinks menu
     bindsym $mod-alt+t exec ~/.config/sway/scripts/dmenu-quicklink.sh
-    # bindsym $mod+t exec ~/.config/sway/modules/QucikLink/quicklinks.sh # rofi
+    bindsym $mod+t exec ~/.config/sway/modules/QucikLink/quicklinks.sh
 
-    # Start file namager
-    bindsym $mod+m exec /usr/bin/nautilus
-
-    # Start Disk Usage Analyzer
-    bindsym $mod-alt+comma exec /usr/bin/baobab
+    # Launch Nautilus file manager
+    bindsym $mod+m exec nautilus
 
     # Wifi/network
     bindsym $mod-alt+n exec ~/.config/sway/scripts/dmenu-wifi.sh
+    # bindsym $mod-alt+n exec ~/.config/sway/scripts/rofi-wifi.sh
 
     # Swtich audio output
-    # bindsym $mod-alt+a exec ~/.config/sway/scripts/audioswitch.sh
     bindsym $mod-alt+a exec  ~/.config/sway/scripts/controllers.sh
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
+    # Change normal to inverse to use left mouse button for resizing and right mouse button for dragging.
     floating_modifier $mod normal
 
-    # Brightness Control
-    # sudo visudo
-    # add `user_name all=(all) nopasswd: /usr/bin/brightnessctl` at the end
-    ## this will prevent `brightnessctl` cmd to use sudo everytime you use it.
-    # sudo usermod -aG video username # logout, login again
-    bindsym F6 exec sudo brightnessctl set 5%-
-    bindsym F7 exec sudo brightnessctl set +5%
-    # bindsym F6 exec /usr/bin/sudo /usr/bin/brightnessctl set 5%-
-    # bindsym F7 exec /usr/bin/sudo /usr/bin/brightnessctl set +5%
-    # bindsym F6 exec ~/.config/sway/scripts/dunst-slider.sh brightness_down
-    # bindsym F7 exec ~/.config/sway/scripts/dunst-slider.sh brightness_up
+    # brightness control
+    # add `USER_NAME ALL=(ALL) NOPASSWD: /usr/bin/brightnessctl` at the end of "sudo visudo"
+    # this will prevent `brightnessctl` cmd to use sudo everytime you use it.
+    # bindsym F6 exec sudo brightnessctl set 5%-
+    # bindsym F7 exec sudo brightnessctl set +5%
+    bindsym F6 exec ~/.config/sway/scripts/dunst-slider.sh brightness_down
+    bindsym F7 exec ~/.config/sway/scripts/dunst-slider.sh brightness_up
 
     # # Special keys to adjust brightness via brightnessctl
     # bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     # bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
-    # Volume Control
-    # bindsym F1 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    # Volume control
+    bindsym F1 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
     # bindsym F2 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
     # bindsym F3 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    # bindsym F2 exec ~/.config/sway/scripts/dunst-slider.sh volume_down
-    # bindsym F3 exec ~/.config/sway/scripts/dunst-slider.sh volume_up
+    bindsym F2 exec ~/.config/sway/scripts/dunst-slider.sh volume_down
+    bindsym F3 exec ~/.config/sway/scripts/dunst-slider.sh volume_up
 
     # # Special keys to adjust volume via PulseAudio
     bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
@@ -120,17 +113,26 @@ input type:touchpad {
     bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
 
     # Screenshot
-    bindsym Print exec grim -t png "$HOME/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png"
-    bindsym $mod+s exec grim -g "$(slurp)" "$HOME/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png"
+    bindsym Print exec grim -t png ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym $mod+s exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png
     bindsym $mod+shift+s exec grim -g "$(slurp)" - | wl-copy
-    ## Uses demnu to bring out menu for screen shoot
+    ## Uses demu/rofi to bring out menu for screen shoot
+    # bindsym Mod1+s exec ~/.config/sway/scripts/screenshot.sh
     bindsym $mod-alt+s exec ~/.config/sway/scripts/screenshot-dmenu.sh
 
+    # Color picker
+    # bindsym Mod1+c exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | awk -F'[(,)]' '/srgb/{printf "#%02x%02x%02x\n", $2, $3, $4}' | xargs -I{} notify-send "Picked Color" "{}"
+    # bindsym Mod1+i exec ~/.config/sway/scipts/color-picker.sh
+    bindsym $mod-alt+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | wl-copy
+    bindsym $mod+Shift+p exec sh -c 'HEX_COLOR=$(slurp -p | grim -g - - | convert - txt: | awk \"NR==2 { print \$3 }\"); wl-copy "$HEX_COLOR"; dunstify -a "Color Picker" "Copied Color" "Color: <b>$HEX_COLOR</b>"'
+
     # Browser
-    # bindsym Mod1+w exec ~/.config/qutebrowser/userscripts/session.sh
+    bindsym Mod1+w exec ~/.config/qutebrowser/userscripts/session.sh
 
     # Powermenu
     bindsym $mod+p exec ~/.config/sway/scripts/dmenu-power.sh
+    # bindsym $mod+p exec ~/.config/sway/modules/powermenu/powermenu.sh
+    # bindsym $mod+p exec ~/.config/rofi/powermenu/type-6/powermenu.sh
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -139,7 +141,7 @@ input type:touchpad {
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # Moving around:
-    # Move your focus around
+    # Move focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
@@ -149,13 +151,12 @@ input type:touchpad {
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
-
-    # Move the focused window with the same, but add Shift
+    # Move the focused window 
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
-    # with arrow keys
+    #with arrow keys
     bindsym $mod+Shift+Left move left
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
@@ -184,43 +185,35 @@ input type:touchpad {
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
 
 # Layout stuff:
     # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
+    # $mod+b or $mod+v, for horizontal and vertical splits respectively.
     bindsym $mod+b splith
     bindsym $mod+v splitv
-
     # Switch the current container between different layout styles
-    # bindsym $mod+s layout stacking
-    # bindsym $mod+w layout tabbed
-    # bindsym $mod+e layout toggle split
-
+    #bindsym $mod+s layout stacking
+    #bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
-
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
-
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
-
     # Move focus to the parent container
     bindsym $mod+a focus parent
 
 # Scratchpad:
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
-
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
-
+    bindsym Mod1+Shift+minus move scratchpad
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    bindsym Mod1+minus scratchpad show
+    # Toggle floating off (make window tiled)
+    bindsym Mod1+Shift+Return floating disable
 
 # Resizing containers:
 mode "resize" {
@@ -232,13 +225,11 @@ mode "resize" {
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
     bindsym $right resize grow width 10px
-
-    # Ditto, with arrow keys
+    # with arrow keys
     bindsym Left resize shrink width 10px
     bindsym Down resize grow height 10px
     bindsym Up resize shrink height 10px
     bindsym Right resize grow width 10px
-
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -247,94 +238,45 @@ bindsym $mod+r mode "resize"
 
 # Status Bar:
 bar {
-    # waybar
-        swaybar_command waybar
-    # Default sway-bar
-    # # Read `man 5 sway-bar` for more information about this section.
-        position top
-        status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-        separator_symbol "::"
-        colors {
-          background #222222
-          statusline #9b8d7f
-          separator #9b8d7f
-
-          focused_workspace #9b8d7f #9b8d7f #222222
-          inactive_workspace #222222 #222222 #9b8d7f
-          active_workspace #222222 #222222 #9b8d7f
-          urgent_workspace #222222 #222222 #9b8d7f
-          binding_mode #222222 #222222 #9b8d7f
-        }
-        # font pango:Iosevka Term 12
-        # tray_output HDMI-A-0
+   # Waybar
+       swaybar_command waybar
+   # Default swaybar
+       # Read `man 5 sway-bar` for more information about this section.
+       # position top
+       # separator_symbol "::"
+       # status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+       # colors {
+       #   background #222222
+       #   statusline #9b8d7f
+       #   separator #9b8d7f
+       #
+       #   focused_workspace #9b8d7f #9b8d7f #222222
+       #   inactive_workspace #222222 #222222 #9b8d7f
+       #   active_workspace #222222 #222222 #9b8d7f
+       #   urgent_workspace #222222 #222222 #9b8d7f
+       #   binding_mode #222222 #222222 #9b8d7f
+       # }
+       # font pango:Iosevka Term 12
+       # tray_output HDMI-A-0
 }
 
-# title bar
-# title_align left
-# titlebar_padding 1
-# titlebar_border_thickness 1
+# for_window [app_id="focused"] opacity 0.9
+# for_window [app_id="focused_inactive"] opacity 0.8
 for_window {
     [title="Picture-in-Picture"] floating enable
-    # [title="bluetoothctl"] floating enable, resize set 500 200
-    # [app_id="pavucontrol"] floating enable
-    # [app_id="^.*"] title_format "%title"
-    # [class="^.*"] title_format "%title"
-    # [app_id="^.*"] border pixel 3
-    # [app_id="focused"] opacity 0.9
-    # [app_id="focused_inactive"] opacity 0.8
-    # [title="game-*"] floating enable, resize set 1920 1080
-    # [title="app-*"] floating enable, resize set 1920 1080
+    [title="bluetoothctl"] floating enable, resize set 500 200
+    [app_id="pavucontrol"] floating enable
+#   [title="game-*"] floating enable, resize set 1920 1080
+#   [title="app-*"] floating enable, resize set 1920 1080
 }
-
-# Workspaces
-workspace_layout default
-focus_follows_mouse yes
-focus_wrapping no
-# assign [app_id="(?i).*kitty.*"] $ws1
-# assign [app_id="(?i).*firefox.*"] $ws2
-# assign [app_id="(?i).*telegram.*"] $ws5
-# assign [class="(?i).*discord.*"] $ws5
-# assign [app_id="(?i).*gimp.*"] $ws6
-# assign [app_id="(?i).*inkscape.*"] $ws6
-# assign [app_id="(?i).*office.*"] $ws7
-# assign [app_id="(?i).*zathura.*"] $ws7
-# assign [app_id="(?i).*gnome-disks.*"] $ws8
-# assign [app_id="(?i).*obsproject.*"] $ws8
-# assign [app_id="(?i).*nwg-look.*"] $ws8
-# assign [app_id="(?i).*localsend.*"] $ws8
-# assign [app_id="(?i).*qbittorrent.*"] $ws8
 # workspace 5 gaps horizontal 100
 # workspace 5 gaps vertical 30
 # workspace 5 gaps inner 20
 
-# Adjusting borders
 # default_border pixel 2
-# default_border none
-# default_floating_border none
+# default_floating_border pixel 2
 
-# Gaps
-# gaps top 0
-# gaps inner 5
-# gaps outer 5
-
-# # focus the latest spawned window
-# for_window [shell=".*"] focus
-#
-# # set all floating windows to center
-# for_window [floating] move position center,sticky disable
-#
-# # window rules for common titles
-# for_window [app_id=".*" title="(?i).*open.*"] floating enable, move position center, resize set 60ppt 70ppt
-#
-# window settings for specific apps and their windows
-for_window [app_id="(?i).*pavucontrol|blueman-manager|xdg-desktop-portal-gtk.*"] floating enable, move position center, resize set 60ppt 70ppt
-for_window [class="(?i).*xdg-desktop-portal-gtk.*"] floating enable, move position center, resize set 60ppt 70ppt
-
-for_window [window_type="dialog"] floating enable, move position center
-for_window [window_type="utility"] floating enable, move position center
-for_window [window_type="popup_menu"] floating enable, move position center
-
-# class                     boarder   backgrd    text    indicator child_border
+# class                     boarder   backgrd    text    indicator  child_border
 client.focused             "#FF9E64" "#1E1E2E" "#ffffff" "#FF9E64" "#777777"
 client.focused_inactive    "#000000" "#222222" "#cccccc" "#888888" "#333333"
 client.unfocused           "#89b4fa" "#1E1E2E" "#999999" "#111111" "#444444"
@@ -374,4 +316,3 @@ bindsym $mod-alt+Shift+3 exec sh -c 'HEX_COLOR=$(slurp -p | grim -g - - | conver
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec --no-startup-id /usr/libexec/xdg-desktop-portal -r
-exec dbus-update-activation-environment --systemd --all
