@@ -157,6 +157,14 @@ map("n", "j", "gj")
 map("n", "[e", vim.diagnostic.goto_next)
 map("n", "]e", vim.diagnostic.goto_next)
 
+-- Folding Keymaps
+map("n", "za", "za", { desc = "[Z]old [A]lternate/Toggle fold" })
+map("n", "zc", "zc", { desc = "[Z]old [C]lose fold" })
+map("n", "zo", "zo", { desc = "[Z]old [O]pen fold" })
+map("n", "zM", "zM", { desc = "[Z]old [M]ore: Close ALL folds" })
+map("n", "zR", "zR", { desc = "[Z]old [R]eveal: Open ALL folds" })
+map("n", "zC", "zC", { desc = "[Z]old [C]lose fold recursively" })
+
 -- disable vimtex maps
 vim.g.vimtex_compiler_method = "latexmk"
 vim.g.vimtex_view_method = "skim"

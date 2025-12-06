@@ -17,7 +17,7 @@ map("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 map("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 
 -- telescope grep string
-map("n", "<leader>g", "<cmd>Telescope live_grep<cr>")
+map("n", "<leader>g", "<cmd>Telescope live_grep<cr>", { desc = "[G]rep (Live Search)" })
 
 -- telescope extensions
 map("n", "<leader>fq", function()
@@ -47,10 +47,10 @@ end, { desc = "[S]earch [N]eovim files" })
 
 -- Nvimtree
 --map('n', '<leader>e', ':NvimTreeFindFileToggle<cr>')
-map("n", "\\", ":NvimTreeFindFileToggle<cr>", { noremap = true, silent = true })
+map("n", "\\", ":NvimTreeFindFileToggle<cr>", { noremap = true, silent = true, desc = "[\\ ] Toggle NvimTree" })
 
 -- Nvim-comments
-map({ "n", "v" }, "<leader>gc", ":CommentToggle<cr>")
+map({ "n", "v" }, "<leader>gc", ":CommentToggle<cr>", { desc = "[G]lobal [C]omment Toggle" })
 
 -- Neoclip
 map("n", "<leader>p", function()
@@ -59,26 +59,36 @@ end, { desc = "Neoclip (Paste History)" })
 
 -- Vimtex
 local opts = { noremap = true, silent = true }
-map({ "n", "v" }, "<leader>lt", ":VimtexTocToggle<cr>")
-map("n", "<leader>ll", ":VimtexCompile<CR>", opts) -- Start compilation
-map("n", "<leader>lk", ":VimtexStop<CR>", opts) -- Stop compilation
-map("n", "<leader>lc", ":VimtexClean<CR>", opts) -- Clean aux files
-map("n", "<leader>lC", ":VimtexClean!<CR>", opts) -- Full clean
-map("n", "<leader>lv", ":VimtexView<CR>", opts) -- Open PDF viewer
-map("n", "<leader>li", ":VimtexInfo<CR>", opts) -- Show project info
-map("n", "<leader>lo", ":VimtexCompileOutput<CR>", opts) -- Compilation output
-map("n", "<leader>ls", ":VimtexStatus<CR>", opts) -- Status
-map("n", "<leader>le", ":VimtexErrors<CR>", opts) -- Errors
-map("n", "<leader>llg", ":VimtexLog<CR>", opts) -- Log messages
-map("n", "<leader>lf", ":VimtexForward<CR>", opts) -- Forward search
-map("n", "<leader>lb", ":VimtexBackward<CR>", opts) -- Backward search
+map({ "n", "v" }, "<leader>lt", ":VimtexTocToggle<cr>", { desc = "[L]aTeX [T]oc Toggle" })
+map("n", "<leader>ll", ":VimtexCompile<CR>", vim.tbl_deep_extend("force", opts, { desc = "[L]aTeX [L]ive Compile" }))
+map("n", "<leader>lk", ":VimtexStop<CR>", vim.tbl_deep_extend("force", opts, { desc = "[L]aTeX Stop [K]ompiling" }))
+map("n", "<leader>lc", ":VimtexClean<CR>", vim.tbl_deep_extend("force", opts, { desc = "[L]aTeX [C]lean aux files" }))
+map("n", "<leader>lC", ":VimtexClean!<CR>", vim.tbl_deep_extend("force", opts, { desc = "[L]aTeX [C]lean full" }))
+map("n", "<leader>lv", ":VimtexView<CR>", vim.tbl_deep_extend("force", opts, { desc = "[L]aTeX [V]iew PDF" }))
+map("n", "<leader>li", ":VimtexInfo<CR>", vim.tbl_deep_extend("force", opts, { desc = "[L]aTeX [I]nfo" }))
+map(
+	"n",
+	"<leader>lo",
+	":VimtexCompileOutput<CR>",
+	vim.tbl_deep_extend("force", opts, { desc = "[L]aTeX Compile [O]utput" })
+)
+map("n", "<leader>ls", ":VimtexStatus<CR>", vim.tbl_deep_extend("force", opts, { desc = "[L]aTeX [S]tatus" }))
+map("n", "<leader>le", ":VimtexErrors<CR>", vim.tbl_deep_extend("force", opts, { desc = "[L]aTeX [E]rrors" }))
+map("n", "<leader>llg", ":VimtexLog<CR>", vim.tbl_deep_extend("force", opts, { desc = "[L]aTeX [L]og" }))
+map("n", "<leader>lf", ":VimtexForward<CR>", vim.tbl_deep_extend("force", opts, { desc = "[L]aTeX [F]orward Search" }))
+map(
+	"n",
+	"<leader>lb",
+	":VimtexBackward<CR>",
+	vim.tbl_deep_extend("force", opts, { desc = "[L]aTeX [B]ackward Search" })
+)
 
 -- Peek
 -- map("n", "<leader>md", ":PeekOpen<CR>")
 -- map("n", "<leader>mx", ":PeekClose<CR>")
 
 -- Noice dissmiss notification
-map("n", "<leader>nd", "<cmd>NoiceDissmiss<CR>", { desc = "Dissmiss Noice Misseage" })
+map("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "[N]oice [D]ismiss Message" })
 
 -- Tiny-code-action.nvim
 map({ "n", "x" }, "<leader>ca", function()

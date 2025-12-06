@@ -64,11 +64,14 @@ return {
 			end,
 		})
 
-		local capabilities = vim.tbl_deep_extend(
-			"force",
-			vim.lsp.protocol.make_client_capabilities(),
-			require("cmp_nvim_lsp").default_capabilities()
-		)
+		local capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), {
+			textDocument = {
+				foldingRange = {
+					dynamicRegistration = false,
+					lineFoldingOnly = true,
+				},
+			},
+		}, require("cmp_nvim_lsp").default_capabilities())
 
 		-- Setup Mason and install tools from languages.lua
 		require("mason").setup()
@@ -85,10 +88,12 @@ return {
 					if server_name == "clangd" then
 						server.on_attach = function(client)
 							client.server_capabilities.signatureHelpProvider = false
+							vim.api.nvim_exec_autocmds("LspAttach", { buffer = bufnr })
 						end
 					end
 
-					vim.lsp.start(server)
+					-- vim.lsp.start(server)
+					require("lspconfig")[server_name].setup(server)
 				end,
 			},
 		})
