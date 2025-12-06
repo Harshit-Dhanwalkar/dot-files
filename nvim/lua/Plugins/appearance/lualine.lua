@@ -88,7 +88,6 @@ return {
 				lualine_x = {
 					{
 						"copilot",
-						-- Default values
 						symbols = {
 							status = {
 								icons = {

@@ -71,7 +71,7 @@ require("lazy").setup({
 	-- require("Plugins.utils.neotree"), -- using nvim-tree
 	require("Plugins.lazydev"),
 	require("Plugins.lint"),
-	require("Plugins.lsp"),
+	require("Plugins.lsp.nvim-lspconfig"),
 	require("Plugins.luvit-meta"),
 	require("Plugins.telescope"),
 	require("Plugins.utils.tiny-inline-diagnostic"),

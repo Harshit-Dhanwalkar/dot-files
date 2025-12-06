@@ -1,4 +1,4 @@
--- ~/.configgnvim/lua/Plugins/nvim-lspconfig.lua
+-- ~/.configgnvim/lua/Plugins/lsp/nvim-lspconfig.lua
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
@@ -10,6 +10,10 @@ return {
 		"hrsh7th/nvim-cmp",
 	},
 	config = function()
+		local lsp_modules = require("Plugins.lsp.languages")
+		local servers = lsp_modules.servers
+		local tools = lsp_modules.tools
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 
@@ -66,106 +70,27 @@ return {
 			require("cmp_nvim_lsp").default_capabilities()
 		)
 
-		local servers = {
-			pyright = {},
-			-- pyright = {
-			-- 	settings = {
-			-- 		python = {
-			-- 			analysis = {
-			-- 				autoSearchPaths = true,
-			-- 				useLibraryCodeForTypes = true,
-			-- 				-- diagnosticSeverityOverrides = {
-			-- 				-- 	reportUnusedVariable = "none",
-			-- 				-- 	reportMissingImports = "warning",
-			-- 				-- 	reportUndefinedVariable = "error",
-			-- 				-- },
-			-- 				-- reportGeneralTypeIssues = true,
-			-- 				-- typeCheckingMode = "basic", -- "strict", "off"
-			-- 			},
-			-- 		},
-			-- 	},
-			-- },
-			svelte = {}, -- Svelte components
-			tailwindcss = {}, -- Tailwind CSS classes
-			eslint = {}, -- JavaScript/TypeScript linter
-			ts_ls = {}, -- TypeScript/JavaScript
-			-- rust_analyzer = { -- Rust
-			--   settings = {
-			--   ['rust-analyzer'] = {},
-			--   },
-			-- },
-			texlab = {}, --  LaTeX LSP and Tex linter
-			["ltex-ls"] = {}, -- LanguageTool integration for LaTeX
-			["markdown-oxide"] = {}, -- Markdown
-			-- asm_lsp = {}, -- Assembly
-			clangd = {}, -- C/C++
-			lua_ls = { -- Lua
-				settings = {
-					Lua = {
-						completion = { callSnippet = "Replace" },
-					},
-				},
-			},
-		}
-
+		-- Setup Mason and install tools from languages.lua
 		require("mason").setup()
+		require("mason-tool-installer").setup({ ensure_installed = tools })
 
-		-- Install LSP & tools
-		local ensure_installed = vim.tbl_keys(servers)
-		-- vim.list_extend(ensure_installed, { "stylua", "pyright", "clangd", "clang-format", "codelldb", "asm-lsp" })
-		vim.list_extend(ensure_installed, {
-			"stylua",
-			"pyright",
-			"clangd",
-			"clang-format",
-			"codelldb",
-		})
+		-- Mason-LSPConfig Setup
+		require("mason-lspconfig").setup({
+			handlers = {
+				function(server_name)
+					local server = servers[server_name] or {}
+					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 
-		require("mason-tool-installer").setup({
-			ensure_installed = ensure_installed,
-		})
-
-		-- Use the new API, otherwise fall back to old API
-		local new_api = vim.fn.has("nvim-0.11") == 1
-
-		if new_api then
-			require("mason-lspconfig").setup({
-				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-
-						-- Special handling for clangd in new API
-						if server_name == "clangd" then
-							server.on_attach = function(client)
-								client.server_capabilities.signatureHelpProvider = false
-							end
+					-- Special handling for clangd
+					if server_name == "clangd" then
+						server.on_attach = function(client)
+							client.server_capabilities.signatureHelpProvider = false
 						end
+					end
 
-						vim.lsp.start(server)
-					end,
-				},
-			})
-		else
-			-- Old API approach
-			require("mason-lspconfig").setup({
-				handlers = {
-					function(server_name)
-						require("lspconfig")[server_name].setup({
-							capabilities = capabilities,
-							settings = servers[server_name] and servers[server_name].settings or {},
-						})
-					end,
-				},
-			})
-
-			-- clangd config for old API
-			require("lspconfig").clangd.setup({
-				capabilities = capabilities,
-				on_attach = function(client)
-					client.server_capabilities.signatureHelpProvider = false
+					vim.lsp.start(server)
 				end,
-			})
-		end
+			},
+		})
 	end,
 }
