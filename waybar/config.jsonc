@@ -3,9 +3,10 @@
 
 {
   "layer": "top",
+  // "exclusive": false,
   "position": "top",
-  "height": 30,
-  "spacing": 4,
+  // "height": 30,
+  // "spacing": 4,
   // Modules Configuration
   "modules-left": [
     "sway/workspaces",
@@ -16,10 +17,10 @@
     "sway/scratchpad",
     "sway/mode",
   ],
-  //"modules-center": ["sway/window"],
   "modules-center": ["clock"],
   //"modules-center": ["custom/cava", "clock", "custom/cava"],
   "modules-right": [
+    "sway/window",
     //"mpd",
     // "custom/recorder",
     "wlr/taskbar",
@@ -47,7 +48,7 @@
     "disable-scroll": false, // true
   },
   "sway/scratchpad": {
-    "format": "{icon} {count}",
+    "format": " {icon} {count}",
     "show-empty": false,
     "format-icons": ["", ""],
     "tooltip": true,
@@ -75,11 +76,11 @@
     },
   },
   "sway/window": {
-    "max-length": 80,
+    "max-length": 25,
     "tooltip": false,
   },
   "mpd": {
-    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+    "format": " {stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
     "format-disconnected": "Disconnected ",
     "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
     "unknown-tag": "N/A",
@@ -120,17 +121,17 @@
   },
   "network": {
     "interval": 5,
-    "format": "{icon} {essid} ({signalStrength}%)",
+    "format": " {icon} {essid} ({signalStrength}%)",
     "format-alt-click": "click",
     "format-icons": {
       "wifi": ["󰤮", "󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
       "ethernet": ["󰈀"],
       "disconnected": ["󰤫"], // ⚠
     },
-    "format-wifi": "{icon} {essid}", //  "{essid} ({signalStrength}%) ",
-    "format-ethernet": "{icon} Connected ",
-    "format-linked": "{ifname} (No IP) 󰈀",
-    "format-disconnected": "󰤫 Disconnected",
+    "format-wifi": " {icon} {essid}", //  "{essid} ({signalStrength}%) ",
+    "format-ethernet": " {icon} Connected ",
+    "format-linked": " {ifname} (No IP) 󰈀",
+    "format-disconnected": " 󰤫 Disconnected",
     // "format-alt": "{ifname}: {ipaddr}/{cidr}",
     "on-click": "exec ${HOME}/.config/sway/scripts/dmenu-wifi.sh",
     "on-click-right": "exec ${HOME}/.local/kitty.app/bin/kitty nmtui",
@@ -142,7 +143,7 @@
     "tooltip-format-disconnected": "󰤫 Disconnected",
   },
   "bluetooth": {
-    "format": "{icon} BT",
+    "format": " {icon} BT",
     "format-icons": ["󰂯"], //
     "format-on": "󰂯 ",
     "format-off": "󰂲 ",
@@ -158,19 +159,19 @@
     //"controller": "controller1",
   },
   "cpu": {
-    "format": "{icon} {usage}%",
+    "format": " {icon} {usage}%",
     "format-icons": [""],
     "interval": 3,
     //"on-click-right": "gnome-system-monitor"
     "on-click-right": "$HOME/.local/kitty.app/bin/kitty /usr/bin/btop",
   },
   "battery": {
-    "format": "{icon} {capacity}%",
+    "format": " {icon} {capacity}%",
     "format-alt": "{icon} {time}",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format-time": "{H}h{M}m",
-    "format-charging": "󱊤 {capacity}%", // {time}",  // 󱘖 󰂄
-    "format-full": "󰁹 FULL",
+    "format-charging": " 󱊤 {capacity}%", // {time}",  // 󱘖 󰂄
+    "format-full": " 󰁹 FULL",
     "format-warning": "{warning-icon} {capacity}%",
     "format-critical": "{critical-icon} {capacity}%",
     // "format-plugged ": "{icon}",
@@ -192,7 +193,7 @@
       "/sys/class/thermal/thermal_zone0/temp",
     ],
     "critical-threshold": 82,
-    "format": "{icon} {temperatureC}°C",
+    "format": " {icon} {temperatureC}°C",
     "format-critical": "{icon} {temperatureC}°C",
     "format-icons": ["", "", "", ""],
     // "format-alt-click": "click-right",
@@ -216,7 +217,8 @@
     "tooltip": false,
   },
   "custom/cliphist": {
-    "format": " {}",
+    "format": " {icon} {}",
+    "format-icons": [""],
     "rotate": 0,
     "exec": "echo ; echo 󰅇 clipboard history",
     "on-click": "sleep 0.1 && cliphist.sh c",
@@ -227,7 +229,7 @@
   },
   // Audio and Brightness Configurations
   "pulseaudio": {
-    "format": "{icon} {volume}",
+    "format": " {icon} {volume}",
     "format-bluetooth": "{icon} {volume}% {format_source}",
     "format-bluetooth-muted": "{icon} {format_source}",
     "format-muted": "󰝟 00",
@@ -264,7 +266,7 @@
     "orientation": "vertical",
   },
   "backlight": {
-    "format": "{icon} {percent}%",
+    "format": " {icon} {percent}%",
     "format-icons": ["", "󰃟", "󰃞", "", "󰖨"],
     "on-scroll-down": "brightnessctl set 5%-",
     "on-scroll-up": "brightnessctl set +5%",
@@ -279,7 +281,7 @@
     "icon-size": 15,
   },
   "custom/weather": {
-    "format": "{}°C",
+    "format": " {}°C",
     // "format-alt": "{alt}: {}",
     // "format-alt-click": "click-right",
     "interval": 3600,
@@ -289,13 +291,15 @@
     "on-click": "gnome-weather",
   },
   "custom/memory_usage": {
-    "format": "󰍛 {}",
+    "format": " {icon} {}",
+    "format-icons": ["󰍛"],
     "interval": 5,
     "exec": "bash ~/.config/waybar/modules/memory_usage.sh",
     "tooltip": true,
   },
   "custom/disks": {
-    "format": "󰋊 {}", // 󰇖󰮌
+    "format": " {icon} {}",
+    "format-icons": ["󰋊"], // 󰇖󰮌
     "on-click-right": "exec /usr/bin/baobab",
     "interval": 600,
     "exec": "bash ~/.config/waybar/modules/disks.sh",
@@ -316,7 +320,8 @@
     "return-type": "json",
   },
   "custom/recorder": {
-    "format": "",
+    "format": " {}",
+    "format-icons": [""],
     "return-type": "json",
     "interval": 4,
     "exec": "echo '{\"class\": \"recording\"}'",
