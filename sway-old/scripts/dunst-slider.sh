@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 set -euo pipefail
 
 # --- Configuration ---

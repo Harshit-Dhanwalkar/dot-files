@@ -1,75 +1,42 @@
 # ~/.config/swaylock/config
 
+daemonize
+font=JetBrains Mono Nerd Font
+font-size=40
+color=000000ff
+show-failed-attempts
 ignore-empty-password
-font=Work Sans
-font-size=60
-
-clock
-timestr=%R
-datestr=%A, %B %d %Y
-
-# Day/night theming
-# [time]
-# time-format=%H
-# time-color-day=ffffffff
-# time-color-night=aaaaaaff
-# time-transition-duration=1.0
-#
-# # Conditional effects based on time
-# effect-greyscale=night
-# effect-vignette=day:0.3:0.3,night:0.7:0.7
-
-image=$(find ~/Pictures/wallpapers -type f | shuf -n 1)
-
-fade-in=0.2
-
-effect-blur=95x2
-effect-pixelate=10x10
-effect-vignette=0.5:0.5
-# effect-scale=0.5
-# effect-grayscale
-
+# clock
+# screenshot
+show-failed-attempts
+# effect-blur=15x15
+# effect-vignette=1:1
+color=1f1d2e
 indicator
-indicator-radius=170
-indicator-thickness=15
-indicator-caps-lock
-
-key-hl-color=880033ff
-
+indicator-radius=200
+indicator-thickness=20
+line-color=11111b
+ring-color=181825
+inside-color=1e1e1e
+key-hl-color=cba6f7
 separator-color=00000000
-
-inside-color=#1F2530
-inside-clear-color=ffd20433
-inside-caps-lock-color=009ddc33
-inside-ver-color=303446
-inside-wrong-color=e78284
-
-ring-color=#1B242B
-ring-clear-color=231f20D9
-ring-caps-lock-color=231f20D9
-ring-ver-color=231f20D9
-ring-wrong-color=231f20D9
-
-line-color=303446
-line-clear-color=303446
-line-caps-lock-color=009ddcFF
-line-ver-color=eebebe
-line-wrong-color=ee2e24FF
-
-text-color=dededeff
-text-clear-color=ffd204ff
-text-ver-color=c6d0f5
-text-wrong-color=ee2e24ff
-
-bs-hl-size=20
-caps-lock-bs-hl-size=20
-caps-lock-key-hl-size=20
-key-hl-size=20
-
-bs-hl-color=ffd204ff
-caps-lock-key-hl-color=ffd204FF
-caps-lock-bs-hl-color=dededeFF
-text-caps-lock-color=009ddcff
-
-scaling=fill
-color=00000088
+text-color=cdd6f4
+text-caps-lock-color=""
+line-ver-color=11111b
+ring-ver-color=cba6f7
+inside-ver-color=1e1e2e
+text-ver-color=cdd6f4
+ring-wrong-color=f38ba8
+text-wrong-color=f38ba8
+inside-wrong-color=1e1e2e
+inside-clear-color=1e1e2e
+text-clear-color=cdd6f4
+ring-clear-color=cba6f7
+line-clear-color=11111b
+line-wrong-color=11111b
+bs-hl-color=f38ba8
+grace=0
+# grace-no-touch
+# datestr=%a, %B %e
+# timestr=%I:%M %p
+fade-in=0.3

@@ -253,6 +253,8 @@ bar {
     # Default sway-bar
     # # Read `man 5 sway-bar` for more information about this section.
         position top
+        tray_padding 0
+        height 0
         status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
         separator_symbol "::"
         colors {
@@ -309,27 +311,26 @@ focus_wrapping no
 # workspace 5 gaps inner 20
 
 # Adjusting borders
-default_border pixel 1
+default_border pixel 1.5
 # default_border none
 default_floating_border none
 
 # Gaps
 gaps top 0
 gaps inner 4
-gaps outer 4
+gaps outer 0
+smart_gaps off
 
-# focus the latest spawned window
-for_window [shell=".*"] focus
-# set all floating windows to center
-for_window [floating] move position center,sticky disable
-
-# # window rules for common titles
+# window rules for common titles
 # for_window [app_id=".*" title="(?i).*open.*"] floating enable, move position center, resize set 60ppt 70ppt
-#
+for_window [class=".*"] {
+    border pixel 0
+}
+for_window [shell=".*"] focus
+for_window [floating] move position center,sticky disable
 # window settings for specific apps and their windows
 for_window [app_id="(?i).*pavucontrol|blueman-manager|xdg-desktop-portal-gtk.*"] floating enable, move position center, resize set 60ppt 70ppt
 for_window [class="(?i).*xdg-desktop-portal-gtk.*"] floating enable, move position center, resize set 60ppt 70ppt
-
 for_window [window_type="dialog"] floating enable, move position center
 for_window [window_type="utility"] floating enable, move position center
 for_window [window_type="popup_menu"] floating enable, move position center
