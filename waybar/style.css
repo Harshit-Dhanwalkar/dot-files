@@ -356,6 +356,20 @@ tooltip {
   padding-right: 0px;
 }
 
+#clock {
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: none;
+  text-shadow: none;
+  color: #cdd6f4;
+  background: rgba(0, 0, 0, 0);
+  border-top: 2px solid #cdd6f4;
+  border-radius: 0px;
+  margin: 0px 0px 0px 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 #pulseaudio {
   font-size: 12px;
   font-weight: normal;
@@ -553,7 +567,10 @@ tooltip {
   font-family: "runcat";
   color: #cdd6f4;
   border-top: 2px solid #cdd6f4;
+  border-radius: 0px;
   margin: 0px 0px 0px 0px;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 #custom-runcat.low {
@@ -570,6 +587,35 @@ tooltip {
 
 #custom-runcat.high {
   font-family: "runcat";
+  color: #bf616a;
+  border-top: 2px solid #bf616a;
+}
+
+/* keyboad backlight */
+#custom-keyboard_backlight {
+  font-size: 12px;
+  font-weight: normal;
+  box-shadow: none;
+  text-shadow: none;
+  color: #cdd6f4;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 0px;
+  margin: 0px 0px 0px 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+#custom-keyboard_backlight.off {
+  color: #cdd6f4;
+  border-top: 2px solid #cdd6f4;
+}
+
+#custom-keyboard_backlight.low {
+  color: #89b4fa;
+  border-top: 2px solid #89b4fa;
+}
+
+#custom-keyboard_backlight.high {
   color: #bf616a;
   border-top: 2px solid #bf616a;
 }

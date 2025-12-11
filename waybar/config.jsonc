@@ -29,6 +29,7 @@
     "keyboard-state#n",
     "custom/memory_usage",
     "custom/disks",
+    "custom/keyboard_backlight",
     "pulseaudio",
     "pulseaudio#microphone",
     "pulseaudio/slider",
@@ -143,7 +144,7 @@
     "tooltip-format-disconnected": "󰤫 Disconnected",
   },
   "bluetooth": {
-    "format": " {icon} BT",
+    "format": " {icon}BT",
     "format-icons": ["󰂯"], //
     "format-on": "󰂯 ",
     "format-off": "󰂲 ",
@@ -193,7 +194,7 @@
       "/sys/class/thermal/thermal_zone0/temp",
     ],
     "critical-threshold": 82,
-    "format": " {icon} {temperatureC}°C",
+    "format": " {icon}{temperatureC}°C",
     "format-critical": "{icon} {temperatureC}°C",
     "format-icons": ["", "", "", ""],
     // "format-alt-click": "click-right",
@@ -318,6 +319,15 @@
   "custom/runcat": {
     "exec": "~/.config/waybar/modules/runcat-text/main.py",
     "return-type": "json",
+  },
+  "custom/keyboard_backlight": {
+    "format": " {}",
+    "exec": "~/.config/waybar/modules/keyboard-backlight.sh",
+    "exec-on-event": true,
+    "return-type": "json",
+    "interval": 86400,
+    "signal": 3,
+    "tooltip": false,
   },
   "custom/recorder": {
     "format": " {}",
