@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/todo-comments.lua
+-- ~/.config/nvim/lua/Plugins/utils/todo-comments.lua
 return {
 	"folke/todo-comments.nvim",
 	event = "VimEnter",

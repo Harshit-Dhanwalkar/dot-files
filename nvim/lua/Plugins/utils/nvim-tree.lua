@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/nvim-tree.lua
+-- ~/.config/nvim/lua/Plugins/utils/nvim-tree.lua
 return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",

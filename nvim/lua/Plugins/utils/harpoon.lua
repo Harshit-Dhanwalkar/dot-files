@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/harpoon.lua
+-- ~/.config/nvim/lua/Plugins/utils/harpoon.lua
 return {
 	"thePrimeagen/harpoon",
 	enabled = true,

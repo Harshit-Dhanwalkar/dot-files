@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/tabout.lua
+-- ~/.config/nvim/lua/Plugins/utils/tabout.lua
 return {
 	{
 		"abecodes/tabout.nvim",

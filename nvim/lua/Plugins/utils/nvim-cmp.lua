@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/nvim-cmp.lua
+-- ~/.config/nvim/lua/Plugins/utils/nvim-cmp.lua
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",

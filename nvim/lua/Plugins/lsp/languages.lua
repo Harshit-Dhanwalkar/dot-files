@@ -1,6 +1,7 @@
 -- ~/.config/nvim/lua/Plugins/lsp/languages.lua
 return {
 	servers = {
+		bashls = {}, -- Bash
 		pyright = { -- Python
 			settings = {
 				python = {
@@ -45,6 +46,7 @@ return {
 
 	-- Install LSP & tools via Mason
 	tools = {
+		"bash-language-server",
 		"stylua",
 		"pyright",
 		"clangd",

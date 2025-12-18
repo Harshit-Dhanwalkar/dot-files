@@ -1,4 +1,4 @@
--- ~/.configgnvim/lua/Plugins/lsp/nvim-lspconfig.lua
+-- ~/.config/nvim/lua/Plugins/lsp/nvim-lspconfig.lua
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
@@ -86,9 +86,13 @@ return {
 
 					-- Special handling for clangd
 					if server_name == "clangd" then
-						server.on_attach = function(client)
+						-- Store the original on_attach if it exists
+						local old_on_attach = server.on_attach
+						server.on_attach = function(client, bufnr)
 							client.server_capabilities.signatureHelpProvider = false
-							vim.api.nvim_exec_autocmds("LspAttach", { buffer = bufnr })
+							if old_on_attach then
+								old_on_attach(client, bufnr)
+							end
 						end
 					end
 

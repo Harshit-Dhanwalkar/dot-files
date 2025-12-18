@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/neotree.lua
+-- ~/.config/nvim/lua/Plugins/utils/neotree.lua
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
@@ -6,6 +6,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
+		-- "3rd/image.nvim",
 		{
 			"s1n7ax/nvim-window-picker",
 			version = "*",
@@ -118,6 +119,7 @@ return {
 					{ source = "buffers", display_name = "󰈙 Buffers" },
 					{ source = "git_status", display_name = " Git" },
 					{ source = "diagnostics", display_name = "󰒡 Diagnostics" },
+					{ source = "document_symbols", display_name = "o" },
 				},
 				highlight_tab = "NeoTreeFileNameOpened",
 				highlight_tab_active = "NeoTreeTabActive",
@@ -125,11 +127,10 @@ return {
 				highlight_separator = "NeoTreeTabActive",
 				highlight_separator_active = "NeoTreeTabActive",
 			},
-			---
-
 			window = {
 				position = "right",
-				width = 40,
+				-- auto_expand_width = true,
+				width = "20%", -- 40
 				mapping_options = {
 					noremap = true,
 					nowait = true,
@@ -166,10 +167,11 @@ return {
 			},
 			filesystem = {
 				filtered_items = {
-					visible = false,
+					visible = false, -- if true, show hidden files (dimmed)
 					hide_dotfiles = true,
 					hide_gitignored = true,
 					hide_hidden = true,
+					never_show = {},
 				},
 				follow_current_file = {
 					enabled = true,
@@ -238,6 +240,33 @@ return {
 						["os"] = "order_by_size",
 						["ot"] = "order_by_type",
 					},
+				},
+			},
+			event_handlers = {
+				{
+					event = "file_opened",
+					handler = function(file_path)
+						-- auto close
+						-- vimc.cmd("Neotree close")
+						-- OR
+						require("neo-tree.command").execute({ action = "close" })
+					end,
+				},
+				{
+					event = "neo_tree_window_after_open",
+					handler = function(args)
+						if args.position == "left" or args.position == "right" then
+							vim.cmd("wincmd =")
+						end
+					end,
+				},
+				{
+					event = "neo_tree_window_after_close",
+					handler = function(args)
+						if args.position == "left" or args.position == "right" then
+							vim.cmd("wincmd =")
+						end
+					end,
 				},
 			},
 		})

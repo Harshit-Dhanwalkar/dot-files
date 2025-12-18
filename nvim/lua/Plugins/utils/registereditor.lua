@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/regedit.lua
+-- ~/.config/nvim/lua/Plugins/utils/regedit.lua
 return {
 	"tuurep/registereditor",
 	cmd = "RegisterEditor",

@@ -1,3 +1,4 @@
+-- ~/.config/nvim/lua/Plugins/utils/registers.lua
 return {
 	"tversteeg/registers.nvim",
 	config = function()

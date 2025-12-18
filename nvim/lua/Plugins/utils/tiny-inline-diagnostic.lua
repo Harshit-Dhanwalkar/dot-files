@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/tiny-inline-diagnostic.lua
+-- ~/.config/nvim/lua/Plugins/utils/tiny-inline-diagnostic.lua
 return {
 	"rachartier/tiny-inline-diagnostic.nvim",
 	event = "VeryLazy", -- Or `LspAttach`

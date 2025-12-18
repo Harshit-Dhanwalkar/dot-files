@@ -48,6 +48,7 @@ end, { desc = "[S]earch [N]eovim files" })
 -- Nvimtree
 --map('n', '<leader>e', ':NvimTreeFindFileToggle<cr>')
 map("n", "\\", ":NvimTreeFindFileToggle<cr>", { noremap = true, silent = true, desc = "[\\ ] Toggle NvimTree" })
+-- map("n", "\\", ":NeoTree<cr>", { noremap = true, silent = true, desc = "[\\ ] Toggle NeoTree" })
 
 -- Nvim-comments
 map({ "n", "v" }, "<leader>gc", ":CommentToggle<cr>", { desc = "[G]lobal [C]omment Toggle" })
