@@ -40,7 +40,7 @@ require("lazy").setup({
 	require("Plugins.appearance.lualine"),
 	require("Plugins.appearance.noice"),
 	-- require("Plugins.appearance.pretty-fold"),
-	require("Plugins.appearance.nvim-ufo"),
+	-- require("Plugins.appearance.nvim-ufo"),
 	require("Plugins.appearance.modicator"),
 	require("Plugins.appearance.lightswtich"),
 	require("Plugins.appearance.twilight"),
@@ -151,8 +151,8 @@ require("lazy").setup({
 		event = "VeryLazy",
 	},
 	-- AI
-	require("Plugins.ai.copilot"),
-	require("Plugins.ai.copilot-cmp"),
+	-- require("Plugins.ai.copilot"),
+	-- require("Plugins.ai.copilot-cmp"),
 }, {
 	ui = {
 		icons = vim.g.have_nerd_font and {} or {
