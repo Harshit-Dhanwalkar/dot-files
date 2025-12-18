@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 API="https://open.er-api.com/v6/latest"
 
 CURRENCY_BASE="USD"

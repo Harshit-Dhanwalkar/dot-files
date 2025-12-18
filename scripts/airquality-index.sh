@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 # --- CONFIGURATION ---
 # Get a token here: https://aqicn.org/api/
 TOKEN="YOUR_WAQI_TOKEN"

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 BRIGHTNESS=$(cat /sys/devices/platform/dell-laptop/leds/dell\:\:kbd_backlight/brightness)
 
 if [ "$BRIGHTNESS" = "0" ]; then
