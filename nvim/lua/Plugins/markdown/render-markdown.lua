@@ -19,13 +19,13 @@ return {
 				sign = true,
 				style = "full", -- compact
 				position = "left",
-				language_pad = 0.01,
+				language_pad = 0.0,
 				language_name = true,
 				disable_background = { "diff" },
 				width = "full", -- block
 				left_margin = 0,
-				left_pad = 0.02,
-				right_pad = 0.02,
+				left_pad = 0.0,
+				right_pad = 0.0,
 				-- min_width = 0,
 				border = "thick", -- thin
 				-- above = "▄",
@@ -36,7 +36,7 @@ return {
 			},
 			bullet = {
 				enabled = true,
-				-- icons = { "●", "○", "◆", "◇" },  --defualts
+				-- icons = { "●", "○", "◆", "◇" },  --default icons
 				icons = { "●", "○", "◆", "◇", "󰫢", "󰫣", "󰫤", "󰫥" },
 				ordered_icons = {},
 				left_pad = 0,

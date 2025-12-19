@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/crates.lua
+-- ~/.config/nvim/lua/Plugins/rust/crates.lua
 return {
 	"saecki/crates.nvim",
 	ft = { "rust", "toml" },

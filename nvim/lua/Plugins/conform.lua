@@ -40,7 +40,7 @@ return {
 				jsonc = { "prettier" },
 				json = { "fixjson", "prettier" },
 				yaml = { "prettier" },
-				markdown = { "prettier" }, -- mdformat, mdsf (for code blocks)
+				markdown = { "prettier", "mdformat", "mdsf" }, -- mdformat, mdsf (for code blocks)
 				["markdown.mdx"] = { "prettier" },
 				tex = { "tex-fmt" },
 				java = { "google-java-format", lsp_format = "fallback" },

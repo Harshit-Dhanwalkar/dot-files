@@ -8,6 +8,7 @@ return {
 					analysis = {
 						autosearchpaths = true,
 						uselibrarycodefortypes = true,
+						diagnosticMode = "openFilesOnly",
 						-- diagnosticseverityoverrides = {
 						-- 	reportunusedvariable = "none",
 						-- 	reportmissingimports = "warning",
@@ -16,6 +17,8 @@ return {
 						-- reportgeneraltypeissues = true,
 						-- typecheckingmode = "basic", -- "strict", "off"
 					},
+					venvPath = ".",
+					venv = "venv",
 				},
 			},
 		},
@@ -49,6 +52,7 @@ return {
 		"bash-language-server",
 		"stylua",
 		"pyright",
+		"debugpy",
 		"clangd",
 		"clang-format",
 		"codelldb", -- For Debugging

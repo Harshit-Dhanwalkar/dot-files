@@ -22,11 +22,13 @@ window#waybar {
 }
 
 tooltip {
-  background: #171717;
-  color: #a1bdce;
-  font-size: 4px;
-  /* border-radius: 7px; */
-  /* border: 2px solid #101a24; */
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0;
+  font-size: 3px;
+  border-radius: 3px;
+  margin: 0px 0px 0px 0px;
+  border: 2px solid #89b4fa;
+  transition: 0.2s ease;
 }
 
 #workspaces {
@@ -619,3 +621,53 @@ tooltip {
   color: #bf616a;
   border-top: 2px solid #bf616a;
 }
+
+/* USB Devices */
+#custom-usb_devices {
+  font-size: 12px;
+  font-weight: normal;
+  box-shadow: none;
+  text-shadow: none;
+  color: #cdd6f4;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 0px;
+  margin: 0px 0px 0px 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+#custom-usb_devices.off {
+  color: #888789;
+  border-top: 2px solid #888789;
+}
+
+#custom-usb_devices.low {
+  color: #89b4fa;
+  border-top: 2px solid #89b4fa;
+}
+
+#custom-usb_devices.high {
+  color: #9ece6a;
+  border-top: 2px solid #9ece6a;
+}
+
+/* New sway workspaces */
+#custom-swaymsg_next_empty_workspace {
+  font-size: 12px;
+  color: #9ece6a;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 0px;
+  border-top: 2px solid #9ece6a;
+  margin: 0px 0px 0px 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  transition: 0.2s ease;
+}
+
+/* #custom-swaymsg_next_empty_workspace:hover { */
+/*   color: #89b4fa; */
+/*   border-top: 2px solid #89b4fa; */
+/*   background: rgba(255, 255, 255, 0.1); */
+/*   transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682); */
+/*   animation: ws_hover 20s ease-in-out 1; */
+/* } */

@@ -10,6 +10,7 @@
   // Modules Configuration
   "modules-left": [
     "sway/workspaces",
+    "custom/swaymsg_next_empty_workspace",
     "custom/runcat",
     "cpu",
     "temperature",
@@ -18,10 +19,10 @@
     "sway/mode",
   ],
   "modules-center": ["clock"],
-  //"modules-center": ["custom/cava", "clock", "custom/cava"],
+  // "modules-center": ["custom/cava", "clock", "custom/cava"],
   "modules-right": [
     "sway/window",
-    //"mpd",
+    // "mpd",
     // "custom/recorder",
     "wlr/taskbar",
     "tray",
@@ -30,6 +31,7 @@
     "custom/memory_usage",
     "custom/disks",
     "custom/keyboard_backlight",
+    // "custom/usb_devices",
     "pulseaudio",
     "pulseaudio#microphone",
     "pulseaudio/slider",
@@ -212,31 +214,15 @@
     "on-click-middle": "close",
     "ignore-list": ["rofi", "kitty"],
   },
-  "custom/cava": {
-    "format": "{}",
-    "exec": "~/.config/sway/scripts/waybarCavaColor.sh",
-    "tooltip": false,
-  },
-  "custom/cliphist": {
-    "format": " {icon} {}",
-    "format-icons": [""],
-    "rotate": 0,
-    "exec": "echo ; echo 󰅇 clipboard history",
-    "on-click": "sleep 0.1 && cliphist.sh c",
-    "on-click-right": "sleep 0.1 && cliphist.sh d",
-    "on-click-middle": "sleep 0.1 && cliphist.sh w",
-    "interval": 86400, // once every day
-    "tooltip": true,
-  },
   // Audio and Brightness Configurations
   "pulseaudio": {
     "format": " {icon} {volume}",
     "format-bluetooth": "{icon} {volume}% {format_source}",
     "format-bluetooth-muted": "{icon} {format_source}",
-    "format-muted": "󰝟 00",
+    "format-muted": " 󰝟 00",
     "format-icons": {
       "default": ["", "", "", " "],
-      "headset": [" ", " ", " ", " "], // " "
+      "headset": ["󰋋 󰝟", "󰋋 󰕿", "󰋋 󰖀", "󰋋 󰕾"],
       "headphone": "󰋎 ",
       "hands-free": "󰥰 ",
       "phone": "",
@@ -320,14 +306,45 @@
     "exec": "~/.config/waybar/modules/runcat-text/main.py",
     "return-type": "json",
   },
+  "custom/swaymsg_next_empty_workspace": {
+    "format": " ",
+    "on-click": "~/.config/waybar/modules/swaymsg-next-empty-workspace",
+    "exec": "echo '{\"tooltip\": \"Left click for new workspace\"}'",
+    "return-type": "json",
+    "tooltip": true,
+  },
   "custom/keyboard_backlight": {
     "format": " {}",
     "exec": "~/.config/waybar/modules/keyboard-backlight.sh",
     "exec-on-event": true,
     "return-type": "json",
-    "interval": 86400,
     "signal": 3,
     "tooltip": false,
+  },
+  "custom/cava": {
+    "format": "{}",
+    "exec": "~/.config/sway/scripts/waybarCavaColor.sh",
+    "tooltip": false,
+  },
+  "custom/cliphist": {
+    "format": " {icon} {}",
+    "format-icons": [""],
+    "rotate": 0,
+    "exec": "echo ; echo 󰅇 clipboard history",
+    "on-click": "sleep 0.1 && cliphist.sh c",
+    "on-click-right": "sleep 0.1 && cliphist.sh d",
+    "on-click-middle": "sleep 0.1 && cliphist.sh w",
+    "interval": 86400, // once every day
+    "tooltip": true,
+  },
+  "custom/usb_devices": {
+    "format": " {}",
+    "exec": "bash ~/.config/waybar/modules/usb-devices.sh",
+    "return-type": "json",
+    "interval": 60,
+    "tooltip": true,
+    "on-click": "bash ~/.config/waybar/modules/usb-devices.sh --mount",
+    "on-click-right": "bash ~/.config/waybar/modules/usb-devices.sh --unmount",
   },
   "custom/recorder": {
     "format": " {}",
