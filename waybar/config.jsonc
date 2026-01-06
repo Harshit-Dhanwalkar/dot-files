@@ -15,13 +15,13 @@
     "cpu",
     "temperature",
     "custom/weather",
+    "sway/window",
     "sway/scratchpad",
     "sway/mode",
   ],
   "modules-center": ["clock"],
   // "modules-center": ["custom/cava", "clock", "custom/cava"],
   "modules-right": [
-    "sway/window",
     // "mpd",
     // "custom/recorder",
     "wlr/taskbar",
@@ -150,8 +150,12 @@
     "format-icons": ["󰂯"], //
     "format-on": "󰂯 ",
     "format-off": "󰂲 ",
-    "format-disabled": "",
+    "format-disconnected": " 󰂲 DC",
+    "format-disabled": "󰂱 DIS",
     "format-connected": "󰂱 {num_connections}",
+    "states": {
+      "unconnected": 0,
+    },
     "on-click": "~/.config/sway/scripts/dmenu-bluetooth.sh",
     "on-click-right": "blueman-manager",
     // "on-click-right": "$HOME/.local/kitty.app/bin/kitty bluetoothctl",
@@ -212,7 +216,7 @@
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
-    "ignore-list": ["rofi", "kitty"],
+    "ignore-list": ["rofi", "kitty", "sxiv"],
   },
   // Audio and Brightness Configurations
   "pulseaudio": {
@@ -233,13 +237,13 @@
     "on-click-right": "pavucontrol",
     "tooltip": true,
     "tooltip-format": "{icon} at {volume}%",
+    "return-type": "json",
   },
   "pulseaudio#microphone": {
     "format": "{format_source}",
-    "format-source": " ON ",
+    "format-source": "  ON",
     "format-source-muted": " OFF",
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && pkill -RTMIN+10 waybar",
-    // "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
     "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 5%+",
     "on-scroll-down": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 5%-",
     "scroll-step": 5,

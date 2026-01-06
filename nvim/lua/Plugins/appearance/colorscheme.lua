@@ -48,6 +48,26 @@ return {
 	-- 	end,
 	-- },
 	-- {
+	-- 	{
+	-- 		"elitracy/blackbag.nvim",
+	-- 		priority = 1000,
+	-- 		config = function()
+	-- 			require("blackbag").setup()
+	-- 		end,
+	-- 	},
+	-- 	{
+	-- 		"xiyaowong/transparent.nvim",
+	-- 		config = function()
+	-- 			require("transparent").setup({
+	-- 				extra_groups = {
+	-- 					"NormalFloat",
+	-- 					"FloatBorder",
+	-- 				},
+	-- 			})
+	-- 		end,
+	-- 	},
+	-- },
+	-- {
 	-- 	"yorik1984/newpaper.nvim",
 	-- 	priority = 1000,
 	-- 	config = function()

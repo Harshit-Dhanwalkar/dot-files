@@ -6,13 +6,13 @@ return {
 		require("lightswitch").setup({
 			toggles = {
 				-- Barbecue Toggle
-				{
-					name = "Barbecue",
-					enable_cmd = "lua require('barbecue.ui').toggle(true)", -- show barbecue globally
-					disable_cmd = "lua require('barbecue.ui').toggle(false)", -- hide barbecue globally
-					-- require("barbecue.ui").toggle()
-					state = true, -- Initially enabled
-				},
+				-- {
+				-- 	name = "Barbecue",
+				-- 	enable_cmd = "lua require('barbecue.ui').toggle(true)", -- show barbecue globally
+				-- 	disable_cmd = "lua require('barbecue.ui').toggle(false)", -- hide barbecue globally
+				-- 	-- require("barbecue.ui").toggle()
+				-- 	state = true, -- Initially enabled
+				-- },
 				-- ColorizerToggle
 				{
 					name = "Colourizer",
@@ -28,12 +28,12 @@ return {
 					state = true, -- Initially enabled
 				},
 				-- Twilight Plugin Toggle
-				{
-					name = "Twilight",
-					enable_cmd = "TwilightEnable",
-					disable_cmd = "TwilightDisnable",
-					state = false, -- Initially enabled
-				},
+				-- {
+				-- 	name = "Twilight",
+				-- 	enable_cmd = "TwilightEnable",
+				-- 	disable_cmd = "TwilightDisnable",
+				-- 	state = false, -- Initially enabled
+				-- },
 				-- TODO:
 				-- VimTex toggle compilation
 				{
