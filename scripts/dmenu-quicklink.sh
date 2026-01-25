@@ -18,6 +18,7 @@ options=(
   "  Reddit"
   "󰙯  Discord"
   "𝕏  X.com ( Twitter)"
+  "  LinkedIn"
   # "  Slack"
   "  One Piece"
 )
@@ -26,6 +27,7 @@ options=(
 open_link() {
   local url="$1"
   local browser=""
+  local notification_id=$RANDOM
 
   for b in firefox brave chromium google-chrome; do
     if command -v "$b" &>/dev/null; then
@@ -36,14 +38,22 @@ open_link() {
 
   if [[ -n "$browser" ]]; then
     "$browser" "$url" &
-    command -v dunstify &>/dev/null && dunstify -u low "Opening $browser" "$url" || echo -e "Opeing \e[34m$url\e[0m in $browser" >&2
+    if command -v dunstify &>/dev/null; then
+      dunstify -u low -t 3000 -r "$notification_id" "Opening $browser" "$url"
+    else
+      echo -e "Opening \e[34m$url\e[0m in $browser" >&2
+    fi
   else
-    command -v dunstify &>/dev/null && dunstify -u critical "No browser found!" || echo "No browser found!" >&2
+    if command -v dunstify &>/dev/null; then
+      dunstify -u critical -t 3000 -r "$notification_id" "No browser found!"
+    else
+      echo "No browser found!" >&2
+    fi
   fi
 }
 
 # Build menu
-chosen=$(printf "%s\n" "${options[@]}" | dmenu -i -l 8 -p "$prompt")
+chosen=$(printf "%s\n" "${options[@]}" | dmenu -i -l 9 -p "$prompt")
 
 # Handle cancel
 [[ -z "$chosen" ]] && exit 0
@@ -57,5 +67,6 @@ case "$chosen" in
 *Reddit*) open_link "https://www.reddit.com/?feed=home/" ;;
 *Discord*) open_link "https://canary.discord.com/channels/@me" ;;
 *X.com* | *Twitter*) open_link "https://x.com/" ;;
+*LinkedIn*) open_link "https://www.linkedin.com/in/harshit-dhanwalkar/" ;;
 *One* | *Piece*) open_link "https://mangafire.to/manga/one-piecee.dkw" ;;
 esac

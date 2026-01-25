@@ -3,11 +3,11 @@
 ## Author  : Harshit Prashant Dhanwalkar
 ## Github  : @Harshit-Dhanwalkar
 
-# --- Theme Setup (rofi as fallback) ---
+# Theme Setup (rofi as fallback)
 source "$HOME"/.config/rofi/applets/shared/theme.bash
 theme="$type/$style"
 
-# --- Notification Helper ---
+# Notification Helper
 notify() {
 	if pgrep -x dunst >/dev/null 2>&1; then
 		notify-send "$@"
@@ -20,7 +20,7 @@ notify() {
 	fi
 }
 
-# --- Menu Launcher ---
+# Menu Launcher
 if command -v dmenu >/dev/null 2>&1; then
 	menu() { dmenu -i -l 10 -p "$1"; }
 elif command -v rofi >/dev/null 2>&1; then
@@ -37,7 +37,7 @@ else
 	exit 1
 fi
 
-# --- Wi-Fi Switcher ---
+# Wi-Fi Switcher
 notify "Scanning for available Wi-Fi networks..."
 
 wifi_list=$(nmcli --fields "SECURITY,SSID" device wifi list | sed 1d |

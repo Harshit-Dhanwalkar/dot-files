@@ -1,18 +1,32 @@
+/* Author  : Harshit Prashant Dhanwalkar */
+/* Github  : @Harshit-Dhanwalkar */
+
+/* Light mode */
 /* @define-color foreground #000000; */
-@define-color foreground #FFFFFF;
-@define-color foreground-warning #000000;
-@define-color foreground-error #bf616a;
-@define-color foreground-critical #000000;
 /* @define-color background #c0c0c0; */
-/* @define-color background #000001; */
-@define-color background rgba(0, 0, 0, 0.1);
-@define-color background-warning #55aaff;
-@define-color background-error #ff8c00;
-@define-color background-critical  #bf616a;
-@define-color hover-color #b0b0b0;
 /* @define-color pressed-color #808080; */
+/* @define-color tooltip-bg rgba(250, 250, 250, 0.7); */
+
+/* Dark mode */
+@define-color foreground #FFFFFF;
+@define-color background rgba(0, 0, 0, 0.1);
 @define-color pressed-color #000000;
 @define-color tooltip-bg rgba(0, 0, 0, 0.7);
+
+/* Testing */
+/* @define-color background #000001; */
+
+/* Common for both modes */
+@define-color foreground-warning #ff9e64;
+@define-color foreground-error #bf616a;
+@define-color foreground-critical #000000;
+@define-color background-warning #89b4fa;
+@define-color background-error #ff9e64;
+@define-color background-critical #bf616a;
+@define-color hover-color #b0b0b0;
+
+@define-color blue #89b4fa;
+@define-color red #bf616a;
 
 * {
   font-family:
@@ -20,10 +34,12 @@
     sans-serif, "Font Awesome 5";
   font-weight: bold;
   font-size: 11px;
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: none;
   margin: 0;
   padding: 0;
   border: none;
-  border-radius: 0;
 }
 
 window#waybar {
@@ -39,8 +55,12 @@ window#waybar.hidden {
 }
 
 tooltip {
+  color: @foreground;
   /* background: @background; */
   background: @tooltip-bg;
+  border: 4px solid;
+  border-color: white @pressed-color @pressed-color white;
+  transition: background-color 0.2s ease;
 }
 
 tooltip label {
@@ -48,16 +68,17 @@ tooltip label {
   color: @foreground;
 }
 
-#custom-usb_devices,
-#idle_inhibitor,
-#custom-cliphist,
+#custom-swaymsg_next_empty_workspace,
+#workspaces,
 #temperature,
 #custom-disks,
 #custom-memory_usage,
 #custom-weather,
+#keyboard-state,
 #custom-keyboard_backlight,
+#custom-power,
 #clock,
-#cava,
+#custom-cava,
 #tray,
 #pulseaudio,
 #backlight,
@@ -66,43 +87,45 @@ tooltip label {
 #bluetooth,
 #network,
 #battery,
-#custom-swaymsg_next_empty_workspace,
-#workspaces,
 #taskbar,
-#custom-runcat {
+#custom-runcat,
+#custom-usb_devices,
+#idle_inhibitor,
+#custom-cliphist {
   transition: background-color 0.2s ease;
 }
 
+/* #custom-swaymsg_next_empty_workspace, */
 #workspaces {
+  min-width: 44px;
   color: @foreground;
   background: @background;
-  box-shadow: none;
-  text-shadow: none;
-  margin: 0;
-  padding: 0;
   border: 0px solid;
   border-color: white @pressed-color @pressed-color white;
-  min-height: 18px;
-}
-
-#custom-swaymsg_next_empty_workspace:hover,
-#workspaces:hover {
-  background-color: @hover-color;
+  margin: 0;
+  padding: 0 4px;
+  min-height: 11px;
 }
 
 #custom-swaymsg_next_empty_workspace,
 #custom-swaymsg_next_empty_workspace button,
 #workspaces button {
-  border: 4px solid;
   color: @foreground;
   background: @background;
+  border: 4px solid;
   border-color: white @pressed-color @pressed-color white;
   margin: 0;
-  padding: 0 6px;
-  min-height: 18px;
-  transition:
-    border-color 0.2s ease,
-    background-color 0.2s ease;
+  padding: 0 4px;
+  min-height: 11px;
+  /* animation: tb_normal 20s ease-in-out 1; */
+  /* transition: */
+  /*   border-color 0.2s ease, */
+  /*   background-color 0.2s ease; */
+}
+
+#custom-swaymsg_next_empty_workspace:hover,
+#workspaces:hover {
+  background-color: @hover-color;
 }
 
 #workspaces button.active {
@@ -119,30 +142,23 @@ tooltip label {
   transition: none;
 }
 
-#workspaces button.focused {
-  border-color: @pressed-color white white @pressed-color;
-  background-color: @pressed-color;
-}
-
+#custom-swaymsg_next_empty_workspace button:checked,
+#workspaces button.focused,
 #workspaces button:checked {
-  border-color: @pressed-color white white @pressed-color;
-  background-color: @pressed-color;
-}
-
-#custom-swaymsg_next_empty_workspace button:checked {
   border-color: @pressed-color white white @pressed-color;
   background-color: @pressed-color;
 }
 
 #taskbar {
   font-size: 8px;
-  border: 0px solid;
-  border-color: white @pressed-color @pressed-color white;
   color: @foreground;
   background-color: @background;
-  padding: 0px;
+  border: 0px solid;
+  border-color: white @pressed-color @pressed-color white;
+  padding: 0;
   margin: 0;
   min-height: 11px;
+  animation: tb_normal 20s ease-in-out 1;
   transition: background-color 0.2s ease;
 }
 
@@ -151,15 +167,15 @@ tooltip label {
 }
 
 #taskbar button {
-  border: 4px solid;
+  font-size: 8px;
   box-shadow: none;
   text-shadow: none;
   color: @foreground;
   background: @background;
+  border: 4px solid;
   border-color: white @pressed-color @pressed-color white;
-  border-radius: 0px;
+  padding: 0 4px;
   margin: 0;
-  padding: 0 6px;
   min-height: 11px;
   animation: tb_normal 20s ease-in-out 1;
   transition:
@@ -172,23 +188,50 @@ tooltip label {
   background-color: @pressed-color;
 }
 
-#taskbar button:hover {
-  background-color: @hover-color;
-  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
-  animation: tb_hover 20s ease-in-out 1;
+#tray menu * {
+  font-size: 10px;
+  color: @foreground;
+  background-color: @background;
+  border: 1px solid;
+  border-color: white @pressed-color @pressed-color white;
+  padding: 0;
+  margin: 0px 2px;
+  min-height: 11px;
 }
 
-#custom-usb_devices,
-#idle_inhibitor,
-#custom-cliphist,
+#tray menu separator {
+  min-height: 11px;
+}
+
+#custom-swaymsg_next_empty_workspace,
+#custom-swaymsg_next_empty_workspace button,
+#workspaces button,
+#taskbar button {
+  min-width: 22px;
+}
+
+#window {
+  min-width: 297px;
+  font-size: 11px;
+  color: @foreground;
+  background-color: @background;
+  border: 4px solid;
+  border-color: white @pressed-color @pressed-color white;
+  padding: 0;
+  margin: 0;
+  min-height: 11px;
+}
+
 #custom-disks,
 #custom-memory_usage,
 #custom-weather,
 #clock,
-#cava,
+#custom-cava,
 #temperature,
 #tray,
+#keyboard-state,
 #custom-keyboard_backlight,
+#custom-power,
 #pulseaudio,
 #backlight,
 #cpu,
@@ -196,27 +239,33 @@ tooltip label {
 #bluetooth,
 #network,
 #battery,
-#custom-runcat {
-  border: 4px solid;
-  border-color: white @pressed-color @pressed-color white;
+#custom-runcat,
+#custom-usb_devices,
+#idle_inhibitor,
+#custom-cliphist {
+  /* min-width: 11px; */
   color: @foreground;
   background-color: @background;
-  padding: 0 6px;
+  border: 4px solid;
+  border-color: white @pressed-color @pressed-color white;
+  padding: 0 4px;
   margin: 0;
   min-height: 11px;
+  transition: background-color 0.2s ease;
 }
 
-#custom-usb_devices:hover,
-#idle_inhibitor:hover,
-#custom-cliphist:hover,
+#custom-swaymsg_next_empty_workspace button:hover,
+#workspaces button:hover,
+#temperature:hover,
 #custom-disks:hover,
 #custom-memory_usage:hover,
 #custom-weather:hover,
-#clock:hover,
-#cava:hover,
-#temperature:hover,
-#tray:hover,
+#keyboard-state:hover,
 #custom-keyboard_backlight:hover,
+#custom-power:hover,
+#clock:hover,
+#custom-cava:hover,
+#tray:hover,
 #pulseaudio:hover,
 #backlight:hover,
 #cpu:hover,
@@ -224,46 +273,64 @@ tooltip label {
 #bluetooth:hover,
 #network:hover,
 #battery:hover,
-#custom-runcat:hover {
+#taskbar button:hover,
+#custom-runcat:hover,
+#custom-usb_devices:hover,
+#idle_inhibitor:hover,
+#custom-cliphist:hover {
+  background-color: @hover-color;
+  animation: tb_hover 20s ease-in-out 1;
+  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#custom-swaymsg_next_empty_workspace:hover,
+#workspaces:hover,
+#window:hover,
+#custom-disks:hover,
+#custom-memory_usage:hover,
+#custom-weather:hover,
+#clock:hover,
+#custom-cava:hover,
+#temperature:hover,
+#tray:hover,
+#keyboard-state:hover,
+#custom-keyboard_backlight:hover,
+#custom-power:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#cpu:hover,
+#memory:hover,
+#bluetooth:hover,
+#network:hover,
+#battery:hover,
+#taskbar:hover,
+#custom-runcat:hover,
+#custom-usb_devices:hover,
+#idle_inhibitor:hover,
+#custom-cliphist:hover {
   background-color: @hover-color;
 }
 
 #custom-keyboard_backlight.off,
 #custom-keyboard_backlight,
+#custom-weather,
+#temperature,
+#custom-cava,
 #pulseaudio,
 #backlight,
 #cpu,
-#memory {
-  min-width: 25px;
+#memory,
+#battery,
+#custom-runcat {
+  min-width: 44px;
+}
+
+#keyboard-state {
+  min-width: 22px;
 }
 
 #network {
-  min-width: 90px;
-}
-
-#tray menu * {
-  font-size: 10px;
-  border: 2px solid;
-  border-color: white @pressed-color @pressed-color white;
-  color: @foreground;
-  background-color: @background;
-  padding: 0 1px;
-  margin: 0;
-  min-height: 11px;
-}
-
-/* #tray menu separator { */
-/* } */
-
-#window {
-  min-width: 130px;
-  font-size: 11px;
-  border: 4px solid;
-  border-color: white @pressed-color @pressed-color white;
-  color: @foreground;
-  background-color: @background;
-  margin: 0;
-  min-height: 11px;
+  min-width: 88px;
 }
 
 #bluetooth.disconnected,
@@ -311,11 +378,11 @@ tooltip label {
 
 #backlight-slider trough,
 #pulseaudio-slider trough {
-  min-width: 90px;
+  min-width: 88px;
   min-height: 10px;
+  background: #343434;
   border-radius: 0px;
   margin: 0px;
-  background: #343434;
   padding: 0px;
 }
 
@@ -326,40 +393,47 @@ tooltip label {
 }
 
 #custom-runcat {
-  min-width: 25px;
   font-size: 15px;
   font-family: "runcat";
 }
 
 #custom-runcat.low {
   font-family: "runcat";
-  color: #89b4fa;
-  border-top: 2px solid #89b4fa;
+  color: @blue;
+  background: @hover-color;
+  /* border: 4px solid @blue; */
+  border: 4px solid;
+  border-color: @pressed-color @white @white @pressed-color;
 }
 
 #custom-runcat.medium {
   font-family: "runcat";
-  color: #ff9e64;
-  border-top: 2px solid #ff9e64;
+  color: @foreground-warning;
+  background: @hover-color;
+  /* border: 4px solid @foreground-warning; */
+  border: 4px solid;
+  border-color: @pressed-color @foreground-warning @foreground-warning
+    @pressed-color;
 }
 
 #custom-runcat.high {
   font-family: "runcat";
-  color: @foreground-critical;
-  border-top: 2px solid @foreground-critical;
+  color: @foreground-error;
+  background: @hover-color;
+  /* border: 4px solid @foreground-error; */
+  border: 4px solid;
+  border-color: @pressed-color @foreground-error @foreground-error
+    @pressed-color;
 }
 
 #custom-usb_devices.off {
   color: #888789;
-  border-top: 2px solid #888789;
 }
 
 #custom-usb_devices.low {
-  color: #89b4fa;
-  border-top: 2px solid #89b4fa;
+  color: @blue;
 }
 
 #custom-usb_devices.high {
-  color: #9ece6a;
-  border-top: 2px solid #9ece6a;
+  color: @red;
 }

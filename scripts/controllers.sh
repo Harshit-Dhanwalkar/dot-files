@@ -12,7 +12,7 @@ NOTIFY_SEND="notify-send"
 TIMER_PID_FILE="/tmp/controllers_timer.pid"
 TIMER_NOTIF_FILE="/tmp/controllers_timer.notif"
 
-# --- Notification function ---
+# Notification function
 notify() {
     if pgrep -x "$DUNST" >/dev/null 2>&1; then
         notify-send "$@"
@@ -25,7 +25,7 @@ notify() {
     fi
 }
 
-# --- Menu launcher ---
+# Menu launcher
 if command -v dmenu >/dev/null 2>&1; then
     menu() { dmenu -i -l 10 -p "$1"; }
 elif command -v rofi >/dev/null 2>&1; then
@@ -36,7 +36,7 @@ else
     exit 1
 fi
 
-# --- Utility to kill and cleanup ---
+# Utility to kill and cleanup
 kill_timer_process() {
     local current_pid=$(cat "$TIMER_PID_FILE" 2>/dev/null)
     local current_notif_id=$(cat "$TIMER_NOTIF_FILE" 2>/dev/null)
@@ -44,6 +44,7 @@ kill_timer_process() {
     if [ -f "$TIMER_PID_FILE" ] && kill -0 "$current_pid" 2>/dev/null; then
         kill "$current_pid" 2>/dev/null
     fi
+
     if [ -n "$current_notif_id" ]; then
         dunstify -C "$current_notif_id" 2>/dev/null
     fi
@@ -51,15 +52,12 @@ kill_timer_process() {
     rm -f "$TIMER_PID_FILE" "$TIMER_NOTIF_FILE"
 }
 
-# --- Audio switcher Menu ---
+# Audio switcher Menu
 audio_switch() {
     # Get available sinks
     sinks=$($PACTL -f json list sinks | $JQ -r '.[] | .description')
-
     local menu_options="Back (ESC)\n$sinks"
-
     [ -z "$sinks" ] && notify "No audio outputs found!" && return
-
     selection=$(echo -e "$menu_options" | menu "Select Audio Output:")
 
     # Check for Cancel or 'Back' selection
@@ -77,7 +75,7 @@ audio_switch() {
     fi
 }
 
-# --- Bluetooth Menu ---
+# Bluetooth Menu
 bluetooth_menu() {
     if ! command -v bluetoothctl &>/dev/null || ! bluetoothctl show &>/dev/null; then
         notify "Bluetooth not available or service not running."
@@ -85,14 +83,12 @@ bluetooth_menu() {
     fi
 
     local power_state=$(bluetoothctl show | grep "Powered:" | awk '{print $2}' | tr '[:lower:]' '[:upper:]')
-
     # List connected or paired devices, including MAC address and name
     local devices=$(bluetoothctl devices Paired | sed 's/^Device //' | awk '{print $2 " (" $1 ")"}' | sed 's/(/MAC: /')
 
     # Options for the main Bluetooth menu
     SPACES=$(printf '%*s' 25 "")
     local options="Back (ESC)\nPower:$SPACES$power_state\nScan\nPairable\nDiscoverable\nConnect/Disconnect Device"
-
     local choice=$(echo -e "$options" | menu "Bluetooth           :")
 
     # Check for Cancel/Back
@@ -148,17 +144,16 @@ bluetooth_menu() {
     esac
 }
 
-# --- TIMER / STOPWATCH FUNCTION ---
+# Timer / stopwatch function
 run_timer_loop() {
     local MODE="$1"
     local duration="$2"
     local start_time="$3"
     local initial_message="$4"
-
     local notification_id=0
     local current_time=0
 
-    # Check for dunstify, since this function runs outside the main script's environment
+    # Check for dunstify
     if ! command -v dunstify &>/dev/null; then
         echo "dunstify not found in background process." >&2
         return
@@ -242,6 +237,7 @@ timer_stopwatch() {
             echo -1
             return
         fi
+
         if [ "$num_parts" -eq 1 ]; then
             total_seconds=$((10#${time_parts[0]} * 60))
         elif [ "$num_parts" -eq 2 ]; then
@@ -312,13 +308,12 @@ timer_stopwatch() {
 
     local cmd="run_timer_loop \"$MODE\" \"$duration\" \"$start_time\" \"$initial_message\""
     bash -c "$cmd" &
-
     echo $! >"$TIMER_PID_FILE"
 
     return 0
 }
 
-# --- Color Picker ---
+# Color Picker
 color_picker() {
     if command -v /usr/bin/grim &>/dev/null && command -v /usr/bin/slurp &>/dev/null && command -v /usr/bin/convert &>/dev/null; then
         /usr/bin/grim -g "$(/usr/bin/slurp -p)" -t ppm - | /usr/bin/convert - -format '%[pixel:p{0,0}]' txt:- | /usr/bin/awk -F'[(,)]' '/srgb/{printf "#%02x%02x%02x\n", $2, $3, $4}' | /usr/bin/xargs -I{} notify-send "Picked Color" "{}"
@@ -329,7 +324,7 @@ color_picker() {
     fi
 }
 
-# --- Main menu ---
+# Main menu
 main_menu() {
     local SPACES=$(printf '%*s' 20 "")
     # local options="Exit (ESC)\nAudio Switch\nBluetooth Menu\nTimer / Stopwatch\nColor Picker"
