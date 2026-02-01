@@ -9,6 +9,7 @@ return {
 		vim.g.vimtex_view_method = "zathura"
 		vim.g.vimtex_quickfix_mode = 0
 		vim.opt.conceallevel = 2
+		vim.g.vimtex_clean_enabled = 1
 		vim.g.tex_conceal = "abdmg"
 		vim.g.tex_conceal_frac = 1
 		vim.g.tex_superscripts = "[0-9a-zA-W.,:;+-<>/()=]"
@@ -32,6 +33,28 @@ return {
 				"-file-line-error",
 				-- "%f",
 			},
+		}
+
+		vim.g.vimtex_clean_extensions = {
+			"aux",
+			"bbg",
+			"bib",
+			"blg",
+			"bst",
+			"fdb_latexmk",
+			"fls",
+			"idx",
+			"ind",
+			"lof",
+			"log",
+			"lot",
+			"nav",
+			"out",
+			"toc",
+			"run.xml",
+			"snm",
+			"synctex.gz",
+			"bbl",
 		}
 	end,
 }

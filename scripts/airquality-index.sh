@@ -3,7 +3,7 @@
 ## Author  : Harshit Prashant Dhanwalkar
 ## Github  : @Harshit-Dhanwalkar
 
-# --- CONFIGURATION ---
+# Configuration
 # Get a token here: https://aqicn.org/api/
 TOKEN="YOUR_WAQI_TOKEN"
 # Set CITY to a specific city, or leave it empty ("") to use geolocation.

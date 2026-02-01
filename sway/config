@@ -23,7 +23,7 @@ set $term ~/.local/kitty.app/bin/kitty
 ### Output configuration
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg ~/Pictures/wallpapers/Reaper.png fill
+output * bg ~/Pictures/wallpapers/gruvbox_tux.png fill
 
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 # You can get the names of your outputs by running: swaymsg -t get_outputs
@@ -125,7 +125,7 @@ input type:touchpad {
     bindsym $mod+s exec grim -g "$(slurp)" "$HOME/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png"
     bindsym $mod+shift+s exec grim -g "$(slurp)" - | wl-copy
     ## Uses demnu to bring out menu for screen shoot
-    bindsym $mod-alt+s exec ~/.config/sway/scripts/screenshot-dmenu.sh
+    bindsym $mod-alt+s exec ~/.config/sway/scripts/dmenu-screenshot.sh
 
     # Browser
     # bindsym Mod1+w exec ~/.config/qutebrowser/userscripts/session.sh
@@ -278,6 +278,7 @@ bar {
 # titlebar_border_thickness 1
 for_window {
     [title="Picture-in-Picture"] floating enable
+    [class="Yad" title="yad-calendar"] floating enable
     # [title="bluetoothctl"] floating enable, resize set 500 200
     # [app_id="pavucontrol"] floating enable
     # [app_id="^.*"] title_format "%title"
@@ -311,14 +312,14 @@ focus_wrapping no
 # workspace 5 gaps inner 20
 
 # Adjusting borders
-default_border pixel 1.5
+default_border pixel 1px
 # default_border none
-default_floating_border none
+default_floating_border pixel 1px
 
 # Gaps
-gaps top 0
-gaps inner 4
-gaps outer 0
+gaps top 0px
+gaps inner 2px
+gaps outer 2px
 smart_gaps off
 
 # window rules for common titles

@@ -45,12 +45,13 @@ return {
 		local cmp = require("cmp")
 		-- local luasnip = require("luasnip")
 		-- luasnip.config.setup({})
+		-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see: https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 
 		cmp.setup({
 			snippet = {
 				expand = function(args)
 					-- luasnip.lsp_expand(args.body)
-					vim.fn["vsnip#expand"](args.body)
+					vim.fn["vsnip#anonymous"](args.body)
 				end,
 			},
 			completion = { completeopt = "menu,menuone,noinsert" },
@@ -83,20 +84,40 @@ return {
 				-- <c-l> will move you to the right of each of the expansion locations.
 				-- <c-h> is similar, except moving you backwards.
 				["<C-l>"] = cmp.mapping(function(fallback)
-					if luasnip.jumpable(1) then
-						luasnip.jump(1) -- Jump forward to next placeholder
+					if vim.fn["vsnip#available"](1) == 1 then
+						vim.fn.feedkeys(
+							vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true),
+							""
+						)
 					else
 						fallback()
 					end
 				end, { "i", "s" }),
 				["<C-h>"] = cmp.mapping(function(fallback)
-					if luasnip.jumpable(-1) then
-						luasnip.jump(-1) -- Jump backward to previous placeholder
+					if vim.fn["vsnip#jumpable"](-1) == 1 then
+						vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vsnip-jump-prev)", true, true, true), "")
 					else
 						fallback()
 					end
 				end, { "i", "s" }),
-				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+				-- ["<C-t>"] = cmp.mapping(function()
+				-- 	cmp.complete({
+				-- 		config = {
+				-- 			sources = {
+				-- 				{
+				-- 					name = "path",
+				-- 					option = {
+				-- 						trailing_slash = true,
+				-- 						-- This forces it to look at your current working directory
+				-- 						get_cwd = function()
+				-- 							return vim.fn.getcwd()
+				-- 						end,
+				-- 					},
+				-- 				},
+				-- 			},
+				-- 		},
+				-- 	})
+				-- end, { "i", "s" }),
 			}),
 			sources = {
 				{

@@ -8,21 +8,13 @@ return {
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
-			cond = function() -- `cond` is a condition used to determine whether this plugin should be installed and loaded.
+			cond = function()
 				return vim.fn.executable("make") == 1
 			end,
 		},
-		{
-			"nvim-telescope/telescope-ui-select.nvim",
-		},
-		{
-			"nvim-tree/nvim-web-devicons",
-			enabled = vim.g.have_nerd_font,
-		},
-		{
-			"nvim-telescope/telescope-frecency.nvim",
-			version = "*",
-		},
+		{ "nvim-telescope/telescope-ui-select.nvim" },
+		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+		{ "nvim-telescope/telescope-frecency.nvim", version = "*" },
 		-- {
 		-- 	"nvim-telescope/telescope-media-files.nvim",
 		-- 	event = "VeryLazy",
@@ -87,5 +79,6 @@ return {
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
 		pcall(require("telescope").load_extension, "frecency")
+		pcall(require("telescope").load_extension, "telescope-env")
 	end,
 }
