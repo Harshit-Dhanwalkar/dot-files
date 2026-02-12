@@ -28,12 +28,12 @@ return {
 					state = true, -- Initially enabled
 				},
 				-- Twilight Plugin Toggle
-				-- {
-				-- 	name = "Twilight",
-				-- 	enable_cmd = "TwilightEnable",
-				-- 	disable_cmd = "TwilightDisnable",
-				-- 	state = false, -- Initially enabled
-				-- },
+				{
+					name = "Twilight",
+					enable_cmd = "TwilightEnable",
+					disable_cmd = "TwilightDisnable",
+					state = false, -- Initially enabled
+				},
 				-- TODO:
 				-- VimTex toggle compilation
 				{

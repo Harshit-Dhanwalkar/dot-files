@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/utils/mini.lua
+-- ~/.config/nvim/lua/Plugins/mini.lua
 return {
 	{
 		"echasnovski/mini.nvim",
@@ -17,7 +17,6 @@ return {
 			-- end
 			require("mini.trailspace").setup({ only_in_normal_buffers = true })
 			require("mini.splitjoin").setup({ mappings = { toggle = "" } })
-
 			-- Setup Mini.Comment with TS Support
 			require("ts_context_commentstring").setup({ enable_autocmd = false })
 			require("mini.comment").setup({
@@ -87,7 +86,6 @@ return {
 					blank = false,
 				},
 			})
-
 			-- The function itself, copy only the below part if you already have mini.jump2d configured
 			local custom_2d_jump = function(opts)
 				vim.opt.scrolloff = 0
@@ -132,7 +130,6 @@ return {
 					},
 				})
 			end
-
 			-- Copying a Word (yiW) without moving your cursor there
 			vim.keymap.set("n", ";y", function()
 				custom_2d_jump({
@@ -141,7 +138,6 @@ return {
 					action = "yiW",
 				})
 			end)
-
 			-- Yank an entire line (see how counts may come in handy?)
 			vim.keymap.set("n", "yl", function()
 				custom_2d_jump({
@@ -152,7 +148,6 @@ return {
 					action = "yy",
 				})
 			end)
-
 			-- Yank a paragraph
 			vim.keymap.set("n", "yp", function()
 				custom_2d_jump({
@@ -163,7 +158,6 @@ return {
 					action = "yip",
 				})
 			end)
-
 			-- Yank a word (yiw)
 			vim.keymap.set("n", ";w", function()
 				custom_2d_jump({
@@ -172,7 +166,6 @@ return {
 					action = "yiw",
 				})
 			end)
-
 			-- Below is just a bunch of functions for yanking contents of parenthesis/brackets/quotes
 			vim.keymap.set("n", ";'", function()
 				custom_2d_jump({
@@ -181,7 +174,6 @@ return {
 					action = "yi'",
 				})
 			end)
-
 			vim.keymap.set("n", ';"', function()
 				custom_2d_jump({
 					mark = "q",
@@ -189,7 +181,6 @@ return {
 					action = 'yi"',
 				})
 			end)
-
 			vim.keymap.set("n", ";(", function()
 				custom_2d_jump({
 					mark = "b",
@@ -200,7 +191,6 @@ return {
 					action = "yi(",
 				})
 			end)
-
 			vim.keymap.set("n", ";{", function()
 				custom_2d_jump({
 					mark = "c",
@@ -211,7 +201,6 @@ return {
 					action = "yi{",
 				})
 			end)
-
 			vim.keymap.set("n", ";[", function()
 				custom_2d_jump({
 					mark = "b",
@@ -222,7 +211,6 @@ return {
 					action = "yi[",
 				})
 			end)
-
 			-- Keymaps below are for changing stuff
 			-- Jump and do ciW on a word
 			vim.keymap.set("n", ";c", function()
@@ -232,7 +220,6 @@ return {
 					end_in_insert = true,
 				})
 			end)
-
 			-- Delete a paragraph
 			vim.keymap.set("n", "dp", function()
 				custom_2d_jump({
@@ -243,7 +230,6 @@ return {
 					action = "dip",
 				})
 			end)
-
 			-- This here is for changing the line you currently hover at, with a line that you jump to. And then return to where you were in the first place
 			vim.keymap.set("n", "rl", function()
 				custom_2d_jump({
@@ -272,7 +258,6 @@ return {
 					go_out_plus = "H",
 				},
 			})
-
 			-- layout preferences
 			local widths = {
 				math.floor(vim.o.columns * 0.45),
@@ -284,7 +269,6 @@ return {
 				if state == nil then
 					return
 				end
-
 				-- Compute "depth offset" - how many windows are between this and focused
 				local path_this = vim.api.nvim_buf_get_name(ev.data.buf_id):match("^minifiles://%d+/(.*)$")
 				local depth_this
@@ -296,10 +280,8 @@ return {
 				if depth_this == nil then
 					return
 				end
-
 				local depth_focus = state.depth_focus
 				local depth_offset = depth_this - depth_focus
-
 				-- Adjust config of this event's window
 				local i = math.abs(depth_offset) + 1
 				local win_config = vim.api.nvim_win_get_config(ev.data.win_id)
@@ -328,22 +310,17 @@ return {
 					-- Panels to the left/right stack tightly
 					local sign = depth_offset > 0 and 1 or -1
 					local offset = 0
-
 					for j = 1, math.abs(depth_offset) do
 						offset = offset + (widths[j] or widths[#widths])
 					end
-
 					win_config.col = center_col + sign * offset
 				end
-
 				-- Adjust height and vertical position (row)
 				win_config.height = depth_offset == 0 and 25 or 20
 				win_config.row = math.floor(0.5 * (vim.o.lines - win_config.height))
-
 				-- Apply custom border
 				win_config.border = depth_offset == 0 and { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 					or "single"
-
 				vim.api.nvim_win_set_config(ev.data.win_id, win_config)
 			end
 
@@ -367,7 +344,6 @@ return {
 			custom_surroundings = nil,
 			-- Duration (in ms) of highlight when calling `MiniSurround.highlight()`
 			highlight_duration = 300,
-			-- Module mappings. Use `''` (empty string) to disable one.
 			-- INFO:
 			-- saiw surround with no whitespace
 			-- saw surround with whitespace
@@ -379,8 +355,7 @@ return {
 				highlight = "sh", -- Highlight surrounding
 				replace = "sr", -- Replace surrounding
 				update_n_lines = "sn", -- Update `n_lines`
-
-				suffix_last = "l", -- Suffix to search with "prev" method
+				suffix_last = "p", -- Suffix to search with "prev" method
 				suffix_next = "n", -- Suffix to search with "next" method
 			},
 			-- Number of lines within which surrounding is searched
@@ -412,5 +387,15 @@ return {
 				miniSplitJoin.split()
 			end, { desc = "Split arguments" })
 		end,
+	},
+	{
+		"echasnovski/mini.operators",
+		event = "VeryLazy",
+		opts = {},
+	},
+	{
+		"echasnovski/mini.align",
+		event = "VeryLazy",
+		opts = {},
 	},
 }

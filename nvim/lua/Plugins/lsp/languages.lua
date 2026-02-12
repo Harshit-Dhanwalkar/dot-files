@@ -28,7 +28,21 @@ return {
 		eslint = {}, -- JavaScript/TypeScript linter
 		ts_ls = {}, -- TypeScript/JavaScript
 		texlab = {}, -- LaTeX LSP and Tex linter
-		ltex = {}, -- LanguageTool integration for LaTeX
+		ltex = { -- LanguageTool integration for LaTeX
+			settings = {
+				ltex = {
+					disabledRules = {
+						["en-US"] = {
+							-- "PROPER_NOUN_WITHOUT_DETERMINER",
+							"COMMAS_PARENTHESIS_WHITESPACE",
+							"UNLIKELY_OPENING_PUNCTUATION",
+							"NUMBERS_IN_WORDS",
+						},
+					},
+					dictionary = { ["en-US"] = {} },
+				},
+			},
+		},
 		["ltex_plus"] = {}, -- LanguageTool integration for LaTeX
 		markdown_oxide = {}, -- Markdown
 		clangd = {}, -- C/C++
@@ -51,11 +65,16 @@ return {
 	tools = {
 		"bash-language-server",
 		"stylua",
+		"ruff", -- for Python
+		"black", -- Python formatter
 		"pyright",
 		"debugpy",
 		"clangd",
 		"clang-format",
 		"codelldb", -- For Debugging
 		-- "asm-lsp",
+		-- "prettier", -- For JS/TS/CSS/HTML
+		-- "goimports",  -- For Go
+		-- "rustfmt", -- rust-analyzer
 	},
 }
