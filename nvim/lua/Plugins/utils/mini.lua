@@ -1,47 +1,27 @@
 -- ~/.config/nvim/lua/Plugins/mini.lua
 return {
-	{
-		"echasnovski/mini.nvim",
-		config = function()
-			require("mini.ai").setup({ n_lines = 500 })
-			-- Add/delete/replace surroundings (brackets, quotes, etc.)
-			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-			-- - sd'   - [S]urround [D]elete [']quotes
-			-- - sr)'  - [S]urround [R]eplace [)] [']
-			require("mini.surround").setup()
-			-- local statusline = require("mini.statusline")
-			-- statusline.setup({ use_icons = vim.g.have_nerd_font })
-			-- ---@diagnostic disable-next-line: duplicate-set-field
-			-- statusline.section_location = function()
-			-- 	return "%2l:%-2v"
-			-- end
-			require("mini.trailspace").setup({ only_in_normal_buffers = true })
-			require("mini.splitjoin").setup({ mappings = { toggle = "" } })
-			-- Setup Mini.Comment with TS Support
-			require("ts_context_commentstring").setup({ enable_autocmd = false })
-			require("mini.comment").setup({
-				options = {
-					custom_commentstring = function()
-						return require("ts_context_commentstring.internal").calculate_commentstring({
-							key = "commentstring",
-						}) or vim.bo.commentstring
-					end,
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"echasnovski/mini.nvim",
+	-- 	config = function()
+	-- 		require("mini.ai").setup({ n_lines = 500 })
+	-- 		-- Add/delete/replace surroundings (brackets, quotes, etc.)
+	-- 		-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+	-- 		-- - sd'   - [S]urround [D]elete [']quotes
+	-- 		-- - sr)'  - [S]urround [R]eplace [)] [']
+	-- 		require("mini.splitjoin").setup({ mappings = { toggle = "" } })
+	-- 		-- Setup Mini.Comment with TS Support
+	-- 		require("ts_context_commentstring").setup({ enable_autocmd = false })
+	-- 	end,
+	-- },
 	{
 		"echasnovski/mini.comment",
 		version = false,
-		dependencies = {
-			"JoosepAlviste/nvim-ts-context-commentstring",
-		},
+		dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
 		config = function()
 			-- disable the autocommand from ts-context-commentstring
 			require("ts_context_commentstring").setup({
 				enable_autocmd = false,
 			})
-
 			require("mini.comment").setup({
 				-- tsx, jsx, html , svelte comment support
 				options = {
@@ -75,8 +55,7 @@ return {
 		end,
 	},
 	{
-		-- 'nvim-mini/mini.nvim',
-		"echasnovski/mini.nvim",
+		"echasnovski/mini.jump2d",
 		config = function()
 			require("mini.jump2d").setup({
 				view = {
@@ -166,7 +145,6 @@ return {
 					action = "yiw",
 				})
 			end)
-			-- Below is just a bunch of functions for yanking contents of parenthesis/brackets/quotes
 			vim.keymap.set("n", ";'", function()
 				custom_2d_jump({
 					mark = "q",
@@ -211,7 +189,6 @@ return {
 					action = "yi[",
 				})
 			end)
-			-- Keymaps below are for changing stuff
 			-- Jump and do ciW on a word
 			vim.keymap.set("n", ";c", function()
 				custom_2d_jump({
@@ -230,27 +207,25 @@ return {
 					action = "dip",
 				})
 			end)
-			-- This here is for changing the line you currently hover at, with a line that you jump to. And then return to where you were in the first place
-			vim.keymap.set("n", "rl", function()
-				custom_2d_jump({
-					mark = "l",
-					repeatable = true,
-					homerow = true,
-					spotter = MiniJump2d.builtin_opts.line_start.spotter,
-					preaction = "dd",
-					norepeat_action = "P",
-					action = "j",
-					action2 = "dd",
-					afteraction = "P",
-				})
-			end)
+			-- vim.keymap.set("n", "rl", function()
+			-- 	custom_2d_jump({
+			-- 		mark = "l",
+			-- 		repeatable = true,
+			-- 		homerow = true,
+			-- 		spotter = MiniJump2d.builtin_opts.line_start.spotter,
+			-- 		preaction = "dd",
+			-- 		norepeat_action = "P",
+			-- 		action = "j",
+			-- 		action2 = "dd",
+			-- 		afteraction = "P",
+			-- 	})
+			-- end)
 		end,
 	},
 	{
 		"echasnovski/mini.files",
 		config = function()
-			local MiniFiles = require("mini.files")
-			MiniFiles.setup({
+			require("mini.files").setup({
 				mappings = {
 					go_in = "<CR>", -- Enter and L to enter directories or open files
 					go_in_plus = "L",
@@ -285,7 +260,6 @@ return {
 				-- Adjust config of this event's window
 				local i = math.abs(depth_offset) + 1
 				local win_config = vim.api.nvim_win_get_config(ev.data.win_id)
-
 				-- Use specific width if defined, otherwise use the last value in widths table
 				win_config.width = widths[i] or widths[#widths]
 
@@ -302,7 +276,6 @@ return {
 				-- end
 				-- Anchor focused window at center
 				local center_col = math.floor((vim.o.columns - widths[1]) / 2)
-
 				if depth_offset == 0 then
 					-- Focused panel
 					win_config.col = center_col
@@ -323,12 +296,10 @@ return {
 					or "single"
 				vim.api.nvim_win_set_config(ev.data.win_id, win_config)
 			end
-
 			vim.api.nvim_create_autocmd("User", {
 				pattern = "MiniFilesWindowUpdate",
 				callback = ensure_center_layout,
 			})
-
 			vim.keymap.set("n", "<leader>ee", "<cmd>lua MiniFiles.open()<CR>", { desc = "Toggle mini file explorer" }) -- toggle file explorer
 			vim.keymap.set("n", "<leader>ef", function()
 				MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
@@ -339,44 +310,46 @@ return {
 	{
 		"echasnovski/mini.surround",
 		event = { "BufReadPre", "BufNewFile" },
-		opts = {
-			-- For more information see `:h MiniSurround.config`.
-			custom_surroundings = nil,
-			-- Duration (in ms) of highlight when calling `MiniSurround.highlight()`
-			highlight_duration = 300,
-			-- INFO:
-			-- saiw surround with no whitespace
-			-- saw surround with whitespace
-			mappings = {
-				add = "sa", -- Add surrounding in Normal and Visual modes
-				delete = "ds", -- Delete surrounding
-				find = "sf", -- Find surrounding (to the right)
-				find_left = "sF", -- Find surrounding (to the left)
-				highlight = "sh", -- Highlight surrounding
-				replace = "sr", -- Replace surrounding
-				update_n_lines = "sn", -- Update `n_lines`
-				suffix_last = "p", -- Suffix to search with "prev" method
-				suffix_next = "n", -- Suffix to search with "next" method
-			},
-			-- Number of lines within which surrounding is searched
-			n_lines = 20,
-			-- Whether to respect selection type:
-			-- - Place surroundings on separate lines in linewise mode.
-			-- - Place surroundings on each line in blockwise mode.
-			respect_selection_type = false,
-			-- How to search for surrounding (first inside current line, then inside
-			-- neighborhood). One of 'cover', 'cover_or_next', 'cover_or_prev',
-			-- 'cover_or_nearest', 'next', 'prev', 'nearest'. For more details,
-			-- see `:h MiniSurround.config`.
-			search_method = "cover",
-			-- Whether to disable showing non-error feedback
-			silent = false,
-		},
+		config = function()
+			require("mini.surround").setup({
+				-- For more information see `:h MiniSurround.config`.
+				custom_surroundings = nil,
+				-- Duration (in ms) of highlight when calling `MiniSurround.highlight()`
+				highlight_duration = 300,
+				-- INFO:
+				-- saiw surround with no whitespace
+				-- saw surround with whitespace
+				mappings = {
+					add = "sa", -- Add surrounding in Normal and Visual modes
+					delete = "ds", -- Delete surrounding
+					find = "sf", -- Find surrounding (to the right)
+					find_left = "sF", -- Find surrounding (to the left)
+					highlight = "sh", -- Highlight surrounding
+					replace = "sr", -- Replace surrounding
+					update_n_lines = "sn", -- Update `n_lines`
+					suffix_last = "p", -- Suffix to search with "prev" method
+					suffix_next = "n", -- Suffix to search with "next" method
+				},
+				-- Number of lines within which surrounding is searched
+				n_lines = 20,
+				-- Whether to respect selection type:
+				-- - Place surroundings on separate lines in linewise mode.
+				-- - Place surroundings on each line in blockwise mode.
+				respect_selection_type = false,
+				-- How to search for surrounding (first inside current line, then inside
+				-- neighborhood). One of 'cover', 'cover_or_next', 'cover_or_prev',
+				-- 'cover_or_nearest', 'next', 'prev', 'nearest'. For more details,
+				-- see `:h MiniSurround.config`.
+				search_method = "cover",
+				-- Whether to disable showing non-error feedback
+				silent = false,
+			})
+		end,
 	},
 	{
 		"echasnovski/mini.splitjoin",
 		config = function()
-			local miniSplitJoin = require("mini.splitjoin")
+			miniSplitJoin = require("mini.splitjoin")
 			miniSplitJoin.setup({
 				mappings = { toggle = "" }, -- Disable default mapping
 			})
@@ -388,14 +361,49 @@ return {
 			end, { desc = "Split arguments" })
 		end,
 	},
+	-- Handled by neominimap
+	-- {
+	-- 	"echasnovski/mini.map",
+	-- 	config = function()
+	-- 		require("mini.map").setup({
+	-- 			integrations = nil,
+	-- 			symbols = {
+	-- 				encode = nil,
+	-- 				scroll_line = "█",
+	-- 				scroll_view = "┃",
+	-- 			},
+	-- 			window = {
+	-- 				focusable = false,
+	-- 				side = "right",
+	-- 				show_integration_count = true,
+	-- 				width = 10,
+	-- 				winblend = 25,
+	-- 				zindex = 10,
+	-- 			},
+	-- 		})
+	-- 		vim.keymap.set("n", "<leader>-", function()
+	-- 			require("mini.map").toggle()
+	-- 		end, { desc = "Toggle mini.map" })
+	-- 	end,
+	-- },
+	-- 		-- local statusline = require("mini.statusline")
+	-- 		-- statusline.setup({ use_icons = vim.g.have_nerd_font })
+	-- 		-- ---@diagnostic disable-next-line: duplicate-set-field
+	-- 		-- statusline.section_location = function()
+	-- 		-- 	return "%2l:%-2v"
+	-- 		-- end
 	{
 		"echasnovski/mini.operators",
 		event = "VeryLazy",
-		opts = {},
+		config = function()
+			require("mini.operators").setup({})
+		end,
 	},
 	{
 		"echasnovski/mini.align",
 		event = "VeryLazy",
-		opts = {},
+		config = function()
+			require("mini.align").setup({})
+		end,
 	},
 }

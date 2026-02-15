@@ -41,7 +41,7 @@ require("lazy").setup({
 	require("Plugins.appearance.lualine"),
 	require("Plugins.appearance.noice"),
 	require("Plugins.appearance.indent-blackline"),
-	-- require("Plugins.appearance.neominimap"),
+	require("Plugins.appearance.neominimap"),
 	-- require("Plugins.appearance.pretty-fold"),
 	-- require("Plugins.appearance.nvim-ufo"),
 	require("Plugins.appearance.modicator"),
