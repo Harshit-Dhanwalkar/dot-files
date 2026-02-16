@@ -33,29 +33,16 @@ return {
 		{ "<leader>ns", "<cmd>Neominimap ToggleFocus<cr>", desc = "Switch focus on minimap" },
 	},
 	init = function()
-		vim.opt.wrap = false
-		vim.opt.sidescrolloff = 36 -- Set a large value
 		vim.g.neominimap = {
 			auto_enable = false, --if true, Enable the plugin by default
 			-- log_level = vim.log.levels.OFF,
 			-- notification_level = vim.log.levels.INFO,
 			-- log_path = vim.fn.stdpath("data") .. "/neominimap.log"
-			exclude_filetypes = {
-				"help",
-				"bigfile", -- For Snacks.nvim
-			},
-			exclude_buftypes = {
-				"nofile",
-				"nowrite",
-				"quickfix",
-				"terminal",
-				"prompt",
-			},
+			exclude_filetypes = { "help", "bigfile" },
+			exclude_buftypes = { "nofile", "nowrite", "quickfix", "terminal", "prompt" },
 			x_multiplier = 5,
 			y_multiplier = 1,
-			buffer = {
-				persist = true,
-			},
+			buffer = { persist = true },
 		}
 	end,
 }

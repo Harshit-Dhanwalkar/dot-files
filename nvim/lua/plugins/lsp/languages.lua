@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/lsp/languages.lua
+-- ~/.config/nvim/lua/plugins/lsp/languages.lua
 return {
 	servers = {
 		bashls = {}, -- Bash
@@ -65,7 +65,7 @@ return {
 	tools = {
 		"bash-language-server",
 		"stylua",
-		"ruff", -- for Python
+		-- "ruff", -- for Python
 		"black", -- Python formatter
 		"pyright",
 		"debugpy",

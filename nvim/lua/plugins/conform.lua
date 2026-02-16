@@ -27,7 +27,10 @@ return {
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "isort", "black" },
+				python = { "isort", "black", "ruff" },
+				c = { "clang-format" },
+				rust = { "rustfmt" },
+				-- go = { "gofumpt" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				javascriptreact = { "prettier" },
 				typescript = { "prettier" },
@@ -49,6 +52,7 @@ return {
 				graphql = { "prettier" },
 				handlebars = { "prettier" },
 				xml = { "xmlformatter" },
+				-- nix = { "nixfmt" },
 			},
 			-- Configure individual formatters
 			prettier = {

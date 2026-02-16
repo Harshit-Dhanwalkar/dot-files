@@ -16,6 +16,7 @@ vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.wrap = true
+vim.opt.linebreak = true
 vim.opt.whichwrap = "bs<>"
 vim.opt.hls = true
 vim.opt.breakindent = true -- Enable break indent
@@ -28,12 +29,13 @@ vim.opt.updatetime = 250 -- Decrease update time
 -- vim.g.lsp_status_diagnostic_signs_enabled = false -- disable just statusline messages
 
 vim.wo.wrap = true
-vim.opt.winblend = 20 -- Adjust the level of transparency
-vim.opt.pumblend = 20 -- For popup menu level of transparency
+vim.opt.winblend = 20
+vim.opt.pumblend = 20
+vim.opt.pumheight = 10
 
-vim.opt.mouse = "a" -- Enable mouse mode
-vim.opt.showmode = false -- Don't show mode in the status line
-vim.opt.laststatus = 2 -- Always display the status line
+vim.opt.mouse = "a"
+vim.opt.showmode = false
+vim.opt.laststatus = 2
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.hlsearch = true -- Highlight search results
@@ -62,8 +64,11 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type
 vim.opt.inccommand = "split"
-vim.opt.scrolloff = 10
-vim.opt.cursorline = true -- Highlight the current line
+vim.opt.sidescroll = 1
+vim.opt.scrolloff = 8
+vim.opt.cursorline = true
+
+vim.opt.swapfile = false
 
 -- Utils
 vim.opt.runtimepath:append(vim.fn.stdpath("config") .. "/lua/utilities/")

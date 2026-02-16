@@ -22,9 +22,7 @@ return {
 					["vim.lsp.util.stylize_markdown"] = true,
 					["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
 				},
-				signature = {
-					auto_open = { enabled = false }, -- disable auto signature help on insert mode
-				},
+				signature = { auto_open = { enabled = false } }, -- disable auto signature help on insert mode},
 			},
 			presets = {
 				bottom_search = false, -- use a classic bottom cmdline for search
@@ -67,18 +65,9 @@ return {
 			},
 			views = {
 				cmdline_popup = {
-					position = {
-						row = "70%",
-						col = "50%",
-					},
-					size = {
-						width = 40,
-						height = "auto",
-					},
-					border = {
-						style = "rounded",
-						padding = { 0, 1 },
-					},
+					position = { row = "70%", col = "50%" },
+					size = { width = 40, height = "auto" },
+					border = { style = "rounded", padding = { 0, 1 } },
 					win_options = {
 						-- winhighlight = "Normalo:Normal,FloatBorder:FloatBorder",
 						winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
@@ -108,16 +97,8 @@ return {
 				view_history = "messages",
 				view_search = "virtualtext",
 			},
-			popupmenu = {
-				enabled = true,
-				backend = "nui",
-				kind_icons = {},
-			},
-			hover = {
-				enabled = true,
-				silent = false,
-				opts = {},
-			},
+			popupmenu = { enabled = true, backend = "nui", kind_icons = {} },
+			hover = { enabled = true, silent = false, opts = {} },
 			documentation = {
 				view = "hover",
 				opts = {
@@ -128,9 +109,7 @@ return {
 					win_options = { concealcursor = "n", conceallevel = 3 },
 				},
 			},
-			health = {
-				checker = true,
-			},
+			health = { checker = true },
 			signature = {
 				enabled = true,
 				auto_open = {

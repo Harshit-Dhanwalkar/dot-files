@@ -150,8 +150,8 @@ end, { desc = "Go to [R]eferences" })
 map("n", "<leader>e", vim.diagnostic.open_float)
 
 -- move to end of word while keeping the cursor in the same column for the next line
-map("n", "k", "gk")
-map("n", "j", "gj")
+-- map("n", "k", "gk")
+-- map("n", "j", "gj")
 
 -- Go to errors
 map("n", "[e", vim.diagnostic.goto_next)

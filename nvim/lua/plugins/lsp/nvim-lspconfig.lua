@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/lsp/nvim-lspconfig.lua
+-- ~/.config/nvim/lua/plugins/lsp/nvim-lspconfig.lua
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
@@ -10,7 +10,7 @@ return {
 		"hrsh7th/nvim-cmp",
 	},
 	config = function()
-		local lsp_modules = require("Plugins.lsp.languages")
+		local lsp_modules = require("plugins.lsp.languages")
 		local servers = lsp_modules.servers
 		local tools = lsp_modules.tools
 

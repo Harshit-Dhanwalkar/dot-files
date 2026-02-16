@@ -1,18 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/mini.lua
 return {
-	-- {
-	-- 	"echasnovski/mini.nvim",
-	-- 	config = function()
-	-- 		require("mini.ai").setup({ n_lines = 500 })
-	-- 		-- Add/delete/replace surroundings (brackets, quotes, etc.)
-	-- 		-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-	-- 		-- - sd'   - [S]urround [D]elete [']quotes
-	-- 		-- - sr)'  - [S]urround [R]eplace [)] [']
-	-- 		require("mini.splitjoin").setup({ mappings = { toggle = "" } })
-	-- 		-- Setup Mini.Comment with TS Support
-	-- 		require("ts_context_commentstring").setup({ enable_autocmd = false })
-	-- 	end,
-	-- },
 	{
 		"echasnovski/mini.comment",
 		version = false,
@@ -353,15 +340,14 @@ return {
 			miniSplitJoin.setup({
 				mappings = { toggle = "" }, -- Disable default mapping
 			})
-			vim.keymap.set({ "n", "x" }, "sj", function()
+			vim.keymap.set({ "n", "x" }, "mj", function()
 				miniSplitJoin.join()
 			end, { desc = "Join arguments" })
-			vim.keymap.set({ "n", "x" }, "sk", function()
+			vim.keymap.set({ "n", "x" }, "mk", function()
 				miniSplitJoin.split()
 			end, { desc = "Split arguments" })
 		end,
 	},
-	-- Handled by neominimap
 	-- {
 	-- 	"echasnovski/mini.map",
 	-- 	config = function()
@@ -386,12 +372,19 @@ return {
 	-- 		end, { desc = "Toggle mini.map" })
 	-- 	end,
 	-- },
-	-- 		-- local statusline = require("mini.statusline")
-	-- 		-- statusline.setup({ use_icons = vim.g.have_nerd_font })
-	-- 		-- ---@diagnostic disable-next-line: duplicate-set-field
-	-- 		-- statusline.section_location = function()
-	-- 		-- 	return "%2l:%-2v"
-	-- 		-- end
+	--
+	-- require("mini.statusline")
+	-- statusline.setup({ use_icons = vim.g.have_nerd_font })
+	-- ---@diagnostic disable-next-line: duplicate-set-field
+	-- statusline.section_location = function()
+	-- 	return "%2l:%-2v"
+	--
+	-- require("mini.ai").setup({ n_lines = 500 })
+	-- -- Add/delete/replace surroundings (brackets, quotes, etc.)
+	-- -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+	-- -- - sd'   - [S]urround [D]elete [']quotes
+	-- -- - sr)'  - [S]urround [R]eplace [)] [']
+	--
 	{
 		"echasnovski/mini.operators",
 		event = "VeryLazy",

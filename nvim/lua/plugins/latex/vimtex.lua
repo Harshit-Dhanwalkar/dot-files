@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/vimtex.lua
+-- ~/.config/nvim/lua/plugins/vimtex.lua
 return {
 	"lervag/vimtex",
 	lazy = false, -- no lazy load VimTeX
@@ -24,6 +24,7 @@ return {
 		--  vimtex-compiler-tectonic : https://tectonic-typesetting.github.io/
 		--  vimtex-compiler-arara    : https://github.com/cereda/arara
 		--  vimtex-compiler-generic
+
 		vim.g.vimtex_compiler_latexmk = {
 			-- build_dir = "./temp",
 			aux_dir = "./aux",

@@ -124,22 +124,8 @@ map("n", "<leader>ip", function()
 	})
 end, { desc = "[I]nsert [P]ath at cursor" })
 
--- Insert boilerplate templates
--- map("n", "<leader>it", function()
--- 	local template_dir = vim.fn.expand("~/.config/nvim/templates/")
--- 	require("telescope.builtin").find_files({
--- 		cwd = template_dir,
--- 		attach_mappings = function(prompt_bufnr, _)
--- 			actions.select_default:replace(function()
--- 				local selection = action_state.get_selected_entry()
--- 				actions.close(prompt_bufnr)
--- 				local lines = vim.fn.readfile(template_dir .. selection[1])
--- 				vim.api.nvim_put(lines, "l", true, true)
--- 			end)
--- 			return true
--- 		end,
--- 	})
--- end, { desc = "[I]nsert [T]emplate" })
+-- TODO:
+-- Mini keymaps
 
 -- FIX: error opening picker
 -- $VIRTUAL_ENV or database URLs
@@ -196,6 +182,23 @@ map("n", "<leader>iv", function()
 		:find()
 end, { desc = "[I]nsert [E]nv Value" })
 
+-- Insert boilerplate templates
+-- map("n", "<leader>it", function()
+-- 	local template_dir = vim.fn.expand("~/.config/nvim/templates/")
+-- 	require("telescope.builtin").find_files({
+-- 		cwd = template_dir,
+-- 		attach_mappings = function(prompt_bufnr, _)
+-- 			actions.select_default:replace(function()
+-- 				local selection = action_state.get_selected_entry()
+-- 				actions.close(prompt_bufnr)
+-- 				local lines = vim.fn.readfile(template_dir .. selection[1])
+-- 				vim.api.nvim_put(lines, "l", true, true)
+-- 			end)
+-- 			return true
+-- 		end,
+-- 	})
+-- end, { desc = "[I]nsert [T]emplate" })
+
 -- Import
 map("n", "<leader>ii", function()
 	require("telescope.builtin").find_files({
@@ -215,47 +218,6 @@ map("n", "<leader>ii", function()
 end, { desc = "[I]nsert [I]mport statement" })
 
 -- Insert its name for module from requirements.txt
--- map("n", "<leader>ir", function()
--- 	local req_files = vim.fs.find("requirements.txt", {
--- 		upward = true,
--- 		stop = (vim.uv or vim.loop).os_homedir(),
--- 		path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
--- 	})
--- 	if #req_files == 0 then
--- 		print("No requirements.txt found")
--- 		return
--- 	end
--- 	local lines = vim.fn.readfile(req_files[1])
--- 	-- Filter out empty lines or comments
--- 	local results = {}
--- 	for _, line in ipairs(lines) do
--- 		if line ~= "" and not line:match("^%s*#") then
--- 			table.insert(results, line)
--- 		end
--- 	end
--- 	pickers
--- 		.new(require("telescope.themes").get_dropdown({ layout_config = { height = 0.4 } }), {
--- 			prompt_title = "Insert Full Requirement",
--- 			finder = finders.new_table({ results = results }),
--- 			sorter = conf.generic_sorter({}),
--- 			attach_mappings = function(prompt_bufnr, _)
--- 				local actions = require("telescope.actions")
--- 				local action_state = require("telescope.actions.state")
--- 				actions.select_default:replace(function()
--- 					local selection = action_state.get_selected_entry()
--- 					actions.close(prompt_bufnr)
--- 					vim.schedule(function()
--- 						if selection then
--- 							-- selection[1] contains the string from the results table
--- 							vim.api.nvim_put({ selection[1] }, "", true, true)
--- 						end
--- 					end)
--- 				end)
--- 				return true
--- 			end,
--- 		})
--- 		:find()
--- end, { desc = "[I]nsert [R]equirement" })
 map("n", "<leader>ir", function()
 	local req_files = vim.fs.find("requirements.txt", {
 		upward = true,
@@ -467,86 +429,6 @@ map("n", "<leader>ig", function()
 	})
 end, { desc = "[I]nsert [G]it Commit Hash" })
 
--- Citation Injector (Parses .bib files)
--- map({
--- 	"n",
--- 	"<leader>ic",
--- 	function()
--- 		-- Find .bib files in project root or current dir
--- 		local bib_files = vim.fs.find(function(name)
--- 			return name:match("%.bib$")
--- 		end, {
--- 			upward = true,
--- 			stop = vim.loop.os_homedir(),
--- 			path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
--- 		})
--- 		if #bib_files == 0 then
--- 			return print("No .bib files found")
--- 		end
--- 		local entries = {}
--- 		for _, file in ipairs(bib_files) do
--- 			local f = io.open(file, "r")
--- 			if f then
--- 				local content = f:read("*all")
--- 				f:close()
--- 				-- Regex to find @type{key, and try to find title
--- 				for type, key, fields in content:gmatch("@(%w+){%s*([^,]+),([^@]+)") do
--- 					local title = fields:match('title%s*=%s*["{]([^"}]+)["}]') or "No Title"
--- 					table.insert(entries, {
--- 						key = key,
--- 						type = type,
--- 						title = title:gsub("%s+", " "),
--- 						file = vim.fn.fnamemodify(file, ":t"),
--- 					})
--- 				end
--- 			end
--- 		end
--- 		vim.ui.select(entries, {
--- 			prompt = "Cite Paper:",
--- 			format_item = function(item)
--- 				return string.format("[%s] %s — %s", item.file, item.key, item.title)
--- 			end,
--- 		}, function(choice)
--- 			if choice then
--- 				vim.api.nvim_put({ "\\cite{" .. choice.key .. "}" }, "", true, true)
--- 			end
--- 		end)
--- 	end,
--- 	desc = "[I]nsert [C]itation",
--- })
-
--- Greek Symbol Picker (Insert Mode)
--- map("i", "<C-l>g", function()
--- 	local symbols = {
--- 		"alpha",
--- 		"beta",
--- 		"gamma",
--- 		"delta",
--- 		"epsilon",
--- 		"zeta",
--- 		"eta",
--- 		"theta",
--- 		"iota",
--- 		"kappa",
--- 		"lambda",
--- 		"mu",
--- 		"xi",
--- 		"pi",
--- 		"rho",
--- 		"sigma",
--- 		"tau",
--- 		"phi",
--- 		"chi",
--- 		"psi",
--- 		"omega",
--- 	}
--- 	vim.ui.select(symbols, { prompt = "Greek Symbol:" }, function(choice)
--- 		if choice then
--- 			vim.api.nvim_put({ "\\" .. choice }, "", true, true)
--- 		end
--- 	end)
--- end, { desc = "Insert Greek Symbol" })
-
 --  Citation Injector
 map("n", "<leader>ic", function()
 	local bib_files = vim.fs.find(function(name)
@@ -656,7 +538,7 @@ end, { desc = "[I]nsert [C]itation" })
 -- 	})
 -- end, { desc = "[I]nsert [I]mage Command" })
 --
--- -- 4. Usepackage Picker
+-- -- Usepackage Picker
 -- map("n", "<leader>iu", function()
 -- 	local common = { "amsmath", "amssymb", "graphicx", "hyperref", "geometry", "xcolor", "tikz", "cleveref" }
 -- 	vim.ui.select(common, { prompt = "Use Package:" }, function(c)
