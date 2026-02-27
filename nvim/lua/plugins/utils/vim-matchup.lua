@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/utils/vim-matchup.lua
+-- ~/.config/nvim/lua/plugins/utils/vim-matchup.lua
 --:hi MatchParen ctermbg=blue guibg=lightblue cterm=italic gui=italic
 --:hi MatchParenCur cterm=underline gui=underline
 -- :hi MatchWordCur cterm=underline gui=underline

@@ -29,6 +29,14 @@ return {
 		ts_ls = {}, -- TypeScript/JavaScript
 		texlab = {}, -- LaTeX LSP and Tex linter
 		ltex = { -- LanguageTool integration for LaTeX
+			filetypes = {
+				"tex",
+				"bib",
+				"markdown",
+				"org",
+				"gitcommit",
+				"restructuredtext",
+			},
 			settings = {
 				ltex = {
 					disabledRules = {
@@ -65,7 +73,7 @@ return {
 	tools = {
 		"bash-language-server",
 		"stylua",
-		-- "ruff", -- for Python
+		"ruff", -- for Python
 		"black", -- Python formatter
 		"pyright",
 		"debugpy",

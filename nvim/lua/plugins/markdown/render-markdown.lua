@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/render-markdown.lua
+-- ~/.config/nvim/lua/plugins/markdown/render-markdown.lua
 return {
 	"MeanderingProgrammer/render-markdown.nvim",
 	enabled = true,

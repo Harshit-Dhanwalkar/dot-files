@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/carrot.lua
+-- ~/.config/nvim/lua/plugins/markdown/carrot.lua
 -- (Run :TSInstall markdown and :TSInstall markdown_inline manually)
 return {
 	"jbyuki/carrot.nvim",

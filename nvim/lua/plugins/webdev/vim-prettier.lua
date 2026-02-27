@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/webdev/vim-prettier.lua
+-- ~/.config/nvim/lua/plugins/webdev/vim-prettier.lua
 return {
 	{
 		"prettier/vim-prettier",

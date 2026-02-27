@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/blink.lua
+-- ~/.config/nvim/lua/plugins/utils/blink.lua
 return {
 	{
 		"saghen/blink.compat",
@@ -13,11 +13,6 @@ return {
 			"moyiz/blink-emoji.nvim",
 			"ray-x/cmp-sql",
 		},
-		version = "1.*",
-		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-		-- build = 'cargo build --release',
-		---@module 'blink.cmp'
-		---@type blink.cmp.Config
 		opts = {
 			keymap = {
 				preset = "enter",

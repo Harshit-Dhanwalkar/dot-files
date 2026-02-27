@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/comment.lua
+-- ~/.config/nvim/lua/plugins/utils/comment.lua
 return {
 	"numToStr/Comment.nvim",
 	config = function()

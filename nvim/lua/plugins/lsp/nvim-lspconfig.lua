@@ -16,7 +16,6 @@ return {
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
-
 			callback = function(event)
 				local map = function(keys, func, desc, mode)
 					mode = mode or "n"
@@ -52,6 +51,14 @@ return {
 						callback = function(event2)
 							vim.lsp.buf.clear_references()
 							vim.api.nvim_clear_autocmds({ group = highlight_augroup, buffer = event2.buf })
+						end,
+					})
+
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = event.buf,
+						callback = function()
+							-- This prevents the default LSP formatting
+							-- Do nothing - let conform handle it
 						end,
 					})
 				end

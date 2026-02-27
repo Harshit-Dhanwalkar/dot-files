@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/mini.lua
+-- ~/.config/nvim/lua/plugins/utils/mini.lua
 return {
 	{
 		"echasnovski/mini.comment",

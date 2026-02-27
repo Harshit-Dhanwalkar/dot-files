@@ -20,20 +20,6 @@ return {
 					disable_cmd = "ColorizerToggle",
 					state = true, -- Initially enabled
 				},
-				-- Flash Plugin Toggle
-				{
-					name = "Flash",
-					enable_cmd = "lua require('flash').toggle()",
-					disable_cmd = "lua require('flash').toggle()",
-					state = true, -- Initially enabled
-				},
-				-- Twilight Plugin Toggle
-				{
-					name = "Twilight",
-					enable_cmd = "TwilightEnable",
-					disable_cmd = "TwilightDisnable",
-					state = false, -- Initially enabled
-				},
 				-- TODO:
 				-- VimTex toggle compilation
 				{
@@ -53,6 +39,28 @@ return {
 					enable_cmd = "CsvViewEnable display_mode=highlight",
 					disable_cmd = "CsvViewEnable display_mode=border",
 					state = false, -- Replaces delimiters with vertical borders (│)
+				},
+				-- Neominimap Toggle
+				{
+					name = "Neominimap",
+					enable_cmd = "Neominimap Enable",
+					disable_cmd = "Neominimap Disable",
+					state = false, -- Initially disabled
+				},
+
+				-- Flash Toggle
+				{
+					name = "Flash",
+					enable_cmd = "lua require('flash').toggle()",
+					disable_cmd = "lua require('flash').toggle()",
+					state = true, -- Initially enabled
+				},
+				-- Twilight Toggle
+				{
+					name = "Twilight",
+					enable_cmd = "TwilightEnable",
+					disable_cmd = "TwilightDisnable",
+					state = false, -- Initially enabled
 				},
 			},
 		})

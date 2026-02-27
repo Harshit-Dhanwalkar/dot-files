@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/webdev/colortils.lua
+-- ~/.config/nvim/lua/plugins/webdev/colortils.lua
 -- :Colortils picker <color>
 -- :Colortils lighten <color>
 -- :Colortils darken <color>

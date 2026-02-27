@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/treesj.lua
+-- ~/.config/nvim/lua/plugins/utils/treesj.lua
 -- Handled bu mini.splitjoin
 -- return {
 -- 	"Wansmer/treesj",

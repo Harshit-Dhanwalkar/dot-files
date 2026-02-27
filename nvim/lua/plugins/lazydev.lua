@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/lazydev.lua
+-- ~/.config/nvim/lua/plugins/lazydev.lua
 return {
 	"folke/lazydev.nvim",
 	ft = "lua",

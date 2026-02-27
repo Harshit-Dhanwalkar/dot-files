@@ -27,10 +27,9 @@ return {
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "isort", "black", "ruff" },
+				python = { "isort", "black" }, -- "ruff"
+				-- python = { "ruff_fix", "ruff_format", "black" },
 				c = { "clang-format" },
-				rust = { "rustfmt" },
-				-- go = { "gofumpt" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				javascriptreact = { "prettier" },
 				typescript = { "prettier" },
@@ -43,11 +42,13 @@ return {
 				jsonc = { "prettier" },
 				json = { "fixjson", "prettier" },
 				yaml = { "prettier" },
-				markdown = { "prettier", "mdformat", "mdsf" }, -- mdformat, mdsf (for code blocks)
+				-- markdown = { "prettier", "mdformat", "mdsf" }, -- mdformat, mdsf (for code blocks and latex formatting)
+				markdown = { "prettier" },
 				["markdown.mdx"] = { "prettier" },
 				tex = { "tex-fmt" },
 				java = { "google-java-format", lsp_format = "fallback" },
 				-- rust = { "rustfmt", lsp_format = "fallback" },
+				-- go = { "gofumpt" },
 				-- julia = { "runic" },
 				graphql = { "prettier" },
 				handlebars = { "prettier" },
@@ -70,8 +71,9 @@ return {
 			},
 			notify_on_error = false,
 			format_on_save = function(bufnr)
-				-- Disable "format_on_save lsp_fallback" for languages that don't have a well standardized coding style. You can add additional languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = true, cpp = true }
+				-- Disable "format_on_save lsp_fallback" for languages that don't have a well
+				-- standardized coding style.
+				local disable_filetypes = { c = true, cpp = true, text = true }
 				local lsp_format_opt
 				if disable_filetypes[vim.bo[bufnr].filetype] then
 					lsp_format_opt = "never"

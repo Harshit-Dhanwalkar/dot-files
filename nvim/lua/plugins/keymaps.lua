@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/keymaps.lua
+-- ~/.config/nvim/lua/plugins/keymaps.lua
 local map = vim.keymap.set
 
 local builtin = require("telescope.builtin")
@@ -31,6 +31,9 @@ map({ "n", "v" }, "<leader>gc", ":CommentToggle<cr>", { desc = "[G]lobal [C]omme
 map("n", "<leader>p", function()
 	require("telescope").extensions.neoclip.default()
 end, { desc = "Neoclip (Paste History)" })
+
+-- Markdown
+map("n", "<bs>", ":edit #<cr>", { silent = true }) -- follow-md-links
 
 -- Vimtex
 local opts = { noremap = true, silent = true }

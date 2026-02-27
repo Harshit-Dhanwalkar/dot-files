@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/utils/backout.lua
+-- ~/.config/nvim/lua/plugins/utils/backout.lua
 return {
 	"AgusDOLARD/backout.nvim",
 	event = { "InsertEnter", "CmdlineEnter" },

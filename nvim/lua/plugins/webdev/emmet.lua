@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/webdev/emmet.lua
+-- ~/.config/nvim/lua/plugins/webdev/emmet.lua
 return {
 	"mattn/emmet-vim",
 	config = function()

@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/utils/neotree.lua
+-- ~/.config/nvim/lua/plugins/utils/neotree.lua
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",

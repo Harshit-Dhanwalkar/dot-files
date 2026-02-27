@@ -1,8 +1,8 @@
--- ~/.config/nvim/lua/Plugins/debug.lua
+-- ~/.config/nvim/lua/plugins/utils/debug.lua
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
-		-- Creates a beautiful debugger UI
+		-- Debugger UI
 		"rcarriga/nvim-dap-ui",
 		-- Required dependency for nvim-dap-ui
 		"nvim-neotest/nvim-nio",

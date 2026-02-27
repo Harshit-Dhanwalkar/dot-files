@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/utils/vim-visual-multi.lua
+-- ~/.config/nvim/lua/plugins/utils/vim-visual-multi.lua
 return {
 	"mg979/vim-visual-multi",
 	event = "VeryLazy",

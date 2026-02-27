@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/webdev/colorizer.lua
+-- ~/.config/nvim/lua/plugins/webdev/colorizer.lua
 return {
 	"norcalli/nvim-colorizer.lua",
 	config = function()
