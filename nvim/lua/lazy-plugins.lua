@@ -115,9 +115,10 @@ require("lazy").setup({
 	-- require("plugins.others.screenkey"),
 	-- require("plugins.others.showkeys"),
 	require("plugins.which-key"),
-	-- require("plugins.webdev.emmet"),
 	require("plugins.webdev.colorizer"),
+	-- require("plugins.webdev.cssvarviewer"),
 	require("plugins.webdev.vim-prettier"),
+	-- require("plugins.webdev.emmet"),
 	-- require("plugins.webdev.colortils"),
 	-- require("plugins.webdev.minty"),
 	-- {
