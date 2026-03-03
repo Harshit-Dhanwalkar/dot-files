@@ -30,7 +30,7 @@ fi
 
 # Extract definitions with part of speech
 # def=$(echo "$query" | jq -r '
-#   .[0].meanings[0:2] | 
+#   .[0].meanings[0:2] |
 #   map("\(.partOfSpeech):\n  \(.definitions[0:2] | map("• \(.definition)") | join("\n  "))") |
 #   join("\n\n")
 # ')

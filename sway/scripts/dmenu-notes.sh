@@ -4,10 +4,10 @@
 ## Github  : @Harshit-Dhanwalkar
 
 BASE_DIR="${HOME}/Desktop/Notes/"
-DMENU="/usr/local/bin/dmenu"
-NOTIFY="/usr/bin/dunstify"
-
-NOTE_CATEGORIES=("work" "configuration")
+# DMENU="/usr/local/bin/dmenu"
+DMENU=$(command -v dmenu)
+# NOTIFY="/usr/bin/dunstify"
+NOTIFY=$(command -v dunstify)
 
 if [ -x "${HOME}/.local/kitty.app/bin/kitty" ]; then
     TERMINAL="${HOME}/.local/kitty.app/bin/kitty"
@@ -30,8 +30,8 @@ if ! [ -x "$TERMINAL" ]; then
 fi
 
 # Force XWayland environment for dmenu
-export DISPLAY=:0
-export XAUTHORITY="${HOME}/.Xauthority"
+# export DISPLAY=:0
+# export XAUTHORITY="${HOME}/.Xauthority"
 
 # Create base directory and all category directories
 mkdir -p "$BASE_DIR"
@@ -51,18 +51,35 @@ count_notes() {
     echo "$count"
 }
 
+# pad_category() {
+#     local category="$1"
+#     local count="$2"
+#     local padded_category
+#     local title_case=$(echo "$category" | sed 's/.*/\L&/; s/[a-z]*/\u&/g')
+#     # local title_case=$(echo "$category" | sed 's/.*/\L&/; s/[a-z]*/\u&/g; s/[-_]/ /g')
+#
+#     case "$category" in
+#         *)
+#             # For dynamic categories
+#             local max_len=18
+#             padded_category=$(printf "%-${max_len}s" "$title_case")
+#             padded_category="${padded_category:0:$max_len}" # Truncate to max_len
+#             ;;
+#     esac
+#     echo "${padded_category}(${count} notes)"
+# }
+
 pad_category() {
     local category="$1"
     local count="$2"
     local padded_category
-    local title_case=$(echo "$category" | sed 's/.*/\L&/; s/[a-z]*/\u&/g; s/[-_]/ /g') # Convert to Title Case
+    # local title_case=$(echo "$category" | sed 's/.*/\L&/; s/[a-z]*/\u&/g')
+    local title_case=$(echo "$category" | sed 's/.*/\L&/; s/[a-z]*/\u&/g; s/[-_]/ /g')
 
     # Check for hardcoded categories first for consistent padding
     case "$category" in
-        "philosophy") padded_category="Philosophy         " ;;
-        "work") padded_category="Work               " ;;
-        "configuration") padded_category="Configuration      " ;;
-        "all") padded_category="All                " ;;
+        "config") padded_category="Config" ;;
+        "all") padded_category="All" ;;
         *)
             # For dynamic categories
             local max_len=18
@@ -90,9 +107,7 @@ get_note_categories() {
     IFS=$'\n' categories=($(sort <<<"${categories[*]}"))
     unset IFS
 
-    # If the user-defined defaults are missing, ensure they are at least created.
-    # This ensures the default structure is present even if the directory find failed.
-    local default_categories=("philosophy" "work" "configuration")
+    local default_categories=("Config")
     for default in "${default_categories[@]}"; do
         if [[ ! " ${categories[*]} " =~ " ${default} " ]]; then
             categories+=("$default")
@@ -100,16 +115,15 @@ get_note_categories() {
             mkdir -p "${BASE_DIR}${default}"
         fi
     done
-    
     echo "${categories[*]}"
 }
 
-# --- Menu launcher ---
+# Menu launcher
 menu() {
     env DISPLAY=:0 XAUTHORITY="${HOME}/.Xauthority" $DMENU -l "$2" -i -p "$1"
 }
 
-# --- Back/Exit handling functions ---
+# Back/Exit handling functions
 is_back_selection() {
     local selection="$1"
     [ -z "$selection" ] || [ "$selection" = "Back (ESC)" ] || [ "$selection" = "Exit (ESC)" ]
@@ -145,7 +159,6 @@ select_category() {
         echo "EXIT"
         return
     fi
-
     local clean_choice=$(echo "$choice" | sed 's/^\([^ ]* *\).*/\1/' | sed 's/ *$//' | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
     echo "$clean_choice"
 }
@@ -209,7 +222,7 @@ list_all_notes() {
     fi
 
     case "$choice" in
-        "New") 
+        "New")
             category=$(select_category)
             if [ "$category" = "EXIT" ]; then
                 echo "EXIT"

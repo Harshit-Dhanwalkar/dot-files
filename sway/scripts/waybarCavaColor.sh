@@ -4,7 +4,6 @@
 ## Github  : @Harshit-Dhanwalkar
 
 bar="▁▂▃▄▅▆▇█"
-
 # Define colors for each bar (10 bars max)
 colors=(
     "'#f7768e'" #   "'#ff0000'"  # Red

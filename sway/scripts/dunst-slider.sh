@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
+## Author  : Harshit Prashant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 set -euo pipefail
 
-# --- Configuration ---
+# Configuration
 VOLUME_STEP=5
 BRIGHTNESS_STEP=5
 MSG_TAG_VOLUME="volume_control"
@@ -13,7 +16,7 @@ PROGRESS_BAR_LENGTH=8
 VOLUME_WARNING=90
 BRIGHTNESS_WARNING=90
 
-# --- Helpers ---
+# Helpers
 get_volume() {
     pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '[0-9]{1,3}(?=%)' | head -1
 }
@@ -40,7 +43,7 @@ get_max_brightness() {
     fi
 }
 
-# --- Progress Bar Functions ---
+# Progress Bar Functions
 create_progress_bar() {
     local percentage=$1
     local filled_blocks=$((percentage * PROGRESS_BAR_LENGTH / 100))
@@ -77,7 +80,7 @@ create_progress_bar() {
     echo "$bar"
 }
 
-# --- Urgency Detection ---
+# Urgency Detection
 get_volume_urgency() {
     local volume=$1
     local mute=$2
@@ -101,7 +104,7 @@ get_brightness_urgency() {
     fi
 }
 
-# --- Notifications ---
+# Notifications
 notify_volume() {
     local volume mute icon bar urgency
     volume=$(get_volume)
@@ -139,7 +142,7 @@ notify_brightness() {
         -h int:value:"$percentage" "$icon Brightness: ${percentage}%  $bar"
 }
 
-# --- Volume Controls ---
+# Volume Controls
 volume_up() {
     pactl set-sink-mute @DEFAULT_SINK@ 0
     pactl set-sink-volume @DEFAULT_SINK@ +${VOLUME_STEP}%
@@ -156,7 +159,7 @@ volume_mute() {
     notify_volume
 }
 
-# --- Brightness Controls ---
+# Brightness Controls
 brightness_up() {
     # Run brightnessctl with sudo if needed, but notification as user
     if [ -w /sys/class/backlight/*/brightness ]; then
@@ -177,7 +180,7 @@ brightness_down() {
     notify_brightness
 }
 
-# --- Main Logic ---
+# Main
 case "${1:-}" in
 volume_up) volume_up ;;
 volume_down) volume_down ;;
