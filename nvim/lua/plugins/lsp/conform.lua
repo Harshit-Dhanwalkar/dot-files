@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/conform.lua
+-- ~/.config/nvim/lua/plugins/lsp/conform.lua
 -- Autoformatter
 return {
 	"stevearc/conform.nvim",

@@ -53,7 +53,48 @@ return {
 		},
 		["ltex_plus"] = {}, -- LanguageTool integration for LaTeX
 		markdown_oxide = {}, -- Markdown
-		clangd = {}, -- C/C++
+		clangd = { -- C/C++
+			root_dir = function(fname)
+				local util = require("lspconfig").util
+				-- Look for common C/C++ project markers
+				return util.root_pattern(
+					".clangd",
+					".clang-tidy",
+					".clang-format",
+					"compile_commands.json",
+					"compile_flags.txt",
+					"configure.ac",
+					".git"
+				)(fname) or util.path.dirname(fname)
+			end,
+			-- Optional: Add additional clangd arguments
+			cmd = {
+				"clangd",
+				"--background-index",
+				"--clang-tidy",
+				"--header-insertion=iwyu",
+				"--completion-style=detailed",
+				"--function-arg-placeholders",
+				"--fallback-style=llvm",
+			},
+			-- This will help with include paths
+			init_options = {
+				usePlaceholders = true,
+				completeUnimported = true,
+				clangdFileStatus = true,
+			},
+			-- NOTE: For global cland config:
+			-- cat > ~/.clangd << EOF
+			-- CompileFlags:
+			--   Add: [-Wall, -Wextra]
+			--   Remove: []
+			-- Index:
+			--   Background: Build
+			-- Diagnostics:
+			--   UnusedIncludes: Strict
+			--   MissingIncludes: Strict
+			-- EOF
+		},
 		lua_ls = { -- Lua
 			settings = {
 				Lua = {

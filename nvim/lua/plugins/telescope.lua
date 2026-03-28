@@ -34,6 +34,36 @@ return {
 			end,
 		},
 		-- {
+		-- 	"nvim-telescope/telescope-bibtex.nvim",
+		-- 	config = function()
+		-- 		require("telescope").setup({
+		-- 			extensions = {
+		-- 				bibtex = {
+		-- 					depth = 1, -- Depth for the *.bib file
+		-- 					custom_formats = {},
+		-- 					format = "",
+		-- 					global_files = {},
+		-- 					search_keys = { "author", "year", "title", "publisher", "label" },
+		-- 					citation_format = "{{author}} ({{year}}), {{title}}.",
+		-- 					-- citation_format = "[[^@{{label}}]]: {{author}} ({{year}}), {{title}}.",
+		-- 					citation_trim_firstname = true,
+		-- 					citation_max_auth = 2,
+		-- 					context = true,
+		-- 					context_fallback = true,
+		-- 					wrap = false,
+		-- 					-- mappings = {
+		-- 					-- 	i = {
+		-- 					-- 		["<CR>"] = bibtex_actions.key_append("%s"), -- format is determined by filetype if the user has not set it explictly
+		-- 					-- 		["<C-e>"] = bibtex_actions.entry_append,
+		-- 					-- 		["<C-c>"] = bibtex_actions.citation_append("{{author}} ({{year}}), {{title}}."),
+		-- 					-- 	},
+		-- 					-- },
+		-- 				},
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- },
+		-- {
 		-- 	"nvim-telescope/telescope-fzf-writer.nvim",
 		-- 	after = { "telescope.nvim" },
 		-- 	config = function()
@@ -80,5 +110,6 @@ return {
 		pcall(require("telescope").load_extension, "ui-select")
 		pcall(require("telescope").load_extension, "frecency")
 		pcall(require("telescope").load_extension, "telescope-env")
+		-- pcall(require("telescope").load_extension, "bibtex")
 	end,
 }
