@@ -3,6 +3,7 @@
 return {
 	{
 		"folke/tokyonight.nvim",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			require("tokyonight").setup({
@@ -24,59 +25,59 @@ return {
 			vim.cmd.hi("Comment gui=none")
 		end,
 	},
-	{
-		"wtfox/jellybeans.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("jellybeans").setup({
-				transparent = true,
-				italics = true,
-				bold = true,
-				flat_ui = true, -- toggles "flat UI" for pickers
-				background = {
-					dark = "jellybeans", -- default dark palette
-					light = "jellybeans_light", -- default light palette
-				},
-				plugins = {
-					all = false,
-					auto = true, -- auto-detect installed plugins via lazy.nvim
-				},
-				on_highlights = function(highlights, colors) end,
-				on_colors = function(colors) end,
-			})
-		end,
-	},
-	{
-		"ntk148v/habamax.nvim",
-		dependencies = { "rktjmp/lush.nvim" },
-		lazy = false,
-		priority = 1000,
-	},
-	{
-		"projekt0n/github-nvim-theme",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("github-theme").setup({
-				styles = {
-					-- sidebars = 'transparent',
-					floats = "transparent",
-					bold = true,
-					italic = false,
-					transparency = true,
-				},
-				enable = {
-					terminal = false,
-					legacy_highlights = false,
-					migrations = true, -- Handle deprecated options automatically
-				},
-			})
-			-- vim.cmd("colorscheme github_dark")
-			vim.cmd("colorscheme github_dark_high_contrast")
-			vim.cmd.hi("Comment gui=none")
-		end,
-	},
+	-- {
+	-- 	"wtfox/jellybeans.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("jellybeans").setup({
+	-- 			transparent = true,
+	-- 			italics = true,
+	-- 			bold = true,
+	-- 			flat_ui = true, -- toggles "flat UI" for pickers
+	-- 			background = {
+	-- 				dark = "jellybeans", -- default dark palette
+	-- 				light = "jellybeans_light", -- default light palette
+	-- 			},
+	-- 			plugins = {
+	-- 				all = false,
+	-- 				auto = true, -- auto-detect installed plugins via lazy.nvim
+	-- 			},
+	-- 			on_highlights = function(highlights, colors) end,
+	-- 			on_colors = function(colors) end,
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"ntk148v/habamax.nvim",
+	-- 	dependencies = { "rktjmp/lush.nvim" },
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- },
+	-- {
+	-- 	"projekt0n/github-nvim-theme",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("github-theme").setup({
+	-- 			styles = {
+	-- 				-- sidebars = 'transparent',
+	-- 				floats = "transparent",
+	-- 				bold = true,
+	-- 				italic = false,
+	-- 				transparency = true,
+	-- 			},
+	-- 			enable = {
+	-- 				terminal = false,
+	-- 				legacy_highlights = false,
+	-- 				migrations = true, -- Handle deprecated options automatically
+	-- 			},
+	-- 		})
+	-- 		-- vim.cmd("colorscheme github_dark")
+	-- 		vim.cmd("colorscheme github_dark_high_contrast")
+	-- 		vim.cmd.hi("Comment gui=none")
+	-- 	end,
+	-- },
 	-- {
 	--        {
 	-- 		"elitracy/blackbag.nvim",

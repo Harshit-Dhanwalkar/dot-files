@@ -1,8 +1,13 @@
 -- ~/.config/nvim/lua/plugins/lsp/languages.lua
+
+-- Helper to detect Deno projects
+local util = require("lspconfig.util")
+
 return {
 	servers = {
 		bashls = {}, -- Bash
-		ruff = {},
+		-- codebook = {}, -- spell checker
+		ruff = {}, -- Python
 		pyright = { -- Python
 			settings = {
 				python = {
@@ -24,9 +29,21 @@ return {
 			},
 		},
 		-- pylyzer = {}, -- Alternative Python LSP
+		denols = { -- TSX, JSX, TypeScript and JavaScript
+			root_dir = util.root_pattern("deno.json", "deno.jsonc"),
+		},
+		ts_ls = { -- JavaScript  and TypeScript
+			root_dir = function(fname)
+				local deno_root = util.root_pattern("deno.json", "deno.jsonc")(fname)
+				if deno_root then
+					return nil
+				end
+				return util.root_pattern("package.json", "tsconfig.json", ".git")(fname)
+			end,
+			single_file_support = false,
+		},
+		eslint = {}, -- JavaScript and TypeScript linter
 		svelte = {}, -- Svelte components
-		eslint = {}, -- JavaScript/TypeScript linter
-		ts_ls = {}, -- TypeScript/JavaScript
 		tailwindcss = {}, -- Tailwind CSS classes
 		texlab = {}, -- LaTeX LSP and Tex linter
 		ltex = { -- LanguageTool integration for LaTeX
@@ -68,7 +85,7 @@ return {
 					".git"
 				)(fname) or util.path.dirname(fname)
 			end,
-			-- Optional: Add additional clangd arguments
+			-- Additional clangd arguments
 			cmd = {
 				"clangd",
 				"--background-index",
@@ -114,19 +131,21 @@ return {
 	-- Install LSP & tools via Mason
 	tools = {
 		"bash-language-server",
-		"stylua",
-		"ruff", -- for Python
-		"black", -- Python formatter
+		-- "codebook", -- Spell checker
+		"ruff", -- Python, format
+		-- "black", -- Python formatter
 		"pyright",
 		"debugpy",
 		"clangd",
 		"clang-format",
 		"codelldb", -- For Debugging
+		"denols", -- TSX/JSX/TS/JS
+		"eslint-lsp",
+		-- "prettier", -- For JS/TS/CSS/HTML
 		"typescript-language-server",
 		"tailwindcss-language-server",
-		"eslint-lsp",
+		"stylua",
 		-- "asm-lsp",
-		-- "prettier", -- For JS/TS/CSS/HTML
 		-- "goimports",  -- For Go
 		-- "rustfmt", -- rust-analyzer
 	},
