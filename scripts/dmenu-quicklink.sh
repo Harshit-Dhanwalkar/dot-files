@@ -7,7 +7,7 @@
 
 # Title
 prompt="Quick Links"
-message="Attempting to open links in: Firefox → Brave → Chromium"
+message="Attempting to open links in: Firefox -> Brave -> Chromium"
 
 # Menu entries
 options=(
@@ -15,6 +15,7 @@ options=(
   "  Whatsapp"
   "  Gmail"
   "󰎄  Youtube Music" #   󰎅 
+  "  Youtube"
   "  Reddit"
   "󰙯  Discord"
   "𝕏  X.com ( Twitter)"
@@ -60,13 +61,14 @@ chosen=$(printf "%s\n" "${options[@]}" | dmenu -i -l 9 -p "$prompt")
 
 # Match choice → URL
 case "$chosen" in
-*Github*) open_link "https://github.com/Harshit-Dhanwalkar/" ;;
-*Whatsapp*) open_link "https://web.whatsapp.com/" ;;
-*Gmail*) open_link "https://mail.google.com/" ;;
-*Youtube*) open_link "https://music.youtube.com/" ;;
-*Reddit*) open_link "https://www.reddit.com/?feed=home/" ;;
-*Discord*) open_link "https://canary.discord.com/channels/@me" ;;
-*X.com* | *Twitter*) open_link "https://x.com/" ;;
-*LinkedIn*) open_link "https://www.linkedin.com/in/harshit-dhanwalkar/" ;;
+*"Github"*) open_link "https://github.com/Harshit-Dhanwalkar/" ;;
+*"Whatsapp"*) open_link "https://web.whatsapp.com/" ;;
+*"Gmail"*) open_link "https://mail.google.com/" ;;
+*"Youtube Music"*) open_link "https://music.youtube.com/" ;;
+*"Youtube"*) open_link "https://youtube.com/" ;;
+*"Reddit"*) open_link "https://www.reddit.com/?feed=home/" ;;
+*"Discord"*) open_link "https://canary.discord.com/channels/@me" ;;
+*"X.com"* | *Twitter*) open_link "https://x.com/" ;;
+*"LinkedIn"*) open_link "https://www.linkedin.com/in/harshit-dhanwalkar/" ;;
 *One* | *Piece*) open_link "https://mangafire.to/manga/one-piecee.dkw" ;;
 esac

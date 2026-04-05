@@ -2,6 +2,7 @@
 return {
 	servers = {
 		bashls = {}, -- Bash
+		ruff = {},
 		pyright = { -- Python
 			settings = {
 				python = {
@@ -24,9 +25,9 @@ return {
 		},
 		-- pylyzer = {}, -- Alternative Python LSP
 		svelte = {}, -- Svelte components
-		tailwindcss = {}, -- Tailwind CSS classes
 		eslint = {}, -- JavaScript/TypeScript linter
 		ts_ls = {}, -- TypeScript/JavaScript
+		tailwindcss = {}, -- Tailwind CSS classes
 		texlab = {}, -- LaTeX LSP and Tex linter
 		ltex = { -- LanguageTool integration for LaTeX
 			filetypes = {
@@ -121,6 +122,9 @@ return {
 		"clangd",
 		"clang-format",
 		"codelldb", -- For Debugging
+		"typescript-language-server",
+		"tailwindcss-language-server",
+		"eslint-lsp",
 		-- "asm-lsp",
 		-- "prettier", -- For JS/TS/CSS/HTML
 		-- "goimports",  -- For Go

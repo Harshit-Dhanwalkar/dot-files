@@ -7,7 +7,6 @@ vim.api.nvim_create_autocmd({
 	"BufWinEnter",
 	"CursorHold",
 	"InsertLeave",
-
 	-- include this if set `show_modified` to `true`
 	"BufModifiedSet",
 }, {

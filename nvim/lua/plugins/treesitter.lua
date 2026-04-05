@@ -22,8 +22,6 @@ return {
 			"markdown",
 			"markdown_inline",
 			"latex",
-			"vim",
-			"vimdoc",
 			-- "rust",
 			"html",
 			"css",
@@ -35,9 +33,15 @@ return {
 			-- "wgsl",
 			-- "gdscript",
 			-- "gdshader",
+			"query",
+			"vim",
+			"vimdoc",
 		},
 		auto_install = true, -- Autoinstall languages that are not installed
 		sync_install = true,
+		autopairs = {
+			enable = true,
+		},
 		highlight = {
 			enable = true,
 			disable = { "latex" }, -- Disable Treesitter highlighting for LaTeX
