@@ -4,39 +4,44 @@ return {
 	event = "InsertEnter",
 	requires = {
 		{ "kdheepak/cmp-latex-symbols" }, -- Source for Latex Symbols
+		{ "rafamadriz/friendly-snippets", event = "VeryLazy" },
 	},
 	dependencies = {
 		-- Snippet Engine & its associated nvim-cmp source
+		"honza/vim-snippets",
+		"saadparwaiz1/cmp_luasnip",
+		{
+			"L3MON4D3/LuaSnip",
+			-- build = (function()
+			-- 	-- Build Step is needed for regex support in snippets.
+			-- 	-- Remove the below condition to re-enable on windows.
+			-- 	if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+			-- 		return
+			-- 	end
+			-- 	return "make install_jsregexp"
+			-- end)(),
+			dependencies = {
+				-- `friendly-snippets` contains a variety of premade snippets.
+				--    https://github.com/rafamadriz/friendly-snippets
+				{
+					"rafamadriz/friendly-snippets",
+					config = function()
+						require("luasnip.loaders.from_vscode").lazy_load()
+					end,
+				},
+			},
+		},
+		"quangnguyen30192/cmp-nvim-ultisnips",
+		"sirver/ultisnips",
 		"hrsh7th/cmp-vsnip",
 		"hrsh7th/vim-vsnip",
-		-- "saadparwaiz1/cmp_luasnip",
-		-- {
-		-- 	"L3MON4D3/LuaSnip",
-		-- 	build = (function()
-		-- 		-- Build Step is needed for regex support in snippets.
-		-- 		-- Remove the below condition to re-enable on windows.
-		-- 		if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-		-- 			return
-		-- 		end
-		-- 		return "make install_jsregexp"
-		-- 	end)(),
-		-- 	dependencies = {
-		-- 		-- `friendly-snippets` contains a variety of premade snippets.
-		-- 		--    https://github.com/rafamadriz/friendly-snippets
-		-- 		{
-		-- 			"rafamadriz/friendly-snippets",
-		-- 			config = function()
-		-- 				require("luasnip.loaders.from_vscode").lazy_load()
-		-- 			end,
-		-- 		},
-		-- 	},
-		-- },
 		-- Color Swatches in the completion menu
 		"brenoprata10/nvim-highlight-colors",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-cmdline",
+		-- { "hrsh7th/cmp-emoji", dependencies = { "hrsh7th/nvim-cmp" } }
 		-- Adds other completion capabilities.
 	},
 	enabled = true,
@@ -50,16 +55,23 @@ return {
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					-- luasnip.lsp_expand(args.body)
-					vim.fn["vsnip#anonymous"](args.body)
+					require("luasnip").lsp_expand(args.body)
+					require("luasnip.loaders.from_vscode").lazy_load()
+					-- vim.fn["vsnip#anonymous"](args.body)
 				end,
 			},
-			completion = { completeopt = "menu,menuone,noinsert" },
+			preselect = "item",
+			completion = {
+				completeopt = "menu,menuone,noinsert",
+				-- autocomplete = false,
+			},
 			window = {
+				-- completion = cmp.config.window.bordered(),
 				completion = {
 					border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 					winhighlight = "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None",
 				},
+				-- documentation = cmp.config.window.bordered(),
 				documentation = {
 					border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 				},
@@ -76,7 +88,31 @@ return {
 				["<C-y>"] = cmp.mapping.confirm({ select = true }),
 				-- tab support
 				["<Tab>"] = cmp.mapping.select_next_item(),
-				["<S-Tab>"] = cmp.mapping.select_prev_item(),
+				-- ['<Tab>'] = cmp.mapping(function(fallback)
+				--       local luasnip = require('luasnip')
+				--       local col = vim.fn.col('.') - 1
+				--       if cmp.visible() then
+				--         cmp.select_next_item({behavior = 'select'})
+				--       elseif luasnip.expand_or_locally_jumpable() then
+				--         luasnip.expand_or_jump()
+				--       elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+				--         fallback()
+				--       else
+				--         cmp.complete()
+				--       end
+				--     end, {'i', 's'}),
+				["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
+				-- ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+				-- ['<S-Tab>'] = cmp.mapping(function(fallback)
+				--       local luasnip = require('luasnip')
+				--       if cmp.visible() then
+				--         cmp.select_prev_item({behavior = 'select'})
+				--       elseif luasnip.locally_jumpable(-1) then
+				--         luasnip.jump(-1)
+				--       else
+				--         fallback()
+				--       end
+				--     end, {'i', 's'}),
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 				["<C-e>"] = cmp.mapping.close(),
 				-- Manually trigger a completion from nvim-cmp.
@@ -125,9 +161,10 @@ return {
 					-- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
 					group_index = 0,
 				},
-				{ name = "nvim_lsp" },
-				-- { name = "luasnip" },
-				{ name = "vsnip" },
+				{ name = "luasnip" },
+				-- { name = "vsnip" },
+				{ name = "cmp-nvim-ultisnips" },
+				{ name = "ultisnips" },
 				{
 					name = "latex_symbols",
 					option = {
@@ -135,13 +172,17 @@ return {
 					},
 				},
 				{ name = "path" }, -- file paths
+				-- { name = "nvim_lsp" },
 				{ name = "nvim_lsp", keyword_length = 3 }, -- from language server
 				{ name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
 				{ name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
+				{ name = "treesitter" },
 				{ name = "buffer", keyword_length = 2 }, -- source current buffer
 				{ name = "calc" }, -- source for math calculation
 				{ name = "nasm_registers" },
 				{ name = "nasm_instructions" },
+				{ name = "spell", keyword_length = 3 },
+				-- { name = "emoji" },
 			},
 			formatting = {
 				fields = { "menu", "abbr", "kind" },
@@ -149,9 +190,12 @@ return {
 					item = require("nvim-highlight-colors").format(entry, item)
 					local menu_icon = {
 						nvim_lsp = "λ",
-						vsnip = "⋗",
+						luasnip = "l",
+						vsnip = "v",
+						ultisnips = "u",
 						buffer = "Ω",
 						path = "🖫",
+						nvim_lua = "Π",
 					}
 					item.menu = menu_icon[entry.source.name] or ""
 					return item

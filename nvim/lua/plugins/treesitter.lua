@@ -44,8 +44,8 @@ return {
 		},
 		highlight = {
 			enable = true,
-			disable = { "latex" }, -- Disable Treesitter highlighting for LaTeX
-			additional_vim_regex_highlighting = { "markdown", "ruby" },
+			disable = { "latex" },
+			-- additional_vim_regex_highlighting = { "markdown", "ruby" },
 		},
 		indent = {
 			enable = true,

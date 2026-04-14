@@ -5,9 +5,51 @@ local util = require("lspconfig.util")
 
 return {
 	servers = {
+		asm_lsp = {}, -- Assembly
 		bashls = {}, -- Bash
+		clangd = { -- C/C++
+			root_dir = function(fname)
+				-- local util = require("lspconfig").util
+				return util.root_pattern(
+					".clangd",
+					".clang-tidy",
+					".clang-format",
+					"compile_commands.json",
+					"compile_flags.txt",
+					"configure.ac",
+					".git"
+				)(fname) or util.path.dirname(fname)
+			end,
+			-- Additional clangd arguments
+			cmd = {
+				"clangd",
+				"--background-index",
+				"--clang-tidy",
+				"--header-insertion=iwyu",
+				"--completion-style=detailed",
+				"--function-arg-placeholders",
+				-- "--fallback-style=llvm",
+				"--fallback-style=Google",
+			},
+			-- This will help with include paths
+			init_options = {
+				usePlaceholders = true,
+				completeUnimported = true,
+				clangdFileStatus = true,
+			},
+			-- NOTE: For global cland config:
+			-- cat > ~/.clangd << EOF
+			-- CompileFlags:
+			--   Add: [-Wall, -Wextra]
+			--   Remove: []
+			-- Index:
+			--   Background: Build
+			-- Diagnostics:
+			--   UnusedIncludes: Strict
+			--   MissingIncludes: Strict
+			-- EOF
+		},
 		-- codebook = {}, -- spell checker
-		ruff = {}, -- Python
 		pyright = { -- Python
 			settings = {
 				python = {
@@ -28,23 +70,8 @@ return {
 				},
 			},
 		},
+		ruff = {}, -- Python
 		-- pylyzer = {}, -- Alternative Python LSP
-		denols = { -- TSX, JSX, TypeScript and JavaScript
-			root_dir = util.root_pattern("deno.json", "deno.jsonc"),
-		},
-		ts_ls = { -- JavaScript  and TypeScript
-			root_dir = function(fname)
-				local deno_root = util.root_pattern("deno.json", "deno.jsonc")(fname)
-				if deno_root then
-					return nil
-				end
-				return util.root_pattern("package.json", "tsconfig.json", ".git")(fname)
-			end,
-			single_file_support = false,
-		},
-		eslint = {}, -- JavaScript and TypeScript linter
-		svelte = {}, -- Svelte components
-		tailwindcss = {}, -- Tailwind CSS classes
 		texlab = {}, -- LaTeX LSP and Tex linter
 		ltex = { -- LanguageTool integration for LaTeX
 			filetypes = {
@@ -71,48 +98,22 @@ return {
 		},
 		["ltex_plus"] = {}, -- LanguageTool integration for LaTeX
 		markdown_oxide = {}, -- Markdown
-		clangd = { -- C/C++
-			root_dir = function(fname)
-				local util = require("lspconfig").util
-				-- Look for common C/C++ project markers
-				return util.root_pattern(
-					".clangd",
-					".clang-tidy",
-					".clang-format",
-					"compile_commands.json",
-					"compile_flags.txt",
-					"configure.ac",
-					".git"
-				)(fname) or util.path.dirname(fname)
-			end,
-			-- Additional clangd arguments
-			cmd = {
-				"clangd",
-				"--background-index",
-				"--clang-tidy",
-				"--header-insertion=iwyu",
-				"--completion-style=detailed",
-				"--function-arg-placeholders",
-				"--fallback-style=llvm",
-			},
-			-- This will help with include paths
-			init_options = {
-				usePlaceholders = true,
-				completeUnimported = true,
-				clangdFileStatus = true,
-			},
-			-- NOTE: For global cland config:
-			-- cat > ~/.clangd << EOF
-			-- CompileFlags:
-			--   Add: [-Wall, -Wextra]
-			--   Remove: []
-			-- Index:
-			--   Background: Build
-			-- Diagnostics:
-			--   UnusedIncludes: Strict
-			--   MissingIncludes: Strict
-			-- EOF
+		denols = { -- TSX, JSX, TypeScript and JavaScript
+			root_dir = util.root_pattern("deno.json", "deno.jsonc"),
 		},
+		ts_ls = { -- JavaScript  and TypeScript
+			root_dir = function(fname)
+				local deno_root = util.root_pattern("deno.json", "deno.jsonc")(fname)
+				if deno_root then
+					return nil
+				end
+				return util.root_pattern("package.json", "tsconfig.json", ".git")(fname)
+			end,
+			single_file_support = false,
+		},
+		eslint = {}, -- JavaScript and TypeScript linter
+		svelte = {}, -- Svelte components
+		tailwindcss = {}, -- Tailwind CSS classes
 		lua_ls = { -- Lua
 			settings = {
 				Lua = {
@@ -125,7 +126,6 @@ return {
 		--   ['rust-analyzer'] = {},
 		--   },
 		-- },
-		-- asm_lsp = {}, -- Assembly
 	},
 
 	-- Install LSP & tools via Mason
@@ -137,6 +137,7 @@ return {
 		"pyright",
 		"debugpy",
 		"clangd",
+		"cpplint",
 		"clang-format",
 		"codelldb", -- For Debugging
 		"denols", -- TSX/JSX/TS/JS

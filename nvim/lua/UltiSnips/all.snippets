@@ -15,10 +15,6 @@ snip.rv = path
 `
 endsnippet
 
-snippet today "Date"
-`date +%F`
-endsnippet
-
 snippet box "Box"
 `!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
 │ $1 │
@@ -27,9 +23,6 @@ $0
 endsnippet
 
 snippet "(?<!\w)ltx" "LaTeX symbol" r
-LaTeX
+\LaTeX
 endsnippet
 
-snippet arw "Right-pointed arrow"
---> $1
-endsnippet

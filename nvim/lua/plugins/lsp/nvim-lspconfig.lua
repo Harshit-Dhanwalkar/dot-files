@@ -69,6 +69,17 @@ return {
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 					end, "[T]oggle Inlay [H]ints")
 				end
+
+				vim.diagnostic.config({
+					signs = {
+						text = {
+							[vim.diagnostic.severity.ERROR] = "✘",
+							[vim.diagnostic.severity.WARN] = "▲",
+							[vim.diagnostic.severity.HINT] = "⚑",
+							[vim.diagnostic.severity.INFO] = "»",
+						},
+					},
+				})
 			end,
 		})
 
@@ -83,7 +94,7 @@ return {
 
 		-- Setup Mason and install tools from languages.lua
 		require("mason").setup()
-		require("mason-tool-installer").setup({ ensure_installed = tools })
+		require("mason-tool-installer").setup({ ensure_installed = tools, automatic_installation = true })
 
 		-- Mason-LSPConfig Setup
 		require("mason-lspconfig").setup({

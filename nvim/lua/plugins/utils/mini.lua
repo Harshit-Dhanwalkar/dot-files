@@ -210,91 +210,6 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.files",
-		config = function()
-			require("mini.files").setup({
-				mappings = {
-					go_in = "<CR>", -- Enter and L to enter directories or open files
-					go_in_plus = "L",
-					go_out = "-",
-					go_out_plus = "H",
-				},
-			})
-			-- layout preferences
-			local widths = {
-				math.floor(vim.o.columns * 0.45),
-				math.floor(vim.o.columns * 0.25),
-				math.floor(vim.o.columns * 0.15),
-			}
-			local ensure_center_layout = function(ev)
-				local state = MiniFiles.get_explorer_state()
-				if state == nil then
-					return
-				end
-				-- Compute "depth offset" - how many windows are between this and focused
-				local path_this = vim.api.nvim_buf_get_name(ev.data.buf_id):match("^minifiles://%d+/(.*)$")
-				local depth_this
-				for i, path in ipairs(state.branch) do
-					if path == path_this then
-						depth_this = i
-					end
-				end
-				if depth_this == nil then
-					return
-				end
-				local depth_focus = state.depth_focus
-				local depth_offset = depth_this - depth_focus
-				-- Adjust config of this event's window
-				local i = math.abs(depth_offset) + 1
-				local win_config = vim.api.nvim_win_get_config(ev.data.win_id)
-				-- Use specific width if defined, otherwise use the last value in widths table
-				win_config.width = widths[i] or widths[#widths]
-
-				-- -- Calculate horizontal position (col)
-				-- -- Start at the center for the focused window
-				-- win_config.col = math.floor(0.5 * (vim.o.columns - widths[1]))
-				--
-				-- -- Offset side windows
-				-- for j = 1, math.abs(depth_offset) do
-				-- 	local sign = depth_offset > 0 and 1 or -1
-				-- 	-- prev_width needs to account for the width of windows between center and this one
-				-- 	local prev_width = widths[j] or widths[#widths]
-				-- 	win_config.col = win_config.col + sign * prev_width
-				-- end
-				-- Anchor focused window at center
-				local center_col = math.floor((vim.o.columns - widths[1]) / 2)
-				if depth_offset == 0 then
-					-- Focused panel
-					win_config.col = center_col
-				else
-					-- Panels to the left/right stack tightly
-					local sign = depth_offset > 0 and 1 or -1
-					local offset = 0
-					for j = 1, math.abs(depth_offset) do
-						offset = offset + (widths[j] or widths[#widths])
-					end
-					win_config.col = center_col + sign * offset
-				end
-				-- Adjust height and vertical position (row)
-				win_config.height = depth_offset == 0 and 25 or 20
-				win_config.row = math.floor(0.5 * (vim.o.lines - win_config.height))
-				-- Apply custom border
-				win_config.border = depth_offset == 0 and { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-					or "single"
-				vim.api.nvim_win_set_config(ev.data.win_id, win_config)
-			end
-			vim.api.nvim_create_autocmd("User", {
-				pattern = "MiniFilesWindowUpdate",
-				callback = ensure_center_layout,
-			})
-			vim.keymap.set("n", "<leader>ee", "<cmd>lua MiniFiles.open()<CR>", { desc = "Toggle mini file explorer" }) -- toggle file explorer
-			vim.keymap.set("n", "<leader>ef", function()
-				MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
-				MiniFiles.reveal_cwd()
-			end, { desc = "Toggle into currently opened file" })
-		end,
-	},
-	{
 		"echasnovski/mini.surround",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
@@ -334,6 +249,20 @@ return {
 		end,
 	},
 	{
+		"echasnovski/mini.operators",
+		event = "VeryLazy",
+		config = function()
+			require("mini.operators").setup({})
+		end,
+	},
+	{
+		"echasnovski/mini.align",
+		event = "VeryLazy",
+		config = function()
+			require("mini.align").setup({})
+		end,
+	},
+	{
 		"echasnovski/mini.splitjoin",
 		config = function()
 			miniSplitJoin = require("mini.splitjoin")
@@ -348,6 +277,91 @@ return {
 			end, { desc = "Split arguments" })
 		end,
 	},
+	-- {
+	-- 	"echasnovski/mini.files",
+	-- 	config = function()
+	-- 		require("mini.files").setup({
+	-- 			mappings = {
+	-- 				go_in = "<CR>", -- Enter and L to enter directories or open files
+	-- 				go_in_plus = "L",
+	-- 				go_out = "-",
+	-- 				go_out_plus = "H",
+	-- 			},
+	-- 		})
+	-- 		-- layout preferences
+	-- 		local widths = {
+	-- 			math.floor(vim.o.columns * 0.45),
+	-- 			math.floor(vim.o.columns * 0.25),
+	-- 			math.floor(vim.o.columns * 0.15),
+	-- 		}
+	-- 		local ensure_center_layout = function(ev)
+	-- 			local state = MiniFiles.get_explorer_state()
+	-- 			if state == nil then
+	-- 				return
+	-- 			end
+	-- 			-- Compute "depth offset" - how many windows are between this and focused
+	-- 			local path_this = vim.api.nvim_buf_get_name(ev.data.buf_id):match("^minifiles://%d+/(.*)$")
+	-- 			local depth_this
+	-- 			for i, path in ipairs(state.branch) do
+	-- 				if path == path_this then
+	-- 					depth_this = i
+	-- 				end
+	-- 			end
+	-- 			if depth_this == nil then
+	-- 				return
+	-- 			end
+	-- 			local depth_focus = state.depth_focus
+	-- 			local depth_offset = depth_this - depth_focus
+	-- 			-- Adjust config of this event's window
+	-- 			local i = math.abs(depth_offset) + 1
+	-- 			local win_config = vim.api.nvim_win_get_config(ev.data.win_id)
+	-- 			-- Use specific width if defined, otherwise use the last value in widths table
+	-- 			win_config.width = widths[i] or widths[#widths]
+	--
+	-- 			-- -- Calculate horizontal position (col)
+	-- 			-- -- Start at the center for the focused window
+	-- 			-- win_config.col = math.floor(0.5 * (vim.o.columns - widths[1]))
+	-- 			--
+	-- 			-- -- Offset side windows
+	-- 			-- for j = 1, math.abs(depth_offset) do
+	-- 			-- 	local sign = depth_offset > 0 and 1 or -1
+	-- 			-- 	-- prev_width needs to account for the width of windows between center and this one
+	-- 			-- 	local prev_width = widths[j] or widths[#widths]
+	-- 			-- 	win_config.col = win_config.col + sign * prev_width
+	-- 			-- end
+	-- 			-- Anchor focused window at center
+	-- 			local center_col = math.floor((vim.o.columns - widths[1]) / 2)
+	-- 			if depth_offset == 0 then
+	-- 				-- Focused panel
+	-- 				win_config.col = center_col
+	-- 			else
+	-- 				-- Panels to the left/right stack tightly
+	-- 				local sign = depth_offset > 0 and 1 or -1
+	-- 				local offset = 0
+	-- 				for j = 1, math.abs(depth_offset) do
+	-- 					offset = offset + (widths[j] or widths[#widths])
+	-- 				end
+	-- 				win_config.col = center_col + sign * offset
+	-- 			end
+	-- 			-- Adjust height and vertical position (row)
+	-- 			win_config.height = depth_offset == 0 and 25 or 20
+	-- 			win_config.row = math.floor(0.5 * (vim.o.lines - win_config.height))
+	-- 			-- Apply custom border
+	-- 			win_config.border = depth_offset == 0 and { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+	-- 				or "single"
+	-- 			vim.api.nvim_win_set_config(ev.data.win_id, win_config)
+	-- 		end
+	-- 		vim.api.nvim_create_autocmd("User", {
+	-- 			pattern = "MiniFilesWindowUpdate",
+	-- 			callback = ensure_center_layout,
+	-- 		})
+	-- 		vim.keymap.set("n", "<leader>ee", "<cmd>lua MiniFiles.open()<CR>", { desc = "Toggle mini file explorer" }) -- toggle file explorer
+	-- 		vim.keymap.set("n", "<leader>ef", function()
+	-- 			MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+	-- 			MiniFiles.reveal_cwd()
+	-- 		end, { desc = "Toggle into currently opened file" })
+	-- 	end,
+	-- },
 	-- {
 	-- 	"echasnovski/mini.map",
 	-- 	config = function()
@@ -385,18 +399,4 @@ return {
 	-- -- - sd'   - [S]urround [D]elete [']quotes
 	-- -- - sr)'  - [S]urround [R]eplace [)] [']
 	--
-	{
-		"echasnovski/mini.operators",
-		event = "VeryLazy",
-		config = function()
-			require("mini.operators").setup({})
-		end,
-	},
-	{
-		"echasnovski/mini.align",
-		event = "VeryLazy",
-		config = function()
-			require("mini.align").setup({})
-		end,
-	},
 }
