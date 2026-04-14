@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/settings.lua
+-- ~/.config/nvim/lua/options.lua
 
 vim.g.vimtex_syntax_enabled = 0
 
@@ -7,6 +7,9 @@ vim.opt_local.spelllang = "en_us"
 
 -- See `:help vim.opt` and `:help option-list`
 local options = {
+	-- security
+	modelines = 0,
+
 	fileencoding = "utf-8",
 	guifont = "JetBrainsMono_Nerd_Font:h11",
 	backup = false,
@@ -22,27 +25,51 @@ local options = {
 	linebreak = true,
 	whichwrap = "bs<>",
 	hls = true,
+	autoindent = true,
 	smartindent = true,
 	breakindent = true,
-	undofile = true,
 	signcolumn = "yes",
 	updatetime = 250,
 	readonly = false,
+
+	-- maintain undo history between sessions
 	swapfile = false,
+	undofile = true,
+	undodir = vim.fn.stdpath("data") .. "/undo",
+
+	-- lazy file name tab completion,
+	wildmode = "list:longest,list:full",
+	wildmenu = true,
+	wildignorecase = true,
+
 	wrap = true,
 	winblend = 20,
 	pumblend = 20,
 	pumheight = 10,
-	mouse = "a",
+
 	showmode = false,
 	laststatus = 2,
+
+	-- case insensitive search
+	ignorecase = true,
+	smartcase = true,
+	infercase = true,
+
+	-- make backspace behave in a sane manner
+	backspace = "indent,eol,start",
+
+	-- searching
+	inccommand = "split",
 	hlsearch = true,
 	incsearch = true,
-	smartcase = true,
-	ignorecase = true,
-	inccommand = "split",
+
+	-- scroll bounds
 	sidescroll = 4,
 	scrolloff = 8,
+
+	-- ipad scrolling
+	mouse = "a",
+
 	cursorline = true,
 	completeopt = { "menuone", "noselect" },
 	timeoutlen = 300,
@@ -58,6 +85,69 @@ local options = {
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
+
+-- fuzzy find
+vim.opt.path:append("**")
+
+local wildignore_patterns = {
+	".git",
+	".hg",
+	".svn",
+	"*.aux",
+	"*.out",
+	"*.toc",
+	"*.o",
+	"*.obj",
+	"*.exe",
+	"*.dll",
+	"*.manifest",
+	"*.rbc",
+	"*.class",
+	"*.ai",
+	"*.bmp",
+	"*.gif",
+	"*.ico",
+	"*.jpg",
+	"*.jpeg",
+	"*.png",
+	"*.psd",
+	"*.webp",
+	"*.avi",
+	"*.divx",
+	"*.mp4",
+	"*.webm",
+	"*.mov",
+	"*.m2ts",
+	"*.mkv",
+	"*.vob",
+	"*.mpg",
+	"*.mpeg",
+	"*.mp3",
+	"*.oga",
+	"*.ogg",
+	"*.wav",
+	"*.flac",
+	"*.eot",
+	"*.otf",
+	"*.ttf",
+	"*.woff",
+	"*.doc",
+	"*.pdf",
+	"*.cbr",
+	"*.cbz",
+	"*.zip",
+	"*.tar.gz",
+	"*.tar.bz2",
+	"*.rar",
+	"*.tar.xz",
+	"*.kgb",
+	"*.swp",
+	"*.lock",
+	".DS_Store",
+	"._*",
+	".,..",
+}
+vim.opt.wildignore = table.concat(wildignore_patterns, ",")
 
 -- vim.lsp.handlers["$/progress"] = function() end -- to disable lsp widget
 -- vim.g.lsp_status_diagnostic_signs_enabled = false -- disable just statusline messages

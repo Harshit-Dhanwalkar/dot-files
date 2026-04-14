@@ -1,5 +1,28 @@
-# Makefile template for LaTeX files
-snippet latex
+snippet make "Makefile for C project"
+CC = gcc
+CFLAGS = -Wall -Wextra -pedantic -I$($0)/
+DEBUG_FLAGS = -DDEBUG -O0 -g -fsanitize=address
+RELEASE_FLAGS = -DNDEBUG
+
+LFLAGS = -L$($1)
+
+config ?= debug
+
+ifeq ($(config), debug)
+	CFLAGS += $(DEBUG_FLAGS)
+else
+	CFLAGS += $(RELEASE_FLAGS)
+endif
+
+all: $2
+
+$2:
+	$(CC) main.c $(CFLAGS) $(LFLAGS) -o $2
+
+.PHONY: all $2
+endsnippet
+
+snippet latex "Makefile for LaTeX projects"
 .PHONY: all clean
 
 SHELL=/bin/bash

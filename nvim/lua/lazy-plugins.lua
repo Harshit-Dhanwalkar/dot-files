@@ -133,15 +133,15 @@ require("lazy").setup({
 	{ "quangnguyen30192/cmp-nvim-ultisnips", lazy = true },
 	{
 		"sirver/ultisnips",
-		event = "InsertEnter",
 		config = function()
 			vim.g.UltiSnipsExpandTrigger = "<C-j>"
-			vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
-			vim.g.UltiSnipsJumpBackwardTrigger = "<S-tab>"
+			vim.g.UltiSnipsJumpForwardTrigger = "<Tab>"
+			vim.g.UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 			vim.g.UltiSnipsSnippetDirectories = {
-				"UltiSnips", -- This is the default directory inside runtimepath
-				-- vim.fn.expand("~/.config/nvim/lua/UltiSnips/"),
+				"UltiSnips", -- default directory inside runtimepath
+				vim.fn.expand("~/.config/nvim/lua/UltiSnips/"),
 				vim.fn.expand("../UltiSnips/"),
+				vim.fn.stdpath("config") .. "/lua/UltiSnips",
 			}
 		end,
 		dependencies = {

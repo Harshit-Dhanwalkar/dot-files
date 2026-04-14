@@ -35,6 +35,8 @@ map({ "n", "v" }, "<leader>y", [["+y]])
 -- Formatting
 map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", { noremap = true, silent = true })
 
+-- map("", "<Leader>ss", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
+
 -- Split window
 map("n", "ss", ":split<Return>", opts)
 map("n", "sv", ":vsplit<Return>", opts)

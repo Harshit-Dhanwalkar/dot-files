@@ -8,6 +8,7 @@ return {
 	},
 	dependencies = {
 		-- Snippet Engine & its associated nvim-cmp source
+		"SirVer/ultisnips",
 		"honza/vim-snippets",
 		"saadparwaiz1/cmp_luasnip",
 		{
@@ -161,10 +162,10 @@ return {
 					-- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
 					group_index = 0,
 				},
-				{ name = "luasnip" },
-				-- { name = "vsnip" },
 				{ name = "cmp-nvim-ultisnips" },
 				{ name = "ultisnips" },
+				{ name = "luasnip" },
+				-- { name = "vsnip" },
 				{
 					name = "latex_symbols",
 					option = {

@@ -6,7 +6,27 @@ local util = require("lspconfig.util")
 return {
 	servers = {
 		asm_lsp = {}, -- Assembly
-		bashls = {}, -- Bash
+		bashls = { -- Bash
+			root_dir = function(on_attach)
+				return {
+					on_attach = function(client, bufnr)
+						on_attach(client, bufnr)
+					end,
+					cmd = { "bash-language-server", "start" },
+					cmd_env = {
+						GLOB_PATTERN = "*@(.sh|.inc|.bash|.command|.zsh)",
+					},
+					settings = {
+						bashIde = {
+							globPattern = vim.env.GLOB_PATTERN or "*@(.sh|.inc|.bash|.command|.zsh)",
+						},
+					},
+					filetypes = { "sh", "zsh" },
+					root_dir = util.find_git_ancestor,
+					single_file_support = true,
+				}
+			end,
+		},
 		clangd = { -- C/C++
 			root_dir = function(fname)
 				-- local util = require("lspconfig").util
@@ -71,6 +91,7 @@ return {
 			},
 		},
 		ruff = {}, -- Python
+		-- pylsp = {}, --Python
 		-- pylyzer = {}, -- Alternative Python LSP
 		texlab = {}, -- LaTeX LSP and Tex linter
 		ltex = { -- LanguageTool integration for LaTeX
@@ -98,9 +119,13 @@ return {
 		},
 		["ltex_plus"] = {}, -- LanguageTool integration for LaTeX
 		markdown_oxide = {}, -- Markdown
+		json_lsp = {},
+		tflint = {},
+		yamlls = {},
 		denols = { -- TSX, JSX, TypeScript and JavaScript
 			root_dir = util.root_pattern("deno.json", "deno.jsonc"),
 		},
+		html = {},
 		ts_ls = { -- JavaScript  and TypeScript
 			root_dir = function(fname)
 				local deno_root = util.root_pattern("deno.json", "deno.jsonc")(fname)
@@ -113,7 +138,83 @@ return {
 		},
 		eslint = {}, -- JavaScript and TypeScript linter
 		svelte = {}, -- Svelte components
-		tailwindcss = {}, -- Tailwind CSS classes
+		tailwindcss = { -- Tailwind CSS classes
+			vim.lsp.config("tailwindcss", {
+				cmd = { "tailwindcss-language-server", "--stdio" },
+				filetypes = {
+					"astro",
+					"astro-markdown",
+					"blade",
+					"clojure",
+					"django-html",
+					"htmldjango",
+					"edge",
+					"gohtml",
+					"haml",
+					"handlebars",
+					"hbs",
+					"html",
+					"html-eex",
+					"heex",
+					"jade",
+					"leaf",
+					"liquid",
+					"markdown",
+					"mdx",
+					"mustache",
+					"njk",
+					"nunjucks",
+					"razor",
+					"slim",
+					"twig",
+					"css",
+					"less",
+					"postcss",
+					"sass",
+					"scss",
+					"stylus",
+					"sugarss",
+					"reason",
+					"rescript",
+					"vue",
+					"svelte",
+				},
+				init_options = {
+					userLanguages = { eelixir = "html-eex", eruby = "erb" },
+				},
+				root_dir = util.root_pattern(
+					"tailwind.config.js",
+					"tailwind.config.cjs",
+					"tailwind.config.mjs",
+					"tailwind.config.ts",
+					"postcss.config.js",
+					"postcss.config.cjs",
+					"postcss.config.mjs",
+					"postcss.config.ts",
+					"package.json",
+					"node_modules",
+					".git"
+				),
+				single_file_support = true,
+				settings = {
+					tailwindCSS = {
+						classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
+						lint = {
+							cssConflict = "warning",
+							invalidApply = "error",
+							invalidConfigPath = "error",
+							invalidScreen = "error",
+							invalidTailwindDirective = "error",
+							invalidVariant = "error",
+							recommendedVariantOrder = "warning",
+						},
+						validate = true,
+					},
+				},
+			}),
+			vim.lsp.enable("tailwindcss"),
+		},
+		terraform_ls = {},
 		lua_ls = { -- Lua
 			settings = {
 				Lua = {
@@ -121,11 +222,13 @@ return {
 				},
 			},
 		},
+		emmylua_ls = {},
 		-- rust_analyzer = { -- Rust
 		--   settings = {
 		--   ['rust-analyzer'] = {},
 		--   },
 		-- },
+		docker_ls = {},
 	},
 
 	-- Install LSP & tools via Mason
@@ -146,6 +249,7 @@ return {
 		"typescript-language-server",
 		"tailwindcss-language-server",
 		"stylua",
+		"json-lsp",
 		-- "asm-lsp",
 		-- "goimports",  -- For Go
 		-- "rustfmt", -- rust-analyzer

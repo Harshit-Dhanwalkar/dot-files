@@ -2,6 +2,7 @@
 -- local function get_time()
 -- 	return os.date("%I:%M %p")
 -- end
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
@@ -16,14 +17,18 @@ return {
 				theme = "auto",
 				-- component_separators = { left = "", right = "" },
 				component_separators = { left = "\\", right = "/" },
+				-- component_separators = { left = "", right = "" },
 				-- section_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
+				-- section_separators = { left = "", right = "" },
 				disabled_filetypes = {
 					statusline = {},
 					winbar = {},
 				},
-				ignore_focus = {},
-				always_divide_middle = true,
+				-- ignore_focus = {},
+				ignore_focus = { "help" },
+				-- always_divide_middle = true,
+				always_divide_middle = false,
 				always_show_tabline = true,
 				globalstatus = false,
 				refresh = {
@@ -146,16 +151,65 @@ return {
 					},
 				},
 				-- lualine_z = { get_time, "location" },
-				lualine_z = { "location" },
+				-- lualine_z = { "location" },
+				lualine_z = {
+					{
+						"location",
+						fmt = function(str)
+							local line, col = str:match("(%d+):(%d+)")
+							return string.format(" %s.%s", line, col)
+						end,
+						-- separator = { left = "", right = " " },
+						separators = { left = "", right = "" },
+						padding = 0,
+						cond = function()
+							local mode = vim.fn.mode()
+							return not (mode == "v" or mode == "V" or mode == "\22")
+								and (vim.v.hlsearch == 0 or vim.fn.getreg("/") == "")
+						end,
+					},
+					{
+						"searchcount",
+						fmt = function(str)
+							if str == "" then
+								return ""
+							end
+							local count, of = str:match("(%d+)/(%d+)")
+							return string.format(" %s/%s", count, of)
+						end,
+						-- separator = { left = "", right = "  " },
+						separators = { left = "", right = "" },
+						padding = 0,
+						cond = function()
+							local mode = vim.fn.mode()
+							return vim.v.hlsearch == 1
+								and vim.fn.getreg("/") ~= ""
+								and not (mode == "v" or mode == "V" or mode == "\22")
+						end,
+					},
+					{
+						"selectioncount",
+						fmt = function(str)
+							if str == "" then
+								return ""
+							end
+
+							return string.format(" %s", str)
+						end,
+						-- separator = { left = " ", right = "  " },
+						separators = { left = "", right = "" },
+						padding = 0,
+					},
+				},
 			},
-			inactive_sections = {
-				lualine_a = {},
-				lualine_b = {},
-				lualine_c = { "filename" },
-				lualine_x = { "location" },
-				lualine_y = {},
-				lualine_z = {},
-			},
+			-- inactive_sections = {
+			-- 	lualine_a = {},
+			-- 	lualine_b = {},
+			-- 	lualine_c = { "filename" },
+			-- 	lualine_x = { "location" },
+			-- 	lualine_y = {},
+			-- 	lualine_z = {},
+			-- },
 			-- tabline = {
 			-- 	lualine_a = {},
 			-- 	lualine_b = { "branch" },
@@ -182,8 +236,24 @@ return {
 			-- },
 			extensions = {},
 		})
+
+		vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
+		vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
+
+		-- Also clear background for all lualine's internal groups
+		local modes_list = { "normal", "insert", "visual", "replace", "command", "inactive", "terminal" }
+		for _, mode in ipairs(modes_list) do
+			for _, section in ipairs({ "a", "b", "c", "x", "y", "z" }) do
+				local hl_group = "lualine_" .. section .. "_" .. mode
+				pcall(vim.api.nvim_set_hl, 0, hl_group, { bg = "NONE" })
+			end
+		end
+
+		-- Remove fillchars to get rid of any leftover separator lines
+		vim.opt.fillchars = { vert = " ", stl = " ", stlnc = " " }
 	end,
 }
+
 -- return {
 -- 	"nvim-lualine/lualine.nvim",
 -- 	dependencies = { "nvim-tree/nvim-web-devicons" },
