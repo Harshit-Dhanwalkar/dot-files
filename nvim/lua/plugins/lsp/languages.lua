@@ -253,5 +253,6 @@ return {
 		-- "asm-lsp",
 		-- "goimports",  -- For Go
 		-- "rustfmt", -- rust-analyzer
+		"vim-language-server",
 	},
 }

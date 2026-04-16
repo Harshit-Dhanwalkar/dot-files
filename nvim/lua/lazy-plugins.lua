@@ -62,6 +62,7 @@ require("lazy").setup({
 	require("plugins.git.git-worktree"),
 	require("plugins.git.git-blame"),
 	require("plugins.git.git-conflict"),
+	require("plugins.git.git-linker"),
 	require("plugins.git.gitgraph"),
 	-- require("plugins.git.vim-flog"),
 	require("plugins.others.goto-preview"),

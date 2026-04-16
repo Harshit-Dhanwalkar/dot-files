@@ -418,6 +418,25 @@ map("n", "<leader>is", function()
 	end)
 end, { desc = "[I]nject [S]ymbol" })
 
+-- Git
+local gitlinker = require("gitlinker")
+map({ "n", "v" }, "<leader>gl", function()
+	local mode = string.lower(vim.fn.mode())
+	gitlinker.get_buf_range_url(mode)
+end, {
+	silent = true,
+	desc = "get git permlink",
+})
+
+map("n", "<leader>gbr", function()
+	gitlinker.get_repo_url({
+		action_callback = gitlinker.actions.open_in_browser,
+	})
+end, {
+	silent = true,
+	desc = "browse git repo in browser",
+})
+
 -- Git Branch / Commit Hash Injector
 map("n", "<leader>ig", function()
 	require("telescope.builtin").git_commits({

@@ -12,6 +12,7 @@ local options = {
 
 	fileencoding = "utf-8",
 	guifont = "JetBrainsMono_Nerd_Font:h11",
+	foldenable = false,
 	backup = false,
 	writebackup = false,
 	termguicolors = true,
