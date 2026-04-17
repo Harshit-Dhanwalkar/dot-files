@@ -11,6 +11,11 @@
   box-shadow: none !important;
 }
 
+/* Remove invisible spacers */
+toolbarspring {
+  display: none !important;
+}
+
 /*--------- Translucency after FF 121 -----------*/
 :root #TabsToolbar,
 :root #titlebar,
@@ -62,7 +67,7 @@
   border-top: 0 !important;
 }
 
-/* Add Transparency | Comment out to remove transparency completely */
+/* Add Transparency */
 :root#main-window {
   background-color: transparent !important;
 }
@@ -86,14 +91,18 @@
 }
 
 /*--------- Navigation Bar Background -----------*/
-/*  
 :root:not([lwt-default-theme-in-dark-mode]) #nav-bar {
     background-color: rgba(0, 0, 0, 0.01) !important;
 }
 
 :root[lwt-default-theme-in-dark-mode] #nav-bar {
-    background-color: rgba(0, 0, 0, 0.01) !important; 
-} */
+    background-color: rgba(0, 0, 0, 0.01) !important;
+}
+
+#nav-bar-customization-target {
+  display: flex !important;
+  overflow: hidden !important;
+}
 
 /*--------- Inactive Address/Search Field Background -----------*/
 :root:not([lwt-default-theme-in-dark-mode]) #urlbar-background {
@@ -135,12 +144,7 @@
   text-align: left !important;
 }
 
-#urlbar {
-  max-width: 60% !important;
-  margin: 0 15% !important;
-}
-
-/*--------- Bookmarks bar | Solid Color instead of Transparency -----------*/
+/*--------- Bookmarks bar -----------*/
 /* :root:not([lwt-default-theme-in-dark-mode]) #PersonalToolbar {
     background: rgba(28, 27, 34, 1) !important;
 }
@@ -227,6 +231,16 @@ toolbar {
   height: 16px !important;
   margin: 0 !important;
   padding: 0 !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  transition: opacity 0.2s ease-in-out !important;
+}
+
+.tab-close-button:hover {
+  background-color: transparent !important;
+  opacity: 0.7 !important;
 }
 
 /*--------- Tab Overflow -----------*/
