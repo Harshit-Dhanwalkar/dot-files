@@ -1,13 +1,13 @@
-fn = vim.fn
-api = vim.api
-cmd = vim.cmd
-opt = vim.opt
-g = vim.g
+local fn = vim.fn
+local api = vim.api
+local cmd = vim.cmd
+local opt = vim.opt
+local g = vim.g
 
 local modules = {
-	"settings",
+	"options",
 	"keymaps",
-	"lazy-plugins",
+	"plugins",
 	"plugins.keymaps",
 }
 

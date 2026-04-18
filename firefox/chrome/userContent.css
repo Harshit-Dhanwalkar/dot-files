@@ -17,4 +17,17 @@
     background-attachment: fixed !important;
     background-position: center center !important;
   }
+
+  .search-wrapper,
+  .search-handoff-button,
+  .search-inner-wrapper,
+  .logo-and-search,
+  .search-toolbar,
+  .search-wrapper .search-label {
+    display: none !important;
+  }
+
+  .top-sites-list {
+    margin-top: 20px !important;
+  }
 }

@@ -1,4 +1,10 @@
--- ~/.config/nvim/lua/lazy.lua
+-- ~/.config/nvim/lua/plugins.lua
+
+-- My plugins
+require("utilities.commands")
+require("utilities.openpdf")
+require("utilities.datejumps")
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -101,6 +107,7 @@ require("lazy").setup({
 	require("plugins.markdown.carrot"),
 	require("plugins.markdown.nvim-toc"),
 	require("plugins.markdown.markdown-table-mode"),
+	require("plugins.markdown.contextindent"),
 	-- require("plugins.markdown.vim-markdownfootnotes"),
 	-- require("plugins.markdown.markdown-preview"),
 	-- require("plugins.markdown.peek"),
@@ -117,7 +124,7 @@ require("lazy").setup({
 	-- require("plugins.asm.who5673-nasm"),
 	-- require("plugins.asm.hexer"),
 	-- require("plugins.others.wilder"),
-	-- require("plugins.others.screenkey"),
+	require("plugins.others.screenkey"),
 	-- require("plugins.others.showkeys"),
 	require("plugins.which-key"),
 	require("plugins.webdev.colorizer"),
