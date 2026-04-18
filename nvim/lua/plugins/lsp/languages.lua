@@ -51,7 +51,7 @@ return {
 				-- "--fallback-style=llvm",
 				"--fallback-style=Google",
 			},
-			-- This will help with include paths
+			-- Help with include paths
 			init_options = {
 				usePlaceholders = true,
 				completeUnimported = true,
@@ -70,29 +70,32 @@ return {
 			-- EOF
 		},
 		-- codebook = {}, -- spell checker
-		pyright = { -- Python
-			settings = {
-				python = {
-					analysis = {
-						autosearchpaths = true,
-						uselibrarycodefortypes = true,
-						diagnosticMode = "openFilesOnly",
-						-- diagnosticseverityoverrides = {
-						-- 	reportunusedvariable = "none",
-						-- 	reportmissingimports = "warning",
-						-- 	reportundefinedvariable = "error",
-						-- },
-						-- reportgeneraltypeissues = true,
-						-- typecheckingmode = "basic", -- "strict", "off"
-					},
-					venvPath = ".",
-					venv = "venv",
-				},
-			},
-		},
 		ruff = {}, -- Python
-		-- pylsp = {}, --Python
-		-- pylyzer = {}, -- Alternative Python LSP
+		-- pyright = { -- Python
+		-- 	settings = {
+		-- 		python = {
+		-- 			analysis = {
+		-- 				autosearchpaths = true,
+		-- 				uselibrarycodefortypes = true,
+		-- 				diagnosticMode = "openFilesOnly",
+		-- 				typeCheckingMode = "basic",
+		-- 				reportUnusedVariable = "none",
+		-- 				reportUnusedImport = "none",
+		-- 				reportgeneraltypeissues = true,
+		-- 				-- diagnosticseverityoverrides = {
+		-- 				-- 	reportunusedvariable = "none",
+		-- 				-- 	reportmissingimports = "warning",
+		-- 				-- 	reportundefinedvariable = "error",
+		-- 				-- },
+		-- 				-- typecheckingmode = "basic", -- "strict", "off"
+		-- 			},
+		-- 			venvPath = ".",
+		-- 			venv = "venv",
+		-- 		},
+		-- 	},
+		-- },
+		-- pylsp = {}, -- Python
+		pylyzer = {}, -- Alternative Python LSP
 		texlab = {}, -- LaTeX LSP and Tex linter
 		ltex = { -- LanguageTool integration for LaTeX
 			filetypes = {
@@ -105,27 +108,27 @@ return {
 			},
 			settings = {
 				ltex = {
-					disabledRules = {
-						["en-US"] = {
-							-- "PROPER_NOUN_WITHOUT_DETERMINER",
-							"COMMAS_PARENTHESIS_WHITESPACE",
-							"UNLIKELY_OPENING_PUNCTUATION",
-							"NUMBERS_IN_WORDS",
-						},
-					},
+					-- disabledRules = {
+					-- 	["en-US"] = {
+					-- 		-- "PROPER_NOUN_WITHOUT_DETERMINER",
+					-- 		"COMMAS_PARENTHESIS_WHITESPACE",
+					-- 		"UNLIKELY_OPENING_PUNCTUATION",
+					-- 		"NUMBERS_IN_WORDS",
+					-- 	},
+					-- },
 					dictionary = { ["en-US"] = {} },
 				},
 			},
 		},
 		["ltex_plus"] = {}, -- LanguageTool integration for LaTeX
 		markdown_oxide = {}, -- Markdown
-		json_lsp = {},
+		json_lsp = {}, -- JSON
 		tflint = {},
-		yamlls = {},
+		yamlls = {}, -- YAML
 		denols = { -- TSX, JSX, TypeScript and JavaScript
 			root_dir = util.root_pattern("deno.json", "deno.jsonc"),
 		},
-		html = {},
+		html = {}, -- HTML
 		ts_ls = { -- JavaScript  and TypeScript
 			root_dir = function(fname)
 				local deno_root = util.root_pattern("deno.json", "deno.jsonc")(fname)
@@ -236,8 +239,8 @@ return {
 		"bash-language-server",
 		-- "codebook", -- Spell checker
 		"ruff", -- Python, format
+		-- "pyright",
 		-- "black", -- Python formatter
-		"pyright",
 		"debugpy",
 		"clangd",
 		"cpplint",

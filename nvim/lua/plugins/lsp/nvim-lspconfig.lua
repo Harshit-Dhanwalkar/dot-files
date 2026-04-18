@@ -10,9 +10,9 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/nvim-cmp",
 		"j-hui/fidget.nvim",
-		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+		-- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 		"smjonas/inc-rename.nvim",
-		"ravibrock/spellwarn.nvim",
+		-- "ravibrock/spellwarn.nvim",
 		-- "dgagn/diagflow.nvim",
 	},
 	config = function()
@@ -199,8 +199,6 @@ return {
 					vim.print(vim.lsp.buf.list_workspace_folders())
 				end, { desc = "list workspace folder" })
 
-				-- Set some key bindings conditional on server capabilities
-				-- Disable ruff hover feature in favor of Pyright
 				if client.name == "ruff" then
 					client.server_capabilities.hoverProvider = false
 				end
@@ -310,7 +308,7 @@ return {
 			},
 		})
 
-		require("lsp_lines").setup()
+		-- require("lsp_lines").setup()
 		require("inc_rename").setup({
 			hl_group = "Substitute",
 			preview_empty_name = false,
@@ -318,7 +316,7 @@ return {
 			save_in_cmdline_history = false,
 			-- input_buffer_type = "snacks",
 		})
-		require("spellwarn").setup()
+		-- require("spellwarn").setup()
 		-- require("diagflow").setup({
 		-- 	enable = true,
 		-- 	max_width = 60,

@@ -3,6 +3,8 @@ return {
 	"mg979/vim-visual-multi",
 	event = "VeryLazy",
 	-- config = function()
-	-- require('vim-visual-multi').setup({ keybinds = {} })
+	-- 	require("vim-visual-multi").setup({
+	-- 		keybinds = {},
+	-- 	})
 	-- end,
 }
