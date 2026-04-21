@@ -8,6 +8,7 @@ return {
 	dependencies = {
 		"echasnovski/mini.icons",
 		"nvim-tree/nvim-web-devicons",
+		-- "chrisgrieser/nvim-dr-lsp", -- LSP symbols in lualine
 		-- "AndreM222/copilot-lualine",
 	},
 	config = function()
@@ -71,6 +72,9 @@ return {
 						symbols = { error = "", warn = "", info = "", hint = "" },
 					},
 				},
+				-- lualine_b = {
+				-- 	{ require("dr-lsp").lspCount },
+				-- },
 				lualine_c = {
 					{
 						"filename",

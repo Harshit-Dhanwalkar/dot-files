@@ -1,4 +1,38 @@
 return {
+	{
+		"nvim-tree/nvim-web-devicons",
+		opts = {
+			color_icons = true,
+			default = true,
+			override = {
+				jai = {
+					icon = "󰬑", -- Material letter J-box
+					color = "#fabd2f", -- gruvbox bright yellow
+					name = "Jai",
+				},
+			},
+			override_by_extension = {
+				jai = {
+					icon = "󰬑",
+					color = "#fabd2f",
+					name = "Jai",
+				},
+			},
+		},
+	},
+	{
+		"echasnovski/mini.icons",
+		opts = function(_, opts)
+			opts = opts or {}
+			opts.extension = opts.extension or {}
+			opts.extension.jai = opts.extension.jai or {
+				glyph = "󰬑",
+				hl = "MiniIconsYellow",
+			}
+			return opts
+		end,
+	},
+
 	diagnostics = {
 		error = " ",
 		hint = " ",

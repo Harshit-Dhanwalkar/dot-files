@@ -1,9 +1,12 @@
 -- ~/.config/nvim/lua/plugins.lua
 
 -- My plugins
-require("utilities.commands")
-require("utilities.openpdf")
+require("utilities.autocommands")
+require("utilities.go_to_relative_file")
+require("utilities.notes")
 require("utilities.datejumps")
+require("utilities.toggletheme")
+require("utilities.openpdf")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -50,6 +53,7 @@ require("lazy").setup({
 	-- require("plugins.appearance.pretty-fold"),
 	-- require("plugins.appearance.nvim-ufo"),
 	require("plugins.appearance.modicator"),
+	require("plugins.appearance.symbol-usage"),
 	require("plugins.appearance.lightswtich"),
 	-- require("plugins.appearance.twilight"),
 	require("plugins.appearance.undo-glow"),
@@ -57,6 +61,7 @@ require("lazy").setup({
 	-- require("plugins.utils.blink"),
 	require("plugins.utils.comment"),
 	require("plugins.utils.debug"),
+	require("plugins.utils.tiny-term"),
 	-- require("plugins.utils.flash"),
 	require("plugins.utils.flouride"),
 	-- require("plugins.others.undotree"),

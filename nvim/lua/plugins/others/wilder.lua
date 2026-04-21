@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/others/wilder.lua
+
 return {
 	"gelguy/wilder.nvim",
 	-- "nvim-telescope/telescope.nvim",
@@ -12,7 +13,6 @@ return {
 		wilder.setup({ modes = { ":", "/", "?" } })
 
 		-- Define custom highlight groups
-
 		wilder.set_option(
 			"renderer",
 			wilder.popupmenu_renderer(wilder.popupmenu_border_theme({

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "logo": {
+    "type": "auto", // Logo type: auto, builtin, small, file, etc.
+    "source": "~/.config/fastfetch/logo_arch.txt", // Built-in logo name or file path
+    "width": 40,
+    "padding": {
+      "top": 1, // Top padding
+      "left": 3, // Left padding
+      "right": 4, // Right padding
+    },
+    "color": {
+      // Override logo colors
+      "1": "blue",
+      "2": "cyan",
+    },
+  },
+  "modules": [
+    "break",
+    "title",
+    "separator",
+    { "type": "custom", "format": "󰌽 System" },
+    { "type": "os", "key": "├ OS" },
+    { "type": "host", "key": "├ Host" },
+    { "type": "kernel", "key": "├ Kernel" },
+    { "type": "uptime", "key": "╰ Uptime" },
+    "break",
+    { "type": "custom", "format": " Session" },
+    { "type": "de", "key": "├ DE" },
+    { "type": "display", "key": "├ Display" },
+    { "type": "wm", "key": "╰ WM" },
+    "break",
+    { "type": "custom", "format": " Terminal" },
+    { "type": "shell", "key": "├ Shell" },
+    { "type": "terminal", "key": "╰ Terminal" },
+    "break",
+    { "type": "custom", "format": "󰇅 Hardware" },
+    { "type": "cpu", "key": "├ CPU" },
+    { "type": "gpu", "key": "╰ GPU" },
+    "break",
+    { "type": "custom", "format": "󰤨 Network" },
+    { "type": "localip", "key": "╰ Local IP" },
+    "break",
+    "colors",
+  ],
+}

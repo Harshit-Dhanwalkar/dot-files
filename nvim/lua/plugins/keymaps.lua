@@ -130,6 +130,18 @@ end, { desc = "[I]nsert [P]ath at cursor" })
 -- TODO:
 -- Mini keymaps
 
+-- Tiny-term
+-- Toggle shell terminal
+vim.keymap.set("n", "<leader>\\", function()
+	require("tiny-term").toggle()
+end, { desc = "Toggle terminal" })
+
+-- -- Toggle terminal with count
+-- vim.keymap.set("n", "<leader>.", function()
+-- 	local count = vim.v.count1
+-- 	require("tiny-term").toggle(nil, { count = count })
+-- end, { desc = "Toggle terminal with count" })
+
 -- FIX: error opening picker
 -- $VIRTUAL_ENV or database URLs
 map("n", "<leader>ie", function()

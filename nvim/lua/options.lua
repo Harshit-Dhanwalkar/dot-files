@@ -44,6 +44,7 @@ local options = {
 	wildignorecase = true,
 
 	wrap = true,
+	showbreak = "↪ ",
 	winblend = 20,
 	pumblend = 20,
 	pumheight = 10,
@@ -56,7 +57,7 @@ local options = {
 	smartcase = true,
 	infercase = true,
 
-	-- make backspace behave in a sane manner
+	-- backspace behavior
 	backspace = "indent,eol,start",
 
 	-- searching
@@ -86,6 +87,10 @@ local options = {
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
+
+vim.opt.fillchars:append("diff:╱")
+vim.opt.jumpoptions:append("stack")
+vim.opt.diffopt:append("algorithm:patience")
 
 -- fuzzy find
 vim.opt.path:append("**")
