@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/vim-sleuth.lua
+-- ~/.config/nvim/lua/plugins/vim-sleuth.lua
 -- Detect tabstop and shiftwidth automatically
 return {
 	"tpope/vim-sleuth",

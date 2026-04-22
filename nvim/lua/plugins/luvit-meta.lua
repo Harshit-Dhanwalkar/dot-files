@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/luvit-meta.lua
+-- ~/.config/nvim/lua/plugins/luvit-meta.lua
 
 -- Provide autocompletion for vim.uv functions.
 -- Show documentation on hover.

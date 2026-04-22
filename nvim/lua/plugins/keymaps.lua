@@ -132,7 +132,7 @@ end, { desc = "[I]nsert [P]ath at cursor" })
 
 -- Tiny-term
 -- Toggle shell terminal
-vim.keymap.set("n", "<leader>\\", function()
+vim.keymap.set("n", "<leader>m", function()
 	require("tiny-term").toggle()
 end, { desc = "Toggle terminal" })
 

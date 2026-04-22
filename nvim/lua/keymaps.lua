@@ -19,12 +19,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- clear highlight after search with Esc
+-- -- Compilers keymap
+map("n", "<leader>r", ":make<CR>", { desc = "Run current file" })
+
+-- Clear highlight after search with Esc
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- buffers
+-- Buffers
 map("n", "<leader>.", ":bn<cr>")
 map("n", "<leader>,", ":bp<cr>")
 map("n", "<leader>x", ":bd<cr>")
@@ -84,16 +87,16 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- Make previous word first's char caps
 map("n", "<leader>t", "bv~")
 
--- tabs
+-- Tabs
 map("n", "tn", ":tabn<CR>")
 map("n", "tp", ":tabp<CR>")
 map("n", "td", ":tabclose<CR>")
 
--- better indenting
+-- Better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- center after search
+-- Center after search
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
@@ -167,7 +170,7 @@ map("n", "zM", "zM", { desc = "[Z]old [M]ore: Close ALL folds" })
 map("n", "zR", "zR", { desc = "[Z]old [R]eveal: Open ALL folds" })
 map("n", "zC", "zC", { desc = "[Z]old [C]lose fold recursively" })
 
--- disable vimtex maps
+-- Disable vimtex maps
 vim.g.vimtex_compiler_method = "latexmk"
 vim.g.vimtex_view_method = "skim"
 

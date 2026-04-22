@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/vim-tmux-navigator.lua
+-- ~/.config/nvim/lua/plugins/vim-tmux-navigator.lua
 return {
 	"christoomey/vim-tmux-navigator",
 	cmd = {

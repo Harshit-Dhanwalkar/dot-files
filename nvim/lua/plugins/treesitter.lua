@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/treesitter.lua
+-- ~/.config/nvim/lua/plugins/treesitter.lua
 -- npm install -g tree-sitter-cli
 -- which tree-sitter
 -- tree-sitter --version
@@ -9,7 +9,7 @@ return {
 	-- See `:help nvim-treesitter`
 	dependencies = {
 		{ "JoosepAlviste/nvim-ts-context-commentstring" },
-		{ "nvim-treesitter/nvim-tree-docs" },
+		-- { "nvim-treesitter/nvim-tree-docs" }, -- deprecated
 	},
 	opts = {
 		ensure_installed = {
@@ -17,27 +17,35 @@ return {
 			"c",
 			"cpp",
 			"python",
+			-- "go",
+			-- "rust",
+			-- "java",
+			-- "ruby",
 			"lua",
 			"luadoc",
 			"markdown",
 			"markdown_inline",
 			"latex",
-			-- "rust",
+			"http",
 			"html",
 			"css",
 			"javascript",
 			-- "typescript",
+			"tsx",
 			"json",
 			"toml",
 			"yaml",
 			"query",
 			"diff",
-			-- "wgsl",
-			-- "gdscript",
-			-- "gdshader",
 			"query",
 			"vim",
 			"vimdoc",
+			"svelte",
+			-- "wgsl",
+			-- "gdscript",
+			-- "gdshader",
+			-- "graphql",
+			-- "prisma",
 		},
 		auto_install = true, -- Autoinstall languages that are not installed
 		sync_install = true,

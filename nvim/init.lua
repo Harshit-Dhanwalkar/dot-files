@@ -18,6 +18,18 @@ for _, a in ipairs(modules) do
 	end
 end
 
+-- vim ui2
+require("vim._core.ui2").enable({
+	enable = true,
+	msg = {
+		target = "cmd",
+		pager = { height = 0.5 },
+		dialog = { height = 0.5 },
+		cmd = { height = 0.5 },
+		msg = { height = 0.5, timeout = 4500 },
+	},
+})
+
 g.python3_host_prog = "/home/linuxbrew/.linuxbrew/bin/python3.11"
 cmd("runtime! ftplugin/man.vim")
 
@@ -35,3 +47,6 @@ api.nvim_create_autocmd("BufEnter", {
 api.nvim_create_autocmd("VimLeave", {
 	command = "set guicursor=a:ver20",
 })
+
+-- Load compiler to file specifically to respective language
+require("compiler.init")

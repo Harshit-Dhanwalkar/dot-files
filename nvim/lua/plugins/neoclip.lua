@@ -1,6 +1,7 @@
--- ~/.config/nvim/lua/Plugins/mini.lua
+-- ~/.config/nvim/lua/plugins/mini.lua
+
 local function is_whitespace(line)
-	return vim.fn.match(line, [[^\s*$]]) ~= -1
+	return vim.fn.match([[^\s*$]], line) ~= -1
 end
 
 local function all(tbl, check)

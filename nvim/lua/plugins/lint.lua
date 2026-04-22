@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/lint.lua
+-- ~/.config/nvim/lua/plugins/lint.lua
 return {
 	"mfussenegger/nvim-lint",
 	event = { "BufReadPre", "BufNewFile" },
