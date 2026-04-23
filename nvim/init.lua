@@ -19,16 +19,21 @@ for _, a in ipairs(modules) do
 end
 
 -- vim ui2
-require("vim._core.ui2").enable({
-	enable = true,
-	msg = {
-		target = "cmd",
-		pager = { height = 0.5 },
-		dialog = { height = 0.5 },
-		cmd = { height = 0.5 },
-		msg = { height = 0.5, timeout = 4500 },
-	},
-})
+-- require("vim._core.ui2").enable({
+-- 	enable = true,
+-- 	msg = {
+-- 		target = "cmd",
+-- 		pager = { height = 0.5 },
+-- 		dialog = { height = 0.5 },
+-- 		cmd = { height = 0.5 },
+-- 		msg = { height = 0.5, timeout = 4500 },
+-- 	},
+-- })
+
+-- Disable providers which are not needed
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
 
 g.python3_host_prog = "/home/linuxbrew/.linuxbrew/bin/python3.11"
 cmd("runtime! ftplugin/man.vim")

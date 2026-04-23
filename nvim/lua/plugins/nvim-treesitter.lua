@@ -1,11 +1,11 @@
--- ~/.config/nvim/lua/plugins/treesitter.lua
--- npm install -g tree-sitter-cli
+-- ~/.config/nvim/lua/plugins/nvim-treesitter.lua
+-- brew install tree-sitter-cli
 -- which tree-sitter
 -- tree-sitter --version
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	main = "nvim-treesitter.configs",
+	main = "nvim-treesitter",
 	-- See `:help nvim-treesitter`
 	dependencies = {
 		{ "JoosepAlviste/nvim-ts-context-commentstring" },
@@ -35,6 +35,7 @@ return {
 			"json",
 			"toml",
 			"yaml",
+			"regex",
 			"query",
 			"diff",
 			"query",

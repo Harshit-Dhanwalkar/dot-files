@@ -6,7 +6,7 @@ return {
 		{
 			"u",
 			function()
-				-- You can use vim.cmd("undo") here or the library function
+				-- use vim.cmd("undo") here or the library function
 				vim.cmd("undo")
 				require("undo-glow").undo()
 			end,
@@ -159,6 +159,9 @@ return {
 				cursor = {
 					hl_color = { bg = "#793D54" }, -- Dark muted pink
 				},
+			},
+			fallback_for_transparency = {
+				bg = "#000000",
 			},
 			priority = 2048 * 3,
 		})

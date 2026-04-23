@@ -239,6 +239,7 @@ return {
 		"bash-language-server",
 		-- "codebook", -- Spell checker
 		"ruff", -- Python, format
+		"isort",
 		-- "pyright",
 		-- "black", -- Python formatter
 		"debugpy",
@@ -253,6 +254,11 @@ return {
 		"tailwindcss-language-server",
 		"stylua",
 		"json-lsp",
+		"fixjson",
+		-- "google-java-format", -- JAVA
+		"prettierd",
+		"tex-fmt", --LaTeX
+		"xmlformatter", -- XML
 		-- "asm-lsp",
 		-- "goimports",  -- For Go
 		-- "rustfmt", -- rust-analyzer

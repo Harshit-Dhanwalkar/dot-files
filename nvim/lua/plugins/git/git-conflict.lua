@@ -2,28 +2,32 @@
 return {
 	"akinsho/git-conflict.nvim",
 	version = "*",
-	config = true,
 
-	opts = function()
+	config = function()
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "GitConflictDetected",
 			callback = function()
 				vim.notify("Conflict detected in " .. vim.fn.expand("<afile>"))
-				vim.keymap.set("n", "cww", function()
-					engage.conflict_buster()
-					create_buffer_local_mappings()
-				end, "Git Conflict")
+				-- vim.keymap.set("n", "cww", function()
+				-- 	engage.conflict_buster()
+				-- 	create_buffer_local_mappings()
+				-- end, "Git Conflict")
 			end,
 		})
 
 		require("git-conflict").setup({
 			default_mappings = {
-				ours = "<leader>gCo",
-				theirs = "<leader>gCt",
-				none = "<leader>gC0",
-				both = "<leader>gCb",
-				next = "<leader>gCn",
-				prev = "<leader>gCp",
+				ours = "<leader>Co",
+				theirs = "<leader>Ct",
+				none = "<leader>C0",
+				both = "<leader>Cb",
+				next = "<leader>Cn",
+				prev = "<leader>Cp",
+			},
+			disable_diagnostics = false,
+			hl = {
+				incoming = "DiffAdd",
+				current = "DiffText",
 			},
 		})
 	end,

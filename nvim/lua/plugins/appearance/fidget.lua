@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/appearance/fidget.lua
+
 return {
 	"j-hui/fidget.nvim",
 	config = function()
@@ -32,7 +33,7 @@ return {
 					priority = 30, -- Ordering priority for LSP notification group
 					skip_history = true, -- progress notifications should be omitted from history
 					-- How to format a progress message
-					-- format_message = require("fidget.progress.display").default_format_message,
+					format_message = require("fidget.progress.display").default_format_message,
 					-- How to format a progress annotation
 					format_annote = function(msg)
 						return msg.title
