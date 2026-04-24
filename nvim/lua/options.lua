@@ -12,7 +12,6 @@ local options = {
 
 	fileencoding = "utf-8",
 	guifont = "JetBrainsMono_Nerd_Font:h11",
-	foldenable = false,
 	backup = false,
 	writebackup = false,
 	termguicolors = true,
@@ -39,9 +38,11 @@ local options = {
 	undodir = vim.fn.stdpath("data") .. "/undo",
 
 	-- lazy file name tab completion,
-	wildmode = "list:longest,list:full",
+	wildmode = "list:longest,list:full", -- complete longest common match, full completion list, cycle through Tab
 	wildmenu = true,
 	wildignorecase = true,
+	redrawtime = 10000,
+	maxmempattern = 20000,
 
 	wrap = true,
 	showbreak = "↪ ",
@@ -56,6 +57,7 @@ local options = {
 	ignorecase = true,
 	smartcase = true,
 	infercase = true,
+	selection = "inclusive",
 
 	-- backspace behavior
 	backspace = "indent,eol,start",
@@ -69,7 +71,7 @@ local options = {
 	sidescroll = 4,
 	scrolloff = 8,
 
-	-- ipad scrolling
+	-- mouse scrolling support
 	mouse = "a",
 
 	cursorline = true,
@@ -82,12 +84,23 @@ local options = {
 	-- Sync clipboard between OS and Neovim.
 	--  See `:help 'clipboard'`
 	clipboard = "unnamedplus",
+	modifiable = true,
+
+	-- Folding
+	foldenable = false,
+	-- foldmethod = "expr",
+	-- foldexpr = "u:lua.vim.treesitter.foldexpr()" --use treesitter for folding
+	-- foldlevel = 99, --start with all folds open
+
+	-- Cursor blink settings
+	-- guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175",
 }
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
+vim.opt.iskeyword:append("-")
 vim.opt.fillchars:append("diff:╱")
 vim.opt.jumpoptions:append("stack")
 vim.opt.diffopt:append("algorithm:patience")

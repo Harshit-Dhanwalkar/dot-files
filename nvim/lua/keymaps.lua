@@ -10,39 +10,42 @@ vim.g.have_nerd_font = true
 -- Remove flickering in the statusline when saving a file
 -- map("n", ":w", "<cmd>silent write<cr>") -- fixed by noice plugin
 
---  See `:help lua-guide-autocommands` and `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
-
 -- -- Compilers keymap
 map("n", "<leader>r", ":make<CR>", { desc = "Run current file" })
 
 -- Clear highlight after search with Esc
-map("n", "<Esc>", "<cmd>nohlsearch<CR>")
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear highlight(s)" })
 
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Buffers
-map("n", "<leader>.", ":bn<cr>")
-map("n", "<leader>,", ":bp<cr>")
-map("n", "<leader>x", ":bd<cr>")
+map("n", "<leader>.", ":bnext<cr>", { desc = "Next buffer" })
+map("n", "<leader>,", ":bprevious<cr>", { desc = "Previous buffer" })
+map("n", "<leader>x", ":bdelete<cr>", { desc = "Close buffer" })
 
 -- Yank to clipboard
 map({ "n", "v" }, "<leader>y", [["+y]])
 
+-- Paste without yanking
+map("x", "<leader>P", '"_dP"', { desc = "[P]aste without yanking" })
+
+-- Delete without yanking
+map({ "n", "v" }, "<leader>x", '"_d"', { desc = "[x]Delete without yanking" })
+
 -- Formatting
-map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", { noremap = true, silent = true })
+map(
+	"n",
+	"<leader>f",
+	"<cmd>lua vim.lsp.buf.format()<CR>",
+	{ noremap = true, silent = true }
+	-- { desc = "[F]ormat current buffer" }
+)
 
 -- map("", "<Leader>ss", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
 
 -- Split window
-map("n", "ss", ":split<Return>", opts)
-map("n", "sv", ":vsplit<Return>", opts)
+-- map("n", "<leader>sh", ":split<Return>", { desc = "[S]plit window [H]orizoncally" })
+map("n", "<leader>sv", ":vsplit<Return>", { desc = "[S]plit window [V]ertically" })
 
 -- Move window
 map("n", "<C-h>", "<C-w>h")

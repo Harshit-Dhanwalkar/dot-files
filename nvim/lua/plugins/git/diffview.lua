@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/git/diffview.lua
+
 return {
 	"sindrets/diffview.nvim",
 	dependencies = "nvim-lua/plenary.nvim",

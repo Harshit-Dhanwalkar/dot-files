@@ -1,12 +1,19 @@
 -- ~/.config/nvim/lua/plugins/lsp/nvim-lspconfig.lua
+
 -- local icons = require("utils.icons") --FIX: fix path
 -- local utils = require("utils")
+
 return {
 	"neovim/nvim-lspconfig",
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{ "williamboman/mason.nvim", config = true },
+		-- { "williamboman/mason.nvim", config = true }, -- old url
+		{ "mason-org/mason.nvim", config = true }, -- LSP/DAP/Linter installer & manager
+		-- { "folke/neodev.nvim", config = true}, -- Not needed anymore
+		-- { "antosha417/nvim-lsp-file-operations", config = true },
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"creativenull/efmls-configs-nvim", -- Preconfigured EFM Language Server setups
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/nvim-cmp",
 		"j-hui/fidget.nvim",
@@ -208,7 +215,11 @@ return {
 				-- vim.lsp.inlay_hint.enable(true, {buffer=bufnr})
 
 				local diag_config = {
-					virtual_text = true, -- appears after the line
+					-- virtual_text = true, -- appears after the line
+					virtual_text = { -- appears after the line
+						prefix = "●",
+						spacing = 2,
+					},
 					virtual_lines = false, -- appears under the line
 					update_in_insert = false,
 					underline = true,

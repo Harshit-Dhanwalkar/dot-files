@@ -1,9 +1,50 @@
 -- ~/.config/nvim/lua/plugins/lsp/conform.lua
+
 -- Autoformatter
 return {
 	"stevearc/conform.nvim",
 	event = { "BufReadPre", "BufNewFile" },
 	cmd = { "ConformInfo" },
+
+	keys = {
+		{
+			"<leader>cf",
+			function()
+				require("conform").format({
+					async = true,
+					timeout_ms = 3000,
+					lsp_fallback = true,
+					-- formatting_options = { tabSize = 2 },
+				})
+			end,
+			mode = { "n", "v" },
+			desc = "[F]ormat buffer",
+		},
+		-- Format Selection
+		{
+			"<leader>ch",
+			function()
+				local vstart = vim.fn.getpos("'<")
+				local vend = vim.fn.getpos("'>")
+				local line_start = vstart[2]
+				local line_end = vend[2]
+				local lines = vim.fn.getline(line_start, line_end)
+				local range = {
+					start = line_start,
+					["end"] = line_end,
+				}
+				require("conform").format({
+					timeout_ms = 3000,
+					lsp_fallback = true,
+					formatting_options = { tabSize = 2 },
+					range = range,
+				})
+			end,
+			mode = { "v" },
+			desc = "Format Selection",
+		},
+	},
+
 	config = function()
 		require("conform").setup({
 			formatters = {
@@ -30,15 +71,14 @@ return {
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "isort", "black" }, -- "ruff"
-				-- python = { "ruff_fix", "ruff_format", "black" },
+				python = { "isort", "ruff", "ruff_fix", "ruff_format" }, -- "black"
 				c = { "clang-format" },
 				cpp = { "clang-format" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				javascriptreact = { "prettier" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
-				vue = { "prettier" },
+				-- vue = { "prettier" },
 				css = { "prettier" },
 				scss = { "prettier" },
 				html = { "prettier" }, -- html_beautify
@@ -50,6 +90,7 @@ return {
 				markdown = { "prettier" },
 				["markdown.mdx"] = { "prettier" },
 				tex = { "tex-fmt" },
+				-- latex = { "latexindent" },
 				java = { "google-java-format", lsp_format = "fallback" },
 				-- rust = { "rustfmt", lsp_format = "fallback" },
 				-- go = { "gofumpt" },
@@ -90,42 +131,4 @@ return {
 			end,
 		})
 	end,
-	keys = {
-		{
-			"<leader>cf",
-			function()
-				require("conform").format({
-					async = true,
-					timeout_ms = 3000,
-					lsp_fallback = true,
-					-- formatting_options = { tabSize = 2 },
-				})
-			end,
-			mode = { "n", "v" },
-			desc = "[F]ormat buffer",
-		},
-		-- Format Selection
-		{
-			"<leader>ch",
-			function()
-				local vstart = vim.fn.getpos("'<")
-				local vend = vim.fn.getpos("'>")
-				local line_start = vstart[2]
-				local line_end = vend[2]
-				local lines = vim.fn.getline(line_start, line_end)
-				local range = {
-					start = line_start,
-					["end"] = line_end,
-				}
-				require("conform").format({
-					timeout_ms = 3000,
-					lsp_fallback = true,
-					formatting_options = { tabSize = 2 },
-					range = range,
-				})
-			end,
-			mode = { "v" },
-			desc = "Format Selection",
-		},
-	},
 }

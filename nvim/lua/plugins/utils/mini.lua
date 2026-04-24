@@ -1,26 +1,26 @@
 -- ~/.config/nvim/lua/plugins/utils/mini.lua
 return {
-	{
-		"echasnovski/mini.comment",
-		version = false,
-		dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
-		config = function()
-			-- disable the autocommand from ts-context-commentstring
-			require("ts_context_commentstring").setup({
-				enable_autocmd = false,
-			})
-			require("mini.comment").setup({
-				-- tsx, jsx, html , svelte comment support
-				options = {
-					custom_commentstring = function()
-						return require("ts_context_commentstring.internal").calculate_commentstring({
-							key = "commentstring",
-						}) or vim.bo.commentstring
-					end,
-				},
-			})
-		end,
-	},
+	-- { -- Handled by commnet.nvim
+	-- 	"echasnovski/mini.comment",
+	-- 	version = false,
+	-- 	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+	-- 	config = function()
+	-- 		-- disable the autocommand from ts-context-commentstring
+	-- 		require("ts_context_commentstring").setup({
+	-- 			enable_autocmd = false,
+	-- 		})
+	-- 		require("mini.comment").setup({
+	-- 			-- tsx, jsx, html , svelte comment support
+	-- 			options = {
+	-- 				custom_commentstring = function()
+	-- 					return require("ts_context_commentstring.internal").calculate_commentstring({
+	-- 						key = "commentstring",
+	-- 					}) or vim.bo.commentstring
+	-- 				end,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"echasnovski/mini.trailspace",
 		event = { "BufReadPost", "BufNewFile" },
@@ -209,6 +209,36 @@ return {
 			-- end)
 		end,
 	},
+	-- {
+	-- 	"echasnovski/mini.cursorword",
+	-- 	config = function()
+	-- 		require("mini.cursorword").setup({})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"echasnovski/mini.indentscope",
+	-- 	config = function()
+	-- 		require("mini.indentscope").setup({})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"echasnovski/mini.move",
+	-- 	config = function()
+	-- 		require("mini.move").setup({})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"echasnovski/mini.notify",
+	-- 	config = function()
+	-- 		require("mini.notify").setup({})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"echasnovski/mini.bufremove",
+	-- 	config = function()
+	-- 		require("mini.bufremove").setup({})
+	-- 	end,
+	-- },
 	{
 		"echasnovski/mini.surround",
 		event = { "BufReadPre", "BufNewFile" },

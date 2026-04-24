@@ -2,9 +2,9 @@
 
 -- For Python
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "python",
+	pattern = "python3",
 	callback = function()
-		vim.cmd("compiler python")
+		vim.cmd("compiler python3")
 	end,
 })
 

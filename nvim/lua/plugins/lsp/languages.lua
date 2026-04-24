@@ -34,8 +34,8 @@ return {
 					".clangd",
 					".clang-tidy",
 					".clang-format",
-					"compile_commands.json",
 					"compile_flags.txt",
+					"compile_commands.json",
 					"configure.ac",
 					".git"
 				)(fname) or util.path.dirname(fname)
@@ -47,6 +47,7 @@ return {
 				"--clang-tidy",
 				"--header-insertion=iwyu",
 				"--completion-style=detailed",
+				"--query-driver=/usr/bin/c++,/usr/bin/g++",
 				"--function-arg-placeholders",
 				-- "--fallback-style=llvm",
 				"--fallback-style=Google",
@@ -121,6 +122,11 @@ return {
 			},
 		},
 		["ltex_plus"] = {}, -- LanguageTool integration for LaTeX
+		-- tinymist = { -- Typst
+		-- 	cmd = { "tinymist" },
+		-- 	filetypes = { "typst" },
+		-- 	root_markers = { ".git" },
+		-- },
 		markdown_oxide = {}, -- Markdown
 		json_lsp = {}, -- JSON
 		tflint = {},
@@ -221,15 +227,36 @@ return {
 		lua_ls = { -- Lua
 			settings = {
 				Lua = {
+					runtime = {
+						version = "LuaJIT",
+					},
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						checkThirdParty = false,
+						library = vim.api.nvim_get_runtime_file("", true),
+					},
 					completion = { callSnippet = "Replace" },
 				},
 			},
 		},
 		emmylua_ls = {},
 		-- rust_analyzer = { -- Rust
-		--   settings = {
-		--   ['rust-analyzer'] = {},
-		--   },
+		-- 	settings = {
+		-- 		["rust-analyzer"] = {
+		-- 			inlayHints = {
+		-- 				typeHints = { enable = true },
+		--
+		-- 				parameterHints = { enable = false },
+		-- 				chainingHints = { enable = false },
+		-- 				bindingModeHints = { enable = false },
+		-- 				closureReturnTypeHints = { enable = "never" },
+		-- 				lifetimeElisionHints = { enable = "never" },
+		-- 				reborrowHints = { enable = false },
+		-- 				closingBraceHints = { enable = false },
+		-- 			},
+		-- 		},
 		-- },
 		docker_ls = {},
 	},
@@ -257,7 +284,7 @@ return {
 		"fixjson",
 		-- "google-java-format", -- JAVA
 		"prettierd",
-		"tex-fmt", --LaTeX
+		-- "tex-fmt", --LaTeX
 		"xmlformatter", -- XML
 		-- "asm-lsp",
 		-- "goimports",  -- For Go

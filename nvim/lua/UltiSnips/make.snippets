@@ -1,4 +1,4 @@
-snippet make "Makefile for C project"
+snippet makec "Makefile for C project"
 CC = gcc
 CFLAGS = -Wall -Wextra -pedantic -I$($0)/
 DEBUG_FLAGS = -DDEBUG -O0 -g -fsanitize=address
@@ -19,7 +19,37 @@ all: $2
 $2:
 	$(CC) main.c $(CFLAGS) $(LFLAGS) -o $2
 
-.PHONY: all $2
+clean:
+	rm -f $2
+
+.PHONY: all $2 clean
+endsnippet
+
+snippet makecpp "Makefile for Cpp project"
+CXX = g++
+CXXFLAGS = -Wall -Wextra -pedantic -std=c++23
+DEBUG_FLAGS = -DDEBUG -O0 -g -fsanitize=address
+RELEASE_FLAGS = -DNDEBUG -O3
+
+LFLAGS = -L$($1)
+
+config ?= debug
+
+ifeq ($(config), debug)
+	CXXFLAGS += $(DEBUG_FLAGS)
+else
+	CXXFLAGS += $(RELEASE_FLAGS)
+endif
+
+all: $2
+
+$2:
+	$(CXX) $2.cpp $(CXXFLAGS) $(LFLAGS) -o $2
+
+clean:
+	rm -f $2
+
+.PHONY: all $2 clean
 endsnippet
 
 snippet latex "Makefile for LaTeX projects"

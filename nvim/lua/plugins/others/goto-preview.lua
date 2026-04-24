@@ -45,6 +45,8 @@
 return {
 	"rmagatti/goto-preview",
 	event = "LspAttach",
+	dependencies = "rmagatti/logger.nvim",
+
 	keys = {
 		{
 			"gpd",
