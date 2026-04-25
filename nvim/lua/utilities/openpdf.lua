@@ -1,7 +1,5 @@
 -- ~/.config/nvim/lua/utilities/openpdf.lua
---[[
-Description: Extracts the pdf file path from a Markdown or Wikilink on the current line and opens the corresponding PDF document in the external Zathura pdf viewer.
---]]
+-- Extracts the pdf file path from a Markdown or Wikilink on the current line and opens the corresponding PDF document in the external Zathura pdf viewer.
 
 function OpenPdfInZathura()
 	local current_file_path = vim.fn.expand("%:p")

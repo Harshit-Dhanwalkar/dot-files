@@ -4,6 +4,7 @@
 -- require("utilities.autocommands")
 -- require("utilities.go_to_relative_file")
 -- require("utilities.notes")
+require("utilities.toggle_booleans")
 -- require("utilities.datejumps")
 -- require("utilities.toggletheme")
 -- require("utilities.openpdf")

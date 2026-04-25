@@ -1,3 +1,5 @@
+-- ~/.config/nvim/lua/keymaps.lua
+
 local map = vim.keymap.set
 
 -- Leader key
@@ -155,15 +157,15 @@ map("n", "gr", function()
 		})
 	end, 0)
 end, { desc = "Go to [R]eferences" })
-map("n", "<leader>e", vim.diagnostic.open_float)
+map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open diagnostic in float" })
 
 -- move to end of word while keeping the cursor in the same column for the next line
 -- map("n", "k", "gk")
 -- map("n", "j", "gj")
 
 -- Go to errors
-map("n", "[e", vim.diagnostic.goto_next)
-map("n", "]e", vim.diagnostic.goto_next)
+map("n", "[e", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
+map("n", "]e", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic" })
 
 -- Folding Keymaps
 map("n", "za", "za", { desc = "[Z]old [A]lternate/Toggle fold" })
@@ -189,3 +191,7 @@ end
 -- Open pdf in zathura
 require("utilities.openpdf")
 map("n", "<leader>oz", ":ZathuraOpen<CR>", { desc = "Open PDF in Zathura" })
+
+-- Toggle booleans
+require("utilities.toggle_booleans")
+map("n", "<leader>v", ":ToggleBoolean<CR>", { desc = "Toggle any Boolean" })

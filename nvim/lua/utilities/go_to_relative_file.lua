@@ -1,7 +1,5 @@
 -- ~/.config/nvim/lua/utilities/commands.lua
---[[
-Description: jump between next/previous files in present directory
---]]
+-- Jump between next/previous files in present directory
 
 local go_to_relative_file = function(n, relative_to)
 	return function()

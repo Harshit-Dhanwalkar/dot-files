@@ -1,7 +1,5 @@
 -- ~/.config/nvim/lua/utilities/datejumps.lua
---[[
-Description: Provides functions to jump between dates in the 'dd/mm/yyyy' format.
---]]
+-- Provides functions to jump between dates in the 'dd/mm/yyyy' format.
 
 local M = {}
 

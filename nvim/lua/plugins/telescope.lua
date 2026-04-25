@@ -1,4 +1,5 @@
--- ~/.config/nvim/lua/plugins/telescope.lua
+-- ~/.config/nvim/lua/Plugins/telescope.lua
+
 return {
 	"nvim-telescope/telescope.nvim",
 	event = "VimEnter",
