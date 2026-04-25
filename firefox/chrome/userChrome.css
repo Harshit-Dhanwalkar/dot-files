@@ -16,6 +16,12 @@ toolbarspring {
   display: none !important;
 }
 
+/*--------- Font -----------*/
+:root {
+  /* Set your global monospace font */
+  font-family: "JetBrains Mono NF", "Fira Code", monospace !important;
+}
+
 /*--------- Translucency after FF 121 -----------*/
 :root #TabsToolbar,
 :root #titlebar,
@@ -35,15 +41,19 @@ toolbarspring {
   margin-top: 1px !important;
   margin-inline: 2px !important; /* sides */
   margin-block-end: 2px !important; /* bottom */
-  border-radius: 12px !important;
+  /* border-radius: 12px !important; */
+  border-radius: 0px !important;
   border: 1px solid #cccccc !important;
   overflow: hidden !important;
-  box-shadow: 0 0 0px 1px light-dark(rgb(204, 204, 204), hsl(240, 5%, 5%)) !important;
+  /* box-shadow: 0 0 0px 1px light-dark(rgb(204, 204, 204), hsl(240, 5%, 5%)) !important; */
+  box-shadow: none !important;
 }
 
-.tabbrowser-tab::after {
-  border: 0 !important;
+.tab-label {
+  font-size: 10px !important;
+  font-family: "JetBrains Mono NF", "Fira Code", monospace !important;
 }
+
 .titlebar-spacer[type="pre-tabs"] {
   border: 0 !important;
 }
@@ -55,12 +65,28 @@ toolbarspring {
   border: 0 !important;
 }
 
+#tabbrowser-tabs {
+  --tab-min-height: 20px !important;
+}
+
+.tabbrowser-tab {
+  border-radius: 0px !important;
+  min-height: var(--tab-min-height) !important;
+}
+
 .tabbrowser-tab::after {
   border: 0 !important;
 }
 
+.tab-background {
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  transition: none !important;
+}
+
 #urlbar-background {
-  border: 1px solid #cccccc !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
 }
 
 #urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner {
@@ -92,11 +118,11 @@ toolbarspring {
 
 /*--------- Navigation Bar Background -----------*/
 :root:not([lwt-default-theme-in-dark-mode]) #nav-bar {
-    background-color: rgba(0, 0, 0, 0.01) !important;
+  background-color: rgba(0, 0, 0, 0.01) !important;
 }
 
 :root[lwt-default-theme-in-dark-mode] #nav-bar {
-    background-color: rgba(0, 0, 0, 0.01) !important;
+  background-color: rgba(0, 0, 0, 0.01) !important;
 }
 
 #nav-bar-customization-target {
@@ -132,8 +158,8 @@ toolbarspring {
 /* Centre URL bar text input */
 /* #urlbar-input { */
 /*   height: 100%; */
-  /* text-align: center !important; */
-}
+/* text-align: center !important; */
+/* } */
 
 /* Unless text input is selected like Safari */
 #urlbar[focused] #urlbar-input {

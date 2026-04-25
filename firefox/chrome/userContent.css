@@ -10,6 +10,14 @@
   }
 }
 
+* {
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  outline: none !important;
+  transition: none !important;
+}
+
 @-moz-document url-prefix(about:home), url-prefix(about:newtab) {
   body {
     background: var(--backgroundpic) !important;
@@ -28,6 +36,42 @@
   }
 
   .top-sites-list {
-    margin-top: 20px !important;
+    margin-top: 10px !important;
+  }
+  /* .top-sites-list { */
+  /*   display: grid !important; */
+  /*   grid-template-columns: repeat(10, 1fr) !important; */
+  /*   grid-template-rows: repeat(10, auto) !important; */
+  /*   gap: 10px !important; */
+  /*   justify-content: center !important; */
+  /*   align-items: start !important; */
+  /*   margin-top: 20px !important; */
+  /*   width: 100% !important; */
+  /* } */
+  /* .top-site-outer { */
+  /*   width: 100% !important; */
+  /*   min-width: 80px !important; */
+  /* } */
+  /* .tile { */
+  /*   width: 100% !important; */
+  /*   height: auto !important; */
+  /*   aspect-ratio: 1 / 1 !important; */
+  /* } */
+}
+
+@-moz-document domain("youtube.com") {
+  ytd-thumbnail,
+  ytd-playlist-thumbnail,
+  .ytp-videowall-still-image,
+  #avatar-inline,
+  .yt-spec-button-shape-next--size-m,
+  #container.ytd-player {
+    border-radius: 0px !important;
+  }
+
+  #video-title,
+  #content-text,
+  .yt-core-attributed-string {
+    font-family: "JetBrains Mono NF", "Fira Code", monospace !important;
   }
 }

@@ -5,6 +5,8 @@
 
 <img src="../assets/NeoVim.png" alt="Neovim" width="450">
 
+TODO: add install script
+
 ---
 
 ## Custom utilities (in `lua/utilities/`)
@@ -18,6 +20,8 @@
 
 - Extracts the pdf file path from a Markdown or Wikilink on the current line and opens it in Zathura pdf viewer.
   - key map `<leader>oz`.
+
+TODO: update other utils
 
 ---
 
