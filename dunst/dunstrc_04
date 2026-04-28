@@ -1,5 +1,5 @@
-# vim: ft=cfg
 # ~/.config/dunst/dunstrc
+# vim: ft=cfg
 
 ## Author  : Harshit Prashant Dhanwalkar
 ## Github  : @Harshit-Dhanwalkar
@@ -74,18 +74,18 @@
     timeout = 8
 
 [urgency_low]
-    background = "#0a0a0a"  # "#1e1e2e"  #"#222222"  # "#2e3440"
-    foreground = "#cfcfcf"  # "#cdd6f4"  # "#bbbbbb"  #"#eceff4"
+    background = "#1e1e2e"  #"#222222"  # "#2e3440"
+    foreground = "#cdd6f4"  # "#bbbbbb"  # "#eceff4"
     timeout = 3
 
 [urgency_normal]
-    background = "#0a0a0a"  # "#1e1e2e"  # "#005577"  # "#313244"
-    foreground = "#ffffff"  # "#89b4fa"  # "#eeeeee"  # "#a6adc8"
+    background = "#1e1e2e"  # "#005577" # "#313244"
+    foreground = "#89b4fa"  # "#eeeeee" # "#a6adc8"
     timeout = 5
 
 [urgency_critical]
-    background = "#580c19"  # "#bf616a"  # "#f38ba8"
-    foreground = "#0a0a0a"  # "#1e1e2e"  # "#11111b"  # "#eceff4"
+    background = "#bf616a"  # "#f38ba8"
+    foreground = "#1e1e2e"  #"#11111b"  # "#eceff4"
     timeout = 0
 
 [shortcuts]

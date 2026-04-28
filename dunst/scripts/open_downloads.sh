@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+## Author  : Harshit Prahant Dhanwalkar
+## Github  : @Harshit-Dhanwalkar
+
 # FILE=$(echo "$DUNST_BODY" | tail -n 1 | xargs)
 FILE=$(echo "$DUNST_BODY" | xargs)
 
