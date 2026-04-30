@@ -55,7 +55,6 @@ This repository contains configuration files and installation notes for my prefe
 1.  <details>
     <summary>Kitty</summary>
     <p>
-
     - [kitty](https://sw.kovidgoyal.net/kitty/)
     </p>
     <p>Installation</p>
@@ -71,7 +70,6 @@ This repository contains configuration files and installation notes for my prefe
 2.  <details>
     <summary>ST</summary>
     <p>
-
     - [suckless](https://st.suckless.org/)
     </p>
     <p>Installation</p>
@@ -91,7 +89,6 @@ This repository contains configuration files and installation notes for my prefe
 1.  <details>
     <summary>Nvim</summary>
     <p>
-
     - [Nvim](https://neovim.io/)
     </p>
     <p>Installation</p>
@@ -108,7 +105,6 @@ This repository contains configuration files and installation notes for my prefe
 2.  <details>
     <summary>Inkscape</summary>
     <p>
-
     - [Inkscape](https://inkscape.org/)
     </p>
     <p>Installation</p>
@@ -126,7 +122,6 @@ This repository contains configuration files and installation notes for my prefe
 3.  <details>
     <summary>Qutebrowser</summary>
     <p>
-
     - [Qutebrowser](https://qutebrowser.org/index.html)
     </p>
     <p>Installation</p>
@@ -142,7 +137,6 @@ This repository contains configuration files and installation notes for my prefe
 4.  <details>
     <summary>Obsidian</summary>
     <p>
-
     - [Obsidian](https://obsidian.md/)
     </p>
     <p>Installation</p>
@@ -158,7 +152,6 @@ This repository contains configuration files and installation notes for my prefe
 5.  <details>
     <summary>QEMU</summary>
     <p>
-
     - [QEMU](https://www.qemu.org/)
     - Check Virtualization Extension by running following command to make sure you’ve enabled virtualization in on your system. It should be above 0
       - If the output is zero then go to bios settings and enable VT-x (Virtualization Technology Extension) for Intel processor and AMD-V for AMD processor.
@@ -223,7 +216,6 @@ This repository contains configuration files and installation notes for my prefe
 6.  <details>
     <summary>OBS studio</summary>
     <p>
-
     - [OBS Project](https://obsproject.com/)
     </p>
     <p>Installation</p>
@@ -239,7 +231,6 @@ This repository contains configuration files and installation notes for my prefe
 7.  <details>
     <summary>Blender</summary>
     <p>
-
     - Downloads via: [Blender.org](https://www.blender.org/download/)
     </p>
     </details>
@@ -247,12 +238,10 @@ This repository contains configuration files and installation notes for my prefe
 8.  <details>
     <summary>Aseprite</summary>
     <p>
-
     - [Aseprite.org](https://www.aseprite.org/)
     </p>
     <p>Installation</p>
     <p>
-
     - Downloads via :
       - [Github](https://github.com/aseprite/aseprite.git)
         or
@@ -308,7 +297,6 @@ This repository contains configuration files and installation notes for my prefe
 9.  <details>
     <summary>Fastfetch</summary>
     <p>
-
     - [Github](https://github.com/fastfetch-cli/fastfetch.git)
     </p>
     <p>Installation</p>
@@ -324,7 +312,6 @@ This repository contains configuration files and installation notes for my prefe
 10. <details>
     <summary>BTop++</summary>
     <p>
-
     - [Github](https://github.com/aristocratos/btop)
     </p>
     <p>Installation</p>
@@ -340,7 +327,6 @@ This repository contains configuration files and installation notes for my prefe
 11. <details>
     <summary>Dunst</summary>
     <p>
-
     - [Archwiki](https://wiki.archlinux.org/title/Dunst)
     - [Dunst](https://dunst-project.org/)
     </p>
@@ -357,7 +343,6 @@ This repository contains configuration files and installation notes for my prefe
 12. <details>
     <summary>Dmenu</summary>
     <p>
-
     - [suckless.org](http://tools.suckless.org/dmenu/)
     </p>
     <p>Installation</p>
@@ -377,7 +362,6 @@ This repository contains configuration files and installation notes for my prefe
 13. <details>
     <summary>Wofi</summary>
     <p>
-
     - [Gitlab](https://gitlab.com/dgirault/wofi.git)
     </p>
     <p>Installation</p>
@@ -410,7 +394,6 @@ This repository contains configuration files and installation notes for my prefe
 14. <details>
     <summary>Yazi</summary>
     <p>
-
     - [Github](https://github.com/sxyazi/yazi)
     - [Website](https://yazi-rs.github.io/)
     </p>
@@ -425,7 +408,6 @@ This repository contains configuration files and installation notes for my prefe
 15. <details>
     <summary>Sioyek</summary>
     <p>
-
     - [Github](https://github.com/sxyazi/yazi)
     - [Website](https://yazi-rs.github.io/)
     </p>
@@ -447,7 +429,6 @@ This repository contains configuration files and installation notes for my prefe
 1.  <details>
     <summary>Icon pack</summary>
     <p>
-
     - [Arashi](https://github.com/0hStormy/Arashi)
     </p>
     <p>Installation</p>
