@@ -44,8 +44,14 @@ static int utf8decode(const char *s_in, long *u, int *err) {
   return len;
 }
 
+// Drw *drw_create(Display *dpy, int screen, Window root, unsigned int w,
+//                 unsigned int h) {
+////
+// Alpha
 Drw *drw_create(Display *dpy, int screen, Window root, unsigned int w,
-                unsigned int h) {
+                unsigned int h, Visual *visual, unsigned int depth,
+                Colormap cmap) {
+  ////
   Drw *drw = ecalloc(1, sizeof(Drw));
 
   drw->dpy = dpy;
@@ -53,8 +59,16 @@ Drw *drw_create(Display *dpy, int screen, Window root, unsigned int w,
   drw->root = root;
   drw->w = w;
   drw->h = h;
-  drw->drawable = XCreatePixmap(dpy, root, w, h, DefaultDepth(dpy, screen));
-  drw->gc = XCreateGC(dpy, root, 0, NULL);
+  // drw->drawable = XCreatePixmap(dpy, root, w, h, DefaultDepth(dpy, screen));
+  // drw->gc = XCreateGC(dpy, root, 0, NULL);
+  ////
+  // Alpha
+  drw->visual = visual;
+  drw->depth = depth;
+  drw->cmap = cmap;
+  drw->drawable = XCreatePixmap(dpy, root, w, h, depth);
+  drw->gc = XCreateGC(dpy, drw->drawable, 0, NULL);
+  ////
   XSetLineAttributes(dpy, drw->gc, 1, LineSolid, CapButt, JoinMiter);
 
   return drw;
@@ -68,8 +82,12 @@ void drw_resize(Drw *drw, unsigned int w, unsigned int h) {
   drw->h = h;
   if (drw->drawable)
     XFreePixmap(drw->dpy, drw->drawable);
-  drw->drawable = XCreatePixmap(drw->dpy, drw->root, w, h,
-                                DefaultDepth(drw->dpy, drw->screen));
+  // drw->drawable = XCreatePixmap(drw->dpy, drw->root, w, h,
+  //                               DefaultDepth(drw->dpy, drw->screen));
+  ////
+  // Alpha
+  drw->drawable = XCreatePixmap(drw->dpy, drw->root, w, h, drw->depth);
+  ////
 }
 
 void drw_free(Drw *drw) {
@@ -154,17 +172,34 @@ void drw_fontset_free(Fnt *font) {
   }
 }
 
-void drw_clr_create(Drw *drw, Clr *dest, const char *clrname) {
+// void drw_clr_create(Drw *drw, Clr *dest, const char *clrname) {
+////
+// Alpha
+void drw_clr_create(Drw *drw, Clr *dest, const char *clrname,
+                    unsigned int alpha) {
+  ////
   if (!drw || !dest || !clrname)
     return;
 
-  if (!XftColorAllocName(drw->dpy, DefaultVisual(drw->dpy, drw->screen),
-                         DefaultColormap(drw->dpy, drw->screen), clrname, dest))
+  // if (!XftColorAllocName(drw->dpy, DefaultVisual(drw->dpy, drw->screen),
+  //                        DefaultColormap(drw->dpy, drw->screen), clrname,
+  //                        dest))
+  // die("error, cannot allocate color '%s'", clrname);
+  ////
+  // Alpha
+  if (!XftColorAllocName(drw->dpy, drw->visual, drw->cmap, clrname, dest))
     die("error, cannot allocate color '%s'", clrname);
+  dest->pixel = (dest->pixel & 0x00ffffffU) | (alpha << 24);
+  ////
 }
 
 /* Create color schemes. */
-Clr *drw_scm_create(Drw *drw, const char *clrnames[], size_t clrcount) {
+// Clr *drw_scm_create(Drw *drw, const char *clrnames[], size_t clrcount) {
+////
+// Alpha
+Clr *drw_scm_create(Drw *drw, const char *clrnames[], size_t clrcount,
+                    const unsigned int alphas[]) {
+  ////
   size_t i;
   Clr *ret;
 
@@ -174,7 +209,11 @@ Clr *drw_scm_create(Drw *drw, const char *clrnames[], size_t clrcount) {
     return NULL;
 
   for (i = 0; i < clrcount; i++)
-    drw_clr_create(drw, &ret[i], clrnames[i]);
+    // drw_clr_create(drw, &ret[i], clrnames[i]);
+    ////
+    // Alpha
+    drw_clr_create(drw, &ret[i], clrnames[i], alphas[i]);
+  ////
   return ret;
 }
 
@@ -247,11 +286,16 @@ int drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h,
     XSetForeground(drw->dpy, drw->gc,
                    drw->scheme[invert ? ColFg : ColBg].pixel);
     XFillRectangle(drw->dpy, drw->drawable, drw->gc, x, y, w, h);
+    ////
+    // Alpha
+    d = XftDrawCreate(drw->dpy, drw->drawable, drw->visual, drw->cmap);
+    ////
+
     if (w < lpad)
       return x + w;
-    d = XftDrawCreate(drw->dpy, drw->drawable,
-                      DefaultVisual(drw->dpy, drw->screen),
-                      DefaultColormap(drw->dpy, drw->screen));
+    // d = XftDrawCreate(drw->dpy, drw->drawable,
+    //                   DefaultVisual(drw->dpy, drw->screen),
+    //                   DefaultColormap(drw->dpy, drw->screen));
     x += lpad;
     w -= lpad;
   }

@@ -1,5 +1,10 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/X.h>
+#include <X11/Xft/Xft.h>
+#include <X11/Xlib.h>
+#include <X11/Xproto.h>
+
 typedef struct {
   Cursor cursor;
 } Cur;
@@ -20,6 +25,12 @@ typedef struct {
   Display *dpy;
   int screen;
   Window root;
+  ////
+  // Alpha
+  Visual *visual;
+  unsigned int depth;
+  Colormap cmap;
+  ////
   Drawable drawable;
   GC gc;
   Clr *scheme;
@@ -27,8 +38,13 @@ typedef struct {
 } Drw;
 
 /* Drawable abstraction */
+// Drw *drw_create(Display *dpy, int screen, Window win, unsigned int w,
+//                 unsigned int h);
+////
+// Alpha
 Drw *drw_create(Display *dpy, int screen, Window win, unsigned int w,
-                unsigned int h);
+                unsigned int h, Visual *, unsigned int, Colormap);
+////
 void drw_resize(Drw *drw, unsigned int w, unsigned int h);
 void drw_free(Drw *drw);
 
@@ -42,9 +58,19 @@ void drw_font_getexts(Fnt *font, const char *text, unsigned int len,
                       unsigned int *w, unsigned int *h);
 
 /* Colorscheme abstraction */
-void drw_clr_create(Drw *drw, Clr *dest, const char *clrname);
+// void drw_clr_create(Drw *drw, Clr *dest, const char *clrname);
+////
+// Alpha
+void drw_clr_create(Drw *drw, Clr *dest, const char *clrname,
+                    unsigned int alpha);
+////
 void drw_clr_free(Drw *drw, Clr *c);
-Clr *drw_scm_create(Drw *drw, const char *clrnames[], size_t clrcount);
+// Clr *drw_scm_create(Drw *drw, const char *clrnames[], size_t clrcount);
+////
+// Alpha
+Clr *drw_scm_create(Drw *drw, const char *clrnames[], size_t clrcount,
+                    const unsigned int alphas[]);
+////
 void drw_scm_free(Drw *drw, Clr *scm, size_t clrcount);
 
 /* Cursor abstraction */

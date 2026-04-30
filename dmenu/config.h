@@ -2,7 +2,8 @@
 /* Default settings; can be overriden by command line. */
 
 static int topbar = 0; /* -b  option; if 1, dmenu appears at top*/
-static int fuzzy = 1;  /* -F  option; if 0, dmenu doesn't use fuzzy matching  */
+static const unsigned int alpha = 0xcc; /* Amount of opacity. 0xff is opaque */
+static int fuzzy = 1; /* -F  option; if 0, dmenu doesn't use fuzzy matching  */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
     "JetBrainsMono Nerd Font:size=11",
@@ -24,6 +25,12 @@ static const char *colors[SchemeLast][2] = {
     [SchemeNorm] = {"#ffffff", "#0a0a0a"}, // text, background
     [SchemeSel] = {"#ffffff", "#bf616a"},  // selected text/bg
     [SchemeOut] = {"#0a0a0a", "#ff9e64"},  // output
+};
+
+static const unsigned int alphas[SchemeLast][2] = {
+    [SchemeNorm] = {OPAQUE, alpha},
+    [SchemeSel] = {OPAQUE, alpha},
+    [SchemeOut] = {OPAQUE, alpha},
 };
 
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */

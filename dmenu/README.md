@@ -27,7 +27,7 @@ Useful patches:
 
 - [x] Custom fuzzy match
 - [x] https://tools.suckless.org/dmenu/patches/numbers/
-- [ ] https://tools.suckless.org/dmenu/patches/alpha/
+- [x] https://tools.suckless.org/dmenu/patches/alpha/
 - [ ] https://tools.suckless.org/dmenu/patches/desktoponly/
 - [ ] https://tools.suckless.org/dmenu/patches/preselect/
 - [ ] https://tools.suckless.org/dmenu/patches/case-insensitive/
