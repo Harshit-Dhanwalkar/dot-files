@@ -28,7 +28,7 @@ Useful patches:
 - [x] Custom fuzzy match
 - [x] https://tools.suckless.org/dmenu/patches/numbers/
 - [x] https://tools.suckless.org/dmenu/patches/alpha/
-- [ ] https://tools.suckless.org/dmenu/patches/desktoponly/
+- [x] https://tools.suckless.org/dmenu/patches/desktoponly/
 - [ ] https://tools.suckless.org/dmenu/patches/preselect/
 - [ ] https://tools.suckless.org/dmenu/patches/case-insensitive/
 - [ ] https://tools.suckless.org/dmenu/patches/mouse-support/

@@ -8,9 +8,8 @@
     monitor = 0
     follow = mouse
     # geometry = "350x180-5+38"      # width x height, offset
-    # geometry = "0x450-5+38"
-    geometry = "0x450-8+1000"
-    origin = top-right
+    geometry = "0x450-8+38"
+    origin = bottom-right
     indicate_hidden = yes
     shrink = no
     scale = 0
@@ -59,6 +58,7 @@
     idle_threshold = 120
     markup = full
     format = "<b><u>%s</u></b>\n%b\n"
+    stack_location = top
     stack_duplicates = true
     hide_duplicate_count = true
     show_age_threshold = 60

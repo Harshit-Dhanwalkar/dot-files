@@ -66,8 +66,8 @@ input type:touchpad {
     # Start application launcher
     # bindsym $mod+d exec $menu # this is default dmenu
     # bindsym $mod+d exec /usr/bin/rofi -show drun -theme ~/.config/rofi/dracula.rasi
-    bindsym $mod+d exec /usr/bin/rofi -show drun -theme ~/.config/rofi/dark.rasi
-    bindsym $mod-alt+d exec dmenu_run
+    bindsym $mod+d exec /usr/bin/rofi -show drun -theme ~/.config/rofi/darko.rasi
+    bindsym $mod-alt+d exec dmenu_run_desktop
 
     # Quicklinks menu
     bindsym $mod-alt+t exec ~/.config/sway/scripts/dmenu-quicklink.sh
