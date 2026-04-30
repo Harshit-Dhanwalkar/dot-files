@@ -2,11 +2,23 @@
 /* Default settings; can be overriden by command line. */
 
 static int topbar = 0; /* -b  option; if 1, dmenu appears at top*/
+////
+// Alpha
 static const unsigned int alpha = 0xcc; /* Amount of opacity. 0xff is opaque */
+////
+// No input
+static int draw_input = 1; /* -noi option; if 0, input will not be drawn */
+////
+// Fuzzy match
 static int fuzzy = 1; /* -F  option; if 0, dmenu doesn't use fuzzy matching  */
+////
+// Padding
+static int horizpadbar = 2; /* horizontal padding */
+static int vertpadbar = 0;  /* vertical padding */
+////
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
-    "JetBrainsMono Nerd Font:size=11",
+    "JetBrainsMono Nerd Font:size=10",
 };
 static const char *prompt = "Run: ";
 // static const char *prompt      = NULL;      /* -p  option; prompt to the left
@@ -22,16 +34,20 @@ static const char *colors[SchemeLast][2] = {
     // [SchemeSel]  = { "#1e1e2e", "#89b4fa" }, // selected text/bg
     // [SchemeOut]  = { "#000000", "#00ffff" }, // output
 
-    [SchemeNorm] = {"#ffffff", "#0a0a0a"}, // text, background
-    [SchemeSel] = {"#ffffff", "#bf616a"},  // selected text/bg
-    [SchemeOut] = {"#0a0a0a", "#ff9e64"},  // output
+    [SchemeNorm] = {"#ffffff", "#0a0a0a"},  // text, background
+    [SchemeSel] = {"#ffffff", "#bf616a"},   // selected text/bg
+    [SchemeOut] = {"#0a0a0a", "#ff9e64"},   // output
+    [SchemeCaret] = {"#eeeeee", "#00ffff"}, // "#222222"},
 };
 
+////
+// Alpha
 static const unsigned int alphas[SchemeLast][2] = {
     [SchemeNorm] = {OPAQUE, alpha},
     [SchemeSel] = {OPAQUE, alpha},
     [SchemeOut] = {OPAQUE, alpha},
 };
+////
 
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
 static unsigned int lines = 0;
