@@ -1,3 +1,5 @@
 /qutebrowser/bookmarks/urls
 /qutebrowser/profiles/*
 /qutebrowser/autoconfig.yml
+
+/yazi/plugins/telegram-send.yazi/telegram-send-env/

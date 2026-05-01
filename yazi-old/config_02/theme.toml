@@ -1,0 +1,15 @@
+# ~/.config/yazi/theme.toml
+
+[mgr]
+hovered = { fg = "black", bg = "lightblue" }
+
+[filetype]
+rules = [
+    { mime = "directory", fg = "blue", bold = true },
+    { mime = "image/*", fg = "magenta" },
+    { mime = "video/*", fg = "yellow" },
+    { url = "*.pdf", fg = "#ff7f7f" },
+    { url = "*.sh", fg = "lightgreen" },
+    # { url = "*.toml", fg = "green" },
+    # { url = "*.py", fg = "lightblue" },
+]

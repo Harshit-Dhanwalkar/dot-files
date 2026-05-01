@@ -133,22 +133,4 @@ prepend_keymap = [
 	# Help
 	{ on = "~",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
-
-	# Plugins
-	# https://github.com/nsavvide/duck-radar.yazi
-	{ on = [ "g", "r" ],   run = ["plugin duck-radar"],    desc = "🦆 Duck Radar - Recent Files" },
-	# https://github.com/pareix/telegram-send.yazi
-	{ on = [ "t", "s" ],   run = ["plugin telegram-send"], desc = "Send with Telegram"},
-
 ]
-
-[[manager.prepend_keymap]]
-on   = [ "n" ]
-run  = 'open --opener newwindow'
-desc = "Open in new Kitty window"
-# { on   = [ "n" ], run  = 'open --opener newwindow', desc = "Open in new Kitty window"},
-
-[[manager.prepend_keymap]]
-on = ["C"]
-run = "plugin ouch"
-desc = "Compress with ouch"
