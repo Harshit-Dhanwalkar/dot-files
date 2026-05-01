@@ -3,7 +3,7 @@
 ## Author  : Harshit Prashant Dhanwalkar
 ## Github  : @Harshit-Dhanwalkar
 
-FLAGS="-noi -p Power: -l 5"           # for vertical layout
+FLAGS="-noi -l 5 -p Power:"           # for vertical layout
 
 # case "$(echo -e "Shutdown\nRestart\nLogout\nSuspend\nLock" | dmenu \
 #     # -nb "${COLOR_BACKGROUND:-#151515}" \

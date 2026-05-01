@@ -58,7 +58,7 @@ chosen_network=$(echo -e "$toggle\n$wifi_list" | uniq -u | menu "Wi-Fi:")
 read -r chosen_id <<<"${chosen_network:3}"
 
 if [ -z "$chosen_network" ]; then
-	notify "Wi-Fi operation cancelled"
+	# notify "Wi-Fi operation cancelled"
 	exit 0
 elif [ "$chosen_network" = "󰖩  Enable Wi-Fi" ]; then
 	nmcli radio wifi on && notify "Wi-Fi enabled"

@@ -328,7 +328,8 @@ This repository contains configuration files and installation notes for my prefe
     <summary>Dunst</summary>
     <p>
     - [Archwiki](https://wiki.archlinux.org/title/Dunst)
-    - [Dunst](https://dunst-project.org/)
+    - [Dunst website](https://dunst-project.org/)
+    - [Github](https://github.com/dunst-project/dunst)
     </p>
     <p>Installation</p>
     <p>

@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# ~/.config/dunst/test-notification.sh
-# vim: ft=cfg
 
 ## Author  : Harshit Prahant Dhanwalkar
 ## Github  : @Harshit-Dhanwalkar
