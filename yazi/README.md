@@ -2,8 +2,9 @@
 
 - [x] duck-radar
 - [x] [current-size](https://gitee.com/DreamMaoMao/current-size.yazi)
+- [x] [ouch](https://github.com/ndtoan96/ouch.yazi.git)
+- [ ] [wl-clipboard](https://github.com/grappas/wl-clipboard.yazi)
 - [ ] telegram-send
-- [ ] [ouch](https://github.com/ndtoan96/ouch.yazi.git)
 
 # TODO
 
@@ -22,9 +23,11 @@
 - [ ] https://github.com/AminurAlam/yazi-plugins/tree/main/spot.yazi
 - [ ] https://github.com/boydaihungst/file-extra-metadata.yazi
 - [ ] https://github.com/grimandgreedy/ffmpeg-stats.yazi
+- [ ] [auto-layout](https://github.com/josephschmitt/auto-layout.yazi)
 
 ## Others
 
+- [ ] [save-clipboard-to-file](https://github.com/boydaihungst/save-clipboard-to-file.yazi)
 - [ ] https://github.com/NoponyAsked/sxiv.yazi
 - [ ] https://github.com/atareao/convert.yazi
 - [ ] https://github.com/vmikk/symlink-target-path.yazi
@@ -35,3 +38,4 @@
 # FIX
 
 - [ ] Ouch plugin throws error
+- [ ] wl-clipboard not working after last yazi update

@@ -1,3 +1,5 @@
+-- ~/.config/yazi/plugins/duck-radar.yazi/main.lua
+
 local M = {}
 
 local shell = os.getenv("SHELL"):match(".*/(.*)")

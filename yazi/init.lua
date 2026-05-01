@@ -1,3 +1,8 @@
+-- ~/.config/yazi/init.lua
+
+-- local greetings = require("greetings")
+-- greetings.entry()
+
 require("duck-radar"):setup({
 	-- Extra dirs to search in addition to ~/Downloads, ~/Documents, ~/Desktop, ~/Pictures
 	dirs = {
@@ -21,5 +26,10 @@ require("current-size"):setup({
 require("telegram-send"):setup({
 	-- command = "telegram-send --file",
 	command = "~/.config/yazi/plugins/telegram-send.yazi/telegram-send-env/bin/telegram-send --file",
+	notification = true,
+})
+
+require("copy-file-contents"):setup({
+	append_char = "\n",
 	notification = true,
 })

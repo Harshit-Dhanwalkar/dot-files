@@ -1,3 +1,5 @@
+-- ~/.config/yazi/plugins/current-size.yazi/main.lua
+
 local function string_split(input, delimiter)
 	local result = {}
 

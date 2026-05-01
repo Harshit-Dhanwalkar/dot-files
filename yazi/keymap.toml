@@ -1,4 +1,5 @@
 # ~/.config/yazi/keymap.toml
+
 [mgr]
 prepend_keymap = [
 	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
@@ -134,21 +135,15 @@ prepend_keymap = [
 	{ on = "~",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
 
+
 	# Plugins
-	# https://github.com/nsavvide/duck-radar.yazi
+	{ on =   "n",          run = "open --opener newwindow", desc = "Open in new Kitty window" },
 	{ on = [ "g", "r" ],   run = ["plugin duck-radar"],    desc = "🦆 Duck Radar - Recent Files" },
-	# https://github.com/pareix/telegram-send.yazi
 	{ on = [ "t", "s" ],   run = ["plugin telegram-send"], desc = "Send with Telegram"},
 
+	{ on =   "C",          run = "plugin ouch",            desc = "Compress with ouch" },
+	# { on =   "<C-y>",      run = "plugin wl-clipboard",    desc = "Copy to system clipboard (Wayland)" },
+	# { on = [ "p", "g" ], run = "plugin save-clipboard-to-file", desc = "Paste clipboard content to file and hover after created" },
+	{ on = [ "t", "g" ], run = "plugin greetings", desc = "Greetings" },
+	{on = "<A-y>", run = ["plugin copy-file-contents"], desc = "Copy contents of file"},
 ]
-
-[[manager.prepend_keymap]]
-on   = [ "n" ]
-run  = 'open --opener newwindow'
-desc = "Open in new Kitty window"
-# { on   = [ "n" ], run  = 'open --opener newwindow', desc = "Open in new Kitty window"},
-
-[[manager.prepend_keymap]]
-on = ["C"]
-run = "plugin ouch"
-desc = "Compress with ouch"
