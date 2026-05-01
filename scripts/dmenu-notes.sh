@@ -3,11 +3,16 @@
 ## Author  : Harshit Prashant Dhanwalkar
 ## Github  : @Harshit-Dhanwalkar
 
-BASE_DIR="${HOME}/Desktop/Notes/"
-DMENU="/usr/local/bin/dmenu"
-NOTIFY="/usr/bin/dunstify"
+# FIX:
+# 1. Can't navigate to sub-sub dir, and this dir is registered as note, i want count of all .md notes not dir, even if .md files are nested inside sub-sub dir
+# 2. Notes in PhD are not listed
 
-NOTE_CATEGORIES=("work" "configuration")
+BASE_DIR="${HOME}/Desktop/Notes/"
+# DMENU="/usr/local/bin/dmenu"
+DMENU=$(command -v dmenu)
+
+# NOTIFY="/usr/bin/dunstify"
+# NOTIFY=$(command -v dunstify)
 
 if [ -x "${HOME}/.local/kitty.app/bin/kitty" ]; then
     TERMINAL="${HOME}/.local/kitty.app/bin/kitty"
@@ -30,8 +35,8 @@ if ! [ -x "$TERMINAL" ]; then
 fi
 
 # Force XWayland environment for dmenu
-export DISPLAY=:0
-export XAUTHORITY="${HOME}/.Xauthority"
+# export DISPLAY=:0
+# export XAUTHORITY="${HOME}/.Xauthority"
 
 # Create base directory and all category directories
 mkdir -p "$BASE_DIR"
@@ -42,36 +47,57 @@ for category in "${NOTE_CATEGORIES[@]}"; do
 done
 
 # Function to count notes in a directory
+# count_notes() {
+#     local dir="$1"
+#     local count=0
+#     if [ -d "$dir" ]; then
+#         count=$(find "$dir" -name "*.md" -type f 2>/dev/null | wc -l)
+#     fi
+#     echo "$count"
+# }
 count_notes() {
     local dir="$1"
-    local count=0
     if [ -d "$dir" ]; then
-        count=$(find "$dir" -name "*.md" -type f 2>/dev/null | wc -l)
+        find "$dir" -name "*.md" -type f 2>/dev/null | wc -l
+    else
+        echo 0
     fi
-    echo "$count"
 }
+
+# pad_category() {
+#     local category="$1"
+#     local count="$2"
+#     local padded_category
+#     local title_case=$(echo "$category" | sed 's/.*/\L&/; s/[a-z]*/\u&/g')
+#     # local title_case=$(echo "$category" | sed 's/.*/\L&/; s/[a-z]*/\u&/g; s/[-_]/ /g')
+#
+#     case "$category" in
+#         *)
+#             # For dynamic categories
+#             local max_len=18
+#             padded_category=$(printf "%-${max_len}s" "$title_case")
+#             padded_category="${padded_category:0:$max_len}" # Truncate to max_len
+#             ;;
+#     esac
+#     echo "${padded_category}(${count} notes)"
+# }
 
 pad_category() {
     local category="$1"
     local count="$2"
-    local padded_category
-    local title_case=$(echo "$category" | sed 's/.*/\L&/; s/[a-z]*/\u&/g; s/[-_]/ /g') # Convert to Title Case
+    local max_len=20
+    local dispaly_category_name
 
-    # Check for hardcoded categories first for consistent padding
-    case "$category" in
-        "philosophy") padded_category="Philosophy         " ;;
-        "work") padded_category="Work               " ;;
-        "configuration") padded_category="Configuration      " ;;
-        "all") padded_category="All                " ;;
+    case "${category,,}" in   # ,, converts to lowercase for matching
+        "all")
+            dispaly_category_name="ALL"  #      󰈙  󰈢  󰍨  󰈣
+            ;;
         *)
-            # For dynamic categories
-            local max_len=18
-            padded_category=$(printf "%-${max_len}s" "$title_case")
-            padded_category="${padded_category:0:$max_len}" # Truncate to max_len
+            dispaly_category_name="$(echo "$category" | sed 's/.*/\L&/; s/[a-z]*/\u&/g; s/[-_]/ /g')"
             ;;
     esac
 
-    echo "${padded_category}(${count} notes)"
+    printf "%-${max_len}s (%s notes)\n" "$dispaly_category_name" "$count"
 }
 
 get_note_categories() {
@@ -90,26 +116,23 @@ get_note_categories() {
     IFS=$'\n' categories=($(sort <<<"${categories[*]}"))
     unset IFS
 
-    # If the user-defined defaults are missing, ensure they are at least created.
-    # This ensures the default structure is present even if the directory find failed.
-    local default_categories=("philosophy" "work" "configuration")
-    for default in "${default_categories[@]}"; do
-        if [[ ! " ${categories[*]} " =~ " ${default} " ]]; then
-            categories+=("$default")
-            # Ensure the directory exists
-            mkdir -p "${BASE_DIR}${default}"
-        fi
-    done
-    
+    # local default_categories=("ALL")
+    # for default in "${default_categories[@]}"; do
+    #     if [[ ! " ${categories[*]} " =~ " ${default} " ]]; then
+    #         categories+=("$default")
+    #         # Ensure the directory exists
+    #         mkdir -p "${BASE_DIR}${default}"
+    #     fi
+    # done
     echo "${categories[*]}"
 }
 
-# --- Menu launcher ---
+# Menu launcher
 menu() {
     env DISPLAY=:0 XAUTHORITY="${HOME}/.Xauthority" $DMENU -l "$2" -i -p "$1"
 }
 
-# --- Back/Exit handling functions ---
+# Back/Exit handling functions
 is_back_selection() {
     local selection="$1"
     [ -z "$selection" ] || [ "$selection" = "Back (ESC)" ] || [ "$selection" = "Exit (ESC)" ]
@@ -146,7 +169,15 @@ select_category() {
         return
     fi
 
-    local clean_choice=$(echo "$choice" | sed 's/^\([^ ]* *\).*/\1/' | sed 's/ *$//' | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
+    # local clean_choice=$(echo "$choice" | sed 's/^\([^ ]* *\).*/\1/' | sed 's/ *$//' | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
+    # local clean_choice=$(echo "$choice" | sed 's/(.*)//' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+    local clean_choice=$(echo "$choice" | cut -d'(' -f1 | xargs)
+    # # Special case for "All"
+    # if [[ "$clean_choice" =~ ^[Aa][Ll][Ll]$ ]]; then
+    #     echo "all"
+    # else
+    #     echo "$clean_choice"
+    # fi
     echo "$clean_choice"
 }
 
@@ -162,7 +193,7 @@ newnote() {
     touch "$file_path"
     "$TERMINAL" -e nvim "$file_path" &
 
-    $NOTIFY -t 2000 "New Note Created" "Category: <b>$category</b>\nFile: <b>${name}.md</b>"
+    # $NOTIFY -t 2000 "New Note Created" "Category: <b>$category</b>\nFile: <b>${name}.md</b>"
     echo "SUCCESS"
 }
 
@@ -198,10 +229,11 @@ list_all_notes() {
             fi
         done | sort -nr | cut -f2-)
 
-        choice=$(echo -e "Back (ESC)\nNew\n$sorted_notes" | menu "All notes (${note_count} total):" 15)
+        choice=$(echo -e "Back (ESC)\n New\n$sorted_notes" | menu "All notes (${note_count} total):" 15) #  󰍔 
     else
-        choice=$(echo -e "Back (ESC)\nNew" | menu "All notes (0 total):" 15)
+        choice=$(echo -e "Back (ESC)\n New" | menu "All notes (0 total):" 15)
     fi
+    # choice=$(echo -e "Back (ESC)\n New")
 
     if is_back_selection "$choice"; then
         echo "BACK"
@@ -209,7 +241,7 @@ list_all_notes() {
     fi
 
     case "$choice" in
-        "New") 
+        " New")
             category=$(select_category)
             if [ "$category" = "EXIT" ]; then
                 echo "EXIT"
@@ -222,7 +254,7 @@ list_all_notes() {
             category="${choice%%/*}"
             filename="${choice#*/}"
             dir="${BASE_DIR}${category}/"
-            $NOTIFY -t 2000 "Opening Note" "Category: <b>$category</b>\nFile: <b>$filename</b>"
+            # $NOTIFY -t 2000 "Opening Note" "Category: <b>$category</b>\nFile: <b>$filename</b>"
             "$TERMINAL" -e nvim "${dir}${filename}" &
             echo "SUCCESS"
             ;;
@@ -240,11 +272,27 @@ list_notes() {
     local dir="${BASE_DIR}${category}/"
     local count=$(count_notes "$dir")
 
-    if files=$(command ls -1t "${dir}"*.md 2>/dev/null 2>&1 | xargs -I {} basename {}); then
-        choice=$(echo -e "Back (ESC)\nNew\n$files" | menu "${category} notes (${count} total):" 15)
+    local files=()
+    # while IFS= read -r -d '' file; do
+    #     files+=("$(basename "$file")")
+    # done < <(find "$dir" -maxdepth 1 -name "*.md" -type f -print0 2>/dev/null | sort -z)
+    while IFS= read -r -d '' file; do
+        rel_path="${file#${dir}}"
+        files+=("$rel_path")
+    done < <(find "$dir" -name "*.md" -type f -print0 2>/dev/null | sort -z)
+
+    if [ ${#files[@]} -gt 0 ]; then
+        local file_list=$(printf "%s\n" "${files[@]}")
+        choice=$(echo -e "Back (ESC)\n New\n${file_list}" | menu "${category} notes (${count} total):" 20)
     else
-        choice=$(echo -e "Back (ESC)\nNew" | menu "${category} notes (0 total):" 15)
+        choice=$(echo -e "Back (ESC)\n New" | menu "${category} notes (0 total):" 10)
     fi
+
+    # if files=$(command ls -1t "${dir}"*.md 2>/dev/null 2>&1 | xargs -I {} basename {}); then
+    #     choice=$(echo -e "Back (ESC)\n New\n$files" | menu "${category} notes (${count} total):" 15)
+    # else
+    #     choice=$(echo -e "Back (ESC)\n New" | menu "${category} notes (0 total):" 15)
+    # fi
 
     if is_back_selection "$choice"; then
         echo "BACK"
@@ -252,13 +300,13 @@ list_notes() {
     fi
 
     case "$choice" in
-        "New") 
+        " New")
             result=$(newnote "$category")
             echo "$result"
             ;;
         *) 
-            $NOTIFY -t 2000 "Opening Note" "Category: <b>$category</b>\nFile: <b>$choice</b>"
             "$TERMINAL" -e nvim "${dir}${choice}" &
+            # $NOTIFY -t 2000 "Opening Note" "Category: <b>$category</b>\nFile: <b>$choice</b>"
             echo "SUCCESS"
             ;;
     esac
@@ -269,7 +317,7 @@ main_navigation() {
         category=$(select_category)
 
         if [ "$category" = "EXIT" ]; then
-            $NOTIFY -t 1000 "Notes" "Exiting notes manager"
+            # $NOTIFY -t 1000 "Notes" "Exiting notes manager"
             exit 0
         fi
 
@@ -284,7 +332,7 @@ main_navigation() {
                         ;;
                     "EXIT")
                         # Exit completely
-                        $NOTIFY -t 1000 "Notes" "Exiting notes manager"
+                        # $NOTIFY -t 1000 "Notes" "Exiting notes manager"
                         exit 0
                         ;;
                     "SUCCESS")

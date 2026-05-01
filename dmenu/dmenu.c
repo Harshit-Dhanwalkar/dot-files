@@ -1,5 +1,3 @@
-/* See LICENSE file for copyright and license details. */
-
 #include <X11/Xproto.h>             /* for alpha */
 #include <X11/extensions/Xrender.h> /* for alpha */
 #include <ctype.h>
@@ -170,15 +168,13 @@ static int drawitem(struct item *item, int x, int y, int w) {
   else
     drw_setscheme(drw, scheme[SchemeNorm]);
 
-  // return drw_text(drw, x, y, w, bh, lrpad / 2, item->text, 0);
+  return drw_text(drw, x, y, w, bh, lrpad / 2, item->text, 0);
   ////
   // Vertfull
-  return drw_text(drw, 20, y, w, bh, lrpad / 2, item->text, 0);
+  // return drw_text(drw, 20, y, w, bh, lrpad / 2, item->text, 0);
   ////
 }
 
-////
-// Numbers
 // static void recalculatenumbers() {
 //   unsigned int numer = 0, denom = 0;
 //   struct item *item;
@@ -191,6 +187,8 @@ static int drawitem(struct item *item, int x, int y, int w) {
 //     denom++;
 //   snprintf(numbers, NUMBERSBUFSIZE, "%d/%d", numer, denom);
 // }
+////
+// Numbers
 static void recalculatenumbers() {
   unsigned int numer = 0, denom = 0;
   struct item *item;
@@ -222,8 +220,6 @@ static void drawmenu(void) {
     x = drw_text(drw, x, 0, promptw, bh, lrpad / 2, prompt, 0);
   }
   /* draw input field */
-  ////
-  // No input
   // w = (lines > 0 || !matches) ? mw - x : inputw;
   // drw_setscheme(drw, scheme[SchemeNorm]);
   // drw_text(drw, x, 0, w, bh, lrpad / 2, text, 0);
@@ -237,6 +233,8 @@ static void drawmenu(void) {
   //   ////
   //   drw_rect(drw, x + curpos, 2, 2, bh - 4, 1, 0);
   // }
+  ////
+  // No input
   if (draw_input) {
     w = (lines > 0 || !matches) ? mw - x : inputw;
     drw_setscheme(drw, scheme[SchemeNorm]);
@@ -317,7 +315,7 @@ static void grabfocus(void) {
     XSetInputFocus(dpy, win, RevertToParent, CurrentTime);
     nanosleep(&ts, NULL);
   }
-  die("cannot grab focus");
+  die("Cannot grab focus");
 }
 
 static void grabkeyboard(void) {
@@ -333,9 +331,10 @@ static void grabkeyboard(void) {
       return;
     nanosleep(&ts, NULL);
   }
-  die("cannot grab keyboard");
+  die("Cannot grab keyboard");
 }
 
+////
 // Fuzzy match
 int compare_distance(const void *a, const void *b) {
   struct item *da = *(struct item **)a;
@@ -398,7 +397,7 @@ void fuzzymatch(void) {
     /* initialize array with matches */
     if (!(fuzzymatches =
               realloc(fuzzymatches, number_of_matches * sizeof(struct item *))))
-      die("cannot realloc %u bytes:",
+      die("Cannot realloc %u bytes:",
           number_of_matches * sizeof(struct item *));
     for (i = 0, it = matches; it && i < number_of_matches;
          i++, it = it->right) {
@@ -422,6 +421,7 @@ void fuzzymatch(void) {
 
 static void match(void) {
   //////
+  // Fuzzy match
   if (fuzzy) {
     fuzzymatch();
     return;
@@ -439,7 +439,7 @@ static void match(void) {
   /* separate input text into tokens to be matched individually */
   for (s = strtok(buf, " "); s; tokv[tokc - 1] = s, s = strtok(NULL, " "))
     if (++tokc > tokn && !(tokv = realloc(tokv, ++tokn * sizeof *tokv)))
-      die("cannot realloc %zu bytes:", tokn * sizeof *tokv);
+      die("Cannot realloc %zu bytes:", tokn * sizeof *tokv);
   len = tokc ? strlen(tokv[0]) : 0;
 
   matches = lprefix = lsubstr = matchend = prefixend = substrend = NULL;
@@ -574,39 +574,34 @@ static void keypress(XKeyEvent *ev) {
     // case XK_k: /* delete right */
     //    text[cursor] = '\0';
     //    match();
+    // case XK_u: /* delete left */
+    //    insert(NULL, 0 - cursor);
+    // case XK_w: /* delete word */
+    //    while (cursor > 0 && strchr(worddelimiters, text[nextrune(-1)]))
+    //       insert(NULL, nextrune(-1) - cursor);
+    //    while (cursor > 0 && !strchr(worddelimiters, text[nextrune(-1)]))
+    //       insert(NULL, nextrune(-1) - cursor);
+    ////
+    // No input
     case XK_k: /* delete right */
-      ////
-      // No input
       if (draw_input) {
         text[cursor] = '\0';
         match();
       }
-      ////
       break;
-    // case XK_u: /* delete left */
-    //    insert(NULL, 0 - cursor);
     case XK_u: /* delete left */
-      ////
-      // No input
       if (draw_input)
         insert(NULL, 0 - cursor);
-      ////
       break;
     case XK_w: /* delete word */
-      // while (cursor > 0 && strchr(worddelimiters, text[nextrune(-1)]))
-      //    insert(NULL, nextrune(-1) - cursor);
-      // while (cursor > 0 && !strchr(worddelimiters, text[nextrune(-1)]))
-      //    insert(NULL, nextrune(-1) - cursor);
-      ////
-      // No input
       while (cursor > 0 && strchr(worddelimiters, text[nextrune(-1)]) &&
              draw_input)
         insert(NULL, nextrune(-1) - cursor);
       while (cursor > 0 && !strchr(worddelimiters, text[nextrune(-1)]) &&
              draw_input)
         insert(NULL, nextrune(-1) - cursor);
-      ////
       break;
+    ////
     case XK_y: /* paste selection */
     case XK_Y:
       XConvertSelection(dpy, (ev->state & ShiftMask) ? clip : XA_PRIMARY, utf8,
@@ -743,6 +738,7 @@ static void keypress(XKeyEvent *ev) {
     /* 	curr = prev; */
     /* 	calcoffsets(); */
     ////
+    // Cycle list
     if (sel && sel->left) {
       /* normal up */
       sel = sel->left;
@@ -803,7 +799,7 @@ static void keypress(XKeyEvent *ev) {
     /* 	curr = next; */
     /* 	calcoffsets(); */
     ////
-    // Fuzzy search
+    // Cycle list
     if (sel && sel->right) {
       /* normal down */
       sel = sel->right;
@@ -843,20 +839,45 @@ static void buttonpress(XEvent *e) {
   XButtonPressedEvent *ev = &e->xbutton;
   int x = 0, y = 0, h = bh, w;
 
-  if (ev->window != win)
-    return;
-
-  /* right-click: exit */
-  if (ev->button == Button3)
+  // if (ev->window != win)
+  //   return;
+  //
+  // /* right-click: exit */
+  // if (ev->button == Button3)
+  //   exit(1);
+  ////
+  // Mouse support (click outside menu to exit)
+  if (ev->window == root) {
+    if (ev->subwindow != win) {
+      cleanup();
+      exit(1);
+    }
+    {
+      XWindowAttributes wa;
+      XGetWindowAttributes(dpy, win, &wa);
+      ev->x -= wa.x;
+      ev->y -= wa.y;
+    }
+  } else if (ev->window != win) {
+    cleanup();
     exit(1);
+  }
 
+  /* right-click anywhere inside dmenu: exit */
+  if (ev->button == Button3) {
+    cleanup();
+    exit(1);
+  }
+  ////
+
+  /* handle input field clicks */
   if (prompt && *prompt)
     x += promptw;
 
-  /* input field */
+  /* input field width */
   w = (lines > 0 || !matches) ? mw - x : inputw;
 
-  /* left-click on input: clear input,
+  /* left-click on input: clear input text,
    * NOTE: if there is no left-arrow the space for < is reserved so
    *       add that to the input width */
   if (ev->button == Button1 &&
@@ -867,6 +888,7 @@ static void buttonpress(XEvent *e) {
     drawmenu();
     return;
   }
+
   /* middle-mouse click: paste selection */
   if (ev->button == Button2) {
     XConvertSelection(dpy, (ev->state & ShiftMask) ? clip : XA_PRIMARY, utf8,
@@ -874,6 +896,7 @@ static void buttonpress(XEvent *e) {
     drawmenu();
     return;
   }
+
   /* scroll up */
   if (ev->button == Button4 && prev) {
     sel = curr = prev;
@@ -881,6 +904,7 @@ static void buttonpress(XEvent *e) {
     drawmenu();
     return;
   }
+
   /* scroll down */
   if (ev->button == Button5 && next) {
     sel = curr = next;
@@ -888,19 +912,42 @@ static void buttonpress(XEvent *e) {
     drawmenu();
     return;
   }
+
   if (ev->button != Button1)
     return;
+
   if (ev->state & ~ControlMask)
     return;
+
+  /* item selection logic */
   if (lines > 0) {
     /* vertical list: (ctrl)left-click on item */
-    w = mw - x;
+    // w = mw - x;
+    // for (item = curr; item != next; item = item->right) {
+    //   y += h;
+    //   if (ev->y >= y && ev->y <= (y + h)) {
+    //     puts(item->text);
+    //     if (!(ev->state & ControlMask))
+    //       exit(0);
+    //     sel = item;
+    //     if (sel) {
+    //       sel->out = 1;
+    //       drawmenu();
+    //     }
+    //     return;
+    //   }
+    // }
+    ////
+    // Mouse support (click outside menu to exit)
+    /* Vertical list logic */
     for (item = curr; item != next; item = item->right) {
       y += h;
       if (ev->y >= y && ev->y <= (y + h)) {
         puts(item->text);
-        if (!(ev->state & ControlMask))
+        if (!(ev->state & ControlMask)) {
+          cleanup();
           exit(0);
+        }
         sel = item;
         if (sel) {
           sel->out = 1;
@@ -909,6 +956,7 @@ static void buttonpress(XEvent *e) {
         return;
       }
     }
+    ////
   } else if (matches) {
     /* left-click on left arrow */
     x += inputw;
@@ -921,6 +969,7 @@ static void buttonpress(XEvent *e) {
         return;
       }
     }
+
     /* horizontal list: (ctrl)left-click on item */
     for (item = curr; item != next; item = item->right) {
       x += w;
@@ -937,6 +986,7 @@ static void buttonpress(XEvent *e) {
         return;
       }
     }
+
     /* left-click on right arrow */
     w = TEXTW(">");
     x = mw - w;
@@ -955,7 +1005,7 @@ static void paste(void) {
   unsigned long dl;
   Atom da;
 
-  /* we have been given the current selection, now insert it into input */
+  /* With given current selection, insert it into input */
   if (XGetWindowProperty(dpy, win, utf8, 0, (sizeof text / 4) + 1, False, utf8,
                          &da, &di, &dl, &dl, (unsigned char **)&p) == Success &&
       p) {
@@ -975,7 +1025,7 @@ static void readstdin(void) {
     if (i + 1 >= itemsiz) {
       itemsiz += 256;
       if (!(items = realloc(items, itemsiz * sizeof(*items))))
-        die("cannot realloc %zu bytes:", itemsiz * sizeof(*items));
+        die("Cannot realloc %zu bytes:", itemsiz * sizeof(*items));
     }
     if (line[len - 1] == '\n')
       line[len - 1] = '\0';
@@ -984,6 +1034,7 @@ static void readstdin(void) {
 
     items[i].out = 0;
   }
+
   free(line);
   if (items)
     items[i].text = NULL;
@@ -1002,8 +1053,8 @@ static void run(void) {
         break;
       cleanup();
       exit(1);
-      ////
-      // Mouse support
+    ////
+    // Mouse support
     case ButtonPress:
       buttonpress(&ev);
       break;
@@ -1046,10 +1097,11 @@ static void setup(void) {
   int a, di, n, area = 0;
 #endif
   /* init appearance */
+  // for (j = 0; j < SchemeLast; j++)
+  //   scheme[j] = drw_scm_create(drw, colors[j], 2);
+  ////
+  // Alpha
   for (j = 0; j < SchemeLast; j++)
-    ////
-    // Alpha
-    // scheme[j] = drw_scm_create(drw, colors[j], 2);
     scheme[j] = drw_scm_create(drw, colors[j], 2, alphas[j]);
   ////
 
@@ -1100,7 +1152,7 @@ static void setup(void) {
 #endif
   {
     if (!XGetWindowAttributes(dpy, parentwin, &wa))
-      die("could not get embedding window attributes: 0x%lx", parentwin);
+      die("Could not get embedding window attributes: 0x%lx", parentwin);
     x = 0;
     y = topbar ? 0 : wa.height - mh;
     mw = wa.width;
@@ -1152,7 +1204,13 @@ static void setup(void) {
     }
     grabfocus();
   }
+
   drw_resize(drw, mw, mh);
+  ////
+  // Mouse support (click outside menu to exit)
+  XGrabButton(dpy, AnyButton, AnyModifier, root, True, ButtonPressMask,
+              GrabModeAsync, GrabModeAsync, None, None);
+  ////
   drawmenu();
 }
 
@@ -1182,17 +1240,6 @@ int main(int argc, char *argv[]) {
       topbar = 0;
     else if (!strcmp(argv[i], "-f")) /* grabs keyboard before reading stdin */
       fast = 1;
-    ////
-    // Fuzzy matching
-    else if (!strcmp(argv[i], "-F")) /* grabs keyboard before reading stdin */
-      fuzzy = 0;
-    ////
-    ////
-    // No input
-    else if (!strcmp(argv[i], "-noi")) /* no input field. intended to be used
-                                          with a prompt */
-      draw_input = 0;
-    ////
     else if (!strcmp(argv[i], "-i")) { /* case-insensitive item matching */
       fstrncmp = strncasecmp;
       fstrstr = cistrstr;
@@ -1217,28 +1264,44 @@ int main(int argc, char *argv[]) {
       colors[SchemeSel][ColFg] = argv[++i];
     else if (!strcmp(argv[i], "-w")) /* embedding window id */
       embed = argv[++i];
+    ////
+    // Fuzzy matching
+    else if (!strcmp(argv[i], "-F")) /* grabs keyboard before reading stdin */
+      fuzzy = 0;
+    ////
+    // No input
+    else if (!strcmp(argv[i], "-noi")) /* no input field. intended to be used
+                                          with a prompt */
+      draw_input = 0;
+    ////
     else
       usage();
 
   if (!setlocale(LC_CTYPE, "") || !XSupportsLocale())
-    fputs("warning: no locale support\n", stderr);
+    fputs("Warning: no locale support\n", stderr);
+
   if (!(dpy = XOpenDisplay(NULL)))
-    die("cannot open display");
+    die("Cannot open display");
+
   screen = DefaultScreen(dpy);
   root = RootWindow(dpy, screen);
+
   if (!embed || !(parentwin = strtol(embed, NULL, 0)))
     parentwin = root;
-  if (!XGetWindowAttributes(dpy, parentwin, &wa))
-    die("could not get embedding window attributes: 0x%lx", parentwin);
 
+  if (!XGetWindowAttributes(dpy, parentwin, &wa))
+    die("Could not get embedding window attributes: 0x%lx", parentwin);
+
+  // drw = drw_create(dpy, screen, root, wa.width, wa.height);
   ////
   // Alpha
-  // drw = drw_create(dpy, screen, root, wa.width, wa.height);
   xinitvisual();
   drw = drw_create(dpy, screen, root, wa.width, wa.height, visual, depth, cmap);
   ////
+
   if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
-    die("no fonts could be loaded.");
+    die("No fonts could be loaded.");
+
   // lrpad = drw->fonts->h;
   ////
   // Padding
