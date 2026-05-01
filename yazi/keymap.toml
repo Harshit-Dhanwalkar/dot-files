@@ -31,8 +31,8 @@ prepend_keymap = [
 	{ on = "<C-r>",   run = "toggle_all --state=none",            desc = "Inverse selection of all files" },
 
 	# Operation
-	{ on = "O",         run = "open",                        desc = "Open selected files" },
 	{ on = "o",         run = "open --interactive",          desc = "Open selected files interactively" },
+	{ on = "O",         run = "open",                        desc = "Open selected files" },
 	{ on = "<Enter>",   run = "open",                        desc = "Open selected files" },
 	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
 	{ on = "y",         run = "yank",                        desc = "Yank selected files (copy)" },
@@ -113,23 +113,23 @@ prepend_keymap = [
 	{ on = [ "g", "t" ],       run = "cd ~/Documents/GITHUB/",    desc = "Goto GITHUB dir" },
 
 	# Tabs
-	# { on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
-	# { on = "1", run = "tab_switch 0", desc = "Switch to first tab" },
-	# { on = "2", run = "tab_switch 1", desc = "Switch to second tab" },
-	# { on = "3", run = "tab_switch 2", desc = "Switch to third tab" },
-	# { on = "4", run = "tab_switch 3", desc = "Switch to fourth tab" },
-	# { on = "5", run = "tab_switch 4", desc = "Switch to fifth tab" },
-	# { on = "6", run = "tab_switch 5", desc = "Switch to sixth tab" },
-	# { on = "7", run = "tab_switch 6", desc = "Switch to seventh tab" },
-	# { on = "8", run = "tab_switch 7", desc = "Switch to eighth tab" },
-	# { on = "9", run = "tab_switch 8", desc = "Switch to ninth tab" },
-	# { on = "[", run = "tab_switch -1 --relative", desc = "Switch to previous tab" },
-	# { on = "]", run = "tab_switch 1 --relative",  desc = "Switch to next tab" },
-	# { on = "{", run = "tab_swap -1", desc = "Swap current tab with previous tab" },
-	# { on = "}", run = "tab_swap 1",  desc = "Swap current tab with next tab" },
+	{ on = [ "t", "t" ],       run = "tab_create --current",      desc = "Create a new tab with CWD" },
+	{ on = "[",                run = "tab_switch -1 --relative",  desc = "Switch to previous tab" },
+	{ on = "]",                run = "tab_switch 1 --relative",   desc = "Switch to next tab" },
+	{ on = "{",                run = "tab_swap -1",               desc = "Swap current tab with previous tab" },
+	{ on = "}",                run = "tab_swap 1",                desc = "Swap current tab with next tab" },
+	# { on = "1",                run = "tab_switch 0",              desc = "Switch to first tab" },
+	# { on = "2",                run = "tab_switch 1",              desc = "Switch to second tab" },
+	# { on = "3",                run = "tab_switch 2",              desc = "Switch to third tab" },
+	# { on = "4",                run = "tab_switch 3",              desc = "Switch to fourth tab" },
+	# { on = "5",                run = "tab_switch 4",              desc = "Switch to fifth tab" },
+	# { on = "6",                run = "tab_switch 5",              desc = "Switch to sixth tab" },
+	# { on = "7",                run = "tab_switch 6",              desc = "Switch to seventh tab" },
+	# { on = "8",                run = "tab_switch 7",              desc = "Switch to eighth tab" },
+	# { on = "9",                run = "tab_switch 8",              desc = "Switch to ninth tab" },
 
 	# Tasks
-	# { on = "w", run = "tasks_show", desc = "Show task manager" },
+	{ on = "w", run = "tasks_show", desc = "Show task manager" },
 
 	# Help
 	{ on = "~",    run = "help", desc = "Open help" },

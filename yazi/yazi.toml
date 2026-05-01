@@ -1,5 +1,8 @@
 # ~/.config/yazi/yazi.toml
 
+[env]
+PATH = "/usr/local/bin:/usr/bin:/bin"
+
 [mgr]
 show_hidden = false
 # ratio = [1,2,2]
@@ -79,6 +82,16 @@ mime_detector = "mime-ext"
 [preview]
 max_preview_size = 100
 
+prepend_previewers = [
+  { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run  = "ouch"},
+  { mime = 'audio/mpegurl', run = 'code' }, # ignore .m3u files
+  { mime = "audio/mp3", run = "preview-audio" },
+  { mime = "audio/mpeg", run = "preview-audio" },
+  { mime = "audio/flac", run = "preview-audio" },
+  { mime = "audio/ogg",  run = "preview-audio" },
+  { mime = "audio/*",    run = "preview-audio" },  # fallback
+]
+
 [[preview.rules]]
 name = "*.tif"
 run  = "noop"
@@ -86,7 +99,3 @@ run  = "noop"
 [[preview.rules]]
 name = "*.tiff"
 run  = "noop"
-
-[[plugin.prepend_previewers]]
-mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}"
-run  = "ouch"

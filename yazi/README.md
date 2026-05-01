@@ -4,15 +4,21 @@
 - [x] [current-size](https://gitee.com/DreamMaoMao/current-size.yazi)
 - [x] [ouch](https://github.com/ndtoan96/ouch.yazi.git)
 - [ ] [wl-clipboard](https://github.com/grappas/wl-clipboard.yazi)
+- [ ] [preview-audio](https://github.com/AminurAlam/yazi-plugins/tree/main/preview-audio.yazi)
 - [ ] telegram-send
 
 # TODO
+
+## Add these collection of plugins
+
+https://github.com/AminurAlam/yazi-plugins/
 
 ## Git integration
 
 - [ ] https://github.com/ktunprasert/git-files.yazi.git
 - [ ] https://github.com/llanosrocas/githead.yazi
 - [ ] https://github.com/aresler/path-from-root.yazi
+- [ ] https://github.com/AminurAlam/yazi-plugins/tree/main/preview-git.yazi
 
 ## Appearance
 
@@ -37,5 +43,6 @@
 
 # FIX
 
-- [ ] Ouch plugin throws error
-- [ ] wl-clipboard not working after last yazi update
+- [ ] Ouch plugin throws error.
+- [ ] wl-clipboard not working after last yazi update.
+- [ ] preview-audio is not working.
