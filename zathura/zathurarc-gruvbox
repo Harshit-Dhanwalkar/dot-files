@@ -1,4 +1,8 @@
-# Zathura configuration file
+# ~/.config/zathura/zathurarc
+
+# Author  : Harshit Prashant Dhanwalkar
+# Github  : @Harshit-Dhanwalkar
+
 # See man `man zathurarc'
 map r reload
 map p print
@@ -30,7 +34,6 @@ set guioptions ""
 # Font
 set font "antidote 8"
 
-## Zathura config
 set recolor true
 set recolor-lightcolor          \#1C1B19
 set recolor-darkcolor           \#fce8c3

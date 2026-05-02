@@ -3,7 +3,6 @@
 # Author  : Harshit Prashant Dhanwalkar
 # Github  : @Harshit-Dhanwalkar
 
-# Zathura configuration file
 # See man `man zathurarc'
 
 set window-title-basename "true"
