@@ -3,9 +3,18 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	event = "VimEnter",
-	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		{ "nvim-telescope/telescope-ui-select.nvim" },
+		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+		{ "nvim-telescope/telescope-frecency.nvim", version = "*" },
+		{
+			"crispgm/telescope-heading.nvim",
+			event = "VeryLazy",
+			config = function()
+				require("telescope").load_extension("heading")
+			end,
+		},
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
@@ -13,9 +22,13 @@ return {
 				return vim.fn.executable("make") == 1
 			end,
 		},
-		{ "nvim-telescope/telescope-ui-select.nvim" },
-		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
-		{ "nvim-telescope/telescope-frecency.nvim", version = "*" },
+		-- {
+		-- 	"nvim-telescope/telescope-fzf-writer.nvim",
+		-- 	after = { "telescope.nvim" },
+		-- 	config = function()
+		-- 		require("telescope").load_extension("fzf_writer")
+		-- 	end,
+		-- },
 		-- {
 		-- 	"nvim-telescope/telescope-media-files.nvim",
 		-- 	event = "VeryLazy",
@@ -27,13 +40,6 @@ return {
 		-- 		require("telescope").load_extension("media_files")
 		-- 	end,
 		-- },
-		{
-			"crispgm/telescope-heading.nvim",
-			event = "VeryLazy",
-			config = function()
-				require("telescope").load_extension("heading")
-			end,
-		},
 		-- {
 		-- 	"nvim-telescope/telescope-bibtex.nvim",
 		-- 	config = function()
@@ -65,13 +71,6 @@ return {
 		-- 	end,
 		-- },
 		-- {
-		-- 	"nvim-telescope/telescope-fzf-writer.nvim",
-		-- 	after = { "telescope.nvim" },
-		-- 	config = function()
-		-- 		require("telescope").load_extension("fzf_writer")
-		-- 	end,
-		-- },
-		-- {
 		-- 	"nvim-telescope/telescope-file-browser.nvim",
 		-- 	after = { "telescope.nvim" },
 		-- 	config = function()
@@ -90,27 +89,50 @@ return {
 		--  - Normal mode: ?
 		-- [[ Configure Telescope ]]
 		-- See `:help telescope` and `:help telescope.setup()`
-		require("telescope").setup({
-			-- defaults = {
-			--   mappings = {
-			--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-			--   },
-			-- },
-			-- pickers = {}
-			extensions = {
-				["ui-select"] = {
-					require("telescope.themes").get_dropdown(),
+		local telescope = require("telescope")
+		local actions = require("telescope.actions")
+		local themes = require("telescope.themes")
+		telescope.setup({
+			defaults = {
+				prompt_prefix = "   ",
+				selection_caret = "  ",
+				entry_prefix = "   ",
+				multi_icon = " 󰛄 ",
+				sorting_strategy = "ascending",
+				layout_strategy = "horizontal",
+				layout_config = {
+					horizontal = { prompt_position = "bottom", preview_width = 0.55 },
+					width = 0.87,
+					height = 0.80,
 				},
+				borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+				file_ignore_patterns = { "node_modules", ".git/", "dist/", "build/" },
+				path_display = { "truncate" },
+				mappings = {
+					i = {
+						["<C-j>"] = actions.move_selection_next,
+						["<C-k>"] = actions.move_selection_previous,
+						["<Esc>"] = actions.close,
+						-- ["<C-enter>"] = "to_fuzzy_refine",
+					},
+				},
+			},
+			-- pickers = {
+			-- 	find_files = { hidden = true, previewer = false, layout_config = { width = 0.5, height = 0.6 } },
+			-- 	buffers = { previewer = false, layout_config = { width = 0.5, height = 0.6 } },
+			-- },
+			extensions = {
+				["ui-select"] = { themes.get_dropdown() },
 				frecency = {
 					default_weights = { recency = 1.0, frequency = 0.5 },
 				},
 			},
 		})
 		-- Enable Telescope extensions if they are installed
-		pcall(require("telescope").load_extension, "fzf")
-		pcall(require("telescope").load_extension, "ui-select")
-		pcall(require("telescope").load_extension, "frecency")
-		pcall(require("telescope").load_extension, "telescope-env")
-		-- pcall(require("telescope").load_extension, "bibtex")
+		pcall(telescope.load_extension, "fzf")
+		pcall(telescope.load_extension, "ui-select")
+		pcall(telescope.load_extension, "frecency")
+		pcall(telescope.load_extension, "telescope-env")
+		-- pcall(telescope.load_extension, "bibtex")
 	end,
 }

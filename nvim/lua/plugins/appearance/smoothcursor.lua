@@ -1,11 +1,12 @@
 -- ~/.config/nvim/lua/Plugins/appearance/smoothcursor.lua
+
 return {
 	"gen740/SmoothCursor.nvim",
+
 	config = function()
 		require("smoothcursor").setup({
 			-- type = "default", -- "default", "exp" (exponential) or "matrix".
 			type = "matrix",
-
 			cursor = "", -- Cursor shape
 			texthl = "SmoothCursor", -- Highlight group. Default is { bg = nil, fg = "#FFD400" }. Disabled in fancy mode.
 			linehl = nil, -- Highlights the line under the cursor, similar to 'cursorline'. "CursorLine" is recommended
@@ -58,7 +59,7 @@ return {
 			autostart = true, -- Automatically start SmoothCursor
 			always_redraw = true, -- Redraw the screen on each update
 			flyin_effect = nil, -- Choose "bottom" or "top" for flying effect
-			speed = 15, -- Max speed is 100 to stick with your current position
+			speed = 25, -- Max speed is 100 to stick with your current position
 			intervals = 35, -- Update intervals in milliseconds
 			priority = 10, -- Set marker priority
 			timeout = 3000, -- Timeout for animations in milliseconds
@@ -73,5 +74,8 @@ return {
 			-- `nil` = disabled
 			show_last_positions = nil,
 		})
+		vim.api.nvim_set_hl(0, "SmoothCursor", { fg = "#fabd2f" })
+		vim.api.nvim_set_hl(0, "SmoothCursorYellow", { fg = "#fabd2f" })
+		vim.api.nvim_set_hl(0, "SmoothCursorOrange", { fg = "#fe8019" })
 	end,
 }

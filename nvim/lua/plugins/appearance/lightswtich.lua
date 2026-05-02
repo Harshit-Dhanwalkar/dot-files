@@ -1,7 +1,9 @@
--- ~/.config/nvim/lua/Plugins/appearance/lightswtich.lua
+-- ~/.config/nvim/lua/plugins/appearance/lightswtich.lua
+
 return {
 	"markgandolfo/lightswitch.nvim",
 	dependencies = { "MunifTanjim/nui.nvim" },
+
 	config = function()
 		require("lightswitch").setup({
 			toggles = {

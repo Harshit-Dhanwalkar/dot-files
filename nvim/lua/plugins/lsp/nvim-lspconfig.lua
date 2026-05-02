@@ -13,7 +13,7 @@ return {
 		-- { "antosha417/nvim-lsp-file-operations", config = true },
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		"creativenull/efmls-configs-nvim", -- Preconfigured EFM Language Server setups
+		-- "creativenull/efmls-configs-nvim", -- Preconfigured EFM Language Server setups
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/nvim-cmp",
 		"j-hui/fidget.nvim",

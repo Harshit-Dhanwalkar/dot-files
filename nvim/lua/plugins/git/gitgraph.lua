@@ -1,4 +1,5 @@
--- ~/.config/nvim/lua/Plugins/git/gitgraph.lua
+-- ~/.config/nvim/lua/plugins/git/gitgraph.lua
+
 return {
 	"isakbm/gitgraph.nvim",
 	dependencies = { "sindrets/diffview.nvim" },

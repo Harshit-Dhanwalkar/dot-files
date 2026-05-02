@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/utils/nvim-cmp.lua
+
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
@@ -11,6 +12,8 @@ return {
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-cmdline",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
+		"hrsh7th/cmp-nvim-lua",
 		"brenoprata10/nvim-highlight-colors",
 		"f3fora/cmp-spell",
 		-- { "hrsh7th/cmp-emoji", dependencies = { "hrsh7th/nvim-cmp" } }
@@ -32,7 +35,8 @@ return {
 		local cmp = require("cmp")
 		-- local luasnip = require("luasnip")
 		-- luasnip.config.setup({})
-		-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see: https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+		-- INFO: For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see: https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+		local lspkind = require("lspkind")
 
 		cmp.setup({
 			snippet = {
@@ -147,6 +151,7 @@ return {
 				{ name = "ultisnips" },
 				{ name = "luasnip" },
 				-- { name = "vsnip" },
+				{ name = "nvim_lsp_signature_help" },
 				{
 					name = "latex_symbols",
 					option = {
@@ -154,12 +159,13 @@ return {
 					},
 				},
 				{ name = "path" }, -- file paths
+				-- { name = "buffer", keyword_length = 2 }, -- source current buffer
+				{ name = "buffer" },
 				-- { name = "nvim_lsp" },
 				{ name = "nvim_lsp", keyword_length = 3 }, -- from language server
 				{ name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
 				{ name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
 				{ name = "treesitter" },
-				{ name = "buffer", keyword_length = 2 }, -- source current buffer
 				{ name = "calc" }, -- source for math calculation
 				{ name = "nasm_registers" },
 				{ name = "nasm_instructions" },
@@ -190,6 +196,7 @@ return {
 				end,
 			},
 		})
+		--  Command line completions
 		--  '/' cmdline setup
 		cmp.setup.cmdline("/", {
 			mapping = cmp.mapping.preset.cmdline(),

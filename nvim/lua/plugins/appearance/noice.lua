@@ -1,13 +1,23 @@
 -- ~/.config/nvim/lua/Plugins/appearance/noice.lua
+
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
-	enabled = true,
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 		-- "rcarriga/nvim-notify",
 	},
+
 	config = function()
+		-- require("notify").setup({
+		-- 	background_colour = "#1d2021",
+		-- 	fps = 60,
+		-- 	render = "compact",
+		-- 	stages = "fade_in_slide_out",
+		-- 	timeout = 2500,
+		-- 	max_width = 50,
+		-- })
+
 		require("noice").setup({
 			lsp = {
 				progress = {
@@ -72,6 +82,10 @@ return {
 						-- winhighlight = "Normalo:Normal,FloatBorder:FloatBorder",
 						winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
 					},
+					popupmenu = {
+						relative = "editor",
+						border = { style = "rounded", padding = { 0, 1 } },
+					},
 				},
 			},
 			routes = {
@@ -90,15 +104,23 @@ return {
 				},
 			},
 			messages = {
-				enabled = false,
-				view = "mini", -- Use 'mini' view instead of 'notify'
+				enabled = true, -- false
+				view = "mini", -- "notify"
 				view_error = "split", -- Handle errors in a split
 				view_warn = "mini", -- Use mini for warnings
 				view_history = "messages",
 				view_search = "virtualtext",
 			},
-			popupmenu = { enabled = true, backend = "nui", kind_icons = {} },
-			hover = { enabled = true, silent = false, opts = {} },
+			popupmenu = {
+				enabled = true,
+				backend = "nui",
+				kind_icons = {},
+			},
+			hover = {
+				enabled = true,
+				silent = false,
+				opts = {},
+			},
 			documentation = {
 				view = "hover",
 				opts = {

@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/git/git-linker.lua
+
 local map = vim.keymap
 
 return {

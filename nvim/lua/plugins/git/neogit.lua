@@ -1,4 +1,5 @@
--- ~/.config/nvim/lua/Plugins/git.neogit.lua
+-- ~/.config/nvim/lua/plugins/git.neogit.lua
+
 return {
 	"NeogitOrg/neogit",
 	dependencies = {

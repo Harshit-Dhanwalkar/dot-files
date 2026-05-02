@@ -1,4 +1,5 @@
--- ~/.config/nvim/lua/Plugins/git/lazygit.lua
+-- ~/.config/nvim/lua/plugins/git/lazygit.lua
+
 return {
 	"kdheepak/lazygit.nvim",
 	enabled = false,

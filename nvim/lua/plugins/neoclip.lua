@@ -1,7 +1,8 @@
 -- ~/.config/nvim/lua/plugins/mini.lua
 
 local function is_whitespace(line)
-	return vim.fn.match([[^\s*$]], line) ~= -1
+	-- return vim.trim(line) == ""   -- avoids Vim regex issues
+	return line:match("^%s*$") ~= nil
 end
 
 local function all(tbl, check)
@@ -34,7 +35,7 @@ return {
 			-- }),
 			history = 1000,
 			enable_persistent_history = false,
-			length_limit = 1048576,
+			length_limit = 1048576, -- 1 Mb
 			continuous_sync = false,
 			-- db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3", --Specify database path
 			filter = function(data)

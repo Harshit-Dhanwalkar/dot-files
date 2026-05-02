@@ -12,7 +12,7 @@ vim.g.have_nerd_font = true
 -- Remove flickering in the statusline when saving a file
 -- map("n", ":w", "<cmd>silent write<cr>") -- fixed by noice plugin
 
--- -- Compilers keymap
+-- -- Compiler keymap
 map("n", "<leader>r", ":make<CR>", { desc = "Run current file" })
 
 -- Clear highlight after search with Esc
@@ -32,21 +32,19 @@ map({ "n", "v" }, "<leader>y", [["+y]])
 map("x", "<leader>P", '"_dP"', { desc = "[P]aste without yanking" })
 
 -- Delete without yanking
-map({ "n", "v" }, "<leader>x", '"_d"', { desc = "[x]Delete without yanking" })
+-- FIX: conflict with delete current buffer
+-- map({ "n", "v" }, "<leader>x", '"_d"', { desc = "[x]Delete without yanking" })
 
 -- Formatting
-map(
-	"n",
-	"<leader>f",
-	"<cmd>lua vim.lsp.buf.format()<CR>",
-	{ noremap = true, silent = true }
-	-- { desc = "[F]ormat current buffer" }
-)
+-- map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", { noremap = true, silent = true })
+map("n", "<leader>f", function()
+	require("conform").format({ async = true, lsp_fallback = true })
+end, { desc = "Format buffer (via Conform)" })
 
 -- map("", "<Leader>ss", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
 
 -- Split window
--- map("n", "<leader>sh", ":split<Return>", { desc = "[S]plit window [H]orizoncally" })
+map("n", "<leader>sb", ":split<Return>", { desc = "[S]plit window [H]orizoncally" })
 map("n", "<leader>sv", ":vsplit<Return>", { desc = "[S]plit window [V]ertically" })
 
 -- Move window

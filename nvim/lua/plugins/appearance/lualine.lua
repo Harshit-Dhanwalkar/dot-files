@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/appearance/lualine.lua
+
 -- local function get_time()
 -- 	return os.date("%I:%M %p")
 -- end
@@ -52,15 +53,23 @@ return {
 				},
 			},
 			sections = {
+				-- lualine_a = {
+				-- 	{
+				-- 		"mode",
+				-- 		symbols = {
+				-- 			normal = "N",
+				-- 			insert = "I",
+				-- 			visual = "V",
+				-- 			replace = "R",
+				-- 		},
+				-- 	},
+				-- },
 				lualine_a = {
 					{
 						"mode",
-						symbols = {
-							normal = "N",
-							insert = "I",
-							visual = "V",
-							replace = "R",
-						},
+						fmt = function(s)
+							return s:sub(1, 3)
+						end,
 					},
 				},
 				lualine_b = {
@@ -80,15 +89,16 @@ return {
 						"filename",
 						file_status = true,
 						newfile_status = false,
-						path = 0,
+						path = 1,
+						-- 0: File name
 						-- 1: Relative path
 						-- 2: Absolute path
 						-- 3: Absolute path, with tilde as the home directory
 						-- 4: Filename and parent dir, with tilde as the home directory
 						shorting_target = 40,
 						symbols = {
-							modified = "[+]",
-							readonly = "[-]",
+							modified = "●",
+							readonly = "󰌾",
 							unnamed = "[No Name]",
 							newfile = "[New]",
 						},
@@ -120,20 +130,20 @@ return {
 					-- 	show_colors = false,
 					-- 	show_loading = true,
 					-- },
-					"encoding",
-					-- {
-					-- 	"encoding",
-					-- 	-- Show '[BOM]' when the file has a byte-order mark
-					-- 	show_bomb = false,
-					-- },
+					{ "diagnostics", symbols = { error = "E", warn = "W", info = "I", hint = "H" } },
 					{
-						"fileformat",
-						symbols = {
-							unix = "", -- e712
-							dos = "", -- e70f
-							mac = "", -- e711
-						},
+						"encoding",
+						-- Show '[BOM]' when the file has a byte-order mark
+						show_bomb = false,
 					},
+					-- {
+					-- 	"fileformat",
+					-- 	symbols = {
+					-- 		unix = "", -- e712
+					-- 		dos = "", -- e70f
+					-- 		mac = "", -- e711
+					-- 	},
+					-- },
 					{
 						"filetype",
 						colored = true, -- Displays filetype icon in color if set to true

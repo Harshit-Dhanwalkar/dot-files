@@ -1,4 +1,5 @@
--- ~/.config/nvim/lua/Plugins/git/git-blame.lua
+-- ~/.config/nvim/lua/plugins/git/git-blame.lua
+
 return {
 	-- Git Lens
 	"f-person/git-blame.nvim",

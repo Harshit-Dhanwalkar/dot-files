@@ -1,6 +1,9 @@
--- ~/.config/nvim/lua/Plugins/appearance/twilight.lua
+-- ~/.config/nvim/lua/plugins/appearance/twilight.lua
+
 return {
 	"folke/twilight.nvim",
+	cmd = "Twilight",
+
 	config = function()
 		require("twilight").setup({
 			dimming = {

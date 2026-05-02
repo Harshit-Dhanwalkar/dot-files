@@ -1,9 +1,17 @@
--- ~/.config/nvim/lua/compiler/init.lua
+-- ~/.config/nvim/lua/ftplugin/compiler/python.lua
 
-if vim.g.current_compiler ~= nil then
+local fn = vim.fn
+local api = vim.api
+local cmd = vim.cmd
+local opt = vim.opt
+local g = vim.g
+local o = vim.bo
+
+g.python3_host_prog = "/home/linuxbrew/.linuxbrew/bin/python3.11"
+
+if g.current_compiler ~= nil then
 	return
 end
-
 vim.g.current_compiler = "python" -- uv
 
 -- local o = vim.go
@@ -11,7 +19,6 @@ vim.g.current_compiler = "python" -- uv
 --   o = vim.bo
 -- end
 
-local o = vim.bo
 o.makeprg = [[python3 %]] -- [[uv run %]]
 
 -- Parse Python tracebacks specifically to Nvim

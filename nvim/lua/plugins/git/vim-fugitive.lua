@@ -1,10 +1,12 @@
--- ~/.config/nvim/lua/Plugins/git/vim-fugitive.lua
+-- ~/.config/nvim/lua/plugins/git/vim-fugitive.lua
+
 return {
 	"tpope/vim-fugitive",
 	config = function()
 		vim.keymap.set("n", "<leader>gg", vim.cmd.Git)
 		local myFugitive = vim.api.nvim_create_augroup("myFugitive", {})
 		local autocmd = vim.api.nvim_create_autocmd
+
 		autocmd("BufWinEnter", {
 			group = myFugitive,
 			pattern = "*",

@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/Plugins/git/diffview.lua
+-- ~/.config/nvim/lua/plugins/git/diffview.lua
 
 return {
 	"sindrets/diffview.nvim",
@@ -26,12 +26,20 @@ return {
 		require("diffview").setup({
 			enhanced_diff_hl = true,
 			view = {
+				default = {
+					layout = "diff2_horizontal",
+				},
 				merge_tool = {
 					layout = "diff3_mixed",
 				},
 			},
 			keymaps = {
+				-- { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Git diff" },
+				-- { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File history" },
+				-- { "<leader>gH", "<cmd>DiffviewFileHistory<cr>", desc = "Branch history" },
+				-- { "<leader>gc", "<cmd>DiffviewClose<cr>", desc = "Close diff" },
 				file_panel = {
+					win_config = { position = "left", width = 35 },
 					{ "n", "q", "<cmd>DiffviewClose<CR>" },
 					{ "n", "h", actions.prev_entry },
 					{ "n", "o", actions.focus_entry },

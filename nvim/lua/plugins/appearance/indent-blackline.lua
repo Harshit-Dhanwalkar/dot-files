@@ -1,3 +1,5 @@
+-- ~/.config/nvim/lua/plugins/appearance/indent-blackline.lua
+
 -- Minimal version with dim colors
 vim.api.nvim_set_hl(0, "DimIndent", { fg = "#555555" }) -- Dark gray
 
@@ -23,17 +25,21 @@ vim.api.nvim_set_hl(0, "DimIndent", { fg = "#555555" }) -- Dark gray
 return {
 	"lukas-reineke/indent-blankline.nvim",
 	main = "ibl",
+	event = { "BufReadPost", "BufNewFile" },
 	opts = {
 		indent = {
-			char = "▏", -- Very thin bar
-			highlight = "Comment", -- Use Comment color for subtlety
+			char = "▏",
+			highlight = "Comment",
 		},
 		whitespace = {
 			highlight = "Whitespace",
 			remove_blankline_trail = false,
 		},
 		scope = {
-			enabled = false, -- Disable scope highlighting
+			enabled = true, -- false
+			show_start = true,
+			show_end = false,
+			highlight = { "Function", "Label" },
 		},
 		exclude = {
 			filetypes = {
@@ -51,6 +57,7 @@ return {
 			},
 		},
 	},
+
 	config = function(_, opts)
 		require("ibl").setup(opts)
 	end,

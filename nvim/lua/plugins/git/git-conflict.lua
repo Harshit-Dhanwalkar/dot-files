@@ -1,4 +1,5 @@
--- ~/.config/nvim/lua/Plugins/git/git-conflict.lua
+-- ~/.config/nvim/lua/plugins/git/git-conflict.lua
+
 return {
 	"akinsho/git-conflict.nvim",
 	version = "*",

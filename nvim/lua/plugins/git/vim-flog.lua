@@ -1,4 +1,5 @@
--- ~/.config/nvim/lua/Plugins/git/vim-flog.lua
+-- ~/.config/nvim/lua/plugins/git/vim-flog.lua
+
 return {
 	"rbong/vim-flog",
 	lazy = true,

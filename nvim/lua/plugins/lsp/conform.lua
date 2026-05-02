@@ -4,8 +4,7 @@
 return {
 	"stevearc/conform.nvim",
 	event = { "BufReadPre", "BufNewFile" },
-	cmd = { "ConformInfo" },
-
+	cmd = { "ConformInfo", "Conform" },
 	keys = {
 		{
 			"<leader>cf",
@@ -43,6 +42,15 @@ return {
 			mode = { "v" },
 			desc = "Format Selection",
 		},
+		-- Format buffer
+		{
+			"<C-S-f>",
+			function()
+				vim.notify("Formatting buffer...", vim.log.levels.INFO, { title = "Conform" })
+				require("conform").format({ async = true, lsp_fallback = true })
+			end,
+			desc = "Format buffer",
+		},
 	},
 
 	config = function()
@@ -71,9 +79,11 @@ return {
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "isort", "ruff", "ruff_fix", "ruff_format" }, -- "black"
+				python = { "isort", "ruff", "ruff_format" }, -- "black"
 				c = { "clang-format" },
 				cpp = { "clang-format" },
+				objc = { "clang-format" },
+				objcpp = { "clang-format" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				javascriptreact = { "prettier" },
 				typescript = { "prettier" },
@@ -114,10 +124,9 @@ return {
 			shfmt = {
 				prepend_args = { "-i", "4" },
 			},
-			notify_on_error = false,
 			format_on_save = function(bufnr)
 				-- Disable "format_on_save lsp_fallback" for languages that don't have a well standardized coding style.
-				local disable_filetypes = { c = true, cpp = true, text = true }
+				local disable_filetypes = { text = true }
 				local lsp_format_opt
 				if disable_filetypes[vim.bo[bufnr].filetype] then
 					lsp_format_opt = "fallback"
@@ -129,6 +138,8 @@ return {
 					lsp_format = lsp_format_opt,
 				}
 			end,
+			notify_on_error = false,
+			notify_no_formatters = false,
 		})
 	end,
 }

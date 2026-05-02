@@ -1,7 +1,6 @@
 -- ~/.config/nvim/lua/plugins.lua
 
 -- My plugins
--- require("utilities.autocommands")
 -- require("utilities.go_to_relative_file")
 -- require("utilities.notes")
 require("utilities.toggle_booleans")
@@ -59,6 +58,10 @@ require("lazy").setup({
 	-- require("plugins.appearance.twilight"),
 	require("plugins.appearance.undo-glow"),
 	-- require("plugins.appearance.smoothcursor"),
+	-- require("plugins.appearance.range-hightlight"),
+	require("plugins.appearance.which-key"),
+	require("plugins.appearance.symbols-outline"),
+	-- require("plugins.appearance.colorful-winsep"),
 	-- require("plugins.utils.blink"),
 	require("plugins.utils.comment"),
 	require("plugins.utils.debug"),
@@ -85,22 +88,24 @@ require("lazy").setup({
 	-- require("plugins.others.image"),
 	require("plugins.latex.vimtex"),
 	-- require("plugins.latex.illustrate"),
+	require("plugins.neoclip"),
 	require("plugins.utils.tabout"),
 	require("plugins.utils.mini"),
-	require("plugins.neoclip"),
-	require("plugins.utils.nvim-cmp"),
-	require("plugins.utils.nvim-tree"),
-	-- require("plugins.utils.neotree"),
 	require("plugins.lazydev"),
 	require("plugins.lint"),
 	require("plugins.lsp.conform"),
 	require("plugins.lsp.nvim-lspconfig"),
 	require("plugins.luvit-meta"),
 	require("plugins.telescope"),
+	require("plugins.treesitter.nvim-treesitter"),
+	require("plugins.treesitter.nvim-treesitter-textobjects"),
+	require("plugins.treesitter.nvim-treesitter-context"),
+	require("plugins.utils.nvim-cmp"),
+	require("plugins.utils.nvim-tree"),
+	-- require("plugins.utils.neotree"),
+	-- require("plugins.utils.yanky"),
 	require("plugins.utils.tiny-inline-diagnostic"),
 	require("plugins.utils.tiny-code-action"),
-	require("plugins.nvim-treesitter"),
-	require("plugins.treesitter-textobjects"),
 	-- require("plugins.utils.treesj"),
 	require("plugins.utils.todo-comments"),
 	require("plugins.others.csvview"),
@@ -131,7 +136,6 @@ require("lazy").setup({
 	-- require("plugins.others.wilder"),
 	require("plugins.others.screenkey"),
 	-- require("plugins.others.showkeys"),
-	require("plugins.which-key"),
 	require("plugins.webdev.colorizer"),
 	require("plugins.webdev.cssvarviewer"),
 	require("plugins.webdev.vim-prettier"),

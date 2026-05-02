@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/appearance/colorscheme.lua
+
 -- Use `:Telescope colorscheme`
 return {
 	{

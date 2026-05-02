@@ -1,8 +1,10 @@
 -- ~/.config/nvim/lua/plugins/utils/todo-comments.lua
+
 return {
 	"folke/todo-comments.nvim",
 	event = "VimEnter",
 	dependencies = { "nvim-lua/plenary.nvim" },
+
 	config = function()
 		require("todo-comments").setup({
 			signs = true, -- show icons in the signs column
@@ -37,10 +39,10 @@ return {
 				HARSHIT = {
 					icon = "ह",
 					color = "harshit",
-					alt = { "Harshit", "HARSHIT PPRASHANT DHANWALKAR", "Harshit Prahant Dhanwalkar" },
+					alt = { "HARSHIT PPRASHANT DHANWALKAR" },
 				}, -- Ħ Ӣ
 				NVIM = { icon = "Ӣ ", color = "harshit" },
-				-- more icon you can find here (https://symbl.cc/en/0126/)
+				-- more icon can find here (https://symbl.cc/en/0126/)
 			},
 			--
 			gui_style = {
