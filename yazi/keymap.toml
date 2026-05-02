@@ -137,13 +137,14 @@ prepend_keymap = [
 
 
 	# Plugins
-	{ on =   "n",          run = "open --opener newwindow", desc = "Open in new Kitty window" },
-	{ on = [ "g", "r" ],   run = ["plugin duck-radar"],    desc = "🦆 Duck Radar - Recent Files" },
-	{ on = [ "t", "s" ],   run = ["plugin telegram-send"], desc = "Send with Telegram"},
+	{ on =   "n",          run = ["open --opener newwindow"], desc = "Open in new Kitty window" },
+	{ on = [ "g", "r" ],   run = ["plugin duck-radar"],       desc = "🦆 Duck Radar - Recent Files" },
+	{ on = [ "t", "s" ],   run = ["plugin telegram-send"],    desc = "Send with Telegram"},
 
-	{ on =   "C",          run = "plugin ouch",            desc = "Compress with ouch" },
-	# { on =   "<C-y>",      run = "plugin wl-clipboard",    desc = "Copy to system clipboard (Wayland)" },
-	# { on = [ "p", "g" ], run = "plugin save-clipboard-to-file", desc = "Paste clipboard content to file and hover after created" },
-	{ on = [ "t", "g" ], run = "plugin greetings", desc = "Greetings" },
-	{on = "<A-y>", run = ["plugin copy-file-contents"], desc = "Copy contents of file"},
+	{ on =   "C",          run = ["plugin ouch"],            desc = "Compress with ouch" },
+	# { on =   "<C-y>",      run = "plugin wl-clipboard",      desc = "Copy to system clipboard (Wayland)" },
+	# { on = [ "p", "g" ],   run = "plugin save-clipboard-to-file", desc = "Paste clipboard content to file and hover after created" },
+	{ on = [ "t", "g" ],   run = ["plugin greetings"],       desc = "Greetings" },
+	{ on = "<A-y>",        run = ["plugin copy-file-contents"], desc = "Copy contents of file" },
+	{ on   = "<C-d>",      run  = ["plugin diff"],           desc = "Diff the selected with the hovered file" },
 ]
