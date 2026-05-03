@@ -1,8 +1,9 @@
 # Plugins
 
 - [x] duck-radar
-- [x] [current-size](https://gitee.com/DreamMaoMao/current-size.yazi)
 - [x] [diff](https://github.com/yazi-rs/plugins/tree/main/diff.yazi)
+- [ ] [yaziline](https://github.com/llanosrocas/yaziline.yazi)
+- [x] [current-size](https://gitee.com/DreamMaoMao/current-size.yazi)
 - [x] [ouch](https://github.com/ndtoan96/ouch.yazi.git)
 - [ ] [wl-clipboard](https://github.com/grappas/wl-clipboard.yazi)
 - [ ] [preview-audio](https://github.com/AminurAlam/yazi-plugins/tree/main/preview-audio.yazi)

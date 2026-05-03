@@ -3,6 +3,19 @@
 -- local greetings = require("greetings")
 -- greetings.entry()
 
+require("yaziline"):setup({
+	cut_files_color = "#892E3D",
+
+	separator_style = "angly", -- "angly" | "curvy" | "liney" | "empty"
+
+	select_symbol = "", -- S
+	yank_symbol = "󰆐", -- Y
+
+	filename_max_length = 24, -- truncate when filename > 24
+	filename_truncate_length = 10, -- leave 6 chars on both sides
+	filename_truncate_separator = "...",
+})
+
 require("duck-radar"):setup({
 	-- Extra dirs to search in addition to ~/Downloads, ~/Documents, ~/Desktop, ~/Pictures
 	dirs = {
