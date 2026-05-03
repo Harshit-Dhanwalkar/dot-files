@@ -10,20 +10,27 @@ require("yatline"):setup({
 	header_line = {
 		left = {
 			section_a = { { type = "line", name = "tabs" } },
-			section_b = { { type = "coloreds", custom = false, name = "hostname_username" } },
-			section_c = { { type = "coloreds", custom = false, name = "symlink" } },
+			section_b = { { type = "coloreds", custom = false, name = "symlink" } },
+			section_c = {
+				-- { type = "coloreds", custom = false, name = "hostname_username" },
+			},
 		},
 		right = {
-			section_a = { { type = "string", name = "date", params = { "%X" } } },
+			section_a = { { type = "string", name = "date", params = { "%A, %d %B" } } },
 			section_b = { { type = "coloreds", custom = false, name = "githead" } },
-			section_c = { { type = "coloreds", custom = false, name = "page_count" } },
+			section_c = {
+				-- { type = "string", custom = false, name = "hovered_file_extension", params = { true } },
+				{ type = "coloreds", custom = false, name = "page_count" },
+			},
 		},
 	},
 })
-require("yatline-hostname-username"):setup({
-	color = "silver",
-	mode = "both", -- "host", "user", "both"
-})
+-- require("yatline-hostname-username"):setup({
+-- 	color = "#FFFFFF",
+-- 	mode = "both", -- "host", "user", "both"
+-- })
+require("yatline-symlink"):setup()
+require("yatline-page-counter"):setup()
 require("yatline-githead"):setup({
 	order = {
 		"branch",
@@ -47,8 +54,8 @@ require("yatline-githead"):setup({
 	branch_borders = "",
 
 	show_remote_branch = true, -- only shown if different from local branch
-	always_show_remote_branch = false, -- always show remote branch even if it the same as local branch
-	always_show_remote_repo = false, -- Adds `origin/` if `always_show_remote_branch` is enabled
+	always_show_remote_branch = true, -- always show remote branch even if it the same as local branch
+	always_show_remote_repo = true, -- Adds `origin/` if `always_show_remote_branch` is enabled
 	remote_branch_prefix = ":",
 
 	show_tag = true, -- only shown if branch is not available
@@ -90,8 +97,6 @@ require("yatline-githead"):setup({
 	untracked_color = tokyo_night_theme.cyan,
 	untracked_symbol = "?",
 })
-require("yatline-symlink"):setup()
-require("yatline-page-counter"):setup()
 
 -- Bottomline
 -- require("yaziline"):setup({
@@ -145,4 +150,67 @@ require("font-sample"):setup({
 	-- https://imagemagick.org/script/color.php
 	bg = "white",
 	fg = "black",
+})
+
+require("simple-tag"):setup({
+	-- UI display mode (icon, text, hidden)
+	ui_mode = "icon", -- (Optional)
+	-- Disable tag key hints (popup in bottom right corner)
+	hints_disabled = false, -- (Optional)
+	-- Display tags on the left side or right side.
+	left_side = false,
+	render_order = 500,
+	-- Replace default yazi file/folder icons with tag icons. Only apply if left_side = true and have at least 1 tag.
+	-- Look better if it has only 1 tag. -> use function instead of boolean
+	replace_default_icon = false, -- (Optional)
+	-- Padding for left/right side.
+	-- padding_left = " ", -- (Optional, string only)
+	-- padding_right = " ", -- (Optional, string only)
+
+	-- Use replace_default_icon as a function instead
+	-- tags: list/table of tag keys
+	-- file: fs::File. https://yazi-rs.github.io/docs/plugins/context#fs-file
+
+	-- replace_default_icon = function(file, tags) -- (Optional)
+	-- 	--return tags[1] == "*" and file.is_hovered -- Only apply to file/folder with tag key * and hovered
+	-- 	return #tags == 1 -- Only apply to file/folder with only 1 tag
+	-- end,
+
+	-- You can backup/restore this folder within the same OS (Linux, windows, or MacOS).
+	-- But you can't restore backed up folder in the different OS because they use difference absolute path.
+	-- save_path =  -- full path to save tags folder (Optional)
+	--       - Linux/MacOS: os.getenv("HOME") .. "/.config/yazi/tags"
+	--       - Windows: os.getenv("APPDATA") .. "\\yazi\\config\\tags"
+
+	-- Set tag colors
+	colors = { -- (Optional)
+		-- Set this same value with `theme.toml` > [mgr] > hovered > reversed
+		-- Default theme use "reversed = true".
+		-- More info: https://github.com/sxyazi/yazi/blob/077faacc9a84bb5a06c5a8185a71405b0cb3dc8a/yazi-config/preset/theme-dark.toml#L25
+		-- Only need to set this if you use shipped/stable yazi <= v25.5.31 or nightly yazi installed before 11/12/2025
+		reversed = true, -- (Optional)
+
+		-- More colors: https://yazi-rs.github.io/docs/configuration/theme#types.color
+		-- format: [tag key] = "color"
+		["*"] = "#bf68d9", -- (Optional)
+		["$"] = "green",
+		["!"] = "#cc9057",
+		["1"] = "cyan",
+		["p"] = "red",
+	},
+
+	-- Set tag icons. Only show when ui_mode = "icon".
+	-- Any text or nerdfont icons should work as long as you use nerdfont to render yazi.
+	-- Default icon from mactag.yazi: ●; Some generic icons: , , 󱈤
+	-- More icon from nerd fonts: https://www.nerdfonts.com/cheat-sheet
+	icons = { -- (Optional)
+		default = "󰚋",
+
+		-- format: [tag key] = "tag icon"
+		["*"] = "*",
+		["$"] = "",
+		["!"] = "",
+		["p"] = "",
+		["w"] = "This long text also works",
+	},
 })

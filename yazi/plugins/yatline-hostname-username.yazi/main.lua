@@ -6,7 +6,7 @@ local function setup(_, options)
 	options = options or {}
 
 	local config = {
-		color = options.color or "silver",
+		color = options.color or "#0a0a0a", -- "silver",
 		mode = options.mode or "both", -- "both", "user", or "host"
 	}
 

@@ -78,7 +78,7 @@ end
 local function setup(_, options)
 	options = options or {}
 	local config = {
-		page_color = options.page_color or "cyan",
+		page_color = options.page_color or "#ff9e64", -- "#00ffff",
 		show_icon = options.show_icon ~= false, -- default true
 		icon = options.icon or "📄",
 		supported_formats = options.supported_formats or {

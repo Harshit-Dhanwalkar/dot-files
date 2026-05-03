@@ -6,6 +6,7 @@ PATH = "/usr/local/bin:/usr/bin:/bin"
 [mgr]
 show_hidden = false
 # ratio = [1,2,2]
+sort_by = "extension"
 
 [opener]
 edit = [
@@ -99,10 +100,11 @@ prepend_previewers = [
 #
 # 	# These can be combined
 # 	{ ..., run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
-]
-
-plugin.prepend_previewers = [
   { mime = 'font/*', run = 'font-sample' },
   { mime = 'application/ms-opentype', run = 'font-sample' },
   { url = '*.{otf,ttf,woff,woff2}', run = 'font-sample' },
 ]
+append_fetchers = [
+    { id = "simple-tag", url = "*", run = "simple-tag" },
+    { id = "simple-tag", url = "*/", run = "simple-tag" },
+  ]

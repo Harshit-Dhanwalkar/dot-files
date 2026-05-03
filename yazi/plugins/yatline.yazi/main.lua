@@ -137,7 +137,9 @@ Yatline.config = {
 			section_a = {
 				{ type = "line", name = "tabs" },
 			},
-			section_b = {},
+			section_b = {
+				{ type = "string", name = "tab_path", params = { false } },
+			},
 			section_c = {},
 		},
 		right = {
@@ -172,7 +174,8 @@ Yatline.config = {
 				{ type = "string", name = "cursor_percentage" },
 			},
 			section_c = {
-				{ type = "string", name = "hovered_file_extension", params = { true } },
+				-- { type = "string", name = "hovered_file_extension", params = { true } },
+				{ type = "string", name = "hovered_name", params = { true, 30, 15 } },
 				{ type = "coloreds", name = "permissions" },
 			},
 		},
