@@ -1,5 +1,7 @@
 -- ~/.config/yazi/plugins/duck-radar.yazi/main.lua
 
+--- @diagnostic disable: undefined-global, undefined-field
+
 local M = {}
 
 local shell = os.getenv("SHELL"):match(".*/(.*)")

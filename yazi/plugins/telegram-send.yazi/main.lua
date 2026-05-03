@@ -1,5 +1,7 @@
 -- ~/.config/yazi/plugins/telegram-send.yazi/main.lua
 
+--- @diagnostic disable: undefined-global, undefined-field
+
 local selected_files = ya.sync(function()
 	local tab, paths = cx.active, {}
 	for _, u in pairs(tab.selected) do

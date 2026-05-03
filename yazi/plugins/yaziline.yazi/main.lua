@@ -1,6 +1,6 @@
 -- ~/.config/yazi/plugins/yaziline.yazi/main.lua
 
----@diagnostic disable: undefined-global
+--- @diagnostic disable: undefined-global, undefined-field
 
 local function setup(_, options)
 	options = options or {}
@@ -137,7 +137,7 @@ local function setup(_, options)
 		local cha = hovered.cha
 		local time = (cha.mtime or 0) // 1
 
-		return ui.Span(os.date("%Y-%m-%d %H:%M", time) .. " " .. current_separator_style.separator_open_thin .. " ")
+		return ui.Span(os.date("%d-%m-%Y %H:%M", time) .. " " .. current_separator_style.separator_open_thin .. " ")
 			:fg(th.which.separator_style:fg())
 	end
 

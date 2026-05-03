@@ -1,6 +1,6 @@
 -- ~/.config/yazi/plugins/yaziline.yazi/main.lua
 
----@diagnostic disable: undefined-global
+--- @diagnostic disable: undefined-global, undefined-field
 
 local function setup(_, options)
 	options = options or {}

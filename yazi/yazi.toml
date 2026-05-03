@@ -101,3 +101,8 @@ prepend_previewers = [
 # 	{ ..., run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
 ]
 
+plugin.prepend_previewers = [
+  { mime = 'font/*', run = 'font-sample' },
+  { mime = 'application/ms-opentype', run = 'font-sample' },
+  { url = '*.{otf,ttf,woff,woff2}', run = 'font-sample' },
+]

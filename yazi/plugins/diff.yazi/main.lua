@@ -1,5 +1,7 @@
 -- ~/.config/yazi/plugins/diff.yazi/main.lua
 
+--- @diagnostic disable: undefined-global, undefined-field
+
 local function info(content)
 	return ya.notify({
 		title = "Diff",

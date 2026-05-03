@@ -1,5 +1,7 @@
 -- ~/.config/yazi/plugins/ouch.yazi/main.lua
 
+--- @diagnostic disable: undefined-global, undefined-field
+
 local M = {}
 
 -- Extract the tree prefix (if any) from a line

@@ -1,5 +1,7 @@
 -- ~/.config/yazi/plugins/greetings.yazi/main.lua
 
+--- @diagnostic disable: undefined-global, undefined-field
+
 return {
 	entry = function()
 		local user = os.getenv("USER") or "unknown"

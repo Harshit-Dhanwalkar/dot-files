@@ -1,5 +1,7 @@
 -- ~/.config/yazi/plugins/preview-audio.yazi/main.lua
 
+--- @diagnostic disable: undefined-global, undefined-field
+
 -- Only text
 --[[
 local M = {}

@@ -1,5 +1,7 @@
 -- ~/.config/yazi/plugins/current-size.yazi/main.lua
 
+--- @diagnostic disable: undefined-global, undefined-field
+
 local function string_split(input, delimiter)
 	local result = {}
 
