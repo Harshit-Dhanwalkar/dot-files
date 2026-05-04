@@ -174,7 +174,6 @@ end
 --
 -- 	return res
 -- end
--- --
 
 local symbol_filter = function(ctx)
 	return function(symbol)
@@ -192,20 +191,48 @@ end
 return {
 	"Wansmer/symbol-usage.nvim",
 	event = "LspAttach",
+
 	config = function()
+		local function h(name)
+			return vim.api.nvim_buf_create_user_command(0, name, function()
+				require("symbol-usage").toggle()
+			end, {
+				nargs = "?",
+				complete = function()
+					return { "enable", "disable" }
+				end,
+			})
+		end
+
 		require("symbol-usage").setup({
+			ft = { "c", "cpp", "lua", "typescript", "javascript", "python" },
 			hl = {
 				link = "Comment",
 			},
 			text_format = text_format,
-			kinds = { SymbolKind.Function, SymbolKind.Method },
+			-- kinds = { SymbolKind.Function, SymbolKind.Method },
+			kinds = {
+				SymbolKind.Function,
+				SymbolKind.Method,
+				SymbolKind.Variable,
+				SymbolKind.Class,
+				SymbolKind.Interface,
+				SymbolKind.Struct,
+				SymbolKind.Enum,
+				SymbolKind.Constant,
+			},
 			kinds_filter = {},
 			vt_position = "above",
 			vt_priority = nil,
+			-- Virtual text position
+			virtual_text = {
+				position = "eol", -- 'eol' (end of line) or 'above'
+				hl = "Comment",
+			},
 			request_pending_text = "loading...",
 			references = {
 				enabled = true,
-				include_declaration = false,
+				include_declaration = true,
 			},
 			definition = {
 				enabled = false,
@@ -224,5 +251,11 @@ return {
 				enabled = false,
 			},
 		})
+
+		-- Add highlight for symbol usage
+		vim.api.nvim_set_hl(0, "SymbolUsageText", { link = "Comment" })
+
+		-- Add commands
+		h("SymbolUsage")
 	end,
 }

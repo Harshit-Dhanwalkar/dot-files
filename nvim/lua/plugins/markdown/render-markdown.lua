@@ -3,19 +3,43 @@
 return {
 	"MeanderingProgrammer/render-markdown.nvim",
 	enabled = true,
-	ft = { "markdown", "vimwiki" },
+	ft = { "markdown", "vimwiki", "blink-cmp-documentation" },
 	cmd = { "RenderMarkdown" },
+
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"echasnovski/mini.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
 
+	init = function()
+		-- Blink documentation buffers use a custom filetype; map it to markdown so treesitter/rendering work.
+		pcall(vim.treesitter.language.register, "markdown", "blink-cmp-documentation")
+	end,
+
 	config = function()
 		require("render-markdown").setup({
 			-- render_mode = { "n", "c", "t" },
 			render_mode = { "n" },
 			latex = { enabled = true },
+			heading = {
+				-- 	-- Use abstract glyphs instead of numbers for heading markers.
+				-- icons = { "◆ ", "◇ ", "✦ ", "✧ ", "✩ ", "✪ " }, -- Not using it beacuse these get's confusing with bullet pt.s
+				-- backgrounds = false,
+				foregrounds = {
+					"RenderMarkdownH1",
+					"RenderMarkdownH2",
+					"RenderMarkdownH3",
+					"RenderMarkdownH4",
+					"RenderMarkdownH5",
+					"RenderMarkdownH6",
+				},
+				signs = { "◆ " },
+				border = true,
+				border_virtual = true,
+				above = "─",
+				below = "─",
+			},
 			code = {
 				enabled = true,
 				sign = true,

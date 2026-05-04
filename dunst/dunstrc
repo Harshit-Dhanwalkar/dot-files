@@ -85,7 +85,7 @@
 
 [urgency_critical]
     background = "#580c19"  # "#bf616a"  # "#f38ba8"
-    foreground = "#0a0a0a"  # "#1e1e2e"  # "#11111b"  # "#eceff4"
+    foreground = "#ffffff"  # "#1e1e2e"  # "#11111b"  # "#eceff4"
     timeout = 0
 
 [shortcuts]
