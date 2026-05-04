@@ -13,6 +13,7 @@ return {
 			ft = "markdown",
 		},
 	},
+
 	config = function()
 		-- Immediately remove the <CR> it added
 		vim.api.nvim_create_autocmd("FileType", {

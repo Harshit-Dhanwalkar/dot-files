@@ -6,6 +6,7 @@ return {
 	requires = {
 		{ "kdheepak/cmp-latex-symbols" }, -- Source for Latex Symbols
 	},
+
 	dependencies = {
 		-- Completions cmp
 		"hrsh7th/cmp-nvim-lsp",
@@ -27,16 +28,18 @@ return {
 		"saadparwaiz1/cmp_luasnip",
 		"rafamadriz/friendly-snippets",
 		"sirver/ultisnips",
-		"onsails/lspkind.nvim", -- TODO: See more about it
+		-- "onsails/lspkind.nvim", -- TODO: See more about it
 	},
 	enabled = true,
+
 	config = function()
 		-- See `:help cmp`
 		local cmp = require("cmp")
 		-- local luasnip = require("luasnip")
 		-- luasnip.config.setup({})
 		-- INFO: For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see: https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-		local lspkind = require("lspkind")
+
+		-- local lspkind = require("lspkind")
 
 		cmp.setup({
 			snippet = {
@@ -184,6 +187,7 @@ return {
 						buffer = "Ω",
 						path = "🖫",
 						nvim_lua = "Π",
+						Supermaven = "S", -- AI
 					}
 					item.menu = menu_icon[entry.source.name] or ""
 					return item

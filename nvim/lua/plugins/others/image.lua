@@ -1,15 +1,52 @@
 -- ~/.config/nvim/lua/Plugins/other/image.lua
--- sudo apt install imagemagick libmagickwand-dev
+
+-- Dependencies : imagemagick libmagickwand-dev
+
+local function choose_backend()
+	local term = (vim.env.TERM or ""):lower()
+	if term:find("kitty", 1, true) or vim.env.KITTY_WINDOW_ID then
+		return "kitty"
+	end
+	if vim.fn.executable("ueberzug") == 1 or vim.fn.executable("ueberzugpp") == 1 then
+		return "ueberzug"
+	end
+	if vim.fn.has("mac") == 1 and vim.env.TERM_PROGRAM == "WezTerm" then
+		return "wezterm"
+	end
+	return nil
+end
+
+local backend = choose_backend()
+
 return {
 	"3rd/image.nvim",
+	enabled = backend ~= nil,
+	ft = {
+		"image",
+		"png",
+		"jpg",
+		"jpeg",
+		"gif",
+		"bmp",
+		"svg",
+		"webp",
+		"markdown",
+		"norg",
+		"quarto",
+		"typst",
+		"man",
+		"help",
+	},
+
 	dependencies = {
 		"leafo/magick",
 		"nvim-treesitter/nvim-treesitter",
+		"nvim-lua/plenary.nvim",
 	},
+
 	config = function()
 		require("image").setup({
-			-- backend = 'ueberzug',
-			backend = "kitty",
+			backend = backend or "kitty", -- 'ueberzug', "wezterm"
 			kitty_method = "normal",
 			integrations = {
 				markdown = {
@@ -32,6 +69,8 @@ return {
 				css = {
 					enabled = false,
 				},
+				typst = { enabled = true },
+				man = { enabled = true },
 			},
 			max_width = nil,
 			max_height = nil,
@@ -45,7 +84,7 @@ return {
 			-- auto show/hide images when the editor gains/looses focus
 			editor_only_render_when_focused = false,
 			-- render image files as images when opened
-			hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" },
+			-- hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" },
 		})
 	end,
 	--    priority = 1000,

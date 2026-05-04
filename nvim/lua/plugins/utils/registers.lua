@@ -1,6 +1,8 @@
 -- ~/.config/nvim/lua/plugins/utils/registers.lua
+
 return {
 	"tversteeg/registers.nvim",
+
 	config = function()
 		local registers = require("registers")
 		registers.setup({

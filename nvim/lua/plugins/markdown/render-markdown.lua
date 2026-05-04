@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/markdown/render-markdown.lua
+
 return {
 	"MeanderingProgrammer/render-markdown.nvim",
 	enabled = true,
@@ -9,6 +10,7 @@ return {
 		"echasnovski/mini.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
+
 	config = function()
 		require("render-markdown").setup({
 			-- render_mode = { "n", "c", "t" },

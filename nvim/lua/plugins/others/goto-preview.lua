@@ -5,6 +5,7 @@
 -- 	-- event = "BufEnter",
 -- 	event = "LspAttach",
 -- 	dependencies = "rmagatti/logger.nvim",
+--
 -- 	config = function()
 -- 		require("goto-preview").setup({
 -- 			default_mappings = true,
@@ -84,6 +85,7 @@ return {
 			desc = "Close preview windows",
 		},
 	},
+
 	opts = {
 		width = 120,
 		height = 15,

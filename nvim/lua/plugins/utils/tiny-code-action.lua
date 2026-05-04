@@ -1,10 +1,12 @@
 -- ~/.config/nvim/lua/plugins/utils/tiny-code-action.lua
+
 return {
 	"rachartier/tiny-code-action.nvim",
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
 	},
 	event = "LspAttach",
+
 	opts = {
 		-- The backend to use for displaying diffs.
 		-- Options: "vim", "delta", "difftastic", "diffsofancy"

@@ -1,6 +1,8 @@
 -- ~/.config/nvim/lua/Plugins/appearance/pretty-fold.lua
+
 return {
 	"anuvyklack/pretty-fold.nvim",
+
 	config = function()
 		vim.opt.foldmethod = "expr"
 		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

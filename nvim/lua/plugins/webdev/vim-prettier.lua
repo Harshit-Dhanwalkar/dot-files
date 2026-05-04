@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/webdev/vim-prettier.lua
+
 return {
 	{
 		"prettier/vim-prettier",
@@ -17,6 +18,7 @@ return {
 			"html",
 		},
 	},
+
 	{
 		"MunifTanjim/prettier.nvim",
 		dependencies = { "nvim-lspconfig" },

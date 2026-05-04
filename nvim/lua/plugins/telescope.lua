@@ -11,6 +11,7 @@ return {
 		{
 			"crispgm/telescope-heading.nvim",
 			event = "VeryLazy",
+
 			config = function()
 				require("telescope").load_extension("heading")
 			end,
@@ -25,6 +26,7 @@ return {
 		-- {
 		-- 	"nvim-telescope/telescope-fzf-writer.nvim",
 		-- 	after = { "telescope.nvim" },
+		--
 		-- 	config = function()
 		-- 		require("telescope").load_extension("fzf_writer")
 		-- 	end,
@@ -36,12 +38,14 @@ return {
 		-- 		-- return vim.fn.executable("ueberzug")
 		-- 		return vim.fn.executable("kitty")
 		-- 	end,
+		--
 		-- 	config = function()
 		-- 		require("telescope").load_extension("media_files")
 		-- 	end,
 		-- },
 		-- {
 		-- 	"nvim-telescope/telescope-bibtex.nvim",
+		--
 		-- 	config = function()
 		-- 		require("telescope").setup({
 		-- 			extensions = {
@@ -73,6 +77,7 @@ return {
 		-- {
 		-- 	"nvim-telescope/telescope-file-browser.nvim",
 		-- 	after = { "telescope.nvim" },
+		--
 		-- 	config = function()
 		-- 		require("telescope").load_extension("file_browser")
 		-- 	end,
@@ -80,9 +85,11 @@ return {
 		-- use {"sunjon/telescope-arecibo.nvim",
 		--   after = {'telescope.nvim'},
 		--   rocks = {"openssl", "lua-http-parser"},
+		--
 		--   config = function() require('telescope').load_extension('arecibo') end
 		-- }
 	},
+
 	config = function()
 		-- Two important keymaps to use while in Telescope are:
 		--  - Insert mode: <c-/> -- to show keymaps for the current Telescope picker
@@ -92,6 +99,7 @@ return {
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 		local themes = require("telescope.themes")
+
 		telescope.setup({
 			defaults = {
 				prompt_prefix = "   ",

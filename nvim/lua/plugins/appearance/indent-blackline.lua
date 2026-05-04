@@ -26,39 +26,38 @@ return {
 	"lukas-reineke/indent-blankline.nvim",
 	main = "ibl",
 	event = { "BufReadPost", "BufNewFile" },
-	opts = {
-		indent = {
-			char = "▏",
-			highlight = "Comment",
-		},
-		whitespace = {
-			highlight = "Whitespace",
-			remove_blankline_trail = false,
-		},
-		scope = {
-			enabled = true, -- false
-			show_start = true,
-			show_end = false,
-			highlight = { "Function", "Label" },
-		},
-		exclude = {
-			filetypes = {
-				"help",
-				"alpha",
-				"dashboard",
-				"neo-tree",
-				"Trouble",
-				"lazy",
-				"mason",
-				"toggleterm",
-				"terminal",
-				"nofile",
-				"prompt",
-			},
-		},
-	},
 
-	config = function(_, opts)
-		require("ibl").setup(opts)
+	config = function()
+		require("ibl").setup({
+			indent = {
+				char = "▏",
+				highlight = "Comment",
+			},
+			whitespace = {
+				highlight = "Whitespace",
+				remove_blankline_trail = false,
+			},
+			scope = {
+				enabled = true, -- false
+				show_start = true,
+				show_end = false,
+				highlight = { "Function", "Label" },
+			},
+			exclude = {
+				filetypes = {
+					"help",
+					"alpha",
+					"dashboard",
+					"neo-tree",
+					"Trouble",
+					"lazy",
+					"mason",
+					"toggleterm",
+					"terminal",
+					"nofile",
+					"prompt",
+				},
+			},
+		})
 	end,
 }

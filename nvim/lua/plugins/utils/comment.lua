@@ -3,6 +3,7 @@
 return {
 	"numToStr/Comment.nvim",
 	lazy = false, -- load early so mappings work immediately
+
 	config = function()
 		require("Comment").setup({
 			-- create_mappings = false,

@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/keymaps.lua
+
 local map = vim.keymap.set
 
 local builtin = require("telescope.builtin")

@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/appearance/nvim-ufo.lua
+
 local ftMap = {
 	vim = "indent",
 	python = { "indent" },
@@ -10,6 +11,7 @@ return {
 	dependencies = {
 		"kevinhwang91/promise-async",
 	},
+
 	config = function()
 		require("ufo").setup({
 			provider_selector = function(bufnr, filetype, buftype)

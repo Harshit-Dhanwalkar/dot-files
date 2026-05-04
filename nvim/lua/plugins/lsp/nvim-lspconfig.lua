@@ -22,6 +22,7 @@ return {
 		-- "ravibrock/spellwarn.nvim",
 		-- "dgagn/diagflow.nvim",
 	},
+
 	config = function()
 		-- vim.fn.sign_define("DiagnosticSignError", {
 		-- 	text = icons.diagnostics.error,

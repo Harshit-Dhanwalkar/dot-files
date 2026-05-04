@@ -1,7 +1,8 @@
 -- ~/.config/nvim/lua/plugins/utils/neotree.lua
+
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	branch = "v3.x",
+
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
@@ -10,6 +11,7 @@ return {
 		{
 			"s1n7ax/nvim-window-picker",
 			version = "*",
+
 			config = function()
 				require("window-picker").setup({
 					autoselect_one = true,
@@ -27,6 +29,7 @@ return {
 			end,
 		},
 	},
+
 	config = function()
 		require("neo-tree").setup({
 			popup_border_style = "rounded",

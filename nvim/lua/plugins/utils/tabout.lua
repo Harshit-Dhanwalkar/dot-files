@@ -1,8 +1,10 @@
 -- ~/.config/nvim/lua/plugins/utils/tabout.lua
+
 return {
 	{
 		"abecodes/tabout.nvim",
 		lazy = false,
+
 		config = function()
 			require("tabout").setup({
 				tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable

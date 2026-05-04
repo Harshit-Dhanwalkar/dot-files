@@ -12,6 +12,7 @@ return {
 		-- "chrisgrieser/nvim-dr-lsp", -- LSP symbols in lualine
 		-- "AndreM222/copilot-lualine",
 	},
+
 	config = function()
 		require("lualine").setup({
 			options = {
@@ -271,6 +272,7 @@ return {
 -- return {
 -- 	"nvim-lualine/lualine.nvim",
 -- 	dependencies = { "nvim-tree/nvim-web-devicons" },
+--
 -- 	config = function()
 -- 		local lualine = require("lualine")
 -- 		local lazy_status = require("lazy.status") -- to configure lazy pending updates count

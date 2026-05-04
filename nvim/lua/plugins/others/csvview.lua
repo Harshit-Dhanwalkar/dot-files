@@ -1,6 +1,8 @@
 -- ~/.config/nvim/lua/Plugins/others/csvview.lua
+
 return {
 	"hat0uma/csvview.nvim",
+
 	config = function()
 		require("csvview").setup({
 			cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },

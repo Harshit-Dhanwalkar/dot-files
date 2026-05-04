@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/utils/debug.lua
+
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
@@ -11,6 +12,7 @@ return {
 		"jay-babu/mason-nvim-dap.nvim",
 		"leoluz/nvim-dap-go",
 	},
+
 	keys = function(_, keys)
 		local dap = require("dap")
 		local dapui = require("dapui")
@@ -32,6 +34,7 @@ return {
 			unpack(keys),
 		}
 	end,
+
 	config = function()
 		local dap = require("dap")
 		local dapui = require("dapui")

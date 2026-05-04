@@ -1,9 +1,11 @@
--- ~/.config/nvim/lua/plugins/treesitter-textobjects.lua
+-- ~/.config/nvim/lua/plugins/treesitter/nvim-treesitter-textobjects.lua
+
 return {
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 	},
+
 	config = function()
 		require("nvim-treesitter").setup({
 			textobjects = {

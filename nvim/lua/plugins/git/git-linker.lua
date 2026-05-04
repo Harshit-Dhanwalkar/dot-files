@@ -4,6 +4,7 @@ local map = vim.keymap
 
 return {
 	"ruifm/gitlinker.nvim",
+
 	config = function()
 		local gitlinker = require("gitlinker")
 		gitlinker.setup({

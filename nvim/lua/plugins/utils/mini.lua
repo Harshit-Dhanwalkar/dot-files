@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/utils/mini.lua
+
 return {
 	-- { -- Handled by commnet.nvim
 	-- 	"echasnovski/mini.comment",
@@ -21,9 +22,17 @@ return {
 	-- 		})
 	-- 	end,
 	-- },
+	-- { -- Handles by nvim-tressitter-textobjects
+	-- 	require("mini.ai").setup({ n_lines = 500 }),
+	-- 	-- Add/delete/replace surroundings (brackets, quotes, etc.)
+	-- 	-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+	-- 	-- - sd'   - [S]urround [D]elete [']quotes
+	-- 	-- - sr)'  - [S]urround [R]eplace [)] [']
+	-- },
 	{
 		"echasnovski/mini.trailspace",
 		event = { "BufReadPost", "BufNewFile" },
+
 		config = function()
 			local miniTrailspace = require("mini.trailspace")
 			miniTrailspace.setup({
@@ -36,13 +45,14 @@ return {
 			vim.api.nvim_create_autocmd("CursorMoved", {
 				pattern = "*",
 				callback = function()
-					require("mini.trailspace").unhighlight()
+					miniTrailspace.unhighlight()
 				end,
 			})
 		end,
 	},
 	{
 		"echasnovski/mini.jump2d",
+
 		config = function()
 			require("mini.jump2d").setup({
 				view = {
@@ -209,39 +219,10 @@ return {
 			-- end)
 		end,
 	},
-	-- {
-	-- 	"echasnovski/mini.cursorword",
-	-- 	config = function()
-	-- 		require("mini.cursorword").setup({})
-	-- 	end,
-	-- },
-	-- {
-	-- 	"echasnovski/mini.indentscope",
-	-- 	config = function()
-	-- 		require("mini.indentscope").setup({})
-	-- 	end,
-	-- },
-	-- {
-	-- 	"echasnovski/mini.move",
-	-- 	config = function()
-	-- 		require("mini.move").setup({})
-	-- 	end,
-	-- },
-	-- {
-	-- 	"echasnovski/mini.notify",
-	-- 	config = function()
-	-- 		require("mini.notify").setup({})
-	-- 	end,
-	-- },
-	-- {
-	-- 	"echasnovski/mini.bufremove",
-	-- 	config = function()
-	-- 		require("mini.bufremove").setup({})
-	-- 	end,
-	-- },
 	{
 		"echasnovski/mini.surround",
 		event = { "BufReadPre", "BufNewFile" },
+
 		config = function()
 			require("mini.surround").setup({
 				-- For more information see `:h MiniSurround.config`.
@@ -281,6 +262,7 @@ return {
 	{
 		"echasnovski/mini.operators",
 		event = "VeryLazy",
+
 		config = function()
 			require("mini.operators").setup({})
 		end,
@@ -288,12 +270,14 @@ return {
 	{
 		"echasnovski/mini.align",
 		event = "VeryLazy",
+
 		config = function()
 			require("mini.align").setup({})
 		end,
 	},
 	{
 		"echasnovski/mini.splitjoin",
+
 		config = function()
 			miniSplitJoin = require("mini.splitjoin")
 			miniSplitJoin.setup({
@@ -309,6 +293,7 @@ return {
 	},
 	-- {
 	-- 	"echasnovski/mini.files",
+	--
 	-- 	config = function()
 	-- 		require("mini.files").setup({
 	-- 			mappings = {
@@ -393,7 +378,43 @@ return {
 	-- 	end,
 	-- },
 	-- {
+	-- 	"echasnovski/mini.cursorword",
+	--
+	-- 	config = function()
+	-- 		require("mini.cursorword").setup({})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"echasnovski/mini.indentscope",
+	--
+	-- 	config = function()
+	-- 		require("mini.indentscope").setup({})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"echasnovski/mini.move",
+	--
+	-- 	config = function()
+	-- 		require("mini.move").setup({})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"echasnovski/mini.notify",
+
+	-- 	config = function()
+	-- 		require("mini.notify").setup({})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"echasnovski/mini.bufremove",
+	--
+	-- 	config = function()
+	-- 		require("mini.bufremove").setup({})
+	-- 	end,
+	-- },
+	-- {
 	-- 	"echasnovski/mini.map",
+	--
 	-- 	config = function()
 	-- 		require("mini.map").setup({
 	-- 			integrations = nil,
@@ -422,11 +443,4 @@ return {
 	-- ---@diagnostic disable-next-line: duplicate-set-field
 	-- statusline.section_location = function()
 	-- 	return "%2l:%-2v"
-	--
-	-- require("mini.ai").setup({ n_lines = 500 })
-	-- -- Add/delete/replace surroundings (brackets, quotes, etc.)
-	-- -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-	-- -- - sd'   - [S]urround [D]elete [']quotes
-	-- -- - sr)'  - [S]urround [R]eplace [)] [']
-	--
 }

@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/utils/blink.lua
+
 return {
 	{
 		"saghen/blink.compat",
@@ -13,6 +14,7 @@ return {
 			"moyiz/blink-emoji.nvim",
 			"ray-x/cmp-sql",
 		},
+
 		opts = {
 			keymap = {
 				preset = "enter",
@@ -24,7 +26,15 @@ return {
 				nerd_font_variant = "mono", -- normal
 			},
 			completion = {
-				documentation = { auto_show = true },
+				-- documentation = { auto_show = true },
+				draw = function(opts)
+					if opts.item and opts.item.documentation and opts.item.documentation.value then
+						local out = require("pretty_hover.parser").parse(opts.item.documentation.value)
+						opts.item.documentation.value = out:string()
+					end
+
+					opts.default_implementation(opts)
+				end,
 			},
 			signature = { enabled = true },
 			sources = {

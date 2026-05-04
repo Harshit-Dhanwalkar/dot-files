@@ -6,6 +6,7 @@ return {
 		"nvim-lua/plenary.nvim", -- Lua functions library, required by many plugins
 		"nvim-telescope/telescope.nvim", -- Fuzzy finder plugin
 	},
+
 	keys = function()
 		local illustrate = require("illustrate") -- Load illustrate module
 		local illustrate_finder = require("illustrate.finder") -- Load illustrate finder module
@@ -57,9 +58,9 @@ return {
 			-- },
 		}
 	end,
-	opts = {
-		-- Optional configuration options for the illustrate plugin
-	},
+	-- opts = {
+	-- 	-- Optional configuration options for the illustrate plugin
+	-- },
 	-- Custom command to convert SVG to PDF
 	--vim.api.nvim_create_user_command('ConvertSvgToPdf', function()
 	--    local svg_file = vim.fn.expand '%:p:r' .. '.svg'

@@ -1,7 +1,9 @@
 -- ~/.config/nvim/lua/Plugins/appearance/neominimap.lua
+
 return {
 	"Isrothy/neominimap.nvim",
 	lazy = false,
+
 	keys = {
 		-- Global Minimap Controls
 		{ "<leader>nm", "<cmd>Neominimap Toggle<cr>", desc = "Toggle global minimap" },
@@ -32,6 +34,7 @@ return {
 		{ "<leader>nu", "<cmd>Neominimap Unfocus<cr>", desc = "Unfocus minimap" },
 		{ "<leader>ns", "<cmd>Neominimap ToggleFocus<cr>", desc = "Switch focus on minimap" },
 	},
+
 	init = function()
 		vim.g.neominimap = {
 			auto_enable = false, --if true, Enable the plugin by default

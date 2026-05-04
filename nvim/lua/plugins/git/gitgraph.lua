@@ -3,7 +3,7 @@
 return {
 	"isakbm/gitgraph.nvim",
 	dependencies = { "sindrets/diffview.nvim" },
-	---@type I.GGConfig
+
 	opts = {
 		symbols = {
 			merge_commit = "M",
@@ -14,6 +14,7 @@ return {
 			fields = { "hash", "timestamp", "author", "branch_name", "tag" },
 		},
 	},
+
 	init = function()
 		vim.keymap.set("n", "<leader>go", function()
 			require("gitgraph").draw({}, { all = true, max_count = 5000 })

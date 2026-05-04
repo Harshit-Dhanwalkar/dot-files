@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/rust/rust-tools.lua
+
 return {
 	"simrat39/rust-tools.nvim",
 	ft = "rust",

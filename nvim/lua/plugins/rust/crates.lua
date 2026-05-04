@@ -1,7 +1,9 @@
 -- ~/.config/nvim/lua/Plugins/rust/crates.lua
+
 return {
 	"saecki/crates.nvim",
 	ft = { "rust", "toml" },
+
 	config = function()
 		require("crates").setup({
 			smart_insert = true,

@@ -49,12 +49,13 @@ require("lazy").setup({
 	require("plugins.appearance.lualine"),
 	require("plugins.appearance.noice"),
 	require("plugins.appearance.indent-blackline"),
+	require("plugins.appearance.lightswtich"),
 	-- require("plugins.appearance.neominimap"),
 	-- require("plugins.appearance.pretty-fold"),
 	-- require("plugins.appearance.nvim-ufo"),
+	require("plugins.appearance.pretty_hover"),
 	require("plugins.appearance.modicator"),
 	require("plugins.appearance.symbol-usage"),
-	require("plugins.appearance.lightswtich"),
 	-- require("plugins.appearance.twilight"),
 	require("plugins.appearance.undo-glow"),
 	-- require("plugins.appearance.smoothcursor"),
@@ -180,6 +181,7 @@ require("lazy").setup({
 	-- AI
 	-- require("plugins.ai.copilot"),
 	-- require("plugins.ai.copilot-cmp"),
+	-- require("plugins.ai.supermaven"),
 
 	{ -- Swap -- g< and g>
 		"machakann/vim-swap",

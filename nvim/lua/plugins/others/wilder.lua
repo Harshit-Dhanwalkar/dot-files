@@ -7,6 +7,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"romgrk/fzy-lua-native",
 	},
+
 	config = function()
 		local wilder = require("wilder")
 

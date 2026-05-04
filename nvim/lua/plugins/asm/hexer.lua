@@ -1,9 +1,11 @@
 -- ~/.config/nvim/lua/Plugins/asm/hexer.lua
+
 return {
 	"theKnightsOfRohan/hexer.nvim",
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 	},
+
 	config = function()
 		local hexer = require("hexer").setup({
 			converters = {}, -- This array will be appended onto the hexer default converter list

@@ -6,6 +6,7 @@ return {
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
+
 		config = function()
 			require("tokyonight").setup({
 				transparent = true,
@@ -30,6 +31,7 @@ return {
 	-- 	"kungfusheep/mfd.nvim",
 	-- 	lazy = false,
 	-- 	priority = 1000,
+	--
 	-- 	config = function()
 	-- 		vim.cmd("colorscheme mfd-stealth")
 	-- 		vim.opt.guicursor = {
@@ -46,6 +48,7 @@ return {
 	-- 	"wtfox/jellybeans.nvim",
 	-- 	lazy = false,
 	-- 	priority = 1000,
+	--
 	-- 	config = function()
 	-- 		require("jellybeans").setup({
 	-- 			transparent = true,
@@ -75,6 +78,7 @@ return {
 	-- 	"projekt0n/github-nvim-theme",
 	-- 	lazy = false,
 	-- 	priority = 1000,
+	--
 	-- 	config = function()
 	-- 		require("github-theme").setup({
 	-- 			styles = {
@@ -99,12 +103,14 @@ return {
 	--        {
 	-- 		"elitracy/blackbag.nvim",
 	-- 		priority = 1000,
+	--
 	-- 		config = function()
 	-- 			require("blackbag").setup()
 	-- 		end,
 	-- 	},
 	-- 	{
 	-- 		"xiyaowong/transparent.nvim",
+	--
 	-- 		config = function()
 	-- 			require("transparent").setup({
 	-- 				extra_groups = {
@@ -118,6 +124,7 @@ return {
 	-- {
 	-- 	"yorik1984/newpaper.nvim",
 	-- 	priority = 1000,
+	--
 	-- 	config = function()
 	-- 		require("newpaper").setup({
 	-- 			style = "dark",
@@ -130,6 +137,7 @@ return {
 	-- 	"rose-pine/neovim",
 	-- 	name = "rose-pine",
 	-- 	priority = 1000,
+	--
 	-- 	config = function()
 	-- 		require("rose-pine").setup({
 	-- 			variant = "main", -- auto, main, moon, or dawn
@@ -165,6 +173,7 @@ return {
 	-- {
 	-- 	"ellisonleao/gruvbox.nvim",
 	-- 	-- priority = 1000 ,
+	--
 	-- 	config = function()
 	-- 		require("gruvbox").setup({
 	-- 			terminal_colors = true,
@@ -196,6 +205,7 @@ return {
 	-- },
 	-- {
 	-- 	"rebelot/kanagawa.nvim",
+	--
 	-- 	config = function()
 	-- 		require("kanagawa").setup({
 	-- 			compile = false, -- enable compiling the colorscheme
@@ -259,6 +269,7 @@ return {
 	-- 	"HoNamDuong/hybrid.nvim",
 	-- 	lazy = false,
 	-- 	priority = 1000,
+	--
 	-- 	config = function()
 	-- 		require("hybrid").setup({
 	-- 			terminal_colors = true,
@@ -305,6 +316,7 @@ return {
 	-- 	"craftzdog/solarized-osaka.nvim",
 	-- 	lazy = false,
 	-- 	priority = 1000,
+	--
 	-- 	config = function()
 	-- 		require("solarized-osaka").setup({
 	-- 			transparent = true,
@@ -362,6 +374,7 @@ return {
 	-- 	"scottmckendry/cyberdream.nvim",
 	-- 	lazy = false,
 	-- 	priority = 1000,
+	--
 	-- 	config = function()
 	-- 		require("cyberdream").setup({
 	-- 			-- Set light or dark variant
@@ -422,6 +435,7 @@ return {
 	-- 	version = "*",
 	-- 	lazy = false,
 	-- 	priority = 1000,
+	--
 	-- 	config = function()
 	-- 		require("lemons").load()
 	-- 	end,
@@ -430,6 +444,7 @@ return {
 	-- 	"EdenEast/nightfox.nvim",
 	-- 	lazy = false,
 	-- 	priority = 1000,
+	--
 	-- 	config = function()
 	-- 	     require("nightfox").setup({
 	-- 	     		options = {
@@ -481,6 +496,7 @@ return {
 	-- 	"dgox16/oldworld.nvim",
 	-- 	lazy = false,
 	-- 	priority = 1000,
+	--
 	-- 	config = function()
 	-- 		require("oldworld").setup({
 	-- 			transparent = true,

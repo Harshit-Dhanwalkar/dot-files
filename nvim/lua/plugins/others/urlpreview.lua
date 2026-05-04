@@ -2,6 +2,7 @@
 
 return {
 	"wurli/urlpreview.nvim",
+
 	config = function()
 		require("urlpreview").setup({
 			-- `vim.opt.updatetime = 500`.

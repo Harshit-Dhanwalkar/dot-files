@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/utils/harpoon.lua
+
 return {
 	"thePrimeagen/harpoon",
 	enabled = true,
@@ -7,6 +8,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope.nvim",
 	},
+
 	config = function()
 		local harpoon = require("harpoon")
 		local conf = require("telescope.config").values

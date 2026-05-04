@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/appearance/undo-glow.lua
+
 return {
 	"y3owk1n/undo-glow.nvim",
 	keys = {

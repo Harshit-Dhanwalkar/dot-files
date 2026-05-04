@@ -1,8 +1,10 @@
 -- ~/.config/nvim/lua/plugins/utils/flash.lua
+
 return {
 	"folke/flash.nvim",
 	event = "VeryLazy",
 	opt = {},
+
 	keys = {
 		{
 			"zk",

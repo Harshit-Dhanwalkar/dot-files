@@ -1,13 +1,16 @@
 -- ~/.config/nvim/lua/plugins/webdev/colortils.lua
+
 -- :Colortils picker <color>
 -- :Colortils lighten <color>
 -- :Colortils darken <color>
 -- :Colortils greyscale <color>
 -- :Colortils gradient <color1> <color1>
 -- :Colortils css list
+
 return {
 	"max397574/colortils.nvim",
 	cmd = "Colortils",
+
 	config = function()
 		require("colortils").setup({
 			-- Register in which color codes will be copied

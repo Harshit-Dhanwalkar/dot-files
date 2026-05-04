@@ -1,6 +1,8 @@
 -- ~/.config/nvim/lua/plugins/utils/flouride.lua
+
 return {
 	"Sang-it/fluoride",
+
 	config = function()
 		require("fluoride").setup({
 			window = {

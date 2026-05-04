@@ -1,7 +1,9 @@
--- ~/.config/nvim/lua/plugins/nvim-treesitter.lua
+-- ~/.config/nvim/lua/plugins/treesitter/nvim-treesitter.lua
+
 -- brew install tree-sitter-cli
 -- which tree-sitter
 -- tree-sitter --version
+
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
@@ -11,6 +13,7 @@ return {
 		{ "JoosepAlviste/nvim-ts-context-commentstring" },
 		-- { "nvim-treesitter/nvim-tree-docs" }, -- deprecated
 	},
+
 	opts = {
 		ensure_installed = {
 			"bash",

@@ -2,6 +2,7 @@
 
 return {
 	"wurli/visimatch.nvim",
+
 	-- config = function()
 	-- 	require("visimatch").setup({
 	-- 		hl_group = "Search",

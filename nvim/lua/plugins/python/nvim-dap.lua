@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/python/nvim-dap.lua
+
 return {
 	"mfussenegger/nvim-dap",
 	optional = true,
@@ -22,6 +23,7 @@ return {
 				ft = "python",
 			},
 		},
+
 		config = function()
 			local mason_registry = require("mason-registry")
 

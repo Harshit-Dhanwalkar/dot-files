@@ -1,7 +1,9 @@
 -- ~/.config/nvim/lua/Plugins/others/showkeys.lua
+
 return {
 	"nvzone/showkeys",
 	cmd = "ShowkeysToggle",
+
 	config = function()
 		require("showkeys").setup({
 			position = "bottom-right",

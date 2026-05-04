@@ -1,7 +1,9 @@
 -- ~/.config/nvim/lua/Plugins/markdown/vim-markdownfootnotes.lua
+
 return {
 	"vim-pandoc/vim-markdownfootnotes",
 	ft = "markdown",
+
 	config = function()
 		require("render-markdown").setup({
 			-- Options:

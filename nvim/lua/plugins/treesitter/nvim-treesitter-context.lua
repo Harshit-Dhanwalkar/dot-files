@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/plugins/nvim-treesitter-context.lua
+-- ~/.config/nvim/lua/plugins/treesitter/nvim-treesitter-context.lua
 
 return {
 	"nvim-treesitter/nvim-treesitter-context",

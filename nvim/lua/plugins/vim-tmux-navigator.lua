@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/vim-tmux-navigator.lua
+
 return {
 	"christoomey/vim-tmux-navigator",
 	cmd = {
@@ -9,6 +10,7 @@ return {
 		"TmuxNavigatePrevious",
 		"TmuxNavigatorProcessList",
 	},
+
 	keys = {
 		{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
 		{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },

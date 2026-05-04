@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/utils/backout.lua
+
 return {
 	"AgusDOLARD/backout.nvim",
 	event = { "InsertEnter", "CmdlineEnter" },
@@ -23,6 +24,7 @@ return {
 			mode = { "i", "c" },
 			desc = "Go out of pair",
 		},
+
 		config = function(_, opts)
 			require("backout").setup(opts)
 		end,

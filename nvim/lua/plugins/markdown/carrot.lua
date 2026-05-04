@@ -1,5 +1,7 @@
 -- ~/.config/nvim/lua/plugins/markdown/carrot.lua
+
 -- (Run :TSInstall markdown and :TSInstall markdown_inline manually)
+
 return {
 	"jbyuki/carrot.nvim",
 	dependencies = {
@@ -7,6 +9,7 @@ return {
 	},
 	ft = "markdown",
 	-- event = { "BufReadPost *.md", "BufNewFile *.md" },
+
 	config = function()
 		-- local carrot_ok, carrot = pcall(require, "carrot")
 		-- if not carrot_ok then

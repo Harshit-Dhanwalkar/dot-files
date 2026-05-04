@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/utils/autopairs.lua
+
 -- return {
 -- 	"windwp/nvim-autopairs",
 -- 	event = "InsertEnter",

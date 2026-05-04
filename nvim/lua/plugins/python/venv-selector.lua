@@ -1,3 +1,5 @@
+-- ~/.config/nvim/lua/plugins/python/venv-selector.lua
+
 return {
 	"linux-cultist/venv-selector.nvim",
 	dependencies = {
@@ -6,6 +8,7 @@ return {
 		"mfussenegger/nvim-dap-python",
 	},
 	cmd = "VenvSelect",
+
 	opts = function(_, opts)
 		local has_dap, _ = pcall(require, "dap-python")
 		return vim.tbl_deep_extend("force", opts or {}, {

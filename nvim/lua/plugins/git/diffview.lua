@@ -10,6 +10,7 @@ return {
 		"DiffviewFocusFiles",
 		"DiffviewFileHistory",
 	},
+
 	config = function()
 		local actions = require("diffview.actions")
 

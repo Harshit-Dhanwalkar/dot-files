@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/webdev/minty.lua
+
 return {
 	{
 		"nvzone/volt",

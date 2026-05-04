@@ -1,9 +1,11 @@
 -- ~/.config/nvim/lua/Plugins/others/undotree.lua
+
 return {
 	"jiaoshijie/undotree",
 	keys = {
 		{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
 	},
+
 	config = function()
 		require("undotree").setup({
 			float_diff = true, -- using float window previews diff, set this `true` will disable layout option

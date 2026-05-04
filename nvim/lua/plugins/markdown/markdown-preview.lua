@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/Plugins/markdown/markdown-preview.lua
+
 return {
 	-- install without yarn or npm
 	-- -- :FAIL
@@ -14,6 +15,7 @@ return {
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		build = "cd app && npm install",
+
 		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
