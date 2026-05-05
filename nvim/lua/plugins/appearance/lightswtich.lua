@@ -31,6 +31,12 @@ return {
 					state = false,
 				},
 				{
+					name = "Hard Time",
+					enable_cmd = "Hardtime enable", -- Hardtime toggle
+					disable_cmd = "Hardtime disable",
+					state = true,
+				},
+				{
 					name = "CSV Viewer",
 					enable_cmd = "CsvViewEnable",
 					disable_cmd = "CsvViewDisable",

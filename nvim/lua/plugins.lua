@@ -78,6 +78,7 @@ require("lazy").setup({
 	require("plugins.git.git-linker"),
 	require("plugins.git.gitgraph"),
 	-- require("plugins.git.vim-flog"),
+	require("plugins.others.hardtime"),
 	require("plugins.others.goto-preview"),
 	-- require("plugins.others.undotree"),
 	require("plugins.others.vim-statuptime"),

@@ -47,8 +47,13 @@ local options = {
 	wrap = true,
 	showbreak = "↪ ",
 	winblend = 20,
+
+	-- Popup menu
 	pumblend = 20,
 	pumheight = 10,
+
+	conceallevel = 0,
+	concealcursor = "",
 
 	showmode = false,
 	laststatus = 2,
@@ -59,7 +64,9 @@ local options = {
 	infercase = true,
 	selection = "inclusive",
 
-	-- backspace behavior
+	-- behavior settings
+	hidden = true,
+	errorbells = false,
 	backspace = "indent,eol,start",
 
 	-- searching
@@ -76,7 +83,11 @@ local options = {
 
 	cursorline = true,
 	completeopt = { "menuone", "noselect" },
-	timeoutlen = 300,
+	timeoutlen = 500, -- Key timeout duration
+	ttimeoutlen = 0, -- Key code timeout duration
+	autoread = true, -- Auto read file changes outside vim
+	autowrite = false, -- Auto write file changes outside vim
+	synmaxcol = 300, -- Syntax highlight limit
 	splitright = true,
 	splitbelow = true,
 	list = true,
@@ -100,13 +111,13 @@ for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
-vim.opt.iskeyword:append("-")
+-- vim.opt.iskeyword:append("-") -- treat '-' as part of word
 vim.opt.fillchars:append("diff:╱")
 vim.opt.jumpoptions:append("stack")
 vim.opt.diffopt:append("algorithm:patience")
 
 -- fuzzy find
-vim.opt.path:append("**")
+vim.opt.path:append("**") -- include subdir in search
 
 local wildignore_patterns = {
 	".git",

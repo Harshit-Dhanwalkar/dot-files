@@ -70,8 +70,8 @@ map("n", "<A-h>", ":vertical resize -2<CR>")
 map("i", "<C-c>", "<Esc>", { noremap = true, silent = true })
 
 -- Scrolling remaps
---mapset('n', '<C-j>', 'C-d>zz')
---mapset('n', '<C-k>', 'C-u>zz')
+-- map('n', '<C-j>', 'C-d>zz')
+-- map('n', '<C-k>', 'C-u>zz')
 
 -- Automatically close brackets, parentesis and quotes
 -- map('i', "'", "''<left>")
@@ -96,8 +96,8 @@ map("n", "tp", ":tabp<CR>")
 map("n", "td", ":tabclose<CR>")
 
 -- Better indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")
+map("v", "<", "<gv") --, { desc = "Indent left and reselect" })
+map("v", ">", ">gv") --, { desc = "Indent right and reselect" })
 
 -- Center after search
 map("n", "n", "nzzzv")
