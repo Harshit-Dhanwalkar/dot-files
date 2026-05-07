@@ -1,5 +1,7 @@
 -- ~/.config/nvim/lua/plugins/git/gitsigns.lua
 
+local map = vim.keymap.set
+
 return {
 	"lewis6991/gitsigns.nvim",
 
@@ -33,15 +35,12 @@ return {
 			current_line_blame_opts = { delay = 500, virt_text_pos = "eol" },
 			current_line_blame_formatter = "   <author>, <author_time:%R> • <summary>",
 			on_attach = function(bufnr)
-				-- local function map(mode, l, r, opts)
-				-- 	opts = opts or {}
-				-- 	opts.buffer = bufnr
-				-- 	vim.keymap.set(mode, l, r, opts)
+				-- local map = function(mode, l, r, desc)
+				-- 	vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
 				-- end
-				local map = function(mode, l, r, desc)
-					vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
-				end
 				-- Navigation
+				map("n", "]h", gitsigns.next_hunk, { desc = "Next Hunk" })
+				map("n", "[h", gitsigns.prev_hunk, { desc = "Prev Hunk" })
 				map("n", "]c", function()
 					if vim.wo.diff then
 						vim.cmd.normal({ "]c", bang = true })
@@ -65,8 +64,8 @@ return {
 					gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 				end, { desc = "reset git hunk" })
 				-- normal mode
-				map("n", "]h", gitsigns.stage_hunk, { desc = "git stage hunk" })
-				map("n", "[h", gitsigns.reset_hunk, { desc = "git reset hunk" })
+				map("n", "<leader>gs", gitsigns.stage_hunk, { desc = "git stage hunk" })
+				map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "git reset hunk" })
 				map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "git [S]tage buffer" })
 				map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "git [u]ndo stage hunk" })
 				map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "git [R]eset buffer" })
@@ -74,13 +73,13 @@ return {
 				-- map("n", "<leader>hb", gitsigns.blame_line, { desc = "git [b]lame line" })
 				map("n", "<leader>hb", function()
 					gitsigns.blame_line({ full = true })
-				end, "git [b]lame line")
+				end, { desc = "git [b]lame line" })
 				map("v", "<leader>hs", function()
 					gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-				end, "git [s]tage selection")
+				end, { desc = "git [s]tage selection" })
 				map("v", "<leader>hr", function()
 					gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-				end, "git [r]eset selection")
+				end, { desc = "git [r]eset selection" })
 				map("n", "<leader>hd", gitsigns.diffthis, { desc = "git [d]iff against index" })
 				map("n", "<leader>hD", function()
 					gitsigns.diffthis("@")
