@@ -14,6 +14,7 @@ options=(
   "  Github"
   "  Whatsapp"
   "  Gmail"
+  "  Sourcehut"
   "󰎄  Youtube Music" #   󰎅 
   "  Youtube"
   "  Reddit"
@@ -55,16 +56,16 @@ open_link() {
 }
 
 # Build menu
-chosen=$(printf "%s\n" "${options[@]}" | dmenu -l 10 -p "$prompt")
+chosen=$(printf "%s\n" "${options[@]}" | dmenu -l 11 -p "$prompt")
 
 # Handle cancel
 [[ -z "$chosen" ]] && exit 0
 
-# Match choice → URL
 case "$chosen" in
 *"Github"*) open_link "https://github.com/Harshit-Dhanwalkar/" ;;
 *"Whatsapp"*) open_link "https://web.whatsapp.com/" ;;
 *"Gmail"*) open_link "https://mail.google.com/" ;;
+*"SourceHut"*) open_link "https://https://sr.ht/" ;;
 *"Youtube Music"*) open_link "https://music.youtube.com/" ;;
 *"Youtube"*) open_link "https://youtube.com/" ;;
 *"Reddit"*) open_link "https://www.reddit.com/?feed=home/" ;;

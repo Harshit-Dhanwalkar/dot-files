@@ -1,5 +1,7 @@
 # ~/.config/yazi/theme.toml
 
+# This file is used for overwrting default theme provided by flavors
+
 [flavor]
 dark = "tokyonight-night"
 

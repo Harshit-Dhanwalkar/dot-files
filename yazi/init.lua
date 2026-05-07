@@ -138,10 +138,10 @@ require("telegram-send"):setup({
 	notification = true,
 })
 
-require("copy-file-contents"):setup({
-	append_char = "\n",
-	notification = true,
-})
+-- require("copy-file-contents"):setup({
+-- 	append_char = "\n",
+-- 	notification = true,
+-- })
 
 require("font-sample"):setup({
 	text = 'ABCDEF abcdef\n0123456789 \noO08 iIlL1 g9qCGQ\n8%& <([{}])>\n.,;: @#$-_="\n== <= >= != ffi\nâéùïøçÃĒÆœ\n및개요これ直楽糸',

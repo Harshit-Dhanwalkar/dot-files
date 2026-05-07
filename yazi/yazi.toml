@@ -43,16 +43,11 @@ video = [
 ]
 
 [open]
-# This tells Yazi to use the "edit" opener for text and "open" for everything else
 prepend_rules = [
-    # { name = "*/", use = [ "newwindow", "edit", "open", "reveal" ] },
-    # { mime = "text/*", use = [ "newwindow", "edit", "reveal" ] },
-    # { name = "*.md", use = [ "newwindow", "edit", "reveal" ] },
-    # { name = "*.markdown", use = [ "newwindow", "edit", "reveal" ] },
-    { name = "*/", use = [ "edit", "open", "reveal", "newwindow" ] },
+    { url = "*/", use = [ "edit", "open", "reveal", "newwindow" ] },
     { mime = "text/*", use = [ "edit", "reveal", "newwindow" ] },
-    { name = "*.md", use = [ "edit", "reveal", "newwindow" ] },
-    { name = "*.markdown", use = [ "edit", "reveal", "newwindow" ] },
+    { url = "*.md", use = [ "edit", "reveal", "newwindow" ] },
+    { url = "*.markdown", use = [ "edit", "reveal", "newwindow" ] },
     { url = "*.{py,c,cpp,h,hpp,rs,js,ts,go,lua,sh}", use = [ "edit", "reveal" ] },
     { mime = "application/pdf", use = [ "pdf" , "reveal" ] },
     { mime = "image/jpeg", use = [ "images", "reveal" ] },
@@ -91,13 +86,10 @@ prepend_previewers = [
 # 	{ ..., run = "ouch --archive-icon='🗄️ '" },
 # 	# Or remove it by setting it to ''
 # 	{ ..., run = "ouch --archive-icon=''" },
-#
 # 	# Enable file icons
 # 	{ ..., run = "ouch --show-file-icons" },
-#
 # 	# Disable tree view
 # 	{ ..., run = "ouch --list-view" },
-#
 # 	# These can be combined
 # 	{ ..., run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
   { mime = 'font/*', run = 'font-sample' },
@@ -105,6 +97,5 @@ prepend_previewers = [
   { url = '*.{otf,ttf,woff,woff2}', run = 'font-sample' },
 ]
 append_fetchers = [
-    { id = "simple-tag", url = "*", run = "simple-tag" },
-    { id = "simple-tag", url = "*/", run = "simple-tag" },
+    { id = "simple-tag", group = "hover", url = "*", run = "simple-tag" },
   ]

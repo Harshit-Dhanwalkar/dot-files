@@ -145,7 +145,6 @@ run     = { fg = "#bb9af7" }
 desc    = { fg = "#7dcfff" }
 hovered = { bg = "#292e42" }
 footer  = { fg = "#c0caf5", bg = "#1a1b26" }
-
 # : }}}
 
 # : File-specific styles {{{
@@ -168,11 +167,11 @@ rules = [
 	# { mime = "inode/x-empty", fg = "#f7768e" },
 
 	# Special files
-	{ name = "*", is = "orphan", bg = "#f7768e" },
-	{ name = "*", is = "exec"  , fg = "#9ece6a" },
+	{ url = "*", is = "orphan", bg = "#f7768e" },
+	{ url = "*", is = "exec"  , fg = "#9ece6a" },
 
 	# Fallback
-	{ name = "*/", fg = "#7aa2f7" },
-	{ name = "*", fg = "#c0caf5" }
+	{ url = "*/", fg = "#7aa2f7" },
+	{ url = "*", fg = "#c0caf5" }
 ]
 # : }}}

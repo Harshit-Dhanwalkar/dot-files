@@ -1,5 +1,7 @@
 -- ~/.config/yazi/plugins/simple-tag.yazi/main.lua
 
+--- @diagnostic disable: undefined-global, undefined-field
+
 local PackageName = "simple-tag"
 local M = {}
 

@@ -27,7 +27,7 @@ local flush_empty_folder_status = ya.sync(function(st)
 	local cwd = cx.active.current.cwd
 	local folder = cx.active.current
 	if #folder.window == 0 then
-		ya.mgr_emit("plugin", { "current-size", ya.quote(tostring(cwd)) })
+		ya.emit("plugin", { "current-size", ya.quote(tostring(cwd)) })
 	end
 end)
 
@@ -70,7 +70,7 @@ local update_current_size = ya.sync(function(st)
 		return
 	end
 
-	ya.mgr_emit("plugin", { "current-size", ya.quote(tostring(cwd)) })
+	ya.emit("plugin", { "current-size", ya.quote(tostring(cwd)) })
 end)
 
 local M = {
@@ -93,7 +93,7 @@ local M = {
 				ignore_caculate_size = is_ignore_folder(cwd)
 				clear_state()
 				if not ignore_caculate_size then
-					ya.mgr_emit("plugin", { "current-size", ya.quote(tostring(cwd)) })
+					ya.emit("plugin", { "current-size", ya.quote(tostring(cwd)) })
 				end
 			end
 			local folder_size_span = (st.folder_size ~= nil and st.folder_size ~= "")
