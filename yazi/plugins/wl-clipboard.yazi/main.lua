@@ -1,4 +1,4 @@
--- ~/.config/yazi/plugins/wl-clipboard.yazi/main.lua
+-- Meant to run at async context. (yazi system-clipboard)
 
 --- @diagnostic disable: undefined-global, undefined-field
 
@@ -18,74 +18,55 @@ return {
 		ya.emit("escape", { visual = true })
 
 		local urls = selected_or_hovered()
+
 		if #urls == 0 then
-			return ya.notify({
-				title = "System Clipboard",
-				content = "No file selected",
-				level = "warn",
-				timeout = 5,
-			})
+			return ya.notify({ title = "System Clipboard", content = "No file selected", level = "warn", timeout = 5 })
 		end
 
+		-- ya.notify({ title = #urls, content = table.concat(urls, " "), level = "info", timeout = 5 })
+
+		-- Format the URLs for `text/uri-list` specification
 		local function encode_uri(uri)
-			return uri:gsub("([^%w%-%._~:/])", function(c)
+			return (uri:gsub("([^%w%-%._~])", function(c)
 				return string.format("%%%02X", string.byte(c))
-			end)
+			end))
 		end
 
-		-- GNOME/Nautilus expects: "copy\nfile:///path1\nfile:///path2\n"
-		-- with MIME type: x-special/gnome-copied-files
-		local file_list = "copy\n"
+		local uris = {}
 		for _, path in ipairs(urls) do
-			file_list = file_list .. "file://" .. encode_uri(path) .. "\n"
+			-- format as file://
+			table.insert(uris, "file://" .. encode_uri(path))
 		end
+		local file_list_formatted = table.concat(uris, "\r\n") .. "\r\n"
 
-		local tmp = "/tmp/yazi_wl_clip.txt"
-		local f = io.open(tmp, "w")
-		if not f then
-			return ya.notify({
-				title = "System Clipboard",
-				content = "Failed to write temp file",
-				level = "error",
-				timeout = 5,
-			})
-		end
-		f:write(file_list)
-		f:close()
-
-		local child, err = Command("sh")
-			:args({
-				"-c",
-				string.format('/usr/bin/wl-copy --type x-special/gnome-copied-files < "%s"', tmp),
-			})
-			:stdout(Command.NULL)
-			:stderr(Command.NULL)
-			:spawn()
+		-- Using pipemode to send data to stdin
+		local child, err = Command("wl-copy"):arg("--type"):arg("text/uri-list"):stdin(Command.PIPED):spawn()
 
 		if not child then
 			return ya.notify({
 				title = "System Clipboard",
-				content = "Failed to spawn: " .. tostring(err),
+				content = "Failed to start wl-copy: " .. tostring(err),
 				level = "error",
 				timeout = 5,
 			})
 		end
 
+		child:write(file_list_formatted)
 		local status = child:wait()
 
 		if status and status.success then
 			ya.notify({
 				title = "System Clipboard",
-				content = "Copied " .. #urls .. " file(s) — paste in Nautilus with Ctrl+V",
+				content = string.format("Copied %d file(s) to system clipboard", #urls),
 				level = "info",
 				timeout = 5,
 			})
 		else
 			ya.notify({
 				title = "System Clipboard",
-				content = "wl-copy failed (code: " .. (status and tostring(status.code) or "nil") .. ")",
+				content = string.format("Could not copy file(s): %s", status and status.code or "Unknown error"),
 				level = "error",
-				timeout = 8,
+				timeout = 5,
 			})
 		end
 	end,

@@ -8,15 +8,11 @@
     monitor = 0
     follow = mouse
     # geometry = "350x180-5+38"      # width x height, offset
-    # geometry = "0x450-8+38"
-    width = 300
-    height = (0, 300)
-    # height = 300
-    origin = top-right
-    offset = (7, 5)
-    scale = 0
+    geometry = "0x450-8+38"
+    origin = bottom-right
     indicate_hidden = yes
     shrink = no
+    scale = 0
     mouse_left_click = do_action
     mouse_middle_click = close_all
     mouse_right_click = close_current
@@ -62,6 +58,7 @@
     idle_threshold = 120
     markup = full
     format = "<b><u>%s</u></b>\n%b\n"
+    stack_location = top
     stack_duplicates = true
     hide_duplicate_count = true
     show_age_threshold = 60
@@ -79,17 +76,25 @@
 [urgency_low]
     background = "#0a0a0a"  # "#1e1e2e"  #"#222222"  # "#2e3440"
     foreground = "#cfcfcf"  # "#cdd6f4"  # "#bbbbbb"  #"#eceff4"
-    progress_bar_color = "#4a9eff"    # Blue
     timeout = 3
 
 [urgency_normal]
     background = "#0a0a0a"  # "#1e1e2e"  # "#005577"  # "#313244"
     foreground = "#ffffff"  # "#89b4fa"  # "#eeeeee"  # "#a6adc8"
-    progress_bar_color = "#44ff44"    # Green
     timeout = 5
 
 [urgency_critical]
     background = "#580c19"  # "#bf616a"  # "#f38ba8"
     foreground = "#ffffff"  # "#1e1e2e"  # "#11111b"  # "#eceff4"
-    progress_bar_color = "#ff4444"    # Red
     timeout = 0
+
+[shortcuts]
+    # 'ctrl', 'mod1' (alt), 'mod2', 'mod3', 'mod4'(super)
+    # close notification
+    close = mod4+mod1+n
+    # close all notifications
+    close_all = mod4+shift+n
+    # redisplay last message(s)
+    history = mod4+n
+    # context menu
+    context = mod4+ctrl+n

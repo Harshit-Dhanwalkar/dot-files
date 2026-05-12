@@ -72,9 +72,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 # export BAT_THEME= "OneHalfDark" #gruvbox-dark" #"Dracula"
 
 # Enable color support of ls and also add handy aliases
@@ -135,9 +132,12 @@ export PATH="$HOME/.local/kitty.app/bin:$HOME/.local/bin:$PATH"
 
 # HomeBrew
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
-export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
+export MANPATH="$(brew --prefix)/share/man:$MANPATH"
+export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
+export PATH="$(brew --prefix)/sbin:$PATH"
+export PKG_CONFIG_PATH="$(brew --prefix)/lib/pkgconfig:$PKG_CONFIG_PATH"
+export LIBRARY_PATH="$(brew --prefix)/lib:$LIBRARY_PATH"
+export LD_LIBRARY_PATH="$(brew --prefix)/lib:$LD_LIBRARY_PATH"
 # export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"
 # export LD_LIBRARY_PATH="/home/linuxbrew/.linuxbrew/lib:$LD_LIBRARY_PATH"
 # export HOMEBREW_CURL_PATH="/home/linuxbrew/.linuxbrew/bin/curl" # Uninstalled `curl` via homebrew and installed via nala # For curl installed via brew
@@ -212,7 +212,7 @@ export FZF_CTRL_R_OPTS="
   --color header:italic
   --header 'Press ctrl-y to copy command into clipboard'"
 ## Print tree structure in the preview window, 
-#####install tree
+### install tree
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'"
@@ -239,7 +239,7 @@ _fzf_compgen_dir() {
 # Zoxide
 eval "$(zoxide init bash)"
 
-# GCC colors
+# colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # QT apps
@@ -251,3 +251,4 @@ export ELECTRON_OZONE_PLATFORM_HINT=auto
 
 # Gem executables PATH for Ruby
 export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
+. "$HOME/.cargo/env"
