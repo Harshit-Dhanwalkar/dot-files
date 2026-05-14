@@ -89,6 +89,7 @@ tooltip label {
 #battery,
 #taskbar,
 #custom-runcat,
+#custom-waybar_cpu,
 #custom-usb_devices,
 #idle_inhibitor,
 #custom-cliphist {
@@ -210,7 +211,7 @@ tooltip label {
 }
 
 #window {
-  min-width: 297px;
+  min-width: 290px;
   font-size: 11px;
   color: @foreground;
   background-color: @background;
@@ -239,6 +240,7 @@ tooltip label {
 #network,
 #battery,
 #custom-runcat,
+#custom-waybar_cpu,
 #custom-usb_devices,
 #idle_inhibitor,
 #custom-cliphist {
@@ -274,6 +276,7 @@ tooltip label {
 #battery:hover,
 #taskbar button:hover,
 #custom-runcat:hover,
+#custom-waybar_cpu:hover,
 #custom-usb_devices:hover,
 #idle_inhibitor:hover,
 #custom-cliphist:hover {
@@ -304,6 +307,7 @@ tooltip label {
 #battery:hover,
 #taskbar:hover,
 #custom-runcat:hover,
+#custom-waybar_cpu:hover,
 #custom-usb_devices:hover,
 #idle_inhibitor:hover,
 #custom-cliphist:hover {
@@ -320,8 +324,15 @@ tooltip label {
 #cpu,
 #memory,
 #battery,
-#custom-runcat {
+#custom-runcat,
+#custom-waybar_cpu {
   min-width: 44px;
+}
+
+#custom-memory_usage {
+  min-width: 66px;
+  border: 4px solid;
+  border-color: white @pressed-color @pressed-color white;
 }
 
 #keyboard-state {
@@ -410,8 +421,7 @@ tooltip label {
   color: @foreground-warning;
   background: @hover-color;
   border: 4px solid;
-  border-color: @pressed-color @foreground-warning @foreground-warning
-    @pressed-color;
+  border-color: @pressed-color @foreground-warning @foreground-warning @pressed-color;
 }
 
 #custom-runcat.high {
@@ -421,6 +431,13 @@ tooltip label {
   border: 4px solid;
   border-color: @pressed-color @foreground-error @foreground-error
     @pressed-color;
+}
+
+#custom-waybar_cpu {
+  min-width: 55px;
+  color: @foreground;
+  border: 4px solid;
+  border-color: white @pressed-color @pressed-color white;
 }
 
 #custom-usb_devices.off {
