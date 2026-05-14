@@ -77,19 +77,22 @@
     timeout = 8
 
 [urgency_low]
-    background = "#0a0a0a"  # "#1e1e2e"  #"#222222"  # "#2e3440"
-    foreground = "#cfcfcf"  # "#cdd6f4"  # "#bbbbbb"  #"#eceff4"
-    progress_bar_color = "#4a9eff"    # Blue
-    timeout = 3
+    background        = "#0a0a0a"  # "#1e1e2e"  #"#222222"  # "#2e3440"
+    foreground        = "#cfcfcf"  # "#cdd6f4"  # "#bbbbbb"  #"#eceff4"
+    frame_color       = "#0a0a0a"
+    timeout_bar_color = "#ff9e64" # "#00ffff"
+    timeout           = 3
 
 [urgency_normal]
-    background = "#0a0a0a"  # "#1e1e2e"  # "#005577"  # "#313244"
-    foreground = "#ffffff"  # "#89b4fa"  # "#eeeeee"  # "#a6adc8"
-    progress_bar_color = "#44ff44"    # Green
-    timeout = 5
+    background        = "#0a0a0a"  # "#1e1e2e"  # "#005577"  # "#313244"
+    foreground        = "#ffffff"  # "#89b4fa"  # "#eeeeee"  # "#a6adc8"
+    frame_color       = "#0a0a0a" # "#ff9e64"
+    timeout_bar_color = "#ffffff"
+    timeout           = 5
 
 [urgency_critical]
-    background = "#580c19"  # "#bf616a"  # "#f38ba8"
-    foreground = "#ffffff"  # "#1e1e2e"  # "#11111b"  # "#eceff4"
-    progress_bar_color = "#ff4444"    # Red
-    timeout = 0
+    background        = "#580c19"  # "#bf616a"  # "#f38ba8"
+    foreground        = "#ffffff"  # "#1e1e2e"  # "#11111b"  # "#eceff4"
+    frame_color       = "#0a0a0a"  # "#ff0000"
+    timeout_bar_color = "#bf616a"
+    timeout           = 10

@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
-## Author  : Harshit Prashant Dhanwalkar
-## Github  : @Harshit-Dhanwalkar
+## Author: Harshit Prashant Dhanwalkar
+## Github: @Harshit-Dhanwalkar
 
-## IMPORTANT: This script is now integrated along with bluetooh.sh into controllers.sh
-
-# Ensure dunstify is installed:
-# sudo apt install dunstify libnotify-bin
+# Dependencies: dunstify libnotify-bin
 
 if command -v dmenu &>/dev/null; then
     LAUNCHER="dmenu"
@@ -59,7 +56,7 @@ parse_time_to_seconds() {
 time_input=$(get_time_input)
 
 if [ -z "$time_input" ]; then
-    dunstify "Timer" "Timer cancelled or no input provided."
+    dunstify -u low "Timer" "Timer cancelled or no input provided."
     exit 1
 fi
 
@@ -75,7 +72,7 @@ else
     initial_message="Countdown Timer started."
 fi
 
-# --- Countdown Mode ---
+# Countdown Mode
 if [ "$MODE" == "COUNTDOWN" ]; then
     if [ "$duration" -eq -1 ]; then
         dunstify -u critical "Countdown Error" "Invalid time format: '$time_input'. Use M, MM:SS, or HH:MM:SS."
@@ -90,10 +87,15 @@ fi
 
 notification_id=0
 current_time=0
+original_duration="$duration"   # store for final message
 
 while true; do
     if [ "$MODE" == "COUNTDOWN" ]; then
         current_time=$((duration))
+        # Stop before showing 00:00
+        if [ "$current_time" -le 0 ]; then
+            break
+        fi
     else # STOPWATCH mode
         current_time=$(($(date +%s) - start_time))
     fi
@@ -111,13 +113,13 @@ while true; do
     fi
 
     if [ "$notification_id" -eq 0 ]; then
-        notification_id=$(dunstify -p -t 0 "Timer ($MODE)" "$initial_message $time_formatted")
+        # First notification: set timeout to total duration (ms)
+        # Add 500 ms to avoid auto‑closure during the last second
+        notification_id=$(dunstify -p -t $((duration * 1000 + 500)) "Countdown Timer" "Time remaining: $time_formatted")
     else
         if [ "$MODE" == "COUNTDOWN" ]; then
+            # Update text only - the timeout bar continues from original start
             dunstify -r "$notification_id" -t 0 "Countdown Timer" "Time remaining: $time_formatted"
-            if [ "$current_time" -le 0 ]; then
-                break
-            fi
             duration=$((duration - 1))
         else # STOPWATCH
             dunstify -r "$notification_id" -t 0 "Stopwatch" "Elapsed time: $time_formatted"
@@ -128,5 +130,8 @@ while true; do
 done
 
 if [ "$MODE" == "COUNTDOWN" ]; then
-    dunstify -u critical "Countdown Timer" "Time's up!"
+    # Close the old notification (if still open)
+    dunstify -C "$notification_id" 2>/dev/null
+    # Show final notification
+    dunstify -u critical "Countdown Timer" "Time's up! ${original_duration} seconds over."
 fi
