@@ -14,82 +14,76 @@
     "sway/workspaces",
     "custom/swaymsg_next_empty_workspace",
     "custom/runcat",
-    "tray",
-    "wlr/taskbar",
+    "cpu",
+    "temperature",
+    "custom/weather",
     "sway/window",
     // "sway/scratchpad",
-    "sway/mode"
+    "sway/mode",
   ],
   "modules-center": ["clock"],
   // "modules-center": ["custom/cava", "clock", "custom/cava"],
   "modules-right": [
     // "mpd",
     // "custom/recorder",
+    "wlr/taskbar",
+    "tray",
     // "keyboard-state#c",
     // "keyboard-state#n",
-    "custom/weather",
-    // "temperature",
-    // "custom/waybar_memory",
-    // "custom/full_weather",
-    // "custom/clock_cal",
-    "cpu",
-    "gpu",
-    "custom/waybar_cpu",
-    // "custom/waybar_gpu",
+    // "custom/waybar_cpu",
     "custom/memory_usage",
-    "custom/waybar_storage",
-    // "custom/disks",
-    // "custom/keyboard_backlight",
+    "custom/disks",
+    "custom/keyboard_backlight",
     // "custom/usb_devices",
-    "pulseaudio#microphone",
     "pulseaudio",
+    "pulseaudio#microphone",
     // "pulseaudio/slider",
     "backlight",
     "bluetooth",
     "network",
     "battery",
     // "idle_inhibitor",
-    "custom/power"
+    "custom/power",
   ],
   // Sway Configurations
   "sway/mode": {
-    "format": " {}"
+    "format": " {}",
   },
   "sway/workspaces": {
     "format": "{name}",
-    "disable-scroll": false // true
+    "disable-scroll": false, // true
   },
   "sway/scratchpad": {
     "format": " {icon} {count}",
     "show-empty": false,
     "format-icons": ["", ""],
     "tooltip": true,
-    "tooltip-format": "{app}: {title}"
+    "tooltip-format": "{app}: {title}",
   },
   // Input Configurations
   "keyboard-state#c": {
     "capslock": true,
     "format": {
-      "capslock": " {icon} "
+      "capslock": " {icon} ",
     },
     "format-icons": {
       "locked": "󰘲", //󰬊
-      "unlocked": "󰘳"
-    }
+      "unlocked": "󰘳",
+    },
   },
   "keyboard-state#n": {
     "numlock": true,
     "format": {
-      "numlock": " {icon} "
+      "numlock": " {icon} ",
     },
     "format-icons": {
       "locked": "🄽 ", //󰬕
-      "unlocked": "󰎣"
-    }
+      "unlocked": "󰎣",
+    },
   },
   "sway/window": {
     "max-length": 25,
-    "tooltip": false
+    "tooltip": false,
   },
   "clock": {
     "format": "{:%a %d %b %I:%M %p}",
@@ -97,7 +91,7 @@
     // "on-click-right": "wldash",
     "on-click-right": "~/.config/dunst/scripts/dunst_calendar.sh",
     "tooltip": true,
-    "tooltip-format": " {:%A, Date: %d %B %Y, Time: %H:%M, %Z, Day: %j/365}"
+    "tooltip-format": " {:%A, Date: %d %B %Y, Time: %H:%M, %Z, Day: %j/365}",
     // "tooltip-format": "\n<span size='9pt' font='JetBrains Mono Nerd Font'>{calendar}</span>",
     // "calendar": {
     //   "mode": "year",
@@ -127,7 +121,7 @@
     "format-icons": {
       "wifi": ["󰤮", "󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
       "ethernet": ["󰈀"],
-      "disconnected": ["󰤫"] // ⚠
+      "disconnected": ["󰤫"], // ⚠
     },
     "format-wifi": " {icon} {essid}", //  "{essid} ({signalStrength}%) ",
     "format-ethernet": " {icon} Connected ",
@@ -141,7 +135,7 @@
     "tooltip-format-wifi": " {essid} ({signalStrength}%)\n IP: {ipaddr}/{cidr}\n Gateway: {gwaddr}\n {bandwidthUpBits} {bandwidthDownBits}",
     // "tooltip-markup": true,
     // "tooltip-format-wifi": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
-    "tooltip-format-disconnected": "󰤫 Disconnected"
+    "tooltip-format-disconnected": "󰤫 Disconnected",
   },
   "bluetooth": {
     "format": " {icon}BT",
@@ -152,7 +146,7 @@
     "format-disabled": "󰂱 DIS",
     "format-connected": "󰂱 {num_connections}",
     "states": {
-      "unconnected": 0
+      "unconnected": 0,
     },
     "on-click": "~/.config/sway/scripts/dmenu-bluetooth.sh",
     "on-click-right": "blueman-manager",
@@ -160,7 +154,7 @@
     //"tooltip-format": "{status}"
     "tooltip-format-connected": "{device_enumerate}",
     //"tooltip-format-enumerate-connected": "{device_alias} ({device_address})"
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     //"controller": "controller1",
   },
   "cpu": {
@@ -169,14 +163,6 @@
     "interval": 3,
     //"on-click-right": "gnome-system-monitor"
     "on-click-right": "$HOME/.local/kitty.app/bin/kitty /usr/bin/btop",
-    "tooltip": true
-  },
-  "gpu": {
-    "format": " {icon} {usage}%",
-    "formaticon": ["󰢮"],
-    "hwmon-path": "/sys/class/hwmon/hwmon0/device/usage",
-    "interval": 10,
-    "tooltip": true
   },
   "battery": {
     "format": " {icon} {capacity}%",
@@ -193,10 +179,10 @@
       "warning": 25,
       "critical": 10,
       "warning-icon": "",
-      "critical-icon": "󰚑" // 󰙻
+      "critical-icon": "󰚑", // 󰙻
     },
     "tooltip": false,
-    "on-click": "2"
+    "on-click": "2",
   },
   "wlr/taskbar": {
     "format": " {icon} ",
@@ -205,7 +191,7 @@
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
-    "ignore-list": ["rofi", "kitty", "sxiv"]
+    "ignore-list": ["rofi", "kitty", "sxiv"],
     // "ignore-list": ["rofi", "kitty", "sxiv", "org.pwmt.zathura"],
   },
   // Audio and Brightness Configurations
@@ -220,14 +206,14 @@
       "headphone": "󰋎 ",
       "hands-free": "󰥰 ",
       "phone": "",
-      "portable": "󰦢"
+      "portable": "󰦢",
     },
     "scroll-step": 10,
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol",
     "tooltip": true,
     "tooltip-format": "{icon} at {volume}%",
-    "return-type": "json"
+    "return-type": "json",
   },
   "pulseaudio#microphone": {
     "format": "{format_source}",
@@ -239,12 +225,12 @@
     "scroll-step": 5,
     "tooltip": true,
     "tooltip-format": " at {volume}%",
-    "tooltip-format-muted": " MUTE"
+    "tooltip-format-muted": " MUTE",
   },
   "pulseaudio/slider": {
     "min": 0,
     "max": 100,
-    "orientation": "vertical"
+    "orientation": "vertical",
   },
   "backlight": {
     "format": " {icon} {percent}%",
@@ -255,26 +241,26 @@
     //   "on-scroll-up": "exec brightnessctl s +5%",
     "scroll-step": 5,
     "tooltip": true,
-    "tooltip-format": "{icon} Brightness at {percent}%"
+    "tooltip-format": "{icon} Brightness at {percent}%",
   },
   // Tray and Custom Modules
   // install: libappindicator3-1
   "tray": {
-    "icon-size": 15
+    "icon-size": 15,
   },
   "custom/swaymsg_next_empty_workspace": {
     "format": " ",
     "on-click": "~/.config/waybar/modules/swaymsg-next-empty-workspace",
     "exec": "echo '{\"tooltip\": \"Left click for new workspace\"}'",
     "return-type": "json",
-    "tooltip": true
+    "tooltip": true,
   },
   "temperature": {
     "thermal-zone": 1,
     "interval": 10,
     "hwmon-path": [
       "/sys/class/hwmon/hwmon1/temp1_input",
-      "/sys/class/thermal/thermal_zone0/temp"
+      "/sys/class/thermal/thermal_zone0/temp",
     ],
     "critical-threshold": 82,
     "format": " {icon}{temperatureC}°C",
@@ -284,33 +270,21 @@
     // "format-alt": " {temperatureC}°C",
     //        "on-click-right": "kitty -c ~/.config/dotfiles/kitty/kitty.conf --title nvtop sh -c 'nvtop'"
     "tooltip": true,
-    "tooltip-format": "CPU {icon} at {temperatureC}°C"
+    "tooltip-format": "CPU {icon} at {temperatureC}°C",
   },
   "custom/cava": {
     "format": "{}",
     // "exec": "~/.config/sway/scripts/waybarCavaColor.sh",
     "exec": "~/.config/sway/scripts/waybarCava.sh",
-    "tooltip": false
+    "tooltip": false,
   },
   "custom/memory_usage": {
     "format": " {icon} {}",
     "format-icons": ["󰍛"],
     "interval": 5,
     "exec": "bash ~/.config/waybar/modules/memory_usage.sh",
-    "tooltip": true
+    "tooltip": true,
   },
-  "custom/clock_cal": {
-      "exec": "~/.config/waybar/modules/UIs/venv/bin/python3 ~/.config/waybar/modules/UIs/balthazzahr_widgets/clock_cal.py",
-      "return-type": "json",
-      "format": "{}",
-      "interval": 3
-  },
-  "custom/waybar_storage": {
-    "exec": "/home/harshitpd/.config/waybar/modules/UIs/venv/bin/python3 /home/harshitpd/.config/waybar/modules/UIs/balthazzahr_widgets/waybar_storage.py",
-    "return-type": "json",
-    "format": "{}",
-    "interval": 60
-    },
   "custom/disks": {
     "format": " {icon} {}",
     "format-icons": ["󰋊"], // 󰇖󰮌
@@ -321,15 +295,9 @@
     "tooltip": true,
     "states": {
       "warning": 85,
-      "critical": 90
-    }
+      "critical": 90,
+    },
   },
-  // "custom/full_weather": {
-  //   "exec": "/home/harshitpd/.config/waybar/modules/UIs/venv/bin/python3 ~/.config/waybar/modules/UIs/balthazzahr_widgets/full_weather.py",
-  //   "return-type": "json",
-  //   "format": "{}",
-  //   "interval": 600 // Updates every 10 minutes
-  // },
   "custom/weather": {
     "format": " {}°C",
     // "format-alt": "{alt}: {}",
@@ -338,7 +306,7 @@
     "exec": "~/.config/waybar/modules/wttrbar",
     "return-type": "json",
     "tooltip": true,
-    "on-click": "gnome-weather"
+    "on-click": "gnome-weather",
   },
   "custom/keyboard_backlight": {
     "format": " {}",
@@ -346,31 +314,22 @@
     "exec-on-event": true,
     "return-type": "json",
     "signal": 3,
-    "tooltip": false
+    "tooltip": false,
   },
   "custom/power": {
     "format": "⏻",
-    "on-click": "bash ~/.config/sway/scripts/dmenu_power.sh",
-    "tooltip": false
+    "on-click": "bash ~/.config/sway/scripts/dmenu-power.sh",
+    "tooltip": false,
   },
   "custom/runcat": {
-    "exec": "~/.config/waybar/modules/UIs/runcat/runcat.py",
+    "exec": "~/.config/waybar/modules/UIs/runcat.py",
     "return-type": "json",
-    "format": "{}"
   },
-  // "custom/waybar_gpu": {
-  //     "exec": "~/.config/waybar/modules/UIs/venv/bin/python3 ~/.config/waybar/modules/UIs/balthazzahr_widgets/waybar_gpu.py",
-  //     "return-type": "json",
-  //     "format": "{}",
-  //     "interval": 3
+  // "custom/waybar_cpu": {
+  //   "exec": "~/.config/waybar/modules/UIs/waybar-cpu.py",
+  //   "return-type": "json",
+  //   "interval": 2,
   // },
-  "custom/waybar_cpu": {
-      "format": "{}",
-      "exec": "~/.config/waybar/modules/UIs/venv/bin/python3 ~/.config/waybar/modules/UIs/balthazzahr_widgets/waybar_cpu.py",
-      "return-type": "json",
-      "on-click-right": "$HOME/.local/kitty.app/bin/kitty /usr/bin/btop",
-      "interval": 3
-  },
   "custom/cliphist": {
     "format": " {icon} {}",
     "format-icons": [""],
@@ -380,7 +339,7 @@
     "on-click-right": "sleep 0.1 && cliphist.sh d",
     "on-click-middle": "sleep 0.1 && cliphist.sh w",
     "interval": 86400, // once every day
-    "tooltip": true
+    "tooltip": true,
   },
   "custom/usb_devices": {
     "format": " {}",
@@ -389,7 +348,7 @@
     "interval": 60,
     "tooltip": true,
     "on-click": "bash ~/.config/waybar/modules/usb-devices.sh --mount",
-    "on-click-right": "bash ~/.config/waybar/modules/usb-devices.sh --unmount"
+    "on-click-right": "bash ~/.config/waybar/modules/usb-devices.sh --unmount",
   },
   "custom/recorder": {
     "format": " {}",
@@ -397,14 +356,14 @@
     "return-type": "json",
     "interval": 4,
     "exec": "echo '{\"class\": \"recording\"}'",
-    "exec-if": "pgrep wf-recorder"
+    "exec-if": "pgrep wf-recorder",
   },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": "",
-      "deactivated": ""
+      "deactivated": "",
     },
-    "tooltip": false
-  }
+    "tooltip": false,
+  },
 }

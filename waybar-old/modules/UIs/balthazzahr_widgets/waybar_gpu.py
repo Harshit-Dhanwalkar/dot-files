@@ -30,16 +30,14 @@ def load_theme_colors():
         "bright_yellow": "#ffff55", "bright_blue": "#5555ff", "bright_magenta": "#ff55ff",
         "bright_cyan": "#55ffff", "bright_white": "#ffffff"
     }
-    if not tomllib or not theme_path.exists():
-        return defaults
+    if not tomllib or not theme_path.exists(): return defaults
     try:
         data = tomllib.loads(theme_path.read_text())
         colors = data.get("colors", {})
         normal = colors.get("normal", {})
         bright = colors.get("bright", {})
         return {**defaults, **normal, **{f"bright_{k}": v for k, v in bright.items()}}
-    except Exception:
-        return defaults
+    except Exception: return defaults
 
 COLORS = load_theme_colors()
 
@@ -54,15 +52,12 @@ COLOR_TABLE = [
 ]
 
 def get_color(value, metric_type):
-    try:
-        value = float(value)
-    except:
-        return "#ffffff"
+    try: value = float(value)
+    except: return "#ffffff"
     for entry in COLOR_TABLE:
         if metric_type in entry:
             low, high = entry[metric_type]
-            if low <= value <= high:
-                return entry["color"]
+            if low <= value <= high: return entry["color"]
     return COLOR_TABLE[-1]["color"]
 
 # DATA EXTRACTION
@@ -77,10 +72,8 @@ try:
     info_out = subprocess.check_output(info_cmd, text=True).strip().split(',')
     if len(info_out) >= 2:
         gpu_name = info_out[0].strip()
-        try:
-            gpu_tdp = float(info_out[1].strip())
-        except:
-            pass
+        try: gpu_tdp = float(info_out[1].strip())
+        except: pass
 
     # Get Stats
     cmd = ["nvidia-smi", "--query-gpu=utilization.gpu,temperature.gpu,power.draw,fan.speed,memory.used,memory.total", "--format=csv,noheader,nounits"]
@@ -161,22 +154,18 @@ try:
             parts = [x.strip() for x in line.split(',')]
             if len(parts) >= 3:
                 name = os.path.basename(parts[1].replace('\\', '/'))
-                try:
-                    mem = int(parts[2])
-                except:
-                    mem = 0
+                try: mem = int(parts[2])
+                except: mem = 0
                 procs.append({'name': name, 'mem': mem})
-
+    
     procs.sort(key=lambda x: x['mem'], reverse=True)
     for p in procs[:4]:
         name = p['name']
-        if len(name) > 12:
-            name = name[:11] + "…"
+        if len(name) > 12: name = name[:11] + "…"
         mem_p = (p['mem'] / vram_total * 100) if vram_total > 0 else 0
         color = get_color(mem_p, 'gpu_power')
         tooltip_lines.append(f" • {name:<12} <span foreground='{color}'>󰘚 {p['mem']}MB</span>")
-except:
-    pass
+except: pass
 
 tooltip_lines.extend([
     "",
@@ -190,7 +179,7 @@ if click_type == "right":
     pass 
 
 print(json.dumps({
-    "text": f"<span size='8000' rise='-3000'>{GPU_ICON}</span> <span foreground='{die_temp_color}'>{gpu_temp}°C</span>",
+    "text": f"<span size='21000' rise='-3000'>{GPU_ICON}</span> <span foreground='{die_temp_color}'>{gpu_temp}°C</span>",
     "tooltip": f"<span size='14000' font='JetBrainsMono Nerd Font'>{"\n".join(tooltip_lines)}</span>",
     "markup": "pango",
     "class": "gpu"

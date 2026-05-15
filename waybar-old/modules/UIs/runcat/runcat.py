@@ -141,23 +141,13 @@ class UI:
 
         while True:
             cat = spinner.next
-            # out.text = cat
-            # out.text = f"{cat} {cpu.percent}%"
-            # out.text = f"{cat} <span size='small' alpha='70%'>{cpu.percent}%</span>"
-            # percentage_text = f"<span font_family='JetBrains Mono Nerd Font'>{cpu.percent}%</span>"
-            # out.text = f"{cat} {percentage_text}"
-
-            cat_styled = f"<span font_family='runcat' size='13pt'>{cat}</span>"
-            perc_styled = (
-                f"<span font_family='JetBrains Mono Nerd Font' size='9pt' rise='2500'>{cpu.percent}%</span>"
-            )
-            out.text = f"{cat_styled}  {perc_styled}"
+            out.text = cat
             print(out)
             sys.stdout.flush()
 
             time_factor = (100.0 - cpu.percent) / 100.0
 
-            # Calculate final sleep time
+            # Calculate final sleep time (T = T_min + (T_max - T_min) * factor)
             time = T_min + (T_max - T_min) * time_factor
 
             await asyncio.sleep(time)

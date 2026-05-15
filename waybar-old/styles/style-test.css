@@ -1,0 +1,187 @@
+@define-color foreground #000000;
+@define-color background #c0c0c0;
+@define-color foreground-warning #000000;
+@define-color background-warning #55aaff;
+@define-color foreground-error #000000;
+@define-color background-error #ff8c00;
+@define-color foreground-critical #000000;
+@define-color background-critical #ff0000;
+@define-color hover-color #b0b0b0;
+@define-color pressed-color #808080;
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family:
+    "JetBrains Mono Nerd Font" "Nimbus Sans",
+    "Symbols Nerd Font Mono",
+    sans-serif,
+    "Font Awesome 5";
+  font-size: 12px;
+}
+
+window#waybar {
+  background-color: @background;
+  border-bottom: 2px solid @pressed-color;
+  border-top: 2px solid white;
+  color: @foreground;
+  padding: 0;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+tooltip {
+  background: @background;
+}
+
+tooltip label {
+  font-size: 15px;
+  color: @foreground;
+}
+
+/* Workspace buttons (supports :checked) */
+#workspaces button {
+  border: 4px solid;
+  border-color: white @pressed-color @pressed-color white;
+  background-color: @background;
+  color: @foreground;
+  padding: 0 6px;
+  margin: 0;
+  min-height: 24px;
+  transition:
+    border-color 0.1s ease,
+    background-color 0.1s ease;
+}
+
+#workspaces button:hover {
+  background-color: @hover-color;
+}
+
+#workspaces button:checked {
+  border-color: @pressed-color white white @pressed-color;
+  background-color: @pressed-color;
+}
+
+#custom-weather,
+#custom-reload,
+#custom-apps_menu,
+#custom-bandwidth,
+#custom-packages,
+#custom-hostname,
+#custom-scratchpad,
+#custom-alsa,
+#custom-power,
+#mode,
+#wireplumber,
+#cpu,
+#memory,
+#temperature,
+#battery,
+#disk,
+#idle_inhibitor,
+#clock,
+#network,
+#tray {
+  border: 4px solid;
+  border-color: white @pressed-color @pressed-color white;
+  background-color: @background;
+  color: @foreground;
+  padding: 0 6px;
+  margin: 0;
+  min-height: 24px;
+  transition: background-color 0.1s ease;
+}
+
+#custom-bandwidth:hover,
+#custom-packages:hover,
+#custom-hostname:hover,
+#custom-scratchpad:hover,
+#custom-alsa:hover,
+#custom-power:hover,
+#custom-weather:hover,
+#custom-reload:hover,
+#custom-apps_menu:hover,
+#mode:hover,
+#wireplumber:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#battery:hover,
+#disk:hover,
+#idle_inhibitor:hover,
+#clock:hover,
+#network:hover,
+#tray:hover {
+  border-color: @pressed-color white white @pressed-color; /* Simulate pressed 3D effect */
+  background-color: @pressed-color; /* Darker background */
+}
+
+/* Focused/urgent/workspace buttons */
+#workspaces button.focused {
+  background-color: @background-warning;
+  color: @foreground-warning;
+  border-color: @pressed-color white white @pressed-color;
+}
+
+#workspaces button.urgent {
+  background-color: @background-critical;
+  color: @foreground-critical;
+  border-color: @pressed-color white white @pressed-color;
+}
+
+#battery.discharging {
+  background-color: @background-error;
+  color: @foreground-error;
+  border-color: @pressed-color white white @pressed-color;
+}
+
+#custom-reload.error,
+#custom-packages.error,
+#battery.critical:not(.charging),
+#disk.warning,
+#disk.critical,
+#network.disconnected,
+#network.ethernet,
+#wireplumber.muted,
+#temperature.critical,
+#idle_inhibitor.activated {
+  background-color: @background-warning;
+  color: @foreground-warning;
+  border-color: @pressed-color white white @pressed-color;
+}
+
+/* Blinking animation */
+@keyframes blink {
+  0% {
+    background-color: @background-critical;
+  }
+  50% {
+    background-color: @background-error;
+  }
+  100% {
+    background-color: @background-critical;
+  }
+}
+
+#battery.critical:not(.charging),
+#disk.critical,
+#temperature.critical {
+  animation: blink 1s infinite;
+}
+
+#clock {
+  font-family: monospace;
+  font-size: 12px;
+  min-height: 24px;
+}
+
+/* Remove margins for leftmost/rightmost modules */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}

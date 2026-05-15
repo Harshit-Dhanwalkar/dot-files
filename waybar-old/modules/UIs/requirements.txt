@@ -1,0 +1,5 @@
+asyncio
+pyjson5
+psutil
+tomli
+requests

@@ -1,18 +1,14 @@
 #!/usr/bin/env python3
-"""
-WAYBAR CPU MODULE
-----------------------------------------------------------------------------
-CPU monitoring script for waybar.
-Features:
-- Per-core usage visualization (Die layout)
-- Power usage (RAPL)
-- Temperature monitoring
-- Top processes consuming CPU
-
-Dependencies: btop or htp
-
-----------------------------------------------------------------------------
-""" 
+# 
+# WAYBAR CPU MODULE
+# ----------------------------------------------------------------------------
+# CPU monitoring script for waybar.
+# Features:
+# - Per-core usage visualization (Die layout)
+# - Power usage (RAPL)
+# - Temperature monitoring
+# - Top processes consuming CPU
+# ----------------------------------------------------------------------------
 
 import json
 import psutil
@@ -30,14 +26,6 @@ import glob
 CPU_ICON_GENERAL = ""
 HISTORY_FILE = "/tmp/waybar_cpu_history.pkl"
 TOOLTIP_WIDTH = 50
-
-# Check for available system monitor
-if shutil.which("btop"):
-    TOP_MONITOR = "Btop"
-elif shutil.which("htop"):
-    TOP_MONITOR = "htop"
-else:
-    TOP_MONITOR = "top" # Fallback
 
 # THEME & COLORS
 try:
@@ -230,19 +218,19 @@ cpu_rows = [
     ("󰓅", f"Utilization: <span foreground='{get_color(cpu_percent,'cpu_power')}'>{cpu_percent:.0f}%</span>")
 ]
 
-max_line_len = max(len(re.sub(r'<.*?>','',line_text)) for _, line_text in cpu_rows) + 25
-max_line_len = max(max_line_len, 40)
+max_line_len = max(len(re.sub(r'<.*?>','',line_text)) for _, line_text in cpu_rows) + 5
+max_line_len = max(max_line_len, 29)
 tooltip_lines.append("─" * max_line_len)
 for icon, text_row in cpu_rows:
     tooltip_lines.append(f"{icon} | {text_row}")
 
 # CPU Die Visualization
-cpu_viz_width = 25
+cpu_viz_width = 30
 center_padding = " " * int((max_line_len - cpu_viz_width) // 2)
 substrate_color = get_color(max_cpu_temp, 'cpu_gpu_temp')
 border_color = COLORS['white']
 
-# tooltip_lines.append("")
+tooltip_lines.append("")
 tooltip_lines.append(f"{center_padding}  <span foreground='{border_color}'>╭──┘└────┘⠿└─────┘└─╮</span>")
 tooltip_lines.append(f"{center_padding}  <span foreground='{border_color}'>┘</span><span foreground='{substrate_color}'>░░░░░░░░░░░░░░░░░░░</span><span foreground='{border_color}'>└</span>")
 
@@ -286,7 +274,7 @@ try:
                 if "waybar" in parts[2] if len(parts)>2 else "":
                     continue
                 if len(name) > 15:
-                    name = name[:14] + "_"
+                    name = name[:14] + "…"
                 color = get_core_color(usage)
                 tooltip_lines.append(f" • {name:<15} <span foreground='{color}'> {usage:>5.1f}%</span>")
                 count += 1
@@ -295,17 +283,13 @@ try:
 except:
     pass
 
-# tooltip_lines.append("")
+tooltip_lines.append("")
 tooltip_lines.append(f"<span foreground='{COLORS['white']}'>{'┈' * max_line_len}</span>")
-string_rmb=f"󰍽 RMB: {TOP_MONITOR}"
-line_len = max_line_len - len(string_rmb)
-tooltip_lines.append(f"<span foreground='{COLORS['white']}'>{' ' * line_len}{string_rmb}</span>")
-# tooltip_lines.append("󰍽 LMB: Btop")
+tooltip_lines.append("󰍽 LMB: Btop")
 
 save_history(cpu_history, per_core_history)
 
-# TERMINAL = os.environ.get("TERMINAL") or shutil.which("xterm-kitty") or "xterm"
-TERMINAL = os.environ.get("TERMINAL") or shutil.which("kitty") or shutil.which("alacritty") or "xterm"
+TERMINAL = os.environ.get("TERMINAL") or shutil.which("xterm-kitty") or "xterm"
 if os.environ.get("WAYBAR_CLICK_TYPE") == "left":
     subprocess.Popen([TERMINAL, "-e", "btop"])
 

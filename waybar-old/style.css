@@ -72,7 +72,6 @@ tooltip label {
 #workspaces,
 #temperature,
 #custom-disks,
-#custom-waybar_storage:hover,
 #custom-memory_usage,
 #custom-weather,
 #keyboard-state,
@@ -89,11 +88,8 @@ tooltip label {
 #network,
 #battery,
 #taskbar,
-#clock_cal,
 #custom-runcat,
-#custom-waybar_gpu,
 #custom-waybar_cpu,
-#custom-full_weather,
 #custom-usb_devices,
 #idle_inhibitor,
 #custom-cliphist {
@@ -227,7 +223,6 @@ tooltip label {
 }
 
 #custom-disks,
-#custom-waybar_storage:hover,
 #custom-memory_usage,
 #custom-weather,
 #clock,
@@ -244,11 +239,8 @@ tooltip label {
 #bluetooth,
 #network,
 #battery,
-#clock_cal,
 #custom-runcat,
-#custom-waybar_gpu,
 #custom-waybar_cpu,
-#custom-full_weather,
 #custom-usb_devices,
 #idle_inhibitor,
 #custom-cliphist {
@@ -267,8 +259,6 @@ tooltip label {
 #workspaces button:hover,
 #temperature:hover,
 #custom-disks:hover,
-#custom-waybar_storage:hover,
-#custom-full_weather:hover,
 #custom-memory_usage:hover,
 #custom-weather:hover,
 #keyboard-state:hover,
@@ -285,9 +275,7 @@ tooltip label {
 #network:hover,
 #battery:hover,
 #taskbar button:hover,
-#custom-full_weather:hover,
 #custom-runcat:hover,
-#custom-waybar_gpu:hover,
 #custom-waybar_cpu:hover,
 #custom-usb_devices:hover,
 #idle_inhibitor:hover,
@@ -301,7 +289,6 @@ tooltip label {
 #workspaces:hover,
 #window:hover,
 #custom-disks:hover,
-#custom-waybar_storage:hover,
 #custom-memory_usage:hover,
 #custom-weather:hover,
 #clock:hover,
@@ -319,11 +306,8 @@ tooltip label {
 #network:hover,
 #battery:hover,
 #taskbar:hover,
-#clock_cal:hover,
 #custom-runcat:hover,
-#custom-waybar_gpu:hover,
 #custom-waybar_cpu:hover,
-#custom-full_weather:hover,
 #custom-usb_devices:hover,
 #idle_inhibitor:hover,
 #custom-cliphist:hover {
@@ -340,16 +324,13 @@ tooltip label {
 #cpu,
 #memory,
 #battery,
-#clock_cal,
-#custom-waybar_gpu,
-#custom-waybar_cpu,
-#custom-full_weather {
+#custom-runcat,
+#custom-waybar_cpu {
   min-width: 44px;
 }
 
-#custom-runcat,
 #custom-memory_usage {
-  min-width: 55px;
+  min-width: 66px;
   border: 4px solid;
   border-color: white @pressed-color @pressed-color white;
 }
@@ -422,10 +403,8 @@ tooltip label {
 }
 
 #custom-runcat {
-  /* font-size: 15px; */
+  font-size: 15px;
   font-family: "runcat";
-  padding: 0 8px;
-  background: transparent;
 }
 
 #custom-runcat.low {
@@ -454,10 +433,6 @@ tooltip label {
     @pressed-color;
 }
 
-#custom-waybar_storage,
-#custom-full_weather,
-#clock_cal,
-#custom-waybar_gpu,
 #custom-waybar_cpu {
   min-width: 55px;
   color: @foreground;
