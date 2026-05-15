@@ -149,7 +149,7 @@ class UI:
 
             cat_styled = f"<span font_family='runcat' size='13pt'>{cat}</span>"
             perc_styled = (
-                f"<span font_family='JetBrains Mono Nerd Font' size='9pt' rise='2500'>{cpu.percent}%</span>"
+                f"<span font_family='JetBrains Mono Nerd Font' size='8.5pt' rise='4000'>{cpu.percent}%</span>"
             )
             out.text = f"{cat_styled}  {perc_styled}"
             print(out)

@@ -215,7 +215,7 @@ tooltip label {
 }
 
 #window {
-  min-width: 290px;
+  min-width: 320px;
   font-size: 11px;
   color: @foreground;
   background-color: @background;

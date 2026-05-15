@@ -12,8 +12,7 @@
   // Modules Configuration
   "modules-left": [
     "sway/workspaces",
-    "custom/swaymsg_next_empty_workspace",
-    "custom/runcat",
+    // "custom/swaymsg_next_empty_workspace",
     "tray",
     "wlr/taskbar",
     "sway/window",
@@ -32,8 +31,9 @@
     // "custom/waybar_memory",
     // "custom/full_weather",
     // "custom/clock_cal",
-    "cpu",
-    "gpu",
+    // "cpu",
+    // "gpu",
+    "custom/runcat", // Cpu monitor
     "custom/waybar_cpu",
     // "custom/waybar_gpu",
     "custom/memory_usage",
