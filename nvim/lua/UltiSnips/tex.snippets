@@ -1,4 +1,15 @@
-snippet luboilerplate "LuaLaTeX document boilerplate" b
+snippet luboilerplate "LuaLaTeX document simple boilerplate" b
+% !TeX program = lualatex
+% !TeX encoding = UTF-8
+
+\documentclass[a4paper]{article}
+
+\begin{document}
+	$0
+\end{document}
+endsnippet
+
+snippet luboilerplate1 "LuaLaTeX document boilerplate" b
 % !TeX program = lualatex
 % !TeX encoding = UTF-8
 
@@ -6,7 +17,7 @@ snippet luboilerplate "LuaLaTeX document boilerplate" b
 
 \usepackage{fontspec}
 \usepackage{polyglossia}
-\setmainlanguage{dutch}
+#\usepackage[{language}]
 \usepackage{amsmath, amssymb}
 
 % Figure support
@@ -33,8 +44,8 @@ snippet boilerplate "PDFLaTeX document boilerplate" b
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
-\usepackage[dutch]{babel}
 \usepackage{amsmath, amssymb}
+#\usepackage[{language}]{babel}
 
 % Figure support
 \usepackage{import}
