@@ -168,13 +168,30 @@ return {
 				-- lualine_z = { get_time, "location" },
 				-- lualine_z = { "location" },
 				lualine_z = {
+					-- {
+					-- 	"location",
+					-- 	fmt = function(str)
+					-- 		local line, col = str:match("(%d+):(%d+)")
+					-- 		return string.format(" %s.%s", line, col)
+					-- 	end,
+					-- 	-- separator = { left = "", right = " " },
+					-- 	separators = { left = "", right = "" },
+					-- 	padding = 0,
+					-- 	cond = function()
+					-- 		local mode = vim.fn.mode()
+					-- 		return not (mode == "v" or mode == "V" or mode == "\22")
+					-- 			and (vim.v.hlsearch == 0 or vim.fn.getreg("/") == "")
+					-- 	end,
+					-- },
 					{
 						"location",
 						fmt = function(str)
 							local line, col = str:match("(%d+):(%d+)")
-							return string.format(" %s.%s", line, col)
+							local total_lines = vim.api.nvim_buf_line_count(0)
+
+							-- Return format: line.col/total
+							return string.format(" %s.%s/%s", line, col, total_lines)
 						end,
-						-- separator = { left = "", right = " " },
 						separators = { left = "", right = "" },
 						padding = 0,
 						cond = function()
