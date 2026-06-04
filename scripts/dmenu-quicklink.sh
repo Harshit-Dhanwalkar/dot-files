@@ -12,9 +12,9 @@ message="Attempting to open links in: Firefox -> Brave -> Chromium"
 # Menu entries
 options=(
   "  Github"
-  "  Whatsapp"
   "  Gmail"
   "  Sourcehut"
+  "  Whatsapp"
   "󰎄  Youtube Music" #   󰎅 
   "  Youtube"
   "  LeetCode"
@@ -64,9 +64,9 @@ chosen=$(printf "%s\n" "${options[@]}" | dmenu -l 13 -p "$prompt")
 
 case "$chosen" in
 *"Github"*) open_link "https://github.com/Harshit-Dhanwalkar/" ;;
-*"Whatsapp"*) open_link "https://web.whatsapp.com/" ;;
 *"Gmail"*) open_link "https://mail.google.com/" ;;
-*"SourceHut"*) open_link "https://https://sr.ht/" ;;
+*"Sourcehut"*) open_link "https://git.sr.ht/" ;;
+*"Whatsapp"*) open_link "https://web.whatsapp.com/" ;;
 *"Youtube Music"*) open_link "https://music.youtube.com/" ;;
 *"Youtube"*) open_link "https://youtube.com/" ;;
 *"LeetCode"*) open_link "https://leetcode.com/problems/" ;;
