@@ -11,9 +11,13 @@
 
 # Check for notification command
 if command -v dunstify >/dev/null 2>&1; then
-    notify_cmd() { dunstify -u low -t 3000 --replace=699 "$1"; }
+    notify_cmd() {
+        dunstify -u low -t 5000 --replace=699 "$1";
+    }
 else
-    notify_cmd() { notify-send "$1"; }
+    notify_cmd() {
+        notify-send "$1";
+    }
 fi
 
 # Directories and file
@@ -35,8 +39,8 @@ options=(
 "󰑋 󰍹 Record Desktop in 5s"
 "󰑋 󰍹 Record Desktop in 10s"
 "󰑋 󰹑 Record Area"
-"󰑋 󰹑 Record Area in 5s"
-"󰑋 󰹑 Record Area in 10s"
+"󰑋 󱎫 Record Area in 5s"
+"󰑋 󱎫 Record Area in 10s"
 "󰑋  Stop Recording"
 )
 
@@ -187,8 +191,8 @@ case "$chosen" in
 "󰑋 󰍹 Record Desktop in 5s")         recordnow5 ;;
 "󰑋 󰍹 Record Desktop in 10s")        recordnow10 ;;
 "󰑋 󰹑 Record Area")                  recordarea ;;
-"󰑋 󰹑 Record Area in 5s")            recordarea5 ;;
-"󰑋 󰹑 Record Area in 10s")           recordarea10 ;;
+"󰑋 󱎫 Record Area in 5s")            recordarea5 ;;
+"󰑋 󱎫 Record Area in 10s")           recordarea10 ;;
 "󰑋  Stop Recording")               stop_recording ;;
 *) notify_cmd "Operation Cancelled." ;;
 esac

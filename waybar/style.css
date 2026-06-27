@@ -2,13 +2,13 @@
 /* Github  : @Harshit-Dhanwalkar */
 
 /* Dark mode */
-@define-color foreground #FFFFFF;
+@define-color foreground #ffffff;
 @define-color background rgba(0, 0, 0, 0.1);
-@define-color pressed-color #000000;
+@define-color pressed-color #0a0a0a;
 @define-color tooltip-bg rgba(0, 0, 0, 0.7);
 
 /* Light mode */
-/* @define-color foreground #000000; */
+/* @define-color foreground #0a0a0a; */
 /* @define-color background #c0c0c0; */
 /* @define-color pressed-color #808080; */
 /* @define-color tooltip-bg rgba(250, 250, 250, 0.7); */
@@ -270,7 +270,6 @@ tooltip label {
 #custom-waybar_storage:hover,
 #custom-full_weather:hover,
 #custom-memory_usage:hover,
-#custom-weather:hover,
 #keyboard-state:hover,
 #custom-keyboard_backlight:hover,
 #custom-power:hover,
@@ -418,7 +417,8 @@ tooltip label {
 #backlight-slider highlight,
 #pulseaudio-slider highlight {
   border-radius: 1px;
-  background-color: #2096c0;
+  /* background-color: #2096c0; */
+  background: @hover-color;
 }
 
 #custom-runcat {
@@ -431,7 +431,7 @@ tooltip label {
 #custom-runcat.low {
   font-family: "runcat";
   /* color: @blue; */
-  color: #2699c9;
+  color: #0a0a0a;
   background: @hover-color;
   border: 4px solid;
   border-color: @pressed-color white white @pressed-color;
@@ -439,15 +439,18 @@ tooltip label {
 
 #custom-runcat.medium {
   font-family: "runcat";
-  color: @foreground-warning;
+  /* color: @foreground-warning; */
+  color: #0a0a0a;
   background: @hover-color;
   border: 4px solid;
-  border-color: @pressed-color @foreground-warning @foreground-warning @pressed-color;
+  border-color: @pressed-color @foreground-warning @foreground-warning
+    @pressed-color;
 }
 
 #custom-runcat.high {
   font-family: "runcat";
-  color: @foreground-error;
+  /* color: @foreground-error; */
+  color: #0a0a0a;
   background: @hover-color;
   border: 4px solid;
   border-color: @pressed-color @foreground-error @foreground-error
@@ -475,4 +478,32 @@ tooltip label {
 
 #custom-usb_devices.high {
   color: @foreground-error;
+}
+
+#custom-pomodoro {
+  min-width: 55px;
+  border: 4px solid;
+  background-color: @background-color;
+  border-color: white @pressed-color @pressed-color white;
+}
+
+/* When focus timer is active */
+#custom-pomodoro.focus {
+  color: @foreground-error; 
+}
+
+/* When break timer is active */
+#custom-pomodoro.break {
+  color: @blue;
+}
+
+/* When pomod daemon is active but idle */
+#custom-pomodoro.idle {
+  color: @foreground-warning; 
+}
+
+/* When pomod background daemon is stopped entirely */
+#custom-pomodoro.stopped {
+  color: #808080;
+  font-style: italic;
 }

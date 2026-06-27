@@ -33,6 +33,7 @@
     // "custom/clock_cal",
     // "cpu",
     // "gpu",
+    "custom/pomodoro",
     "custom/runcat", // Cpu monitor
     "custom/waybar_cpu",
     // "custom/waybar_gpu",
@@ -95,7 +96,7 @@
     "format": "{:%a %d %b %I:%M %p}",
     "format-alt": " {:%Y-%m-%d (%Z)}",
     // "on-click-right": "wldash",
-    "on-click-right": "~/.config/dunst/scripts/dunst_calendar.sh",
+    "on-click-right": "$HOME/.config/dunst/scripts/dunst_calendar.sh",
     "tooltip": true,
     "tooltip-format": " {:%A, Date: %d %B %Y, Time: %H:%M, %Z, Day: %j/365}"
     // "tooltip-format": "\n<span size='9pt' font='JetBrains Mono Nerd Font'>{calendar}</span>",
@@ -134,8 +135,8 @@
     "format-linked": " {ifname} (No IP) 󰈀",
     "format-disconnected": " 󰤫 Disconnected",
     // "format-alt": "{ifname}: {ipaddr}/{cidr}",
-    "on-click": "~/.config/sway/scripts/dmenu-wifi.sh",
-    "on-click-right": "exec ~/.local/kitty.app/bin/kitty nmtui",
+    "on-click": "$HOME/.config/sway/scripts/dmenu-wifi.sh",
+    "on-click-right": "exec $HOME/.local/kitty.app/bin/kitty nmtui",
     "tooltip": true,
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": " {essid} ({signalStrength}%)\n IP: {ipaddr}/{cidr}\n Gateway: {gwaddr}\n {bandwidthUpBits} {bandwidthDownBits}",
@@ -154,7 +155,7 @@
     "states": {
       "unconnected": 0
     },
-    "on-click": "~/.config/sway/scripts/dmenu-bluetooth.sh",
+    "on-click": "$HOME/.config/sway/scripts/dmenu-bluetooth.sh",
     "on-click-right": "blueman-manager",
     // "on-click-right": "$HOME/.local/kitty.app/bin/kitty bluetoothctl",
     //"tooltip-format": "{status}"
@@ -264,10 +265,19 @@
   },
   "custom/swaymsg_next_empty_workspace": {
     "format": " ",
-    "on-click": "~/.config/waybar/modules/swaymsg-next-empty-workspace",
+    "on-click": "$HOME/.config/waybar/modules/swaymsg-next-empty-workspace",
     "exec": "echo '{\"tooltip\": \"Left click for new workspace\"}'",
     "return-type": "json",
     "tooltip": true
+  },
+  "custom/pomodoro": {
+      "exec": "while true; do BIN=\"$HOME/.config/waybar/modules/UIs/pomodoro/pomoc\"; time=$($BIN status time 2>/dev/null); state=$($BIN status active 2>/dev/null); if [ \"$time\" = \"ERR: pomod not running\" ] || [ -z \"$time\" ]; then echo '{\"text\": \"󱎫 Off\", \"class\": \"stopped\"}'; else echo \"{\\\"text\\\": \\\"󱎫 $time\\\", \\\"class\\\": \\\"$state\\\"}\"; fi; sleep 1; done",
+      "return-type": "json",
+      "on-click": "$HOME/.config/waybar/modules/UIs/pomodoro/pomoc start",
+      "on-click-right": "$HOME/.config/waybar/modules/UIs/pomodoro/pomoc pause",
+      "on-click-middle": "$HOME/.config/waybar/modules/UIs/pomodoro/pomoc end",
+      "tooltip": true,
+      "tooltip-format": "Pomodoro Status: {}"
   },
   "temperature": {
     "thermal-zone": 1,
@@ -282,25 +292,25 @@
     "format-icons": ["", "", "", ""],
     // "format-alt-click": "click-right",
     // "format-alt": " {temperatureC}°C",
-    //        "on-click-right": "kitty -c ~/.config/dotfiles/kitty/kitty.conf --title nvtop sh -c 'nvtop'"
+    //        "on-click-right": "kitty -c $HOME/.config/dotfiles/kitty/kitty.conf --title nvtop sh -c 'nvtop'"
     "tooltip": true,
     "tooltip-format": "CPU {icon} at {temperatureC}°C"
   },
   "custom/cava": {
     "format": "{}",
-    // "exec": "~/.config/sway/scripts/waybarCavaColor.sh",
-    "exec": "~/.config/sway/scripts/waybarCava.sh",
+    // "exec": "$HOM/.config/sway/scripts/waybarCavaColor.sh",
+    "exec": "$HOME/.config/sway/scripts/waybarCava.sh",
     "tooltip": false
   },
   "custom/memory_usage": {
     "format": " {icon} {}",
     "format-icons": ["󰍛"],
     "interval": 5,
-    "exec": "bash ~/.config/waybar/modules/memory_usage.sh",
+    "exec": "bash $HOME/.config/waybar/modules/memory_usage.sh",
     "tooltip": true
   },
   "custom/clock_cal": {
-      "exec": "~/.config/waybar/modules/UIs/venv/bin/python3 ~/.config/waybar/modules/UIs/balthazzahr_widgets/clock_cal.py",
+      "exec": "$HOME/.config/waybar/modules/UIs/venv/bin/python3 $HOME/.config/waybar/modules/UIs/balthazzahr_widgets/clock_cal.py",
       "return-type": "json",
       "format": "{}",
       "interval": 3
@@ -316,7 +326,7 @@
     "format-icons": ["󰋊"], // 󰇖󰮌
     "on-click-right": "exec /usr/bin/baobab",
     "interval": 600,
-    "exec": "bash ~/.config/waybar/modules/disks.sh",
+    "exec": "bash $HOME/.config/waybar/modules/disks.sh",
     "return-type": "json",
     "tooltip": true,
     "states": {
@@ -325,7 +335,7 @@
     }
   },
   // "custom/full_weather": {
-  //   "exec": "/home/harshitpd/.config/waybar/modules/UIs/venv/bin/python3 ~/.config/waybar/modules/UIs/balthazzahr_widgets/full_weather.py",
+  //   "exec": "/home/harshitpd/.config/waybar/modules/UIs/venv/bin/python3 $HOME/.config/waybar/modules/UIs/balthazzahr_widgets/full_weather.py",
   //   "return-type": "json",
   //   "format": "{}",
   //   "interval": 600 // Updates every 10 minutes
@@ -335,14 +345,14 @@
     // "format-alt": "{alt}: {}",
     // "format-alt-click": "click-right",
     "interval": 3600,
-    "exec": "~/.config/waybar/modules/wttrbar",
+    "exec": "$HOME/.config/waybar/modules/wttrbar",
     "return-type": "json",
     "tooltip": true,
     "on-click": "gnome-weather"
   },
   "custom/keyboard_backlight": {
     "format": " {}",
-    "exec": "~/.config/waybar/modules/keyboard-backlight.sh",
+    "exec": "$HOME/.config/waybar/modules/keyboard-backlight.sh",
     "exec-on-event": true,
     "return-type": "json",
     "signal": 3,
@@ -350,23 +360,23 @@
   },
   "custom/power": {
     "format": "⏻",
-    "on-click": "bash ~/.config/sway/scripts/dmenu_power.sh",
+    "on-click": "bash $HOME/.config/sway/scripts/dmenu_power.sh",
     "tooltip": false
   },
   "custom/runcat": {
-    "exec": "~/.config/waybar/modules/UIs/runcat/runcat.py",
+    "exec": "$HOME/.config/waybar/modules/UIs/runcat/runcat.py",
     "return-type": "json",
     "format": "{}"
   },
   // "custom/waybar_gpu": {
-  //     "exec": "~/.config/waybar/modules/UIs/venv/bin/python3 ~/.config/waybar/modules/UIs/balthazzahr_widgets/waybar_gpu.py",
+  //     "exec": "$HOME/.config/waybar/modules/UIs/venv/bin/python3 $HOME/.config/waybar/modules/UIs/balthazzahr_widgets/waybar_gpu.py",
   //     "return-type": "json",
   //     "format": "{}",
   //     "interval": 3
   // },
   "custom/waybar_cpu": {
       "format": "{}",
-      "exec": "~/.config/waybar/modules/UIs/venv/bin/python3 ~/.config/waybar/modules/UIs/balthazzahr_widgets/waybar_cpu.py",
+      "exec": "$HOME/.config/waybar/modules/UIs/venv/bin/python3 $HOME/.config/waybar/modules/UIs/balthazzahr_widgets/waybar_cpu.py",
       "return-type": "json",
       "on-click-right": "$HOME/.local/kitty.app/bin/kitty /usr/bin/btop",
       "interval": 3
@@ -384,12 +394,12 @@
   },
   "custom/usb_devices": {
     "format": " {}",
-    "exec": "bash ~/.config/waybar/modules/usb-devices.sh",
+    "exec": "bash $HOME/.config/waybar/modules/usb-devices.sh",
     "return-type": "json",
     "interval": 60,
     "tooltip": true,
-    "on-click": "bash ~/.config/waybar/modules/usb-devices.sh --mount",
-    "on-click-right": "bash ~/.config/waybar/modules/usb-devices.sh --unmount"
+    "on-click": "bash $HOME/.config/waybar/modules/usb-devices.sh --mount",
+    "on-click-right": "bash $HOME/.config/waybar/modules/usb-devices.sh --unmount"
   },
   "custom/recorder": {
     "format": " {}",

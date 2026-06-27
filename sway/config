@@ -126,13 +126,13 @@ input type:touchpad {
     bindsym $mod+s exec grim -g "$(slurp)" "$HOME/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png"
     bindsym $mod+shift+s exec grim -g "$(slurp)" - | wl-copy
     ## Uses demnu to bring out menu for screen shoot
-    bindsym $mod-alt+s exec ~/.config/sway/scripts/dmenu-screenshot.sh
+    bindsym $mod-alt+s exec ~/.config/sway/scripts/dmenu_screenshot.sh
 
     # Browser
     # bindsym Mod1+w exec ~/.config/qutebrowser/userscripts/session.sh
 
     # Powermenu
-    bindsym $mod+p exec ~/.config/sway/scripts/dmenu-power.sh
+    bindsym $mod+p exec ~/.config/sway/scripts/dmenu_power.sh
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -333,8 +333,11 @@ client.unfocused           "#89b4fa" "#1E1E2E" "#999999" "#111111" "#444444"
 client.urgent              "#bf616a" "#f38ba8" "#ffffff" "#ff6600" "#990000"
 client.placeholder         "#222222" "#222222" "#999999" "#777777" "#444444"
 
-# Notification
+# Notification deamon
 exec --no-startup-id dunst
+
+# Start-up scripts/modules/deamon
+exec_always --no-startup-id ~/.config/waybar/modules/UIs/pomodoro/pomod
 
 # Cliphist (clipboard-manager)
 ## [Github releases](https://github.com/sentriz/cliphist/releases)
