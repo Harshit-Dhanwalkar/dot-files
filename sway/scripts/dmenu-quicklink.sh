@@ -13,7 +13,7 @@ message="Attempting to open links in: Firefox -> Brave -> Chromium"
 options=(
   "  Github"
   "  Gmail"
-  "  Sourcehut"
+  " Sourcehut"
   "  Whatsapp"
   "󰎄  Youtube Music" #   󰎅 
   "  Youtube"
@@ -24,6 +24,7 @@ options=(
   "𝕏  X.com ( Twitter)"
   "  LinkedIn"
   # "  Slack"
+  # " Telegram"
   "  One Piece"
 )
 
