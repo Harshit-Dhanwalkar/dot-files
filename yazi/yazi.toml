@@ -10,50 +10,54 @@ sort_by = "extension"
 
 [opener]
 edit = [
-    { run = '${EDITOR:-nvim} "$@"', desc = " Nvim", block = true, for = "unix" },
+	{ run = '${EDITOR:-nvim} %s',        desc = " Nvim", block = true, for = "unix" },
 ]
 newwindow = [
-    # { run = '${TERM:-kitty} ${EDITOR:-nvim} "$@"', desc = " Nvim in new window", orphan = true, for = "unix" },
-	{ run = '${TERM_CMD:-kitty} ${EDITOR:-nvim} "$@"', desc = " Nvim in new window", orphan = true, for = "unix" }
+    { run = '${TERM_CMD:-kitty} ${EDITOR:-nvim} %s', desc = " Nvim in new window", orphan = true, for = "unix" }
+    # { run = '${TERM:-kitty} ${EDITOR:-nvim} "$1"', desc = " Nvim in new window", orphan = true, for = "unix" },
 ]
 open = [
-    { run = 'xdg-open "$1"', desc = " Open", for = "linux" },
+    { run = 'xdg-open %s1',              desc = " Open",   orphan = true, for = "linux" },
+    # { run = 'xdg-open "$1"',              desc = "XDG Open", orphan = true, for = "linux" },
 ]
 reveal = [
-    { run = 'xdg-open "$(dirname "$1")"', desc = " Reveal", for = "linux" }
+    { run = 'xdg-open %d1', desc = " Reveal", orphan = true, for = "linux" }
 ]
 extract = [
-    { run = 'ya pub extract --list "$@"', desc = " Extract here", for = "unix" },
-    { run = 'ouch d -y "$@"',             desc = "Extract here with ouch", for = "unix" },
+    { run = 'ya pub extract --list %s', desc = " Extract here", for = "unix" },
+    { run = 'ouch d -y %s',             desc = "Extract here with ouch", for = "unix" },
 ]
 pdf = [
-    { run = '/usr/bin/zathura "$1"', desc = " Zathura", orphan = true, for = "linux" },
-    { run = 'okular "$1"', desc = " Okular", orphan = true, for = "linux" },
-    { run = 'evince "$1"', desc = " Evince", orphan = true, for = "linux" },
-    # { run = 'QT_QPA_PLATFORM=wayland flatpak run com.github.ahrm.sioyek "$1"', desc = " Sioyek", orphan = true, for = "linux" },
+    { run = '/usr/bin/zathura %s1',      desc = " Zathura", orphan = true, for = "linux" },
+    { run = 'okular %s1',                desc = " Okular",  orphan = true, for = "linux" },
+    { run = 'evince %s1',                desc = " Evince",  orphan = true, for = "linux" },
+    # { run = 'QT_QPA_PLATFORM=wayland flatpak run com.github.ahrm.sioyek "%s1', desc = " Sioyek", orphan = true, for = "linux" },
 ]
 images = [
-    { run = 'sxiv "$1" $(find "$(dirname "$1")" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) | sort)', desc = " SXIV Gallery", orphan = true, for = "linux" },
-    { run = 'eog "$1"', desc = " Eye Of Gnome (SVG)", orphan = true, for = "linux" },
-    # { run = 'shotwell "$1"', desc = "  Shotwell", orphan = true, for = "linux" },
-    # { run = 'aseprite "$1"', desc = " Aseprite (SVG)", orphan = true, for = "linux" },
+    { run = 'sxiv %s',                  desc = " SXIV Gallery", orphan = true, for = "linux" },
+    # { run = 'sxiv %s" $(find "$ (dirname "$@")" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) | sort)', desc = " SXIV Gallery", orphan = true, for = "linux" },
+    { run = 'eog %s1',                   desc = " Eye Of Gnome (SVG)", orphan = true, for = "linux" },
+    # { run = 'shotwell %s',             desc = "  Shotwell", orphan = true, for = "linux" },
+    # { run = 'aseprite %s',             desc = " Aseprite (SVG)",     orphan = true, for = "linux" },
 ]
 video = [
-    { run = 'vlc "$1"', desc = " VLC Player", orphan = true, for = "linux" },
+    { run = 'vlc %s',                  desc = " VLC Player",    orphan = true, for = "linux" },
 ]
 
 [open]
 prepend_rules = [
-    { url = "*/", use = [ "edit", "open", "reveal", "newwindow" ] },
+    # { url = "*/", use = [ "edit", "open", "reveal", "newwindow" ] },
+    { url = "*.{py,c,cpp,h,hpp,rs,js,ts,go,lua,sh}", use = [ "edit", "reveal" ] },
     { mime = "text/*", use = [ "edit", "reveal", "newwindow" ] },
     { url = "*.md", use = [ "edit", "reveal", "newwindow" ] },
-    { url = "*.markdown", use = [ "edit", "reveal", "newwindow" ] },
-    { url = "*.{py,c,cpp,h,hpp,rs,js,ts,go,lua,sh}", use = [ "edit", "reveal" ] },
+    { url = "*.pdf", use = [ "pdf", "reveal" ] },
     { mime = "application/pdf", use = [ "pdf" , "reveal" ] },
-    { mime = "image/jpeg", use = [ "images", "reveal" ] },
-    { mime = "image/png", use = [ "images", "reveal" ] },
-    { mime = "image/gif", use = [ "images", "reveal" ] },
-    { mime = "image/svg+xml", use = [ "images", "reveal" ] },
+    { url = "*.markdown", use = [ "edit", "reveal", "newwindow" ] },
+    { mime = "image/*", use = [ "images", "reveal" ] },
+    # { mime = "image/jpeg", use = [ "images", "reveal" ] },
+    # { mime = "image/png", use = [ "images", "reveal" ] },
+    # { mime = "image/gif", use = [ "images", "reveal" ] },
+    # { mime = "image/svg+xml", use = [ "images", "reveal" ] },
     { mime = "video/mp4", use = [ "video", "reveal" ] },
 ]
 
@@ -79,23 +83,24 @@ name = "*.tiff"
 run  = "noop"
 
 [plugin]
-mime_detector = "mime-ext"
+# mime_detector = "mime-ext"
 prepend_previewers = [
    { url = '**/.git/', run = 'preview-git' },
-# 	# Change the top-level archive icon
-# 	{ ..., run = "ouch --archive-icon='🗄️ '" },
-# 	# Or remove it by setting it to ''
-# 	{ ..., run = "ouch --archive-icon=''" },
-# 	# Enable file icons
-# 	{ ..., run = "ouch --show-file-icons" },
-# 	# Disable tree view
-# 	{ ..., run = "ouch --list-view" },
-# 	# These can be combined
-# 	{ ..., run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
+   # # Change the top-level archive icon
+   # { ..., run = "ouch --archive-icon='🗄️ '" },
+   # # Or remove it by setting it to ''
+   # { ..., run = "ouch --archive-icon=''" },
+   # # Enable file icons
+   # { ..., run = "ouch --show-file-icons" },
+   # # Disable tree view
+   # { ..., run = "ouch --list-view" },
+   # # These can be combined
+   # { ..., run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
   { mime = 'font/*', run = 'font-sample' },
   { mime = 'application/ms-opentype', run = 'font-sample' },
   { url = '*.{otf,ttf,woff,woff2}', run = 'font-sample' },
 ]
-append_fetchers = [
-    { id = "simple-tag", group = "hover", url = "*", run = "simple-tag" },
-  ]
+
+# append_fetchers = [
+#     { id = "simple-tag", group = "hover", url = "*", run = "simple-tag" },
+#   ]
