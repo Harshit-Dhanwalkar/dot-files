@@ -13,15 +13,16 @@ message="Attempting to open links in: Firefox -> Brave -> Chromium"
 options=(
   "  Github"
   "  Gmail"
-  " Sourcehut"
+  "  Sourcehut"
   "  Whatsapp"
+  "𝕏  X.com ( Twitter)"
+  "󰃀  Substack"
   "󰎄  Youtube Music" #   󰎅 
   "  Youtube"
   "  LeetCode"
   "  Reddit"
   "󰈢  Notion" # 󰇱  󰗀 󰈙 
   "󰙯  Discord"
-  "𝕏  X.com ( Twitter)"
   "  LinkedIn"
   # "  Slack"
   # " Telegram"
@@ -68,13 +69,14 @@ case "$chosen" in
 *"Gmail"*) open_link "https://mail.google.com/" ;;
 *"Sourcehut"*) open_link "https://git.sr.ht/" ;;
 *"Whatsapp"*) open_link "https://web.whatsapp.com/" ;;
+*"X.com"* | *Twitter*) open_link "https://x.com/" ;;
+*"Substack"*) open_link "https://substack.com/" ;;
 *"Youtube Music"*) open_link "https://music.youtube.com/" ;;
 *"Youtube"*) open_link "https://youtube.com/" ;;
 *"LeetCode"*) open_link "https://leetcode.com/problems/" ;;
 *"Reddit"*) open_link "https://www.reddit.com/?feed=home/" ;;
 *"Notion"*) open_link "https://www.notion.so/" ;;
 *"Discord"*) open_link "https://canary.discord.com/channels/@me" ;;
-*"X.com"* | *Twitter*) open_link "https://x.com/" ;;
 *"LinkedIn"*) open_link "https://www.linkedin.com/in/harshit-dhanwalkar/" ;;
 *One* | *Piece*) open_link "https://mangafire.to/manga/one-piecee.dkw" ;;
 esac
